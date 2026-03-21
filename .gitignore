@@ -21,3 +21,4 @@ htmlcov/
 *.log
 *.cast
 proceda.yaml
+examples/northwind-ops/northwind.db

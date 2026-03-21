@@ -1,0 +1,9 @@
+llm:
+  model: anthropic/claude-sonnet-4-20250514
+  temperature: 0.3
+
+apps:
+  - name: northwind
+    description: Northwind company database (customers, orders, products, employees)
+    transport: stdio
+    command: ["uv", "run", "python", "examples/northwind-ops/northwind_server.py"]
