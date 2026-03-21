@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import asyncio
 import json
 import sys
@@ -26,7 +27,7 @@ SKILLS = [
     "returns-processing",
 ]
 
-TRACES_DIR = Path(__file__).parent / "traces"
+BASE_TRACES_DIR = Path(__file__).parent / "traces"
 
 
 class ConsolePrinter:
@@ -56,11 +57,11 @@ class ConsolePrinter:
             print(f"{prefix} ✗ RUN FAILED: {p.get('error', '')[:200]}")
 
 
-def build_config() -> ProcedaConfig:
+def build_config(model: str) -> ProcedaConfig:
     server_path = str(Path(__file__).parent / "northwind_server.py")
     return ProcedaConfig(
         llm=LLMConfig(
-            model="anthropic/claude-haiku-4-5-20251001",
+            model=model,
             temperature=0.3,
             max_tokens=4096,
         ),
@@ -75,10 +76,10 @@ def build_config() -> ProcedaConfig:
     )
 
 
-async def run_skill(skill_name: str, config: ProcedaConfig) -> dict:
+async def run_skill(skill_name: str, config: ProcedaConfig, traces_dir: Path) -> dict:
     """Run a single skill and return result summary."""
     skill_path = Path(__file__).parent / skill_name
-    run_dir = TRACES_DIR / skill_name
+    run_dir = traces_dir / skill_name
     run_dir.mkdir(parents=True, exist_ok=True)
 
     human = AutoApproveHumanInterface()
@@ -125,20 +126,28 @@ async def run_skill(skill_name: str, config: ProcedaConfig) -> dict:
 
 
 async def main() -> None:
+    parser = argparse.ArgumentParser(description="Run Northwind skills")
+    parser.add_argument("skills", nargs="*", default=SKILLS, help="Skills to run")
+    parser.add_argument("--model", default="anthropic/claude-haiku-4-5-20251001")
+    parser.add_argument("--label", default=None, help="Label for trace output dir")
+    args = parser.parse_args()
+
     ensure_db()
-    config = build_config()
+    config = build_config(args.model)
 
-    TRACES_DIR.mkdir(parents=True, exist_ok=True)
+    label = args.label or args.model.split("/")[-1]
+    traces_dir = BASE_TRACES_DIR / label
+    traces_dir.mkdir(parents=True, exist_ok=True)
 
-    # Run skills to execute (all by default, or specific ones from CLI)
-    skills_to_run = sys.argv[1:] if len(sys.argv) > 1 else SKILLS
+    print(f"Model: {args.model}")
+    print(f"Traces: {traces_dir}")
 
     results = []
-    for skill_name in skills_to_run:
+    for skill_name in args.skills:
         if skill_name not in SKILLS:
             print(f"Unknown skill: {skill_name}")
             continue
-        result = await run_skill(skill_name, config)
+        result = await run_skill(skill_name, config, traces_dir)
         results.append(result)
 
     # Print final report
@@ -155,16 +164,15 @@ async def main() -> None:
         info = f"steps={steps} tools={tools} approvals={approvals}"
         print(f"  {icon} {name:25s} {status:10s} {info}")
         if r.get("summary"):
-            # Print first 200 chars of summary
             summary_text = r["summary"][:200]
             print(f"    Summary: {summary_text}")
         if r.get("error"):
             print(f"    Error: {r['error'][:200]}")
 
     # Save overall report
-    report_path = TRACES_DIR / "report.json"
+    report_path = traces_dir / "report.json"
     report_path.write_text(json.dumps(results, indent=2, default=str))
-    print(f"\nTraces saved to: {TRACES_DIR}")
+    print(f"\nTraces saved to: {traces_dir}")
     print(f"Report saved to: {report_path}")
 
 

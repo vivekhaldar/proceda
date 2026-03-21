@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Northwind Ops - Execution Traces</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f6f8fa;
+    --bg-muted: #ebedf0;
+    --border: #d1d9e0;
+    --border-muted: #e1e4e8;
+    --fg: #1f2328;
+    --fg-muted: #656d76;
+    --green: #1a7f37;
+    --green-bg: #dafbe1;
+    --green-border: #aceebb;
+    --red: #cf222e;
+    --red-bg: #ffebe9;
+    --red-border: #ffcecb;
+    --amber: #9a6700;
+    --amber-bg: #fff8c5;
+    --amber-border: #f5e0a0;
+    --blue: #0969da;
+    --blue-bg: #ddf4ff;
+    --blue-border: #b6e3ff;
+    --purple: #8250df;
+    --purple-bg: #fbefff;
+    --purple-border: #e1b4ff;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --radius: 6px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--fg);
+    background: var(--bg);
+    line-height: 1.5;
+    padding: 0 0 4rem 0;
+  }
+
+  header {
+    background: var(--fg);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+  header h1 { font-size: 1.5rem; font-weight: 600; }
+  header p { color: #8b949e; font-size: 0.875rem; margin-top: 0.25rem; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Model selector */
+  .model-selector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+  }
+  .model-selector label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-right: 0.25rem;
+  }
+  .model-btn {
+    padding: 0.375rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--bg);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .model-btn:hover { background: var(--bg-subtle); }
+  .model-btn.active {
+    background: var(--fg);
+    color: #fff;
+    border-color: var(--fg);
+  }
+
+  /* Dashboard */
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .dash-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    background: var(--bg);
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+  .dash-card:hover { box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .dash-card h3 {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .dash-card .stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+  }
+  .dash-card .stats span { white-space: nowrap; }
+  .dash-card .duration {
+    font-size: 0.6875rem;
+    color: var(--fg-muted);
+    margin-top: 0.375rem;
+  }
+  .status-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.375rem;
+  }
+  .status-completed { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .status-failed { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+
+  /* Verdict section */
+  .verdict-section {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .verdict-section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.875rem 1.25rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+  .verdict-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+  }
+  .verdict-table th {
+    text-align: left;
+    padding: 0.5rem 1rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--fg-muted);
+  }
+  .verdict-table td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid var(--border-muted);
+    vertical-align: top;
+  }
+  .verdict-table tr:last-child td { border-bottom: none; }
+  .verdict-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .verdict-badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.125rem 0.5rem;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+  }
+  .verdict-good { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .verdict-mixed { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .verdict-bad { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .verdict-notes { color: var(--fg-muted); font-size: 0.8125rem; line-height: 1.5; }
+
+  /* Skill sections */
+  .skill-section {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    background: var(--bg);
+  }
+  .skill-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    background: var(--bg-subtle);
+    border-radius: var(--radius) var(--radius) 0 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-section.collapsed .skill-header {
+    border-radius: var(--radius);
+    border-bottom: none;
+  }
+  .skill-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .skill-header .meta {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .skill-header .chevron {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    transition: transform 0.2s;
+    margin-left: 1rem;
+  }
+  .skill-section.collapsed .chevron { transform: rotate(-90deg); }
+  .skill-body { padding: 0; }
+  .skill-section.collapsed .skill-body { display: none; }
+
+  /* Step group */
+  .step-group { border-bottom: 1px solid var(--border-muted); }
+  .step-group:last-child { border-bottom: none; }
+  .step-header {
+    padding: 0.625rem 1.25rem;
+    background: var(--bg-subtle);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--green);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-badge.failed { background: var(--red); }
+  .step-chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+    transition: transform 0.2s;
+  }
+  .step-group.collapsed .step-chevron { transform: rotate(-90deg); }
+  .step-group.collapsed .step-events { display: none; }
+
+  /* Events */
+  .event {
+    padding: 0.5rem 1.25rem 0.5rem 3.25rem;
+    border-top: 1px solid var(--bg-muted);
+    font-size: 0.8125rem;
+    position: relative;
+  }
+  .event:first-child { border-top: none; }
+  .event .event-time {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--fg-muted);
+    position: absolute;
+    right: 1.25rem;
+    top: 0.5rem;
+  }
+  .event-type-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.0625rem 0.375rem;
+    border-radius: 3px;
+    margin-right: 0.375rem;
+    vertical-align: middle;
+  }
+  .tag-tool-called { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+  .tag-tool-completed { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+  .tag-tool-failed { background: var(--red-bg); color: var(--red); border: 1px solid var(--red-border); }
+  .tag-message { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+  .tag-approval { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .tag-clarification { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+  .tag-summary { background: var(--bg-muted); color: var(--fg-muted); border: 1px solid var(--border); }
+  .tag-system { background: var(--bg-muted); color: var(--fg-muted); border: 1px solid var(--border); }
+
+  .event-content { margin-top: 0.25rem; }
+  .tool-name { font-family: var(--font-mono); font-weight: 600; font-size: 0.8125rem; }
+  .code-block {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-muted);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .code-block.sql { color: var(--blue); }
+  .collapsible-toggle {
+    font-size: 0.6875rem;
+    color: var(--blue);
+    cursor: pointer;
+    margin-top: 0.25rem;
+    display: inline-block;
+  }
+  .collapsible-toggle:hover { text-decoration: underline; }
+  .collapsible-content { display: none; }
+  .collapsible-content.expanded { display: block; }
+  .assistant-text {
+    background: var(--bg-subtle);
+    border-left: 3px solid var(--purple-border);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.375rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .error-text {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--red);
+    white-space: pre-wrap;
+  }
+  .approval-box {
+    border: 2px solid var(--amber-border);
+    background: var(--amber-bg);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+  }
+  .decision { font-weight: 600; text-transform: uppercase; margin-top: 0.25rem; }
+  .decision-approve { color: var(--green); }
+  .decision-deny { color: var(--red); }
+  .summary-box {
+    border-left: 3px solid var(--green-border);
+    background: var(--green-bg);
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.375rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  .run-events {
+    padding: 0.5rem 1.25rem;
+    border-bottom: 1px solid var(--border-muted);
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+  }
+  .run-id { font-family: var(--font-mono); font-size: 0.6875rem; }
+  .loading {
+    text-align: center;
+    padding: 3rem;
+    color: var(--fg-muted);
+    font-size: 0.875rem;
+  }
+  .loading-spinner {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border: 2px solid var(--border);
+    border-top-color: var(--blue);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-bottom: 0.5rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-banner {
+    background: var(--red-bg);
+    border: 1px solid var(--red-border);
+    color: var(--red);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Northwind Ops - Execution Traces</h1>
+  <p>Proceda skill execution traces across models</p>
+</header>
+
+<div class="container">
+  <div class="model-selector">
+    <label>Model:</label>
+    <div id="model-buttons"></div>
+  </div>
+
+  <div id="dashboard" class="dashboard"></div>
+
+  <div id="verdict"></div>
+
+  <div id="skills"></div>
+  <div id="loading" class="loading">
+    <div class="loading-spinner"></div>
+    <div>Loading traces...</div>
+  </div>
+</div>
+
+<script>
+const MODELS = [
+  { id: 'haiku', label: 'Claude Haiku 4.5' },
+  { id: 'gemini-3-flash', label: 'Gemini 3 Flash' },
+];
+
+const SKILLS = [
+  'order-fulfillment',
+  'inventory-restock',
+  'customer-onboarding',
+  'monthly-sales-report',
+  'returns-processing',
+];
+
+const VERDICTS = {
+  haiku: [
+    { skill: 'Order Fulfillment', verdict: 'good', label: 'Reasonable',
+      notes: 'Found real pending order 11008, correctly identified 1/3 items out of stock, partial shipped with approval. All UPDATE targets verified correct, line totals check out.' },
+    { skill: 'Inventory Restock', verdict: 'good', label: 'Reasonable',
+      notes: 'Found 18 low-stock products, correctly applied restock formula. All 5 spot-checked calculations verified exactly. Only ordered for the 7 that actually needed it.' },
+    { skill: 'Customer Onboarding', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Generated valid CustomerID "TECHV", duplicate check worked, INSERT succeeded. However, claimed sales rep was "assigned" in the summary when the column doesn\'t exist in the schema.' },
+    { skill: 'Monthly Sales Report', verdict: 'good', label: 'Reasonable',
+      notes: 'All numbers data-driven, MoM percentages verified (7.64% revenue growth checks out). Anomaly flags genuinely from queries, no hallucinated stats.' },
+    { skill: 'Returns Processing', verdict: 'bad', label: 'Failed',
+      notes: 'Did zero work. LLM kept asking for an OrderID, got "Proceed with default" from auto-approver, never fell back to picking a sample order. All 5 steps marked "not executed".' },
+  ],
+  'gemini-3-flash': [
+    { skill: 'Order Fulfillment', verdict: 'good', label: 'Reasonable',
+      notes: 'Found pending order 11074 (Simons bistro). Single line item (14x Pavlova), inventory sufficient. UPDATE targets correct. Total $232.09 verified: 14 * $17.45 * 0.95 = $232.085.' },
+    { skill: 'Inventory Restock', verdict: 'good', label: 'Reasonable',
+      notes: 'Found 18 low-stock products, formula verified for 5 spot-checks. Self-corrected from multi-statement SQL error. Used ProductName in WHERE (fragile but functional). 7 products restocked.' },
+    { skill: 'Customer Onboarding', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Generated valid CustomerID "GLOBA". Comprehensive UNION-based duplicate check. Same sales-rep non-assignment issue as Haiku, but wording more careful ("recommended" vs "assigned").' },
+    { skill: 'Monthly Sales Report', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Top-performer data is real and verified. However, August revenue ($3,278,512.14) was hallucinated \u2014 no query for August was ever executed. Churn SQL has a correlated subquery bug producing unreliable results.' },
+    { skill: 'Returns Processing', verdict: 'good', label: 'Reasonable',
+      notes: 'Found real order 10248. Correctly flagged 3,535 days past return window, asked for exception, then completed full return. Refund math verified: $168 + $98 + $174 = $440. Inventory restored and verified.' },
+  ],
+};
+
+let allData = {};
+let currentModel = MODELS[0].id;
+let collapsibleCounter = 0;
+
+async function loadAllData() {
+  for (const model of MODELS) {
+    allData[model.id] = { report: [], traces: {} };
+    try {
+      const resp = await fetch(`${model.id}/report.json`);
+      allData[model.id].report = await resp.json();
+    } catch (e) {}
+
+    const results = await Promise.allSettled(
+      SKILLS.map(async (skill) => {
+        const resp = await fetch(`${model.id}/${skill}/events.jsonl`);
+        const text = await resp.text();
+        return { skill, events: text.trim().split('\n').filter(Boolean).map(l => JSON.parse(l)) };
+      })
+    );
+    for (const r of results) {
+      if (r.status === 'fulfilled') allData[r.value.skill] = r.value.events;
+      if (r.status === 'fulfilled') allData[model.id].traces[r.value.skill] = r.value.events;
+    }
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  renderModelButtons();
+  renderAll();
+}
+
+function renderModelButtons() {
+  const container = document.getElementById('model-buttons');
+  for (const model of MODELS) {
+    const btn = document.createElement('button');
+    btn.className = 'model-btn' + (model.id === currentModel ? ' active' : '');
+    btn.textContent = model.label;
+    btn.onclick = () => {
+      currentModel = model.id;
+      document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAll();
+    };
+    container.appendChild(btn);
+  }
+}
+
+function renderAll() {
+  collapsibleCounter = 0;
+  renderDashboard();
+  renderVerdict();
+  renderSkills();
+}
+
+function formatTime(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  return d.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+function prettifyName(name) {
+  return name.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function tryFormatJson(str) {
+  try { return JSON.stringify(JSON.parse(str), null, 2); }
+  catch { return str; }
+}
+
+function formatSql(sql) {
+  if (!sql) return '';
+  const kw = /\b(SELECT|FROM|JOIN|LEFT JOIN|RIGHT JOIN|INNER JOIN|WHERE|AND|OR|ORDER BY|GROUP BY|HAVING|LIMIT|INSERT INTO|UPDATE|SET|DELETE|VALUES|ON|AS|IN|NOT|NULL|IS|LIKE|BETWEEN|CASE|WHEN|THEN|ELSE|END|COUNT|SUM|AVG|MAX|MIN|DISTINCT|UNION|CREATE|ALTER|DROP)\b/gi;
+  return sql.replace(kw, m => m.toUpperCase()).trim();
+}
+
+function renderDashboard() {
+  const container = document.getElementById('dashboard');
+  container.innerHTML = '';
+  const data = allData[currentModel];
+  for (const skill of SKILLS) {
+    const info = data.report.find(r => r.skill === skill) || {};
+    const card = document.createElement('div');
+    card.className = 'dash-card';
+    card.onclick = () => {
+      const section = document.getElementById('skill-' + skill);
+      if (section) { section.classList.remove('collapsed'); section.scrollIntoView({ behavior: 'smooth' }); }
+    };
+    const status = info.status || 'unknown';
+    const statusClass = status === 'completed' ? 'status-completed' : 'status-failed';
+    const summary = info.summary || '';
+    const durMatch = summary.match(/Duration: ([\d.]+s)/);
+    const dur = durMatch ? durMatch[1] : '';
+    card.innerHTML = `
+      <div class="status-badge ${statusClass}">${escapeHtml(status)}</div>
+      <h3>${escapeHtml(prettifyName(skill))}</h3>
+      <div class="stats">
+        <span>Steps: ${info.completed_steps ?? '?'}/${info.total_steps ?? '?'}</span>
+        <span>Tools: ${info.tool_calls ?? '?'}</span>
+        <span>Approvals: ${info.approvals ?? '0'}</span>
+      </div>
+      ${dur ? `<div class="duration">${dur}</div>` : ''}
+    `;
+    container.appendChild(card);
+  }
+}
+
+function renderVerdict() {
+  const container = document.getElementById('verdict');
+  const rows = VERDICTS[currentModel] || [];
+  if (!rows.length) { container.innerHTML = ''; return; }
+  container.innerHTML = `
+    <div class="verdict-section">
+      <h2>Trace Audit Verdict</h2>
+      <table class="verdict-table">
+        <thead><tr><th>Skill</th><th>Verdict</th><th>Notes</th></tr></thead>
+        <tbody>
+          ${rows.map(r => `<tr>
+            <td>${escapeHtml(r.skill)}</td>
+            <td><span class="verdict-badge verdict-${r.verdict}">${escapeHtml(r.label)}</span></td>
+            <td class="verdict-notes">${escapeHtml(r.notes)}</td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>`;
+}
+
+function renderSkills() {
+  const container = document.getElementById('skills');
+  container.innerHTML = '';
+  const data = allData[currentModel];
+  for (const skill of SKILLS) {
+    const events = data.traces[skill];
+    if (!events) {
+      container.innerHTML += `<div class="error-banner">Failed to load trace for ${escapeHtml(skill)}</div>`;
+      continue;
+    }
+    container.appendChild(buildSkillSection(skill, events, data.report));
+  }
+}
+
+function buildSkillSection(skill, events, report) {
+  const info = report.find(r => r.skill === skill) || {};
+  const section = document.createElement('div');
+  section.className = 'skill-section collapsed';
+  section.id = 'skill-' + skill;
+
+  const status = info.status || 'unknown';
+  const statusClass = status === 'completed' ? 'status-completed' : 'status-failed';
+  const firstTs = events[0]?.timestamp;
+  const lastTs = events[events.length - 1]?.timestamp;
+  let duration = '';
+  if (firstTs && lastTs) duration = ((new Date(lastTs) - new Date(firstTs)) / 1000).toFixed(1) + 's';
+
+  const header = document.createElement('div');
+  header.className = 'skill-header';
+  header.innerHTML = `
+    <div><h2>${escapeHtml(prettifyName(skill))}</h2></div>
+    <div class="meta">
+      <span class="status-badge ${statusClass}">${escapeHtml(status)}</span>
+      <span>${info.completed_steps ?? '?'}/${info.total_steps ?? '?'} steps</span>
+      <span>${info.tool_calls ?? 0} tool calls</span>
+      ${duration ? `<span>${duration}</span>` : ''}
+      <span class="chevron">&#9660;</span>
+    </div>`;
+  header.onclick = () => section.classList.toggle('collapsed');
+  section.appendChild(header);
+
+  const body = document.createElement('div');
+  body.className = 'skill-body';
+
+  const runCreated = events.find(e => e.type === 'run.created');
+  if (runCreated) {
+    const rd = document.createElement('div');
+    rd.className = 'run-events';
+    rd.innerHTML = `Run <span class="run-id">${escapeHtml(runCreated.run_id)}</span> &middot; ${formatTime(firstTs)} &middot; ${events.length} events`;
+    body.appendChild(rd);
+  }
+
+  for (const step of groupByStep(events)) body.appendChild(buildStepGroup(step));
+  section.appendChild(body);
+  return section;
+}
+
+function groupByStep(events) {
+  const steps = [];
+  let current = null;
+  for (const evt of events) {
+    if (evt.type === 'step.started') {
+      if (current) steps.push(current);
+      current = { index: evt.payload.step_index, title: evt.payload.step_title, events: [evt], completed: false };
+    } else if (current) {
+      current.events.push(evt);
+      if (evt.type === 'step.completed') current.completed = true;
+    }
+  }
+  if (current) steps.push(current);
+  return steps;
+}
+
+function buildStepGroup(step) {
+  const group = document.createElement('div');
+  group.className = 'step-group';
+  const header = document.createElement('div');
+  header.className = 'step-header';
+  header.innerHTML = `
+    <span class="step-badge ${step.completed ? '' : 'failed'}">${step.index}</span>
+    <span>${escapeHtml(step.title)}</span>
+    <span class="step-chevron">&#9660;</span>`;
+  header.onclick = () => group.classList.toggle('collapsed');
+  group.appendChild(header);
+
+  const eventsDiv = document.createElement('div');
+  eventsDiv.className = 'step-events';
+  const show = new Set(['message.assistant','tool.called','tool.completed','tool.failed',
+    'approval.requested','approval.responded','clarification.requested','clarification.responded','summary.generated']);
+  for (const evt of step.events) {
+    if (show.has(evt.type)) eventsDiv.appendChild(buildEvent(evt));
+  }
+  group.appendChild(eventsDiv);
+  return group;
+}
+
+function buildEvent(evt) {
+  const div = document.createElement('div');
+  div.className = 'event';
+  const time = `<span class="event-time">${formatTime(evt.timestamp)}</span>`;
+  const p = evt.payload || {};
+
+  switch (evt.type) {
+    case 'tool.called': {
+      let argsHtml = '';
+      if (p.arguments && Object.keys(p.arguments).length > 0) {
+        const s = p.arguments.sql ? formatSql(p.arguments.sql) : JSON.stringify(p.arguments, null, 2);
+        argsHtml = `<div class="code-block ${p.arguments.sql ? 'sql' : ''}">${escapeHtml(s)}</div>`;
+      }
+      div.innerHTML = `${time}<span class="event-type-tag tag-tool-called">TOOL CALL</span><span class="tool-name">${escapeHtml(p.tool_name||'')}</span><div class="event-content">${argsHtml}</div>`;
+      break;
+    }
+    case 'tool.completed': {
+      const formatted = tryFormatJson(p.result || '');
+      const id = 'coll-' + (++collapsibleCounter);
+      if (formatted.length > 300) {
+        div.innerHTML = `${time}<span class="event-type-tag tag-tool-completed">RESULT</span><span class="tool-name">${escapeHtml(p.tool_name||'')}</span>
+          <div class="event-content">
+            <div class="code-block">${escapeHtml(formatted.substring(0, 200) + '...')}</div>
+            <span class="collapsible-toggle" onclick="toggleColl('${id}',this)">Show full result</span>
+            <div id="${id}" class="collapsible-content"><div class="code-block">${escapeHtml(formatted)}</div></div>
+          </div>`;
+      } else {
+        div.innerHTML = `${time}<span class="event-type-tag tag-tool-completed">RESULT</span><span class="tool-name">${escapeHtml(p.tool_name||'')}</span>
+          <div class="event-content"><div class="code-block">${escapeHtml(formatted)}</div></div>`;
+      }
+      break;
+    }
+    case 'tool.failed':
+      div.innerHTML = `${time}<span class="event-type-tag tag-tool-failed">FAILED</span><span class="tool-name">${escapeHtml(p.tool_name||'')}</span>
+        <div class="event-content"><div class="error-text">${escapeHtml(tryFormatJson(p.error||''))}</div></div>`;
+      break;
+    case 'message.assistant':
+      div.innerHTML = `${time}<span class="event-type-tag tag-message">ASSISTANT</span>
+        <div class="event-content"><div class="assistant-text">${escapeHtml(p.content||'')}</div></div>`;
+      break;
+    case 'approval.requested':
+      div.innerHTML = `${time}<span class="event-type-tag tag-approval">APPROVAL REQUESTED</span>
+        <div class="event-content"><div class="approval-box">Step ${p.step_index}: ${escapeHtml(p.step_title||'')} (${(p.approval_type||'').replace(/_/g,' ')})</div></div>`;
+      break;
+    case 'approval.responded': {
+      const dec = p.decision || 'unknown';
+      div.innerHTML = `${time}<span class="event-type-tag tag-approval">APPROVAL</span>
+        <div class="event-content"><div class="approval-box"><span class="decision ${dec==='approve'?'decision-approve':'decision-deny'}">${escapeHtml(dec)}</span></div></div>`;
+      break;
+    }
+    case 'clarification.requested':
+      div.innerHTML = `${time}<span class="event-type-tag tag-clarification">CLARIFICATION</span>
+        <div class="event-content"><div class="approval-box">${escapeHtml(p.question||'')}</div></div>`;
+      break;
+    case 'clarification.responded':
+      div.innerHTML = `${time}<span class="event-type-tag tag-clarification">RESPONSE</span>
+        <div class="event-content"><div class="approval-box">${escapeHtml(p.answer||'')}</div></div>`;
+      break;
+    case 'summary.generated':
+      div.innerHTML = `${time}<span class="event-type-tag tag-summary">SUMMARY</span>
+        <div class="event-content"><div class="summary-box">${escapeHtml(p.summary||'')}</div></div>`;
+      break;
+    default:
+      div.innerHTML = `${time}<span class="event-type-tag tag-system">${escapeHtml(evt.type)}</span>`;
+  }
+  return div;
+}
+
+function toggleColl(id, toggle) {
+  const el = document.getElementById(id);
+  if (el.classList.contains('expanded')) { el.classList.remove('expanded'); toggle.textContent = 'Show full result'; }
+  else { el.classList.add('expanded'); toggle.textContent = 'Hide'; }
+}
+
+loadAllData();
+</script>
+</body>
+</html>
