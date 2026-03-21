@@ -4,7 +4,6 @@ description: Add a new customer to the Northwind database with duplicate checkin
 required_tools:
   - northwind__query
   - northwind__execute
-  - northwind__lookup
 ---
 
 ### Step 1: Collect customer information
@@ -28,11 +27,13 @@ Report any matches found. If duplicates exist, ask the user whether to proceed o
 
 ### Step 3: Assign sales representative
 
-Look up Employees and the Territories and EmployeeTerritories tables to find a sales representative who covers the customer's region or country.
+Query Employees to find a sales representative. Use a query like:
+SELECT e.EmployeeID, e.FirstName, e.LastName, e.Title, COUNT(DISTINCT o.CustomerID) as customer_count
+FROM Employees e JOIN Orders o ON e.EmployeeID = o.EmployeeID
+JOIN Customers c ON o.CustomerID = c.CustomerID
+GROUP BY e.EmployeeID ORDER BY customer_count DESC LIMIT 5
 
-If no exact territory match exists, suggest the employee who handles the most customers in the same country (query Orders joined with Customers grouped by EmployeeID).
-
-Present the recommended sales rep with their name, title, and territory.
+Pick the employee who handles the most customers. Present the recommended sales rep with their name and title.
 
 ### Step 4: Insert customer record
 

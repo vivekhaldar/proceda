@@ -1,0 +1,11 @@
+{
+  "skill": "monthly-sales-report",
+  "status": "completed",
+  "summary": "Run run_136934e26c9c: Completed\nSkill: monthly-sales-report\nSteps completed: 4/4\nDuration: 80.0s\n\nStep details:\n  Step 1: Aggregate monthly sales - completed\n  Step 2: Identify top performers - completed\n  Step 3: Flag anomalies - completed\n  Step 4: Generate executive summary - completed",
+  "completed_steps": 4,
+  "total_steps": 4,
+  "failed_step": null,
+  "event_count": 63,
+  "tool_calls": 16,
+  "approvals": 0
+}

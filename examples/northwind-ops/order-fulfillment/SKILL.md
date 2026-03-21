@@ -4,11 +4,14 @@ description: Process a pending order by verifying the customer, checking invento
 required_tools:
   - northwind__query
   - northwind__execute
+  - northwind__get_schema
 ---
 
 ### Step 1: Look up order and customer
 
-Find a recent pending order (one where ShippedDate IS NULL) in the Orders table. If a specific OrderID was provided as a variable, use that instead.
+First use get_schema to learn the database table structure. Note: the order line items table is called "Order Details" (with a space — use square brackets: [Order Details]).
+
+Then find a recent pending order (one where ShippedDate IS NULL) in the Orders table. Pick just one order — use LIMIT 1.
 
 Join with the Customers table to display:
 - Order ID, order date, required date
@@ -17,7 +20,7 @@ Join with the Customers table to display:
 
 ### Step 2: Check product inventory
 
-Query OrderDetails for the order found in Step 1. For each line item, join with Products to check that UnitsInStock is sufficient to cover the Quantity ordered.
+Query [Order Details] for the order found in Step 1. For each line item, join with Products to check that UnitsInStock is sufficient to cover the Quantity ordered.
 
 Present a table showing each product name, quantity ordered, units currently in stock, and whether stock is sufficient. Flag any items that cannot be fulfilled.
 
@@ -25,13 +28,11 @@ Present a table showing each product name, quantity ordered, units currently in 
 
 [PRE-APPROVAL REQUIRED]
 
-If all items are in stock:
-- Set the order's ShippedDate to today's date
-- For each line item, reduce the product's UnitsInStock by the quantity ordered
+Execute at most 3 statements total:
+1. UPDATE Orders SET ShippedDate = date('now') WHERE OrderID = <id>
+2. For EACH product in the order, run ONE update: UPDATE Products SET UnitsInStock = UnitsInStock - <qty> WHERE ProductID = <id>
 
-If some items are out of stock, explain which items cannot ship and only update the ones that can. Set ShippedDate only if at least one item ships.
-
-Report exactly which UPDATE statements will be executed before running them.
+Keep the number of execute calls to a minimum. Only update products that are in stock.
 
 ### Step 4: Generate shipping summary
 
@@ -40,6 +41,6 @@ Query the Shippers table using the order's ShipVia field to identify the carrier
 Compile a final summary:
 - Order ID and customer
 - Items shipped with quantities and unit prices
-- Total order value (sum of UnitPrice * Quantity * (1 - Discount) from OrderDetails)
+- Total order value (sum of UnitPrice * Quantity * (1 - Discount) from [Order Details])
 - Shipping carrier and freight cost
 - Any items that could not be fulfilled

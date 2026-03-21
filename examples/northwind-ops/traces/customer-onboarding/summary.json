@@ -1,0 +1,11 @@
+{
+  "skill": "customer-onboarding",
+  "status": "completed",
+  "summary": "Run run_7430b10270b7: Completed\nSkill: customer-onboarding\nSteps completed: 4/4\nDuration: 21.2s\nApprovals: 1\n\nStep details:\n  Step 1: Collect customer information - completed\n  Step 2: Check for duplicates - completed\n  Step 3: Assign sales representative - completed\n  Step 4: Insert customer record - completed",
+  "completed_steps": 4,
+  "total_steps": 4,
+  "failed_step": null,
+  "event_count": 52,
+  "tool_calls": 5,
+  "approvals": 1
+}

@@ -18,10 +18,10 @@ def ensure_db(db_path: Path | None = None) -> Path:
     if path.exists():
         return path
 
-    print("Downloading Northwind database from GitHub...")
+    print("Downloading Northwind database from GitHub...", file=sys.stderr)
     urllib.request.urlretrieve(DB_URL, str(path))
 
-    print(f"Done. Database saved to {path}")
+    print(f"Done. Database saved to {path}", file=sys.stderr)
     return path
 
 

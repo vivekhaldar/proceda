@@ -28,7 +28,7 @@ def tool_get_schema() -> dict:
     cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
     tables = []
     for (table_name,) in cursor.fetchall():
-        cursor.execute(f"PRAGMA table_info({table_name})")
+        cursor.execute(f"PRAGMA table_info([{table_name}])")
         columns = [{"name": row[1], "type": row[2]} for row in cursor.fetchall()]
         tables.append({"name": table_name, "columns": columns})
     conn.close()
