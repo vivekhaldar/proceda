@@ -430,6 +430,7 @@
 const MODELS = [
   { id: 'haiku', label: 'Claude Haiku 4.5' },
   { id: 'gemini-3-flash', label: 'Gemini 3 Flash' },
+  { id: 'gemini-3.1-pro', label: 'Gemini 3.1 Pro' },
 ];
 
 const SKILLS = [
@@ -464,6 +465,18 @@ const VERDICTS = {
       notes: 'Top-performer data is real and verified. However, August revenue ($3,278,512.14) was hallucinated \u2014 no query for August was ever executed. Churn SQL has a correlated subquery bug producing unreliable results.' },
     { skill: 'Returns Processing', verdict: 'good', label: 'Reasonable',
       notes: 'Found real order 10248. Correctly flagged 3,535 days past return window, asked for exception, then completed full return. Refund math verified: $168 + $98 + $174 = $440. Inventory restored and verified.' },
+  ],
+  'gemini-3.1-pro': [
+    { skill: 'Order Fulfillment', verdict: 'good', label: 'Reasonable',
+      notes: 'Found pending order 11074 (Simons bistro). 1 line item (14x Pavlova), inventory sufficient. Updates correct. Total $232.09 verified. Efficient execution with only 8 tool calls.' },
+    { skill: 'Inventory Restock', verdict: 'good', label: 'Reasonable',
+      notes: 'Found 18 low-stock products, formula verified. Used efficient batch UPDATE for all 7 products needing restock. Only 7 tool calls total \u2014 most efficient of the 3 models.' },
+    { skill: 'Customer Onboarding', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Generated valid CustomerID "DEFAC". Duplicate check and INSERT both clean. Same sales-rep non-assignment issue as other models (column doesn\'t exist in schema).' },
+    { skill: 'Monthly Sales Report', verdict: 'good', label: 'Reasonable',
+      notes: 'All numbers data-driven, no hallucinated figures. Correct churn SQL (17 customers identified). Progressively relaxed anomaly thresholds (3x \u2192 1.5x \u2192 1.2x) to find demand spikes. Recovered gracefully from CTE rejection.' },
+    { skill: 'Returns Processing', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Found order 26529 (72 line items). Correctly identified 1,167 days past return window and flagged as ineligible. But proceeded with $54,508 refund when auto-approver said "proceed" \u2014 should have enforced the eligibility gate more firmly.' },
   ],
 };
 

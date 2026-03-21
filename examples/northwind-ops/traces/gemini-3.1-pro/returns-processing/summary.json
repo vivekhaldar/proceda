@@ -1,0 +1,11 @@
+{
+  "skill": "returns-processing",
+  "status": "completed",
+  "summary": "Run run_31bfdf5e0e31: Completed\nSkill: returns-processing\nSteps completed: 5/5\nDuration: 52.7s\nApprovals: 2\n\nStep details:\n  Step 1: Verify original order - completed\n  Step 2: Check return eligibility - completed\n  Step 3: Calculate refund - completed\n  Step 4: Process return - completed\n  Step 5: Confirm processing - completed",
+  "completed_steps": 5,
+  "total_steps": 5,
+  "failed_step": null,
+  "event_count": 71,
+  "tool_calls": 11,
+  "approvals": 2
+}

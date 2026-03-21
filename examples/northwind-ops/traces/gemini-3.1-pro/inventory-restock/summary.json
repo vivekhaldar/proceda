@@ -1,0 +1,11 @@
+{
+  "skill": "inventory-restock",
+  "status": "completed",
+  "summary": "Run run_cd9bd9c0e75d: Completed\nSkill: inventory-restock\nSteps completed: 5/5\nDuration: 55.0s\nApprovals: 1\n\nStep details:\n  Step 1: Identify low-stock products - completed\n  Step 2: Find suppliers - completed\n  Step 3: Calculate restock quantities - completed\n  Step 4: Create purchase orders - completed\n  Step 5: Verify updates - completed",
+  "completed_steps": 5,
+  "total_steps": 5,
+  "failed_step": null,
+  "event_count": 39,
+  "tool_calls": 7,
+  "approvals": 1
+}
