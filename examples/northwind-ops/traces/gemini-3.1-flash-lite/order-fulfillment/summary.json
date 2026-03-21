@@ -1,0 +1,11 @@
+{
+  "skill": "order-fulfillment",
+  "status": "completed",
+  "summary": "Run run_95477e48e42a: Completed\nSkill: order-fulfillment\nSteps completed: 4/4\nDuration: 24.3s\nApprovals: 1\n\nStep details:\n  Step 1: Look up order and customer - completed\n  Step 2: Check product inventory - completed\n  Step 3: Update order and inventory - completed\n  Step 4: Generate shipping summary - completed",
+  "completed_steps": 4,
+  "total_steps": 4,
+  "failed_step": null,
+  "event_count": 44,
+  "tool_calls": 10,
+  "approvals": 1
+}

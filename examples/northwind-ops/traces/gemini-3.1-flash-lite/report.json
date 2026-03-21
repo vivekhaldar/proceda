@@ -1,0 +1,57 @@
+[
+  {
+    "skill": "order-fulfillment",
+    "status": "completed",
+    "summary": "Run run_95477e48e42a: Completed\nSkill: order-fulfillment\nSteps completed: 4/4\nDuration: 24.3s\nApprovals: 1\n\nStep details:\n  Step 1: Look up order and customer - completed\n  Step 2: Check product inventory - completed\n  Step 3: Update order and inventory - completed\n  Step 4: Generate shipping summary - completed",
+    "completed_steps": 4,
+    "total_steps": 4,
+    "failed_step": null,
+    "event_count": 44,
+    "tool_calls": 10,
+    "approvals": 1
+  },
+  {
+    "skill": "inventory-restock",
+    "status": "completed",
+    "summary": "Run run_dda44581b970: Completed\nSkill: inventory-restock\nSteps completed: 5/5\nDuration: 24.2s\nApprovals: 1\n\nStep details:\n  Step 1: Identify low-stock products - completed\n  Step 2: Find suppliers - completed\n  Step 3: Calculate restock quantities - completed\n  Step 4: Create purchase orders - completed\n  Step 5: Verify updates - completed",
+    "completed_steps": 5,
+    "total_steps": 5,
+    "failed_step": null,
+    "event_count": 52,
+    "tool_calls": 11,
+    "approvals": 1
+  },
+  {
+    "skill": "customer-onboarding",
+    "status": "completed",
+    "summary": "Run run_9101c80f6ab9: Completed\nSkill: customer-onboarding\nSteps completed: 4/4\nDuration: 14.3s\nApprovals: 1\n\nStep details:\n  Step 1: Collect customer information - completed\n  Step 2: Check for duplicates - completed\n  Step 3: Assign sales representative - completed\n  Step 4: Insert customer record - completed",
+    "completed_steps": 4,
+    "total_steps": 4,
+    "failed_step": null,
+    "event_count": 36,
+    "tool_calls": 4,
+    "approvals": 1
+  },
+  {
+    "skill": "monthly-sales-report",
+    "status": "completed",
+    "summary": "Run run_b91d5945dc88: Completed\nSkill: monthly-sales-report\nSteps completed: 4/4\nDuration: 73.8s\n\nStep details:\n  Step 1: Aggregate monthly sales - completed\n  Step 2: Identify top performers - completed\n  Step 3: Flag anomalies - completed\n  Step 4: Generate executive summary - completed",
+    "completed_steps": 4,
+    "total_steps": 4,
+    "failed_step": null,
+    "event_count": 43,
+    "tool_calls": 12,
+    "approvals": 0
+  },
+  {
+    "skill": "returns-processing",
+    "status": "completed",
+    "summary": "Run run_7e0079495fa3: Completed\nSkill: returns-processing\nSteps completed: 5/5\nDuration: 33.3s\nApprovals: 2\n\nStep details:\n  Step 1: Verify original order - completed\n  Step 2: Check return eligibility - completed\n  Step 3: Calculate refund - completed\n  Step 4: Process return - completed\n  Step 5: Confirm processing - completed",
+    "completed_steps": 5,
+    "total_steps": 5,
+    "failed_step": null,
+    "event_count": 72,
+    "tool_calls": 13,
+    "approvals": 2
+  }
+]

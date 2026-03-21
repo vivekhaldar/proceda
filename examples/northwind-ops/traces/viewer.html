@@ -480,6 +480,7 @@ const MODELS = [
   { id: 'haiku', label: 'Claude Haiku 4.5' },
   { id: 'gemini-3-flash', label: 'Gemini 3 Flash' },
   { id: 'gemini-3.1-pro', label: 'Gemini 3.1 Pro' },
+  { id: 'gemini-3.1-flash-lite', label: 'Gemini 3.1 Flash Lite' },
 ];
 
 const SKILLS = [
@@ -526,6 +527,18 @@ const VERDICTS = {
       notes: 'All numbers data-driven, no hallucinated figures. Correct churn SQL (17 customers identified). Progressively relaxed anomaly thresholds (3x \u2192 1.5x \u2192 1.2x) to find demand spikes. Recovered gracefully from CTE rejection.' },
     { skill: 'Returns Processing', verdict: 'mixed', label: 'Mostly Reasonable',
       notes: 'Found order 26529 (72 line items). Correctly identified 1,167 days past return window and flagged as ineligible. But proceeded with $54,508 refund when auto-approver said "proceed" \u2014 should have enforced the eligibility gate more firmly.' },
+  ],
+  'gemini-3.1-flash-lite': [
+    { skill: 'Order Fulfillment', verdict: 'good', label: 'Reasonable',
+      notes: 'Found pending order 11008 (Ernst Handel). 3 line items, correctly identified 1 out of stock (Rossle Sauerkraut). Updated only fulfillable items. Recovered from multi-statement SQL error. Total $4,680.90.' },
+    { skill: 'Inventory Restock', verdict: 'good', label: 'Reasonable',
+      notes: 'Found 18 low-stock products, all 7 formula calculations verified correct. Clean execution with proper verification step. Identified supplier consolidation opportunities.' },
+    { skill: 'Customer Onboarding', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Generated valid CustomerID "DEFAU". Clean duplicate check and INSERT. Same universal issue: sales rep not matched to territory (Northwind data shows uniform distribution across reps).' },
+    { skill: 'Monthly Sales Report', verdict: 'good', label: 'Reasonable',
+      notes: 'All numbers backed by queries, no hallucination. Correct MoM comparison (7.6% revenue growth). Good anomaly detection: 17 churned customers, regional shifts. Recovered from CTE rejections gracefully.' },
+    { skill: 'Returns Processing', verdict: 'mixed', label: 'Mostly Reasonable',
+      notes: 'Found order 10248, correctly flagged 3,535 days past return window as ineligible. Refund math verified ($168 + $98 + $174 = $440). But processed the ineligible return anyway \u2014 same issue as Gemini 3.1 Pro.' },
   ],
 };
 
