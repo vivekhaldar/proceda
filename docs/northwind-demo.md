@@ -231,7 +231,7 @@ The demo's `proceda.yaml`:
 
 ```yaml
 llm:
-  model: anthropic/claude-sonnet-4-20250514
+  model: anthropic/claude-haiku-4-5-20251001
   temperature: 0.3
 
 apps:
@@ -243,7 +243,7 @@ apps:
 
 Temperature is set to 0.3 (lower than default 0.7) for more deterministic SQL generation.
 
-The `run_all.py` batch runner overrides this to use Haiku for cost efficiency during testing. You can use any model — Sonnet produces more thorough analysis, Haiku is faster and cheaper.
+You can use any model — swap in Sonnet for more thorough analysis, or keep Haiku for faster and cheaper runs.
 
 ## How the pieces connect
 
