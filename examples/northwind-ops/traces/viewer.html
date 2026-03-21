@@ -400,6 +400,53 @@
     margin-bottom: 1rem;
     font-size: 0.875rem;
   }
+
+  /* Comparison table */
+  .comparison-section {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    background: var(--bg);
+    overflow-x: auto;
+  }
+  .comparison-section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.875rem 1.25rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+    min-width: 700px;
+  }
+  .comparison-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-subtle);
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+  }
+  .comparison-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border-muted);
+    vertical-align: middle;
+  }
+  .comparison-table tr:last-child td { border-bottom: none; }
+  .comparison-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .comparison-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .comparison-cell .comp-meta {
+    font-size: 0.6875rem;
+    color: var(--fg-muted);
+  }
 </style>
 </head>
 <body>
@@ -414,6 +461,8 @@
     <label>Model:</label>
     <div id="model-buttons"></div>
   </div>
+
+  <div id="comparison"></div>
 
   <div id="dashboard" class="dashboard"></div>
 
@@ -528,9 +577,52 @@ function renderModelButtons() {
 
 function renderAll() {
   collapsibleCounter = 0;
+  renderComparison();
   renderDashboard();
   renderVerdict();
   renderSkills();
+}
+
+function renderComparison() {
+  const container = document.getElementById('comparison');
+
+  const headerCells = MODELS.map(m => `<th>${escapeHtml(m.label)}</th>`).join('');
+
+  const rows = SKILLS.map(skill => {
+    const cells = MODELS.map(model => {
+      const v = (VERDICTS[model.id] || []).find(
+        r => r.skill.toLowerCase().replace(/\s+/g, '-') === skill
+      );
+      const info = (allData[model.id]?.report || []).find(r => r.skill === skill) || {};
+      const status = info.status || 'unknown';
+      const summary = info.summary || '';
+      const durMatch = summary.match(/Duration: ([\d.]+)s/);
+      const dur = durMatch ? durMatch[1] + 's' : '-';
+      const tools = info.tool_calls ?? '-';
+      const steps = (info.completed_steps ?? '?') + '/' + (info.total_steps ?? '?');
+
+      if (!v) return `<td><span class="verdict-badge verdict-bad">${escapeHtml(status)}</span></td>`;
+
+      const badgeClass = v.verdict === 'good' ? 'verdict-good' : v.verdict === 'mixed' ? 'verdict-mixed' : 'verdict-bad';
+      return `<td>
+        <div class="comparison-cell">
+          <span class="verdict-badge ${badgeClass}">${escapeHtml(v.label)}</span>
+          <span class="comp-meta">${steps} steps &middot; ${tools} tools &middot; ${dur}</span>
+        </div>
+      </td>`;
+    }).join('');
+
+    return `<tr><td>${escapeHtml(prettifyName(skill))}</td>${cells}</tr>`;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="comparison-section">
+      <h2>Cross-Model Comparison</h2>
+      <table class="comparison-table">
+        <thead><tr><th>Skill</th>${headerCells}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
 }
 
 function formatTime(ts) {
