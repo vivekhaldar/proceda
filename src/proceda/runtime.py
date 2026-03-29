@@ -25,7 +25,7 @@ from proceda.llm.runtime import LLMRuntime
 from proceda.mcp.orchestrator import MCPOrchestrator
 from proceda.session import RunResult, RunSession, RunStatus
 from proceda.skill import Skill
-from proceda.store.event_log import EventLogWriter, RunDirectoryManager
+from proceda.store.event_log import EventLogReader, EventLogWriter, RunDirectoryManager
 
 logger = logging.getLogger(__name__)
 
@@ -228,6 +228,14 @@ class Runtime:
                 log_writer.write_summary(summary)
                 await log_writer.close()
 
+                # Auto-build cache after successful run if enabled
+                if (
+                    self._config.cache.enabled
+                    and session.status == RunStatus.COMPLETED
+                    and skill_cache is None
+                ):
+                    self._try_auto_build_cache(skill)
+
                 # Signal end of events
                 await handle._event_queue.put(None)
 
@@ -235,3 +243,35 @@ class Runtime:
         asyncio.create_task(_run())
 
         return handle
+
+    def _try_auto_build_cache(self, skill: Skill) -> None:
+        """Attempt to build a cache if enough successful traces exist."""
+        from proceda.cache.analyzer import TraceAnalyzer
+        from proceda.cache.store import CacheStore
+
+        try:
+            dir_manager = RunDirectoryManager(self._config.logging.run_dir)
+            run_dirs = dir_manager.list_runs()
+
+            matching_dirs = []
+            for run_dir in run_dirs:
+                reader = EventLogReader(run_dir)
+                metadata = reader.read_metadata()
+                if metadata.get("skill_id") == skill.id and reader.exists:
+                    events = reader.read_events()
+                    if any(e.type == EventType.RUN_COMPLETED for e in events):
+                        matching_dirs.append(run_dir)
+
+            if len(matching_dirs) >= self._config.cache.min_traces:
+                analyzer = TraceAnalyzer(min_traces=self._config.cache.min_traces)
+                cache = analyzer.analyze(
+                    matching_dirs[: self._config.cache.min_traces],
+                    skill.raw_content,
+                )
+                if cache:
+                    cache.skill_id = skill.id
+                    store = CacheStore(str(Path(self._config.logging.run_dir).parent / "cache"))
+                    path = store.save(cache)
+                    logger.info("Auto-built execution cache for skill %s at %s", skill.name, path)
+        except Exception:
+            logger.debug("Failed to auto-build cache", exc_info=True)

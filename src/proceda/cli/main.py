@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import typer
 
+from proceda.cli.commands.cache import cache_app
 from proceda.cli.commands.convert import convert
 from proceda.cli.commands.doctor import doctor
 from proceda.cli.commands.lint import lint
@@ -25,6 +26,7 @@ app.command()(lint)
 app.command()(convert)
 app.command()(replay)
 app.command()(doctor)
+app.add_typer(cache_app, name="cache")
 
 
 def main() -> None:
