@@ -1421,46 +1421,150 @@ The `metadata.json` in each domain directory lists which columns are inputs vs o
 export OPENROUTER_API_KEY=$(pass soprun/OPENROUTER_API_KEY)
 ```
 
+#### Target Domains
+
+Run verification on exactly these 4 domains (chosen to cover a range of complexity):
+
+| Domain | Why |
+|--------|-----|
+| `dangerous_goods` | Simple, tool-heavy — best case for caching |
+| `video_classification` | Classification with tool calls |
+| `customer_service` | Multi-step reasoning with tools |
+| `traffic_spoofing` | Detection/analysis workflow |
+
+Do **not** run other domains during this verification.
+
+#### Trace and Result Storage (Auditability)
+
+All traces and results MUST be saved in named, dated folders so every run is
+auditable after the fact. Use this directory structure under
+`benchmarks/sop_bench/results/`:
+
+```
+benchmarks/sop_bench/results/
+└── cache_eval/
+    └── YYYY-MM-DD/                          # Date of the evaluation run
+        ├── baseline/
+        │   ├── dangerous_goods/
+        │   │   ├── results.json             # Harness output (metrics + per-task)
+        │   │   └── traces/                  # All per-task JSONL trace files
+        │   │       ├── dangerous_goods_P_13057_success.jsonl
+        │   │       └── ...
+        │   ├── video_classification/
+        │   │   ├── results.json
+        │   │   └── traces/
+        │   ├── customer_service/
+        │   │   ├── results.json
+        │   │   └── traces/
+        │   └── traffic_spoofing/
+        │       ├── results.json
+        │       └── traces/
+        ├── level1/
+        │   ├── dangerous_goods/
+        │   │   ├── results.json
+        │   │   └── traces/
+        │   ├── video_classification/
+        │   │   └── ...
+        │   ├── customer_service/
+        │   │   └── ...
+        │   └── traffic_spoofing/
+        │       └── ...
+        ├── level2/
+        │   ├── dangerous_goods/
+        │   │   ├── results.json
+        │   │   └── traces/
+        │   ├── video_classification/
+        │   │   └── ...
+        │   ├── customer_service/
+        │   │   └── ...
+        │   └── traffic_spoofing/
+        │       └── ...
+        ├── caches/                           # Snapshot of built caches
+        │   ├── dangerous_goods_cache.json
+        │   ├── video_classification_cache.json
+        │   ├── customer_service_cache.json
+        │   └── traffic_spoofing_cache.json
+        ├── config_baseline.yaml              # Config used for baseline
+        ├── config_level1.yaml                # Config used for L1
+        ├── config_level2.yaml                # Config used for L2
+        └── report.md                         # Final analysis report
+```
+
+The harness may need modification to write results/traces to a custom output
+directory rather than the default `results/` folder. Add an `--output-dir`
+flag if it doesn't already exist.
+
+**Important**: Copy the exact `proceda.yaml` configs used for each run into
+the dated folder as `config_baseline.yaml`, `config_level1.yaml`,
+`config_level2.yaml`. This ensures reproducibility.
+
 #### Step-by-step verification procedure
 
-**Step 1: Establish baseline (no cache)**
+**Step 1: Establish baseline (no cache) — all 4 domains**
 
-Run the full benchmark with caching disabled to get baseline metrics:
+Run the benchmark with caching disabled for each domain:
 
 ```bash
-# Ensure cache is disabled in config
-# Run against all domains (or a representative subset: dangerous_goods, content_flagging, order_fulfillment)
-cd ~/repos/gh/proceda
-python -m benchmarks.sop_bench.harness --domain dangerous_goods \
-    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+export OPENROUTER_API_KEY=$(pass soprun/OPENROUTER_API_KEY)
+EVAL_DATE=$(date +%Y-%m-%d)
+EVAL_DIR="benchmarks/sop_bench/results/cache_eval/${EVAL_DATE}"
+DATA_DIR=~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
 
-# Save baseline results
-cp benchmarks/sop_bench/results/dangerous_goods_results.json \
-   benchmarks/sop_bench/results/dangerous_goods_results_baseline.json
+for domain in dangerous_goods video_classification customer_service traffic_spoofing; do
+    mkdir -p "${EVAL_DIR}/baseline/${domain}/traces"
+
+    python -m benchmarks.sop_bench.harness \
+        --domain "${domain}" \
+        --data-dir "${DATA_DIR}" \
+        --output-dir "${EVAL_DIR}/baseline/${domain}"
+
+    # Copy traces
+    cp benchmarks/sop_bench/results/traces/${domain}_* \
+       "${EVAL_DIR}/baseline/${domain}/traces/" 2>/dev/null || true
+done
+
+# Save config
+cp proceda.yaml "${EVAL_DIR}/config_baseline.yaml"
 ```
 
 Record baseline TSR, ECR, and C-TSR for each domain.
 
-**Step 2: Build cache from baseline traces**
+**Step 2: Build cache from baseline traces — all 4 domains**
 
 ```bash
-proceda cache build benchmarks/sop_bench/domains/dangerous_goods/
-proceda cache show benchmarks/sop_bench/domains/dangerous_goods/
+mkdir -p "${EVAL_DIR}/caches"
+
+for domain in dangerous_goods video_classification customer_service traffic_spoofing; do
+    proceda cache build "benchmarks/sop_bench/domains/${domain}/"
+    proceda cache show "benchmarks/sop_bench/domains/${domain}/"
+
+    # Snapshot the cache
+    cp ".proceda/cache/"*.json "${EVAL_DIR}/caches/${domain}_cache.json" 2>/dev/null || true
+done
 ```
 
-Verify:
-- Steps 2-5 should have confidence 1.0 with VARIABLE mappings
-- Steps 1, 6, 7 should have no recipes or confidence 0.0 (no tool calls)
+Verify per domain:
+- Which steps got cached and at what confidence
+- Which argument mapping types were inferred (VARIABLE, STEP_RESULT, LITERAL)
 
-**Step 3: Run with Level 1 (hint injection)**
+**Step 3: Run with Level 1 (hint injection) — all 4 domains**
 
 ```bash
-# Enable cache with optimization_level: 1 in config
-python -m benchmarks.sop_bench.harness --domain dangerous_goods \
-    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+# Set cache: {enabled: true, optimization_level: 1} in proceda.yaml
 
-cp benchmarks/sop_bench/results/dangerous_goods_results.json \
-   benchmarks/sop_bench/results/dangerous_goods_results_level1.json
+for domain in dangerous_goods video_classification customer_service traffic_spoofing; do
+    mkdir -p "${EVAL_DIR}/level1/${domain}/traces"
+
+    python -m benchmarks.sop_bench.harness \
+        --domain "${domain}" \
+        --data-dir "${DATA_DIR}" \
+        --output-dir "${EVAL_DIR}/level1/${domain}"
+
+    cp benchmarks/sop_bench/results/traces/${domain}_* \
+       "${EVAL_DIR}/level1/${domain}/traces/" 2>/dev/null || true
+done
+
+cp proceda.yaml "${EVAL_DIR}/config_level1.yaml"
 ```
 
 **Acceptance criteria**:
@@ -1469,15 +1573,24 @@ cp benchmarks/sop_bench/results/dangerous_goods_results.json \
 - Token usage per run should be lower (check event logs for cumulative token counts)
 - Event logs should contain CACHE_HIT events on cached steps
 
-**Step 4: Run with Level 2 (direct execution)**
+**Step 4: Run with Level 2 (direct execution) — all 4 domains**
 
 ```bash
-# Enable cache with optimization_level: 2 in config
-python -m benchmarks.sop_bench.harness --domain dangerous_goods \
-    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+# Set cache: {enabled: true, optimization_level: 2} in proceda.yaml
 
-cp benchmarks/sop_bench/results/dangerous_goods_results.json \
-   benchmarks/sop_bench/results/dangerous_goods_results_level2.json
+for domain in dangerous_goods video_classification customer_service traffic_spoofing; do
+    mkdir -p "${EVAL_DIR}/level2/${domain}/traces"
+
+    python -m benchmarks.sop_bench.harness \
+        --domain "${domain}" \
+        --data-dir "${DATA_DIR}" \
+        --output-dir "${EVAL_DIR}/level2/${domain}"
+
+    cp benchmarks/sop_bench/results/traces/${domain}_* \
+       "${EVAL_DIR}/level2/${domain}/traces/" 2>/dev/null || true
+done
+
+cp proceda.yaml "${EVAL_DIR}/config_level2.yaml"
 ```
 
 **Acceptance criteria**:
@@ -1486,40 +1599,48 @@ cp benchmarks/sop_bench/results/dangerous_goods_results.json \
 - Token usage should be significantly lower than Level 1
 - CACHE_FALLBACK events should be rare (< 5% of cached steps)
 
-**Step 5: Compare results across all three runs**
+**Step 5: Generate comparison report**
 
-Write a comparison script or manually diff the per-task results:
+Write a script `benchmarks/sop_bench/compare_cache_eval.py` that:
 
-```bash
-python3 -c "
-import json
+1. Reads all `results.json` files from `baseline/`, `level1/`, `level2/` for each domain
+2. Produces a summary table:
 
-for label, path in [
-    ('Baseline', 'benchmarks/sop_bench/results/dangerous_goods_results_baseline.json'),
-    ('Level 1',  'benchmarks/sop_bench/results/dangerous_goods_results_level1.json'),
-    ('Level 2',  'benchmarks/sop_bench/results/dangerous_goods_results_level2.json'),
-]:
-    with open(path) as f:
-        data = json.load(f)
-    m = data['metrics']
-    print(f'{label:10s}  TSR={m[\"tsr\"]:.3f}  ECR={m[\"ecr\"]:.3f}  C-TSR={m[\"c_tsr\"]:.3f}')
-"
+```
+Domain              | Mode     | TSR    | ECR    | C-TSR  | Total Tokens | LLM Calls | Cache Hits | Cache Fallbacks
+--------------------|----------|--------|--------|--------|--------------|-----------|------------|----------------
+dangerous_goods     | Baseline | 0.950  | 1.000  | 0.950  | 125,000      | 84        | -          | -
+dangerous_goods     | Level 1  | 0.950  | 1.000  | 0.950  | 85,000       | 84        | 48         | 0
+dangerous_goods     | Level 2  | 0.950  | 1.000  | 0.950  | 42,000       | 36        | 48         | 2
+video_classification| Baseline | ...    | ...    | ...    | ...          | ...       | ...        | ...
+...
 ```
 
-Also diff per-task correctness to find any regressions:
-- For each task_id, compare `is_correct` across baseline/L1/L2
-- Any task that was correct in baseline but wrong in L1/L2 is a regression
-- Investigate regressions by comparing traces (the JSONL files in `results/traces/`)
+3. Computes per-domain savings:
+   - **Token savings**: `(baseline_tokens - cached_tokens) / baseline_tokens * 100`
+   - **LLM call savings**: `(baseline_calls - cached_calls) / baseline_calls * 100`
 
-**Step 6: Repeat for additional domains**
+4. Identifies per-task regressions:
+   - For each task_id, compare `is_correct` across baseline/L1/L2
+   - List any tasks that were correct in baseline but wrong with caching
+   - For regressions, note which step had a cache hit (to pinpoint cause)
 
-Run the same baseline → L1 → L2 comparison on at least 3 domains:
-- `dangerous_goods` (simple, tool-heavy — best case for caching)
-- `content_flagging` (more complex reasoning)
-- `order_fulfillment` (multi-tool steps)
+5. Extracts token and LLM call counts from traces:
+   - Parse each JSONL trace, sum `llm.usage` events for total tokens
+   - Count `llm.usage` events for total LLM calls
+   - Count `cache.hit`, `cache.miss`, `cache.fallback` events
 
-**Hard gate**: If ANY domain shows TSR regression > 2% (absolute), the caching
-level that caused it must not ship until the root cause is identified and fixed.
+6. Writes the report to `${EVAL_DIR}/report.md` with:
+   - Executive summary (did caching work? overall savings?)
+   - Per-domain accuracy table (baseline vs L1 vs L2)
+   - Per-domain token and LLM call savings table
+   - Regression analysis (any tasks that got worse?)
+   - Cache coverage analysis (what % of steps were cacheable per domain?)
+   - Recommendations (which optimization level to use, any domains where caching should be disabled)
+
+**Hard gate**: If ANY of the 4 domains shows TSR regression > 2% (absolute),
+the caching level that caused it must not ship until the root cause is
+identified and fixed.
 
 ### Manual Functional Tests
 
