@@ -3,11 +3,13 @@ ABOUTME: Handles LLM loop, approval gates, tool calls, and guard-rail limits."""
 
 from __future__ import annotations
 
+import json
 import logging
 from collections.abc import Callable, Coroutine
 from datetime import UTC, datetime
 from typing import Any
 
+from proceda.cache.models import ArgumentSourceType, StepRecipe
 from proceda.events import EventType, RunEvent
 from proceda.exceptions import ApprovalRejectedError, ExecutionError
 from proceda.human import HumanInterface
@@ -55,6 +57,8 @@ class Executor:
         tool_schemas: list[dict[str, Any]] | None = None,
         max_text_responses_before_prompt: int = 3,
         max_tool_calls_per_step: int = 20,
+        skill_cache: Any | None = None,
+        cache_config: Any | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -66,6 +70,9 @@ class Executor:
         self._app_tool_schemas = tool_schemas or []
         self._max_text_before_prompt = max_text_responses_before_prompt
         self._max_tool_calls_per_step = max_tool_calls_per_step
+        self._skill_cache = skill_cache
+        self._cache_config = cache_config
+        self._step_results: dict[int, dict[str, Any]] = {}
 
     async def execute(self) -> None:
         """Run the full skill from current step to completion."""
@@ -134,6 +141,18 @@ class Executor:
                         raise ApprovalRejectedError(f"Post-approval rejected for step {step.index}")
 
                 session.complete_current_step()
+
+                # Capture tool results for use by later cached steps
+                if step.index not in self._step_results and session.step_tool_results:
+                    last_result = session.step_tool_results[-1]
+                    content = last_result.get("content", "")
+                    try:
+                        parsed = json.loads(content)
+                        if isinstance(parsed, dict):
+                            self._step_results[step.index] = parsed
+                    except (json.JSONDecodeError, TypeError):
+                        pass
+
                 await self._emit(
                     RunEvent.create(
                         session.id,
@@ -189,11 +208,92 @@ class Executor:
         step = self._skill.get_step(step_index)
         session = self._session
 
+        # Cache consultation
+        hint = None
+        cache_cfg = self._cache_config
+        if self._skill_cache and cache_cfg and cache_cfg.enabled:
+            recipe = self._skill_cache.get_recipe(step_index)
+            if recipe and recipe.confidence >= cache_cfg.min_confidence:
+                if cache_cfg.optimization_level >= 2 and recipe.tool_call_recipes:
+                    # Level 2: direct execution with fallback
+                    await self._emit(
+                        RunEvent.create(
+                            session.id,
+                            EventType.CACHE_HIT,
+                            {
+                                "step_index": step_index,
+                                "optimization_level": 2,
+                                "confidence": recipe.confidence,
+                            },
+                        )
+                    )
+                    try:
+                        from proceda.cache.executor import RecipeExecutionError, RecipeExecutor
+
+                        recipe_exec = RecipeExecutor(
+                            session, self._tool_executor, self._emit, self._step_results
+                        )
+                        captured = await recipe_exec.execute(recipe)
+                        self._step_results[step_index] = captured
+                        summary = recipe.summary_template or f"Step {step_index} completed"
+                        session.add_message(
+                            RunMessage.create("tool", summary, tool_call_id="cache_complete")
+                        )
+                        await self._emit(
+                            RunEvent.create(
+                                session.id,
+                                EventType.SUMMARY_GENERATED,
+                                {"step_index": step_index, "summary": summary},
+                            )
+                        )
+                        return
+                    except RecipeExecutionError as e:
+                        logger.warning(
+                            "Recipe failed for step %d: %s. Falling back to LLM.",
+                            step_index,
+                            e,
+                        )
+                        await self._emit(
+                            RunEvent.create(
+                                session.id,
+                                EventType.CACHE_FALLBACK,
+                                {"step_index": step_index, "error": str(e)},
+                            )
+                        )
+                        # Fall through to LLM execution
+
+                if cache_cfg.optimization_level >= 1:
+                    hint = _build_hint_from_recipe(recipe)
+                    if not hint:
+                        hint = None
+                    else:
+                        await self._emit(
+                            RunEvent.create(
+                                session.id,
+                                EventType.CACHE_HIT,
+                                {
+                                    "step_index": step_index,
+                                    "optimization_level": 1,
+                                    "confidence": recipe.confidence,
+                                },
+                            )
+                        )
+            else:
+                reason = "no_recipe" if not recipe else "low_confidence"
+                await self._emit(
+                    RunEvent.create(
+                        session.id,
+                        EventType.CACHE_MISS,
+                        {"step_index": step_index, "reason": reason},
+                    )
+                )
+
         is_last_step = step_index == self._skill.step_count
         step_prompt = build_step_prompt(
             step,
             is_last_step=is_last_step,
             output_fields=self._skill.output_fields,
+            hint=hint,
         )
         session.add_message(RunMessage.create("user", step_prompt, is_critical=True))
 
@@ -517,3 +617,25 @@ class Executor:
                 {"status": status.value},
             )
         )
+
+
+def _build_hint_from_recipe(recipe: StepRecipe) -> str:
+    """Build a natural language hint from a StepRecipe for Level 1 injection."""
+    if not recipe.tool_call_recipes:
+        return ""
+
+    lines = ["In previous successful executions, this step followed this pattern:"]
+    for i, tc in enumerate(recipe.tool_call_recipes, 1):
+        arg_descriptions = []
+        for arg_name, mapping in tc.argument_mappings.items():
+            if mapping.source == ArgumentSourceType.VARIABLE:
+                arg_descriptions.append(f"{arg_name} (from variable '{mapping.key}')")
+            elif mapping.source == ArgumentSourceType.STEP_RESULT:
+                arg_descriptions.append(f"{arg_name} (from {mapping.key})")
+            elif mapping.source == ArgumentSourceType.LITERAL:
+                arg_descriptions.append(f"{arg_name} = {mapping.literal_value!r}")
+        args_text = ", ".join(arg_descriptions)
+        lines.append(f"{i}. Called `{tc.tool_name}` with: {args_text}")
+
+    lines.append("Follow this pattern if applicable to the current inputs.")
+    return "\n".join(lines)

@@ -71,6 +71,7 @@ def build_step_prompt(
     step: SkillStep,
     is_last_step: bool = False,
     output_fields: list[str] | None = None,
+    hint: str | None = None,
 ) -> str:
     """Build a user-facing prompt for starting a specific step."""
     markers_text = ""
@@ -89,5 +90,8 @@ def build_step_prompt(
             "\n\nIMPORTANT: This is the final step. Your complete_step summary "
             "MUST include these output fields as XML tags:\n" + tags
         )
+
+    if hint:
+        prompt += f"\n\n{hint}"
 
     return prompt

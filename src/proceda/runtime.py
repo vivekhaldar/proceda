@@ -188,6 +188,20 @@ class Runtime:
         # Create LLM runtime
         llm = LLMRuntime(self._config.llm)
 
+        # Load execution cache if enabled
+        skill_cache = None
+        if self._config.cache.enabled:
+            from proceda.cache.store import CacheStore
+
+            cache_store = CacheStore(str(Path(self._config.logging.run_dir).parent / "cache"))
+            skill_cache = cache_store.load(skill.id, skill.raw_content)
+            if skill_cache:
+                logger.info(
+                    "Loaded execution cache for skill %s (%d step recipes)",
+                    skill.name,
+                    len(skill_cache.step_recipes),
+                )
+
         # Create executor
         executor = Executor(
             skill=skill,
@@ -197,6 +211,8 @@ class Runtime:
             human=self._human,
             emit=composite.handle,
             tool_schemas=tool_schemas,
+            skill_cache=skill_cache,
+            cache_config=self._config.cache,
         )
 
         async def _run() -> None:
