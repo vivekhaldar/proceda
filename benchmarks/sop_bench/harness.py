@@ -264,12 +264,21 @@ def run_evaluation(
     max_tasks: int | None = None,
     workers: int = 1,
     resume: bool = False,
+    exclude_tasks_file: str | None = None,
+    output_dir: str | None = None,
 ) -> dict[str, Any]:
     """Run Proceda against all tasks in a domain and return metrics."""
     tasks, input_columns, output_columns = load_benchmark_data(domain, data_dir)
 
     if max_tasks is not None:
         tasks = tasks[:max_tasks]
+
+    # Load task exclusions
+    exclude_ids: set[str] = set()
+    if exclude_tasks_file:
+        with open(exclude_tasks_file) as f:
+            exclude_ids = set(json.load(f))
+        print(f"Excluding {len(exclude_ids)} SOP-inconsistent tasks from {exclude_tasks_file}")
 
     skill_dir = BENCHMARKS_DIR / domain
     if not (skill_dir / "SKILL.md").exists():
@@ -293,10 +302,16 @@ def run_evaluation(
 
     # Build list of tasks to run (with original indices for ID extraction)
     tasks_to_run = []
+    excluded_count = 0
     for i, task in enumerate(tasks):
         task_id = get_task_id(task, i)
+        if task_id in exclude_ids:
+            excluded_count += 1
+            continue
         if task_id not in skip_ids:
             tasks_to_run.append((i, task))
+    if excluded_count:
+        print(f"Excluded {excluded_count} tasks")
 
     total = len(tasks)
     print(f"Running {len(tasks_to_run)} tasks ({total} total, {len(skip_ids)} skipped)")
@@ -381,13 +396,16 @@ def run_evaluation(
     print(f"C-TSR:     {c_tsr:.1%}")
     print(f"{'=' * 50}")
 
-    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    results_path = RESULTS_DIR / f"{domain}_results.json"
+    out_dir = Path(output_dir) if output_dir else RESULTS_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    results_path = (
+        out_dir / f"{domain}_results.json" if not output_dir else out_dir / "results.json"
+    )
     with open(results_path, "w") as f:
         json.dump({"metrics": metrics, "tasks": results}, f, indent=2)
     print(f"Results saved to {results_path}")
 
-    csv_path = RESULTS_DIR / f"{domain}_detailed.csv"
+    csv_path = out_dir / f"{domain}_detailed.csv" if not output_dir else out_dir / "detailed.csv"
     with open(csv_path, "w", newline="") as f:
         writer = csv.DictWriter(
             f,
@@ -424,9 +442,27 @@ def main() -> None:
     parser.add_argument(
         "--resume", action="store_true", help="Skip tasks completed in a previous run"
     )
+    parser.add_argument(
+        "--exclude-tasks",
+        default=None,
+        help="Path to JSON file with task IDs to exclude (SOP-inconsistent tasks)",
+    )
+    parser.add_argument(
+        "--output-dir",
+        default=None,
+        help="Custom output directory for results and traces",
+    )
     args = parser.parse_args()
 
-    run_evaluation(args.domain, args.data_dir, args.max_tasks, args.workers, args.resume)
+    run_evaluation(
+        args.domain,
+        args.data_dir,
+        args.max_tasks,
+        args.workers,
+        args.resume,
+        args.exclude_tasks,
+        args.output_dir,
+    )
 
 
 if __name__ == "__main__":
