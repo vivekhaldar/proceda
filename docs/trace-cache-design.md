@@ -1211,11 +1211,24 @@ def cache_show(
 ## 8. `proceda.yaml` Configuration
 
 ```yaml
+llm:
+  model: openrouter/google/gemini-3-flash
+  api_key_env: OPENROUTER_API_KEY    # Retrieved via: pass soprun/OPENROUTER_API_KEY
+  temperature: 0.0
+  max_tokens: 4096
+
 cache:
   enabled: true              # Default: false
   min_traces: 3              # Build cache after this many successful runs
   min_confidence: 0.8        # Only use recipes with >= 80% confidence
   optimization_level: 1      # 1 = hints only, 2 = direct execution
+```
+
+**Model choice**: Use Gemini 3 Flash via OpenRouter (`openrouter/google/gemini-3-flash`).
+The API key is stored in `pass` and should be exported before running:
+
+```bash
+export OPENROUTER_API_KEY=$(pass soprun/OPENROUTER_API_KEY)
 ```
 
 ---
@@ -1388,35 +1401,137 @@ Each task above specifies its tests. Run the full suite:
 make test
 ```
 
-### Manual Verification
+### SOP-Bench Accuracy Regression Testing
 
-1. **Build cache for dangerous_goods**:
-   ```bash
-   proceda cache build benchmarks/sop_bench/domains/dangerous_goods/
-   proceda cache show benchmarks/sop_bench/domains/dangerous_goods/
-   ```
-   Verify: Steps 2-5 have confidence 1.0 with VARIABLE mappings. Steps 1, 6, 7 either have no recipes or confidence 0.0 (no tool calls).
+**This is the critical verification**: caching must not degrade correctness.
+Use the SOP-Bench ground truth labels to prove that Level 1 and Level 2
+produce the same (or better) accuracy as the baseline uncached runs.
 
-2. **Run with Level 1**:
-   ```bash
-   # Add to proceda.yaml: cache: {enabled: true, optimization_level: 1}
-   proceda run benchmarks/sop_bench/domains/dangerous_goods/
-   ```
-   Verify: Check event log for CACHE_HIT events on steps 2-5. Token usage should be lower than uncached runs.
+**Ground truth location**: `~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data/{domain}/test_set_with_outputs.csv`
+Each CSV has input columns and output columns (the labeled expected answers).
+The `metadata.json` in each domain directory lists which columns are inputs vs outputs.
 
-3. **Run with Level 2**:
-   ```bash
-   # Change to: cache: {enabled: true, optimization_level: 2}
-   proceda run benchmarks/sop_bench/domains/dangerous_goods/
-   ```
-   Verify: Steps 2-5 should make tool calls directly without LLM loop. Check event log for CACHE_HIT with optimization_level=2.
+**Proceda benchmark harness**: `benchmarks/sop_bench/harness.py`
+- `run_evaluation(domain, data_dir, ...)` runs the agent on each task, extracts outputs, and compares against expected using `compare_decisions()` (case-insensitive fuzzy matching).
+- Reports metrics: **TSR** (Task Success Rate), **ECR** (Execution Completion Rate), **C-TSR** (Conditional TSR).
+- Results go to `benchmarks/sop_bench/results/{domain}_results.json` with per-task breakdown.
 
-4. **Test invalidation**:
-   - Edit the SKILL.md (change a step's text)
-   - Run again
-   - Verify CACHE_MISS events (stale hash)
+**Model**: Gemini 3 Flash via OpenRouter. Export the key before running:
+```bash
+export OPENROUTER_API_KEY=$(pass soprun/OPENROUTER_API_KEY)
+```
 
-5. **Test fallback**:
-   - Build cache, then change the MCP tool to return an error for one call
+#### Step-by-step verification procedure
+
+**Step 1: Establish baseline (no cache)**
+
+Run the full benchmark with caching disabled to get baseline metrics:
+
+```bash
+# Ensure cache is disabled in config
+# Run against all domains (or a representative subset: dangerous_goods, content_flagging, order_fulfillment)
+cd ~/repos/gh/proceda
+python -m benchmarks.sop_bench.harness --domain dangerous_goods \
+    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+
+# Save baseline results
+cp benchmarks/sop_bench/results/dangerous_goods_results.json \
+   benchmarks/sop_bench/results/dangerous_goods_results_baseline.json
+```
+
+Record baseline TSR, ECR, and C-TSR for each domain.
+
+**Step 2: Build cache from baseline traces**
+
+```bash
+proceda cache build benchmarks/sop_bench/domains/dangerous_goods/
+proceda cache show benchmarks/sop_bench/domains/dangerous_goods/
+```
+
+Verify:
+- Steps 2-5 should have confidence 1.0 with VARIABLE mappings
+- Steps 1, 6, 7 should have no recipes or confidence 0.0 (no tool calls)
+
+**Step 3: Run with Level 1 (hint injection)**
+
+```bash
+# Enable cache with optimization_level: 1 in config
+python -m benchmarks.sop_bench.harness --domain dangerous_goods \
+    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+
+cp benchmarks/sop_bench/results/dangerous_goods_results.json \
+   benchmarks/sop_bench/results/dangerous_goods_results_level1.json
+```
+
+**Acceptance criteria**:
+- TSR must be >= baseline TSR (no accuracy regression)
+- ECR must be >= baseline ECR
+- Token usage per run should be lower (check event logs for cumulative token counts)
+- Event logs should contain CACHE_HIT events on cached steps
+
+**Step 4: Run with Level 2 (direct execution)**
+
+```bash
+# Enable cache with optimization_level: 2 in config
+python -m benchmarks.sop_bench.harness --domain dangerous_goods \
+    --data-dir ~/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+
+cp benchmarks/sop_bench/results/dangerous_goods_results.json \
+   benchmarks/sop_bench/results/dangerous_goods_results_level2.json
+```
+
+**Acceptance criteria**:
+- TSR must be >= baseline TSR (no accuracy regression)
+- ECR must be >= baseline ECR
+- Token usage should be significantly lower than Level 1
+- CACHE_FALLBACK events should be rare (< 5% of cached steps)
+
+**Step 5: Compare results across all three runs**
+
+Write a comparison script or manually diff the per-task results:
+
+```bash
+python3 -c "
+import json
+
+for label, path in [
+    ('Baseline', 'benchmarks/sop_bench/results/dangerous_goods_results_baseline.json'),
+    ('Level 1',  'benchmarks/sop_bench/results/dangerous_goods_results_level1.json'),
+    ('Level 2',  'benchmarks/sop_bench/results/dangerous_goods_results_level2.json'),
+]:
+    with open(path) as f:
+        data = json.load(f)
+    m = data['metrics']
+    print(f'{label:10s}  TSR={m[\"tsr\"]:.3f}  ECR={m[\"ecr\"]:.3f}  C-TSR={m[\"c_tsr\"]:.3f}')
+"
+```
+
+Also diff per-task correctness to find any regressions:
+- For each task_id, compare `is_correct` across baseline/L1/L2
+- Any task that was correct in baseline but wrong in L1/L2 is a regression
+- Investigate regressions by comparing traces (the JSONL files in `results/traces/`)
+
+**Step 6: Repeat for additional domains**
+
+Run the same baseline → L1 → L2 comparison on at least 3 domains:
+- `dangerous_goods` (simple, tool-heavy — best case for caching)
+- `content_flagging` (more complex reasoning)
+- `order_fulfillment` (multi-tool steps)
+
+**Hard gate**: If ANY domain shows TSR regression > 2% (absolute), the caching
+level that caused it must not ship until the root cause is identified and fixed.
+
+### Manual Functional Tests
+
+1. **Cache invalidation**:
+   - Build cache, edit SKILL.md (change a step's text), run again
+   - Verify CACHE_MISS events (stale hash detected)
+
+2. **Fallback robustness**:
+   - Build cache, modify MCP tool to return an error for one call
    - Run with Level 2
    - Verify CACHE_FALLBACK event and that the run still completes via LLM fallback
+
+3. **Cache CLI**:
+   - `proceda cache build` / `proceda cache show` / `proceda cache clear`
+   - Verify each produces expected output
