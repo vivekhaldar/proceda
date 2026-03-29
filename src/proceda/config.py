@@ -105,6 +105,16 @@ class LoggingConfig:
 
 
 @dataclass
+class CacheConfig:
+    """Step-level execution cache settings."""
+
+    enabled: bool = False
+    min_traces: int = 3
+    min_confidence: float = 0.8
+    optimization_level: int = 1
+
+
+@dataclass
 class ProcedaConfig:
     """Root configuration model."""
 
@@ -113,6 +123,7 @@ class ProcedaConfig:
     dev: DevConfig = field(default_factory=DevConfig)
     security: SecurityConfig = field(default_factory=SecurityConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
+    cache: CacheConfig = field(default_factory=CacheConfig)
 
     @staticmethod
     def from_dict(data: dict[str, Any]) -> ProcedaConfig:
@@ -162,6 +173,15 @@ class ProcedaConfig:
             config.logging = LoggingConfig(
                 run_dir=log.get("run_dir", ".proceda/runs"),
                 redact_secrets=log.get("redact_secrets", True),
+            )
+
+        if "cache" in data:
+            c = data["cache"]
+            config.cache = CacheConfig(
+                enabled=c.get("enabled", False),
+                min_traces=c.get("min_traces", 3),
+                min_confidence=c.get("min_confidence", 0.8),
+                optimization_level=c.get("optimization_level", 1),
             )
 
         return config

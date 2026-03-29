@@ -50,6 +50,11 @@ class EventType(enum.Enum):
     # LLM usage
     LLM_USAGE = "llm.usage"
 
+    # Cache
+    CACHE_HIT = "cache.hit"
+    CACHE_MISS = "cache.miss"
+    CACHE_FALLBACK = "cache.fallback"
+
     # Runtime state
     STATUS_CHANGED = "status.changed"
     CONTEXT_UPDATED = "context.updated"
