@@ -1434,6 +1434,68 @@ Run verification on exactly these 4 domains (chosen to cover a range of complexi
 
 Do **not** run other domains during this verification.
 
+#### SOP-Consistent Task Filtering (CRITICAL)
+
+The SOP-Bench benchmark has known bugs where CSV ground truth labels
+contradict the SOP's explicit rules. We filed issues on
+[amazon-science/SOP-Bench](https://github.com/amazon-science/SOP-Bench/issues).
+Full analysis: https://enchiridionlabs.online/sop-bench-results.html
+
+**Only evaluate on SOP-consistent data points** — tasks where the ground
+truth label agrees with what the SOP actually prescribes. Running on
+inconsistent tasks would inject noise that masks real caching regressions.
+
+| Domain | Total Tasks | SOP-Consistent | Excluded | Bug | GitHub Issue |
+|--------|------------|----------------|----------|-----|-------------|
+| `dangerous_goods` | 274 | 274 | 0 | None — clean dataset | n/a |
+| `customer_service` | all | all | 0 | None — clean dataset | n/a |
+| `video_classification` | 196 | 187 | 9 | Stub tools (`pass`) return `None`, causing leniency bias; 9 tasks expect "Remove" based on implicit format rules not in the SOP | [#9](https://github.com/amazon-science/SOP-Bench/issues/9) |
+| `traffic_spoofing` | 200 | 161 | 39 | 39 Medium-risk tasks labeled "Warning Issued" when SOP Section 5.6 maps Medium → "Temporary Suspension". No distinguishing signal exists between the two Medium subgroups. | [#5](https://github.com/amazon-science/SOP-Bench/issues/5) |
+
+**Exclusion criteria per domain:**
+
+**`traffic_spoofing`** — Exclude these 39 partner IDs (all Medium-risk
+tasks mislabeled as "Warning Issued"):
+
+```
+PARTNER115, PARTNER118, PARTNER119, PARTNER120, PARTNER121, PARTNER127,
+PARTNER129, PARTNER132, PARTNER134, PARTNER135, PARTNER141, PARTNER144,
+PARTNER151, PARTNER160, PARTNER163, PARTNER169, PARTNER176, PARTNER177,
+PARTNER179, PARTNER182, PARTNER186, PARTNER189, PARTNER196, PARTNER202,
+PARTNER205, PARTNER206, PARTNER215, PARTNER216, PARTNER222, PARTNER227,
+PARTNER232, PARTNER244, PARTNER250, PARTNER276, PARTNER277, PARTNER286,
+PARTNER288, PARTNER295, PARTNER296
+```
+
+**`video_classification`** — Exclude 9 tasks where ground truth expects
+"Remove" based on non-standard video formats (AV1, RAW, `nan`) with no
+SOP or tool signal. To identify these: they are tasks where the expected
+output is "Remove" AND the `getReview` tool's initial screening does not
+flag the content, but stub tools returning `None` cause the agent to
+de-escalate. The specific video IDs should be identified by running the
+full task set once, then filtering to tasks where:
+  1. Expected output is "Remove", AND
+  2. The `getReview` result does not indicate content-policy violations
+     sufficient for removal, AND
+  3. The resolution depends on signals from stub tools (`detectHateSpeech`,
+     `detectExplicitContent`, `assessAgeRating`, `generateContentWarnings`)
+
+**`dangerous_goods`** and **`customer_service`** — No exclusions needed.
+
+**Implementation**: Add an `--exclude-tasks` flag to the benchmark harness
+(`benchmarks/sop_bench/harness.py`) that accepts a file path to a JSON list
+of task IDs to skip. Create exclusion files per domain:
+
+```
+benchmarks/sop_bench/exclusions/
+├── traffic_spoofing.json        # ["PARTNER115", "PARTNER118", ...]
+└── video_classification.json    # ["VID_xxx", "VID_yyy", ...]
+```
+
+The harness should log how many tasks were excluded and the reason.
+The comparison report must state both raw TSR (all tasks) and
+SOP-consistent TSR (after exclusions) for full transparency.
+
 #### Trace and Result Storage (Auditability)
 
 All traces and results MUST be saved in named, dated folders so every run is
