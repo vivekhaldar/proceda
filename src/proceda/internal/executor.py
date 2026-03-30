@@ -227,6 +227,9 @@ class Executor:
                             },
                         )
                     )
+                    # Snapshot message count so we can roll back on failure
+                    msg_count_before = len(session.messages)
+                    tool_results_before = len(session.step_tool_results)
                     try:
                         from proceda.cache.executor import RecipeExecutionError, RecipeExecutor
 
@@ -253,6 +256,12 @@ class Executor:
                             step_index,
                             e,
                         )
+                        # Roll back messages added by the failed recipe to avoid
+                        # orphaned tool responses that confuse the LLM
+                        session.messages[:] = session.messages[:msg_count_before]
+                        session.step_tool_results[:] = session.step_tool_results[
+                            :tool_results_before
+                        ]
                         await self._emit(
                             RunEvent.create(
                                 session.id,
