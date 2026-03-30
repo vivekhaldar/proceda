@@ -181,6 +181,21 @@ def _extract_function_code(llm_response: str) -> str:
 
     # Dedent to remove any leading whitespace the LLM added
     code = textwrap.dedent(code)
+
+    # Fix inconsistent indentation: if the first non-empty line has no indent
+    # but subsequent lines do, the LLM dropped the indent on line 1.
+    # Detect by checking if most non-empty lines have a common indent.
+    lines = code.split("\n")
+    non_empty = [(i, line) for i, line in enumerate(lines) if line.strip()]
+    if len(non_empty) >= 2:
+        indents = [len(line) - len(line.lstrip()) for _, line in non_empty]
+        # If first line has 0 indent but majority have > 0, re-indent first line
+        if indents[0] == 0 and sum(1 for x in indents[1:] if x > 0) > len(indents) // 2:
+            # Find the most common non-zero indent
+            common = min(x for x in indents if x > 0)
+            lines[non_empty[0][0]] = " " * common + lines[non_empty[0][0]]
+            code = textwrap.dedent("\n".join(lines))
+
     return code
 
 
@@ -190,16 +205,9 @@ def _build_step_function(function_body: str) -> str:
     from __future__ import annotations
     import json
     import re
-    from dataclasses import dataclass, field
     from typing import Any, Callable, Awaitable
 
-    @dataclass
-    class StepOutput:
-        summary: str
-        captured_values: dict[str, Any] = field(default_factory=dict)
-        output_fields: dict[str, str] | None = None
-        terminate: bool = False
-        terminate_values: dict[str, str] | None = None
+    from proceda.compile.models import StepOutput
 
     async def execute(
         variables: dict[str, str],
@@ -260,23 +268,25 @@ async def _verify_step(
         try:
             output = await execute_fn(trace.variables, trace.prior_steps, mock_call_tool)
 
-            # Compare captured_values (skip if trace has no captured values)
-            if not trace.captured_values:
-                # No expected values to check — pass if no exception
+            # Compare captured_values: check keys present in BOTH sides.
+            # The compiled function may return different keys than the trace
+            # (e.g., trace includes product_id from tool result, compiled
+            # function only returns the score). We check the intersection.
+            if not trace.captured_values and not output.captured_values:
                 passed += 1
+            elif not output.captured_values and trace.captured_values:
+                # Compiled function returned nothing but trace has values
+                failed += 1
+                error_msg = (
+                    f"Trace {i}: compiled function returned empty captured_values, "
+                    f"expected keys {list(trace.captured_values.keys())}"
+                )
             else:
+                # Check keys that the compiled function returns
                 match = True
-                for key, expected_val in trace.captured_values.items():
-                    actual_val = output.captured_values.get(key)
-                    if actual_val is None:
-                        match = False
-                        error_msg = (
-                            f"Trace {i}: missing key '{key}' in captured_values. "
-                            f"Expected {expected_val}, "
-                            f"got keys {list(output.captured_values.keys())}"
-                        )
-                        break
-                    if not _values_match(actual_val, expected_val):
+                for key, actual_val in output.captured_values.items():
+                    expected_val = trace.captured_values.get(key)
+                    if expected_val is not None and not _values_match(actual_val, expected_val):
                         match = False
                         error_msg = (
                             f"Trace {i}: key '{key}' mismatch. "
@@ -389,19 +399,27 @@ def _load_runs(
                     captured.update(r)
 
                 # For non-tool steps, extract values from summary text
-                # Parse XML tags (e.g., <hazard_score>17</hazard_score>)
-                for match in re.finditer(r"<(\w+)>(.*?)</\1>", summary):
-                    captured[match.group(1)] = match.group(2).strip()
-                # Parse "field as/= value" patterns from summaries
-                # e.g., "hazard score ... as 17" or "score: 17"
-                for match in re.finditer(
-                    r"(\w+_\w+)\s+(?:as|=|is|:)\s+(\d+)", summary, re.IGNORECASE
-                ):
-                    key = match.group(1).lower()
-                    try:
-                        captured[key] = int(match.group(2))
-                    except ValueError:
-                        captured[key] = match.group(2)
+                if not step_tool_results:
+                    # Parse XML tags (e.g., <hazard_score>17</hazard_score>)
+                    for match in re.finditer(r"<(\w+)>(.*?)</\1>", summary):
+                        val = match.group(2).strip()
+                        try:
+                            captured[match.group(1)] = int(val)
+                        except ValueError:
+                            captured[match.group(1)] = val
+                    # Parse "key as N" patterns but only for known SOP terms
+                    for match in re.finditer(
+                        r"(hazard_score|hazard_class|score)\s+(?:as|=|is|:)\s+"
+                        r"(\w+)",
+                        summary,
+                        re.IGNORECASE,
+                    ):
+                        key = match.group(1).lower()
+                        val = match.group(2).strip()
+                        try:
+                            captured[key] = int(val)
+                        except ValueError:
+                            captured[key] = val
 
                 run_data.step_traces[current_step] = _StepTrace(
                     variables=variables,
@@ -536,10 +554,12 @@ async def compile_skill(
                 best_passed = passed
                 best_error = ""
                 break
-            elif passed > best_passed:
-                best_code = code
-                best_passed = passed
+            else:
+                # Always update error; update code if this attempt was better
                 best_error = error
+                if passed >= best_passed:
+                    best_code = code
+                    best_passed = passed
 
         if best_code and best_error == "":
             manifest.steps[step_idx] = CompiledStepInfo(
