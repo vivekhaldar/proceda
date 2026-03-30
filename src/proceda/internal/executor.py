@@ -239,8 +239,9 @@ class Executor:
                         captured = await recipe_exec.execute(recipe)
                         self._step_results[step_index] = captured
                         summary = recipe.summary_template or f"Step {step_index} completed"
+                        # Add as a user-role summary so it doesn't require a tool_call_id
                         session.add_message(
-                            RunMessage.create("tool", summary, tool_call_id="cache_complete")
+                            RunMessage.create("user", f"[Step {step_index} result]: {summary}")
                         )
                         await self._emit(
                             RunEvent.create(
