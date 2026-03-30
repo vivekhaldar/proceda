@@ -145,6 +145,23 @@ class TestFallbackToAssistantMessage:
         output = extract_output(events, expected_cols)
         assert output == {"insurance_validation": "valid", "pharmacy_check": "yes"}
 
+    def test_falls_back_to_llm_extraction_for_prose(self):
+        """LLM extraction handles prose that deterministic strategies miss."""
+        events = [
+            _make_event(
+                EventType.MESSAGE_ASSISTANT,
+                {
+                    "content": (
+                        "Based on the analysis, the product has been classified as "
+                        "Hazard Class C with a cumulative hazard score of 15."
+                    ),
+                },
+            ),
+        ]
+        output = extract_output(events, ["hazard_class"])
+        assert output.get("hazard_class") is not None
+        assert "C" in output["hazard_class"] or "c" in output["hazard_class"].lower()
+
     def test_returns_empty_dict_when_no_data(self):
         events = [
             _make_event(EventType.RUN_COMPLETED, {"status": "completed"}),

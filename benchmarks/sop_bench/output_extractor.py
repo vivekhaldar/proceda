@@ -1,13 +1,19 @@
 # ABOUTME: Extracts structured output fields from Proceda run events.
-# ABOUTME: Tries tool results, then XML tags, then JSON blocks from assistant messages.
+# ABOUTME: Tries tool results, XML tags, JSON blocks, then LLM extraction as final fallback.
 
 from __future__ import annotations
 
 import json
+import logging
 import re
 from typing import Any
 
 from proceda.events import EventType, RunEvent
+
+logger = logging.getLogger(__name__)
+
+# Model for LLM-based extraction fallback. Cheap and fast is fine here.
+_EXTRACTION_MODEL = "gemini/gemini-2.0-flash"
 
 
 def extract_output(
@@ -21,6 +27,7 @@ def extract_output(
     2. XML tags matching expected column names from assistant messages
     3. <final_output>{JSON}</final_output> from assistant messages
     4. Bare JSON blocks from assistant messages
+    5. LLM extraction from prose (final fallback for any phrasing)
 
     Returns the first strategy that finds all expected columns, or the
     best partial result.
@@ -89,7 +96,7 @@ def _extract_from_assistant_messages(
     if not all_content:
         return {}
 
-    # Try each strategy across all messages (last message first)
+    # Try deterministic strategies across all messages (last message first)
     for content in reversed(all_content):
         # Strategy 1: XML tags matching column names (e.g., <hazard_class>...</hazard_class>)
         result = _extract_xml_tags(content, expected_set)
@@ -106,12 +113,10 @@ def _extract_from_assistant_messages(
         if result:
             return result
 
-        # Strategy 4: Prose patterns (e.g., "final_resolution_status is RESOLVED")
-        result = _extract_prose_values(content, expected_set)
-        if result:
-            return result
-
-    return {}
+    # Strategy 4: LLM extraction from the last few messages as fallback.
+    # Concat the last messages (most likely to contain the final answer).
+    combined = "\n---\n".join(reversed(all_content[:5]))
+    return _extract_via_llm(combined, expected_columns)
 
 
 def _extract_xml_tags(content: str, expected_set: set[str]) -> dict[str, Any]:
@@ -125,38 +130,39 @@ def _extract_xml_tags(content: str, expected_set: set[str]) -> dict[str, Any]:
     return output
 
 
-def _extract_prose_values(content: str, expected_set: set[str]) -> dict[str, Any]:
-    """Extract values mentioned in prose near expected column names.
+def _extract_via_llm(content: str, expected_columns: list[str]) -> dict[str, Any]:
+    """Use an LLM to extract structured fields from prose content.
 
-    Matches patterns like:
-    - "final_resolution_status: PENDING_ACTION"
-    - "the final_resolution_status is RESOLVED"
-    - "status is PENDING_ACTION"
-    - "hazard_class: Hazard Class A"
+    Final fallback when deterministic strategies (XML, JSON) fail to find
+    all expected columns. Handles any phrasing the agent might use.
     """
-    output: dict[str, Any] = {}
-    for col in expected_set:
-        # Convert column name to flexible pattern (underscores → spaces or underscores)
-        col_pattern = col.replace("_", r"[\s_]")
-        # Also try matching the last segment of the column name (e.g., "status" from
-        # "final_resolution_status") to handle aliases like "ticket status"
-        col_parts = col.split("_")
-        alt_patterns = [col_pattern]
-        if len(col_parts) > 1:
-            alt_patterns.append(r"[\w\s]*" + col_parts[-1])
-        for cp in alt_patterns:
-            # Match: column_name followed by separator then value
-            pattern = (
-                rf"(?:{cp})\s*(?:is|:|=|as)\s*[\"']?"
-                rf"([\w\s\-]+?)[\"']?"
-                rf"(?:\.|,|\s*$|\s+(?:and|for|with|due|await|based))"
-            )
-            # Use findall and take the LAST match (final status is typically at the end)
-            matches = list(re.finditer(pattern, content, re.IGNORECASE))
-            if matches:
-                output[col] = matches[-1].group(1).strip()
-                break
-    return output
+    import litellm
+
+    columns_str = ", ".join(expected_columns)
+    prompt = (
+        f"Extract the following fields from the text below: {columns_str}\n\n"
+        f"Return ONLY a JSON object with those field names as keys. "
+        f"If a field's value is not present in the text, omit it.\n\n"
+        f"Text:\n{content}"
+    )
+
+    try:
+        response = litellm.completion(
+            model=_EXTRACTION_MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.0,
+            max_tokens=256,
+            response_format={"type": "json_object"},
+        )
+        result_text = response.choices[0].message.content or ""
+        result = json.loads(result_text)
+        if isinstance(result, dict):
+            expected_set = set(expected_columns)
+            return {k: v for k, v in result.items() if k in expected_set}
+    except Exception:
+        logger.debug("LLM extraction failed", exc_info=True)
+
+    return {}
 
 
 def _extract_final_output_json(content: str, expected_set: set[str]) -> dict[str, Any]:
