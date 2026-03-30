@@ -166,7 +166,7 @@ def _build_codegen_prompt(
 
 
 def _extract_function_code(llm_response: str) -> str:
-    """Extract the function body from the LLM response."""
+    """Extract the function body from the LLM response and dedent it."""
     # Strip markdown code fences if present
     code = llm_response.strip()
     code = re.sub(r"^```python\s*\n?", "", code)
@@ -175,12 +175,12 @@ def _extract_function_code(llm_response: str) -> str:
 
     # If the response starts with "async def execute", extract the body
     if code.startswith("async def execute"):
-        # Find the first line after the def, strip the def line
         lines = code.split("\n")
-        # Skip the def line and any docstring
         body_lines = lines[1:]
         code = "\n".join(body_lines)
 
+    # Dedent to remove any leading whitespace the LLM added
+    code = textwrap.dedent(code)
     return code
 
 
@@ -260,30 +260,34 @@ async def _verify_step(
         try:
             output = await execute_fn(trace.variables, trace.prior_steps, mock_call_tool)
 
-            # Compare captured_values
-            match = True
-            for key, expected_val in trace.captured_values.items():
-                actual_val = output.captured_values.get(key)
-                if actual_val is None:
-                    match = False
-                    error_msg = (
-                        f"Trace {i}: missing key '{key}' in captured_values. "
-                        f"Expected {expected_val}, got keys {list(output.captured_values.keys())}"
-                    )
-                    break
-                # Flexible comparison
-                if not _values_match(actual_val, expected_val):
-                    match = False
-                    error_msg = (
-                        f"Trace {i}: key '{key}' mismatch. "
-                        f"Expected {expected_val!r}, got {actual_val!r}"
-                    )
-                    break
-
-            if match:
+            # Compare captured_values (skip if trace has no captured values)
+            if not trace.captured_values:
+                # No expected values to check — pass if no exception
                 passed += 1
             else:
-                failed += 1
+                match = True
+                for key, expected_val in trace.captured_values.items():
+                    actual_val = output.captured_values.get(key)
+                    if actual_val is None:
+                        match = False
+                        error_msg = (
+                            f"Trace {i}: missing key '{key}' in captured_values. "
+                            f"Expected {expected_val}, "
+                            f"got keys {list(output.captured_values.keys())}"
+                        )
+                        break
+                    if not _values_match(actual_val, expected_val):
+                        match = False
+                        error_msg = (
+                            f"Trace {i}: key '{key}' mismatch. "
+                            f"Expected {expected_val!r}, got {actual_val!r}"
+                        )
+                        break
+
+                if match:
+                    passed += 1
+                else:
+                    failed += 1
 
         except Exception as e:
             failed += 1
@@ -383,6 +387,21 @@ def _load_runs(
                 captured = {}
                 for r in step_tool_results:
                     captured.update(r)
+
+                # For non-tool steps, extract values from summary text
+                # Parse XML tags (e.g., <hazard_score>17</hazard_score>)
+                for match in re.finditer(r"<(\w+)>(.*?)</\1>", summary):
+                    captured[match.group(1)] = match.group(2).strip()
+                # Parse "field as/= value" patterns from summaries
+                # e.g., "hazard score ... as 17" or "score: 17"
+                for match in re.finditer(
+                    r"(\w+_\w+)\s+(?:as|=|is|:)\s+(\d+)", summary, re.IGNORECASE
+                ):
+                    key = match.group(1).lower()
+                    try:
+                        captured[key] = int(match.group(2))
+                    except ValueError:
+                        captured[key] = match.group(2)
 
                 run_data.step_traces[current_step] = _StepTrace(
                     variables=variables,
