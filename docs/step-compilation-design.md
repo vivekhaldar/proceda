@@ -188,33 +188,191 @@ async def execute(variables, prior_steps, call_tool):
 
 ### The compilation process
 
-**Input**: SKILL.md + N successful run traces (N >= 3)
+**Input**: SKILL.md + N successful run traces (N >= 10 recommended, minimum 5)
+
+**Philosophy**: Try to compile every step. Don't try to classify steps as
+"compilable" or "not compilable" upfront — you can't know from the SOP text
+alone whether the logic is deterministic. Instead: generate code for every
+step, verify against held-out traces, and keep only the steps that pass.
+Steps requiring language understanding or judgment will fail verification
+naturally because the generated code can't reproduce the LLM's nuanced
+reasoning across diverse inputs.
+
+**Trace split**: Divide N traces into two sets:
+- **Prompt examples** (K=3): shown to the codegen LLM as input/output pairs
+- **Held-out verification** (N-K): used only for verification, never seen by the codegen LLM
+
+This train/test split is critical for catching overfitting. If the generated
+code passes on 7 unseen traces, it's implementing the actual logic, not
+memorizing the 3 examples.
 
 **For each step**:
 
-1. **Extract examples** from traces: for each run, collect the step's inputs (variables + prior step outputs) and outputs (captured values, tool results, summary, whether it terminated).
+1. **Extract examples** from all N traces: for each run, collect the step's
+   inputs (variables + prior step outputs) and outputs (captured values, tool
+   results, summary, whether it terminated).
 
-2. **Build a codegen prompt** that includes:
-   - The step's text from SKILL.md
-   - The `execute()` function signature and `StepOutput` dataclass
-   - N input/output examples from traces
-   - Instructions: "Generate a Python function that implements this step's logic. The function must produce the same outputs as the examples for all given inputs."
+2. **Build the codegen prompt** (see full prompt below).
 
-3. **Call the LLM** (one-time, offline) to generate the function.
+3. **Call the codegen LLM** (one-time, offline) to generate the function.
 
-4. **Verify** the generated function against ALL N traces:
-   - For each trace, call `execute(variables, prior_steps, mock_tool_caller)` where `mock_tool_caller` returns the actual tool results from the trace.
-   - Compare the function's `StepOutput.captured_values` against the trace's actual captured values.
-   - Compare `output_fields` if it's the final step.
-   - If any trace doesn't match, the compilation failed for this step — mark it as uncompilable.
+4. **Verify** against ALL N traces (including the K prompt examples):
+   - For each trace, call `execute(variables, prior_steps, mock_tool_caller)`
+     where `mock_tool_caller` replays the actual tool results from the trace.
+   - Compare `StepOutput.captured_values` against the trace's values.
+   - Compare `output_fields` on the final step.
+   - If **any** held-out trace doesn't match, the step is not compilable.
 
-5. **Save** the verified function to `.proceda/compiled/{skill_id}/step_{N}.py`.
+5. **Save** verified functions to `.proceda/compiled/{skill_id}/step_{N}.py`.
 
-### Verification is the key
+### The codegen prompt
 
-The generated code is **never trusted blindly**. It must reproduce the exact outputs from N independent traces before being used. This is fundamentally different from L2 caching, which had no verification step.
+The prompt is designed around one principle: **the SOP text is the
+specification, the traces are test cases.** The LLM should implement the
+rules described in the SOP, not pattern-match on the examples.
 
-If the LLM generates incorrect code, verification catches it. If the step has hidden conditional logic not covered by the N examples, verification may pass but the code could fail on new inputs — this is a known limitation, mitigated by using more traces (N >= 5-10) and by falling back to the LLM at runtime when the compiled function raises an exception or returns unexpected results.
+```
+You are generating a Python function that implements one step of a Standard
+Operating Procedure (SOP). The function will replace an LLM in executing
+this step, so it must correctly implement the step's logic for ANY valid
+input, not just the examples shown.
+
+## The SOP step to implement
+
+Step {step_index}: {step_title}
+
+{step_content}
+
+## Function interface
+
+```python
+@dataclass
+class StepOutput:
+    summary: str                             # Human-readable description of what happened
+    captured_values: dict[str, Any]          # Values for use by subsequent steps
+    output_fields: dict[str, str] | None     # Final output XML fields (last step only)
+    terminate: bool = False                  # Stop execution early
+    terminate_values: dict[str, str] | None  # Output fields on early termination
+
+async def execute(
+    variables: dict[str, str],               # Session variables
+    prior_steps: dict[int, dict[str, Any]],  # Results from completed steps
+    call_tool: Callable[[str, dict], Awaitable[dict]],  # MCP tool caller
+) -> StepOutput:
+```
+
+## Available variables
+
+These keys are always present in `variables`:
+{variable_names_and_descriptions}
+
+## Results from prior steps
+
+Steps 1 through {step_index - 1} have already completed. Their results are
+in `prior_steps[step_index]` as a dict. Here is what each prior step
+produces:
+{prior_step_output_descriptions}
+
+## Example executions (for reference only — do NOT hardcode these)
+
+These show what correct execution looks like for a few inputs.
+Your function must handle ANY valid input, including cases not shown here.
+
+{for each of K prompt examples:}
+### Example {i}
+Input variables: {variables}
+Prior step results: {prior_steps}
+{if step has tool calls:}
+Tool call: {tool_name}({args}) → {result}
+{end}
+Expected output: captured_values={captured_values}, output_fields={output_fields}
+{if terminated:} (terminated with: {terminate_values})
+{end for}
+
+## Rules
+
+1. Implement the logic described in the SOP step text above. The SOP text
+   is the specification — follow its rules, conditions, and formulas exactly.
+
+2. The examples are test cases, not the spec. Your function must work for
+   inputs NOT shown in the examples. Do not hardcode values, thresholds,
+   or mappings from the examples — derive them from the SOP text.
+
+3. If the step says to call a tool, call it via `await call_tool(name, args)`.
+   The tool returns a dict. Do not assume specific return values — use
+   whatever the tool returns.
+
+4. Handle edge cases described in the SOP text even if no example covers
+   them. For instance, if the SOP says "if score is missing, impute it",
+   implement that logic even if all examples have valid scores.
+
+5. Do not import external libraries beyond the Python standard library.
+
+6. Return a StepOutput with:
+   - `summary`: a brief human-readable description of what happened
+   - `captured_values`: a dict of values that later steps might need
+   - `output_fields`: only on the final step, a dict of the output XML fields
+   - `terminate` / `terminate_values`: only if the SOP says to terminate early
+
+Generate ONLY the `async def execute(...)` function body. No imports,
+no class definitions, no test code.
+```
+
+### Why this prompt avoids overfitting
+
+1. **"The SOP text is the specification"** — The LLM is told to implement
+   from the written rules, not from the examples. A step that says
+   "if score <= 8, class is A; if score <= 12, class is B" gets those
+   thresholds from the text, not from seeing that score=9 maps to B in
+   one example.
+
+2. **"Do NOT hardcode these"** — Explicit instruction against the most
+   common overfitting pattern: extracting constants from examples.
+
+3. **"Handle edge cases described in the SOP text even if no example
+   covers them"** — Forces the LLM to reason about the full input space,
+   not just the demonstrated inputs.
+
+4. **Train/test split** — Only 3 examples are shown; 7+ are held out for
+   verification. Code that memorizes 3 examples will fail on the 7 unseen
+   ones. This is the strongest overfitting defense.
+
+5. **"Do not assume specific return values"** — Prevents hardcoding tool
+   results. The function must handle whatever the tool returns.
+
+### What happens when compilation fails
+
+A step fails compilation when the generated code can't reproduce the
+held-out trace outputs. This tells you something useful:
+
+- **The step requires language understanding**: the code can't replicate
+  the LLM's nuanced reasoning. Example: "identify red flags and exercise
+  caution" — no function can implement this without an LLM.
+
+- **The step has complex conditional logic** not fully covered by the
+  traces. More traces might help, or the step may be genuinely too complex
+  to compile.
+
+- **The codegen LLM made a mistake**: retry with a different prompt or
+  model. The compiler can attempt up to M retries with feedback about which
+  trace failed and how.
+
+In all cases, the step stays on the LLM at runtime. No harm done.
+
+### Verification details
+
+Comparison is done on `captured_values` and `output_fields`, not on
+`summary` text. Summaries are for human consumption and don't need to
+match verbatim — they just need to be reasonable descriptions.
+
+For `captured_values`, comparison uses these rules:
+- Numeric values: exact match (int) or within epsilon (float)
+- String values: case-insensitive stripped match
+- Missing keys in either side: mismatch
+
+For tool-calling steps, the verifier provides a `mock_tool_caller` that
+replays the tool results recorded in the trace. This ensures the function
+is tested against real tool behavior without actually calling the tools.
 
 ### Runtime execution
 
@@ -250,30 +408,21 @@ if compiled_fn is not None:
         # Fall through to normal LLM execution
 ```
 
-### What's compilable vs. what's not
+### No upfront classification needed
 
-**Compilable** (deterministic logic):
-- Format validation (regex, string checks)
-- Tool calls with arguments derived from variables or prior step results
-- Arithmetic (sum scores, compute averages, apply thresholds)
-- Lookup tables (score → class mapping)
-- Conditional branching on known fields (if status == "Terminated", close case)
-- Output formatting (XML tags, JSON)
+You don't decide "is this step compilable?" beforehand. The compiler
+tries every step. Verification tells you which ones worked.
 
-**Not compilable** (requires judgment):
-- Interpreting unstructured text ("identify red flags and exercise caution")
-- Multi-factor reasoning ("determine the appropriate escalation path based on the nature of the problem")
-- Steps with `[APPROVAL REQUIRED]` markers (human-in-the-loop)
-- Steps with `request_clarification` calls
+Steps requiring judgment or language understanding fail verification
+naturally — the generated code can't reproduce the LLM's nuanced
+reasoning across diverse inputs. Steps with deterministic logic pass
+verification because the code implements the same rules the LLM was
+following.
 
-Looking at our 4 domains:
-
-| Domain | Compilable steps | Not compilable | Potential savings |
-|--------|:---:|:---:|---|
-| dangerous_goods | 7 of 7 | 0 | **100% — entire SOP becomes code** |
-| traffic_spoofing | 5 of 7 (steps 1-4, 6) | 2 (step 5: APPROVAL, step 6: reasoning about enforcement action determination is in the SOP text but the tool just executes it) | ~70% LLM call reduction |
-| customer_service | 3 of 10 (steps 1-3) | 7 (steps 4-10 involve conditional branching that depends on tool results in complex ways) | ~30% LLM call reduction |
-| video_classification | 1 of 7 (step 1 validation) | 6 (subjective content moderation) | ~15% LLM call reduction |
+This eliminates false negatives (steps you thought were too complex but
+are actually compilable) and false positives (steps you thought were
+simple but have hidden complexity). The verifier is the judge, not a
+heuristic.
 
 ### Storage format
 
@@ -293,12 +442,16 @@ Looking at our 4 domains:
   "skill_content_hash": "a1b2c3d4...",
   "compiled_at": "2026-03-30T10:00:00+00:00",
   "model_used": "claude-sonnet-4-20250514",
-  "num_traces_used": 5,
+  "num_traces_total": 10,
+  "num_prompt_examples": 3,
+  "num_held_out": 7,
   "steps": {
-    "1": {"status": "compiled", "verified_against": 5, "failures": 0},
-    "2": {"status": "compiled", "verified_against": 5, "failures": 0},
-    "6": {"status": "compiled", "verified_against": 5, "failures": 0},
-    "7": {"status": "compiled", "verified_against": 5, "failures": 0}
+    "1": {"status": "compiled", "verified_against": 10, "held_out_passed": 7, "failures": 0},
+    "2": {"status": "compiled", "verified_against": 10, "held_out_passed": 7, "failures": 0},
+    "6": {"status": "compiled", "verified_against": 10, "held_out_passed": 7, "failures": 0},
+    "7": {"status": "compiled", "verified_against": 10, "held_out_passed": 7, "failures": 0},
+    "4": {"status": "failed", "verified_against": 10, "held_out_passed": 4, "failures": 3,
+          "failure_reason": "Could not reproduce held-out outputs for 3 traces"}
   }
 }
 ```
@@ -329,10 +482,12 @@ If sandboxing is needed later, the compiled functions could run in a subprocess 
 
 1. **Which LLM for codegen?** The compilation LLM needs to be good at code generation. Claude or GPT-4 may produce better code than Gemini Flash. The codegen model doesn't need to be the same as the runtime model.
 
-2. **How many traces for verification?** More is better (covers more edge cases). 3 is the minimum. 10 would catch most conditional branches. For dangerous_goods, the disposal_score=0 imputation case needs to appear in at least one trace for the compiled step 6 to handle it correctly.
+2. **How many traces?** The train/test split requires enough traces for both the prompt examples (K=3) and held-out verification. With N=10, you get 3 prompt + 7 held-out. With N=5, you get 3 prompt + 2 held-out — thin but workable. For dangerous_goods, the disposal_score=0 imputation case needs to appear in at least one held-out trace for the compiled step 6 to be verified against it.
 
-3. **Incremental compilation**: Should we recompile when new traces reveal previously-unseen branches? Or is the initial compilation + verification sufficient?
+3. **Retry on failure**: When verification fails, the compiler could retry with the failing trace's input/output added to the prompt examples (expanding K from 3 to 4) and the error message. This gives the codegen LLM feedback about what went wrong. Max M=3 retries per step before giving up.
 
-4. **Mixed mode**: For SOPs where some steps are compilable and others aren't, the compiled steps produce structured `StepOutput` that the LLM can consume on the next step. Is `[Step N]: summary_text` as a user message sufficient context, or does the LLM need the full tool-call-and-response conversation format?
+4. **Incremental recompilation**: When new traces reveal branches the compiled code doesn't handle (runtime fallback fires), those traces should be added to the verification set. If the compiled function fails on the new trace, recompile with the expanded trace set. This lets compilation improve over time.
 
-5. **CLI UX**: `proceda compile <skill_path>` for offline compilation. `proceda compile --verify` to re-verify against new traces. `proceda compile --show` to display compiled functions.
+5. **Mixed mode context**: When some steps are compiled and others use the LLM, the compiled steps add a user-role message `[Step N]: summary`. This worked poorly for L2 (see cache eval report). The difference here: compiled steps produce richer, more descriptive summaries (they're generated by the codegen LLM to be informative, not terse). But this needs to be validated empirically — if the LLM on step N+1 needs conversational context from step N, a summary may not suffice.
+
+6. **CLI UX**: `proceda compile <skill_path>` for offline compilation. `proceda compile --verify` to re-verify against new traces. `proceda compile --show` to display compiled functions and their verification status.
