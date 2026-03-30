@@ -14,7 +14,7 @@
 
 | Domain | Tasks | Baseline TSR | L1 TSR | L1 Delta | L2 TSR | L2 Delta |
 |--------|-------|-------------|--------|----------|--------|----------|
-| dangerous_goods | 274 | 94.9% | 93.1% | -1.8% | **99.6%** | **+4.7%** |
+| dangerous_goods | 274 | 94.9% | **94.9%** | **0.0%** | **99.6%** | **+4.7%** |
 | video_classification | 197 | 82.7% | 83.2% | +0.5% | 81.7% | -1.0% |
 | customer_service | 156 | 85.9% | 84.6% | -1.3% | 42.3% | -43.6% |
 | traffic_spoofing | 161 | 99.4% | 98.1% | -1.3% | 31.1% | -68.3% |
@@ -25,7 +25,7 @@ ECR is 100% across all runs — no crashes.
 
 | Domain | L1 passes (<2% drop)? | L2 passes (<2% drop)? |
 |--------|----------------------|----------------------|
-| dangerous_goods | YES (-1.8%) | YES (+4.7%) |
+| dangerous_goods | YES (0.0%) | YES (+4.7%) |
 | video_classification | YES (+0.5%) | YES (-1.0%) |
 | customer_service | YES (-1.3%) | **NO (-43.6%)** |
 | traffic_spoofing | YES (-1.3%) | **NO (-68.3%)** |
