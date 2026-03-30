@@ -1,0 +1,2565 @@
+{
+  "metrics": {
+    "domain": "video_classification",
+    "num_tasks": 197,
+    "num_completed": 197,
+    "num_correct": 161,
+    "tsr": 0.817258883248731,
+    "ecr": 1.0,
+    "c_tsr": 0.817258883248731,
+    "timestamp": "2026-03-29T20:54:28.532331"
+  },
+  "tasks": [
+    {
+      "task_id": "vid_00001",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 18.007646083831787,
+      "error": null
+    },
+    {
+      "task_id": "vid_00002",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 18.29746985435486,
+      "error": null
+    },
+    {
+      "task_id": "vid_00003",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 22.05929708480835,
+      "error": null
+    },
+    {
+      "task_id": "vid_00004",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.595298051834106,
+      "error": null
+    },
+    {
+      "task_id": "vid_00005",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.76124906539917,
+      "error": null
+    },
+    {
+      "task_id": "vid_00006",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Warning"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.683234214782715,
+      "error": null
+    },
+    {
+      "task_id": "vid_00007",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.59216618537903,
+      "error": null
+    },
+    {
+      "task_id": "vid_00008",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.31236982345581,
+      "error": null
+    },
+    {
+      "task_id": "vid_00009",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.595582008361816,
+      "error": null
+    },
+    {
+      "task_id": "vid_00010",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 17.45602011680603,
+      "error": null
+    },
+    {
+      "task_id": "vid_00011",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 18.94192409515381,
+      "error": null
+    },
+    {
+      "task_id": "vid_00012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.12736678123474,
+      "error": null
+    },
+    {
+      "task_id": "vid_00013",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.291892051696777,
+      "error": null
+    },
+    {
+      "task_id": "vid_00014",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.65650987625122,
+      "error": null
+    },
+    {
+      "task_id": "vid_00015",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.906999111175537,
+      "error": null
+    },
+    {
+      "task_id": "vid_00017",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 17.934852123260498,
+      "error": null
+    },
+    {
+      "task_id": "vid_00018",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.175185918807983,
+      "error": null
+    },
+    {
+      "task_id": "vid_00019",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.228534936904907,
+      "error": null
+    },
+    {
+      "task_id": "vid_00020",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 33.097800970077515,
+      "error": null
+    },
+    {
+      "task_id": "vid_00021",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 20.452015161514282,
+      "error": null
+    },
+    {
+      "task_id": "vid_00022",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 23.89820098876953,
+      "error": null
+    },
+    {
+      "task_id": "vid_00023",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.813625812530518,
+      "error": null
+    },
+    {
+      "task_id": "vid_00024",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.66320276260376,
+      "error": null
+    },
+    {
+      "task_id": "vid_00025",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.72252106666565,
+      "error": null
+    },
+    {
+      "task_id": "vid_00026",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 18.43137526512146,
+      "error": null
+    },
+    {
+      "task_id": "vid_00027",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.76128911972046,
+      "error": null
+    },
+    {
+      "task_id": "vid_00028",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Warning"
+      },
+      "execution_time": 18.878135919570923,
+      "error": null
+    },
+    {
+      "task_id": "vid_00029",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.952145099639893,
+      "error": null
+    },
+    {
+      "task_id": "vid_00030",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 30.029088973999023,
+      "error": null
+    },
+    {
+      "task_id": "vid_00032",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 33.26825714111328,
+      "error": null
+    },
+    {
+      "task_id": "vid_00033",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.783211708068848,
+      "error": null
+    },
+    {
+      "task_id": "vid_00034",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.847551822662354,
+      "error": null
+    },
+    {
+      "task_id": "vid_00035",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.495192050933838,
+      "error": null
+    },
+    {
+      "task_id": "vid_00036",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 600.2564599514008,
+      "error": null
+    },
+    {
+      "task_id": "vid_00037",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 17.11005210876465,
+      "error": null
+    },
+    {
+      "task_id": "vid_00038",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 20.50491499900818,
+      "error": null
+    },
+    {
+      "task_id": "vid_00039",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.76495385169983,
+      "error": null
+    },
+    {
+      "task_id": "vid_00040",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.44091773033142,
+      "error": null
+    },
+    {
+      "task_id": "vid_00041",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 23.18029499053955,
+      "error": null
+    },
+    {
+      "task_id": "vid_00042",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.79230499267578,
+      "error": null
+    },
+    {
+      "task_id": "vid_00043",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 17.98866295814514,
+      "error": null
+    },
+    {
+      "task_id": "vid_00044",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.833375930786133,
+      "error": null
+    },
+    {
+      "task_id": "vid_00045",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 16.96915578842163,
+      "error": null
+    },
+    {
+      "task_id": "vid_00047",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.463376760482788,
+      "error": null
+    },
+    {
+      "task_id": "vid_00048",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.356273889541626,
+      "error": null
+    },
+    {
+      "task_id": "vid_00049",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 18.30881428718567,
+      "error": null
+    },
+    {
+      "task_id": "vid_00050",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 22.766122102737427,
+      "error": null
+    },
+    {
+      "task_id": "vid_00051",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.019680976867676,
+      "error": null
+    },
+    {
+      "task_id": "vid_00052",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.83757495880127,
+      "error": null
+    },
+    {
+      "task_id": "vid_00053",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.345417022705078,
+      "error": null
+    },
+    {
+      "task_id": "vid_00054",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.476327896118164,
+      "error": null
+    },
+    {
+      "task_id": "vid_00055",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.453532934188843,
+      "error": null
+    },
+    {
+      "task_id": "vid_00056",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.906605005264282,
+      "error": null
+    },
+    {
+      "task_id": "vid_00057",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 18.848870277404785,
+      "error": null
+    },
+    {
+      "task_id": "vid_00058",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 600.5204291343689,
+      "error": null
+    },
+    {
+      "task_id": "vid_00059",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.90491509437561,
+      "error": null
+    },
+    {
+      "task_id": "vid_00060",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.52038311958313,
+      "error": null
+    },
+    {
+      "task_id": "vid_00062",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.292323112487793,
+      "error": null
+    },
+    {
+      "task_id": "vid_00063",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.440367937088013,
+      "error": null
+    },
+    {
+      "task_id": "vid_00064",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 600.3224458694458,
+      "error": null
+    },
+    {
+      "task_id": "vid_00065",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.052998781204224,
+      "error": null
+    },
+    {
+      "task_id": "vid_00066",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.163628101348877,
+      "error": null
+    },
+    {
+      "task_id": "vid_00067",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 17.91676902770996,
+      "error": null
+    },
+    {
+      "task_id": "vid_00068",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 22.02993607521057,
+      "error": null
+    },
+    {
+      "task_id": "vid_00069",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.6408908367157,
+      "error": null
+    },
+    {
+      "task_id": "vid_00070",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.31992816925049,
+      "error": null
+    },
+    {
+      "task_id": "vid_00071",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.6030011177063,
+      "error": null
+    },
+    {
+      "task_id": "vid_00072",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.989521026611328,
+      "error": null
+    },
+    {
+      "task_id": "vid_00073",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 18.729108095169067,
+      "error": null
+    },
+    {
+      "task_id": "vid_00074",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.723398208618164,
+      "error": null
+    },
+    {
+      "task_id": "vid_00075",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.544162034988403,
+      "error": null
+    },
+    {
+      "task_id": "vid_00077",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.37507200241089,
+      "error": null
+    },
+    {
+      "task_id": "vid_00078",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.410172939300537,
+      "error": null
+    },
+    {
+      "task_id": "vid_00079",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 24.365351915359497,
+      "error": null
+    },
+    {
+      "task_id": "vid_00080",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.116343021392822,
+      "error": null
+    },
+    {
+      "task_id": "vid_00081",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 23.62033987045288,
+      "error": null
+    },
+    {
+      "task_id": "vid_00082",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.70433807373047,
+      "error": null
+    },
+    {
+      "task_id": "vid_00083",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.395009994506836,
+      "error": null
+    },
+    {
+      "task_id": "vid_00084",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.69835114479065,
+      "error": null
+    },
+    {
+      "task_id": "vid_00085",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 24.0209641456604,
+      "error": null
+    },
+    {
+      "task_id": "vid_00086",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.722664833068848,
+      "error": null
+    },
+    {
+      "task_id": "vid_00087",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.18992519378662,
+      "error": null
+    },
+    {
+      "task_id": "vid_00088",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.881511211395264,
+      "error": null
+    },
+    {
+      "task_id": "vid_00089",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.665644884109497,
+      "error": null
+    },
+    {
+      "task_id": "vid_00090",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.083656072616577,
+      "error": null
+    },
+    {
+      "task_id": "vid_00092",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 18.368107080459595,
+      "error": null
+    },
+    {
+      "task_id": "vid_00093",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.544413089752197,
+      "error": null
+    },
+    {
+      "task_id": "vid_00094",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.697840929031372,
+      "error": null
+    },
+    {
+      "task_id": "vid_00095",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.107810974121094,
+      "error": null
+    },
+    {
+      "task_id": "vid_00096",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 18.30707311630249,
+      "error": null
+    },
+    {
+      "task_id": "vid_00097",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.73448085784912,
+      "error": null
+    },
+    {
+      "task_id": "vid_00098",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 21.04415202140808,
+      "error": null
+    },
+    {
+      "task_id": "vid_00099",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.474555015563965,
+      "error": null
+    },
+    {
+      "task_id": "vid_00100",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.990723133087158,
+      "error": null
+    },
+    {
+      "task_id": "vid_00101",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.973825216293335,
+      "error": null
+    },
+    {
+      "task_id": "vid_00102",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 27.940059185028076,
+      "error": null
+    },
+    {
+      "task_id": "vid_00103",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.308263063430786,
+      "error": null
+    },
+    {
+      "task_id": "vid_00104",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.430973052978516,
+      "error": null
+    },
+    {
+      "task_id": "vid_00105",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 31.713282108306885,
+      "error": null
+    },
+    {
+      "task_id": "vid_00107",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.69092583656311,
+      "error": null
+    },
+    {
+      "task_id": "vid_00108",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 23.72080087661743,
+      "error": null
+    },
+    {
+      "task_id": "vid_00109",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.86122989654541,
+      "error": null
+    },
+    {
+      "task_id": "vid_00110",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 20.279162883758545,
+      "error": null
+    },
+    {
+      "task_id": "vid_00111",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.675495862960815,
+      "error": null
+    },
+    {
+      "task_id": "vid_00112",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.666193962097168,
+      "error": null
+    },
+    {
+      "task_id": "vid_00113",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.80817198753357,
+      "error": null
+    },
+    {
+      "task_id": "vid_00114",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.828513860702515,
+      "error": null
+    },
+    {
+      "task_id": "vid_00115",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Warning"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.555280208587646,
+      "error": null
+    },
+    {
+      "task_id": "vid_00116",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.706842184066772,
+      "error": null
+    },
+    {
+      "task_id": "vid_00117",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.529026746749878,
+      "error": null
+    },
+    {
+      "task_id": "vid_00118",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 22.455677032470703,
+      "error": null
+    },
+    {
+      "task_id": "vid_00119",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 18.895214080810547,
+      "error": null
+    },
+    {
+      "task_id": "vid_00120",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.249877214431763,
+      "error": null
+    },
+    {
+      "task_id": "vid_00122",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.668193101882935,
+      "error": null
+    },
+    {
+      "task_id": "vid_00123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.108312129974365,
+      "error": null
+    },
+    {
+      "task_id": "vid_00124",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.761876821517944,
+      "error": null
+    },
+    {
+      "task_id": "vid_00125",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 22.249140977859497,
+      "error": null
+    },
+    {
+      "task_id": "vid_00126",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.602041006088257,
+      "error": null
+    },
+    {
+      "task_id": "vid_00127",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.970196962356567,
+      "error": null
+    },
+    {
+      "task_id": "vid_00128",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 21.926936149597168,
+      "error": null
+    },
+    {
+      "task_id": "vid_00129",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.44763708114624,
+      "error": null
+    },
+    {
+      "task_id": "vid_00130",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.330482959747314,
+      "error": null
+    },
+    {
+      "task_id": "vid_00131",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.390140056610107,
+      "error": null
+    },
+    {
+      "task_id": "vid_00132",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 22.063916206359863,
+      "error": null
+    },
+    {
+      "task_id": "vid_00133",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.163259267807007,
+      "error": null
+    },
+    {
+      "task_id": "vid_00134",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.04712700843811,
+      "error": null
+    },
+    {
+      "task_id": "vid_00135",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 23.752445936203003,
+      "error": null
+    },
+    {
+      "task_id": "vid_00137",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.8330659866333,
+      "error": null
+    },
+    {
+      "task_id": "vid_00138",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.5116069316864,
+      "error": null
+    },
+    {
+      "task_id": "vid_00139",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.820725917816162,
+      "error": null
+    },
+    {
+      "task_id": "vid_00140",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.793141841888428,
+      "error": null
+    },
+    {
+      "task_id": "vid_00141",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.737563848495483,
+      "error": null
+    },
+    {
+      "task_id": "vid_00142",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.563241958618164,
+      "error": null
+    },
+    {
+      "task_id": "vid_00143",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 26.402024269104004,
+      "error": null
+    },
+    {
+      "task_id": "vid_00144",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 21.58622407913208,
+      "error": null
+    },
+    {
+      "task_id": "vid_00145",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.60939598083496,
+      "error": null
+    },
+    {
+      "task_id": "vid_00146",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.63465118408203,
+      "error": null
+    },
+    {
+      "task_id": "vid_00147",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 24.76765489578247,
+      "error": null
+    },
+    {
+      "task_id": "vid_00148",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.797736883163452,
+      "error": null
+    },
+    {
+      "task_id": "vid_00149",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.254239082336426,
+      "error": null
+    },
+    {
+      "task_id": "vid_00150",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.071526765823364,
+      "error": null
+    },
+    {
+      "task_id": "vid_00152",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.69968318939209,
+      "error": null
+    },
+    {
+      "task_id": "vid_00153",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.02152180671692,
+      "error": null
+    },
+    {
+      "task_id": "vid_00154",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 13.77672791481018,
+      "error": null
+    },
+    {
+      "task_id": "vid_00155",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.760645866394043,
+      "error": null
+    },
+    {
+      "task_id": "vid_00156",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.269232988357544,
+      "error": null
+    },
+    {
+      "task_id": "vid_00157",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.503548860549927,
+      "error": null
+    },
+    {
+      "task_id": "vid_00158",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 21.755195140838623,
+      "error": null
+    },
+    {
+      "task_id": "vid_00159",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.64873719215393,
+      "error": null
+    },
+    {
+      "task_id": "vid_00160",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.845573902130127,
+      "error": null
+    },
+    {
+      "task_id": "vid_00161",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 23.417139053344727,
+      "error": null
+    },
+    {
+      "task_id": "vid_00162",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.80837392807007,
+      "error": null
+    },
+    {
+      "task_id": "vid_00163",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.021512031555176,
+      "error": null
+    },
+    {
+      "task_id": "vid_00164",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.918553113937378,
+      "error": null
+    },
+    {
+      "task_id": "vid_00165",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.85555410385132,
+      "error": null
+    },
+    {
+      "task_id": "vid_00167",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 600.2752900123596,
+      "error": null
+    },
+    {
+      "task_id": "vid_00168",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.209548950195312,
+      "error": null
+    },
+    {
+      "task_id": "vid_00169",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 22.915524005889893,
+      "error": null
+    },
+    {
+      "task_id": "vid_00170",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 22.681567907333374,
+      "error": null
+    },
+    {
+      "task_id": "vid_00171",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.39713191986084,
+      "error": null
+    },
+    {
+      "task_id": "vid_00172",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.866262197494507,
+      "error": null
+    },
+    {
+      "task_id": "vid_00173",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.61823320388794,
+      "error": null
+    },
+    {
+      "task_id": "vid_00174",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.06843900680542,
+      "error": null
+    },
+    {
+      "task_id": "vid_00175",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 29.442811250686646,
+      "error": null
+    },
+    {
+      "task_id": "vid_00176",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.28306794166565,
+      "error": null
+    },
+    {
+      "task_id": "vid_00177",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 26.98048186302185,
+      "error": null
+    },
+    {
+      "task_id": "vid_00178",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.342467069625854,
+      "error": null
+    },
+    {
+      "task_id": "vid_00179",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.08284616470337,
+      "error": null
+    },
+    {
+      "task_id": "vid_00180",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.58199191093445,
+      "error": null
+    },
+    {
+      "task_id": "vid_00182",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 21.04576015472412,
+      "error": null
+    },
+    {
+      "task_id": "vid_00183",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.733434200286865,
+      "error": null
+    },
+    {
+      "task_id": "vid_00184",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 28.43904423713684,
+      "error": null
+    },
+    {
+      "task_id": "vid_00185",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 24.35406494140625,
+      "error": null
+    },
+    {
+      "task_id": "vid_00186",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 22.79328489303589,
+      "error": null
+    },
+    {
+      "task_id": "vid_00187",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 25.523478031158447,
+      "error": null
+    },
+    {
+      "task_id": "vid_00188",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.833222150802612,
+      "error": null
+    },
+    {
+      "task_id": "vid_00189",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.68301796913147,
+      "error": null
+    },
+    {
+      "task_id": "vid_00190",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 23.30827021598816,
+      "error": null
+    },
+    {
+      "task_id": "vid_00191",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.30229091644287,
+      "error": null
+    },
+    {
+      "task_id": "vid_00192",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.076348066329956,
+      "error": null
+    },
+    {
+      "task_id": "vid_00193",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.06851100921631,
+      "error": null
+    },
+    {
+      "task_id": "vid_00194",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.051621198654175,
+      "error": null
+    },
+    {
+      "task_id": "vid_00195",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.58538794517517,
+      "error": null
+    },
+    {
+      "task_id": "vid_00197",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.850958108901978,
+      "error": null
+    },
+    {
+      "task_id": "vid_00198",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.723063707351685,
+      "error": null
+    },
+    {
+      "task_id": "vid_00199",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.110438108444214,
+      "error": null
+    },
+    {
+      "task_id": "vid_00200",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 22.21997094154358,
+      "error": null
+    },
+    {
+      "task_id": "vid_00201",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.412463903427124,
+      "error": null
+    },
+    {
+      "task_id": "vid_00202",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.434311151504517,
+      "error": null
+    },
+    {
+      "task_id": "vid_00203",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Age Restrict"
+      },
+      "execution_time": 19.860825061798096,
+      "error": null
+    },
+    {
+      "task_id": "vid_00204",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.71287703514099,
+      "error": null
+    },
+    {
+      "task_id": "vid_00205",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Remove"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.70249104499817,
+      "error": null
+    },
+    {
+      "task_id": "vid_00206",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 19.407012939453125,
+      "error": null
+    },
+    {
+      "task_id": "vid_00207",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 20.49256181716919,
+      "error": null
+    },
+    {
+      "task_id": "vid_00208",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_decision": "Allow"
+      },
+      "expected": {
+        "final_decision": "Allow"
+      },
+      "execution_time": 20.268909215927124,
+      "error": null
+    },
+    {
+      "task_id": "vid_00209",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 21.35095500946045,
+      "error": null
+    },
+    {
+      "task_id": "vid_00210",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_decision": "Age Restrict"
+      },
+      "expected": {
+        "final_decision": "Remove"
+      },
+      "execution_time": 19.663665056228638,
+      "error": null
+    }
+  ]
+}

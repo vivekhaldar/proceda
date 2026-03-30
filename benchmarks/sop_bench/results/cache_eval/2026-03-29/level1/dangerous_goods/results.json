@@ -1,0 +1,3538 @@
+{
+  "metrics": {
+    "domain": "dangerous_goods",
+    "num_tasks": 274,
+    "num_completed": 274,
+    "num_correct": 255,
+    "tsr": 0.9306569343065694,
+    "ecr": 1.0,
+    "c_tsr": 0.9306569343065694,
+    "timestamp": "2026-03-29T19:01:34.122300"
+  },
+  "tasks": [
+    {
+      "task_id": "P1_3191",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 16.347894191741943,
+      "error": null
+    },
+    {
+      "task_id": "PA_13136",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 19.30440878868103,
+      "error": null
+    },
+    {
+      "task_id": "P_13025",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.09014892578125,
+      "error": null
+    },
+    {
+      "task_id": "P_13026",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 21.54808211326599,
+      "error": null
+    },
+    {
+      "task_id": "P_13028",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 34.80752515792847,
+      "error": null
+    },
+    {
+      "task_id": "P_13030",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 14.877457857131958,
+      "error": null
+    },
+    {
+      "task_id": "P_13032",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 76.28795504570007,
+      "error": null
+    },
+    {
+      "task_id": "P_13034",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.816975831985474,
+      "error": null
+    },
+    {
+      "task_id": "P_13035",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.187378883361816,
+      "error": null
+    },
+    {
+      "task_id": "P_13036",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.99970817565918,
+      "error": null
+    },
+    {
+      "task_id": "P_13038",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 24.4061279296875,
+      "error": null
+    },
+    {
+      "task_id": "P_13041",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 20.90772771835327,
+      "error": null
+    },
+    {
+      "task_id": "P_13042",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.174758911132812,
+      "error": null
+    },
+    {
+      "task_id": "P_13043",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 23.49731206893921,
+      "error": null
+    },
+    {
+      "task_id": "P_13044",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.703884840011597,
+      "error": null
+    },
+    {
+      "task_id": "P_13045",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.919681072235107,
+      "error": null
+    },
+    {
+      "task_id": "P_13047",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 20.179821014404297,
+      "error": null
+    },
+    {
+      "task_id": "P_13048",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 25.095216035842896,
+      "error": null
+    },
+    {
+      "task_id": "P_13050",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.952900886535645,
+      "error": null
+    },
+    {
+      "task_id": "P_13053",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 33.60814905166626,
+      "error": null
+    },
+    {
+      "task_id": "P_13054",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 40.54989314079285,
+      "error": null
+    },
+    {
+      "task_id": "P_13055",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.74539089202881,
+      "error": null
+    },
+    {
+      "task_id": "P_13057",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 18.11362886428833,
+      "error": null
+    },
+    {
+      "task_id": "P_13058",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 47.710516929626465,
+      "error": null
+    },
+    {
+      "task_id": "P_13060",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.781891107559204,
+      "error": null
+    },
+    {
+      "task_id": "P_13062",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.891287088394165,
+      "error": null
+    },
+    {
+      "task_id": "P_13063",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 25.07505202293396,
+      "error": null
+    },
+    {
+      "task_id": "P_13064",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.18870997428894,
+      "error": null
+    },
+    {
+      "task_id": "P_13066",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 32.73365592956543,
+      "error": null
+    },
+    {
+      "task_id": "P_13067",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 24.1181161403656,
+      "error": null
+    },
+    {
+      "task_id": "P_13069",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.743360996246338,
+      "error": null
+    },
+    {
+      "task_id": "P_13070",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.43905019760132,
+      "error": null
+    },
+    {
+      "task_id": "P_13073",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.210471868515015,
+      "error": null
+    },
+    {
+      "task_id": "P_13074",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 84.35147428512573,
+      "error": null
+    },
+    {
+      "task_id": "P_13075",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.382564067840576,
+      "error": null
+    },
+    {
+      "task_id": "P_13078",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 31.856526851654053,
+      "error": null
+    },
+    {
+      "task_id": "P_13079",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 24.546409130096436,
+      "error": null
+    },
+    {
+      "task_id": "P_13080",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.180424928665161,
+      "error": null
+    },
+    {
+      "task_id": "P_13081",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 14.143609046936035,
+      "error": null
+    },
+    {
+      "task_id": "P_13082",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.641133069992065,
+      "error": null
+    },
+    {
+      "task_id": "P_13086",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 13.95640230178833,
+      "error": null
+    },
+    {
+      "task_id": "P_13087",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.285704135894775,
+      "error": null
+    },
+    {
+      "task_id": "P_13089",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 32.82462811470032,
+      "error": null
+    },
+    {
+      "task_id": "P_13090",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.824893951416016,
+      "error": null
+    },
+    {
+      "task_id": "P_13092",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.583434104919434,
+      "error": null
+    },
+    {
+      "task_id": "P_13093",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.6064670085907,
+      "error": null
+    },
+    {
+      "task_id": "P_13095",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.808290004730225,
+      "error": null
+    },
+    {
+      "task_id": "P_13096",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 20.098145008087158,
+      "error": null
+    },
+    {
+      "task_id": "P_13097",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 38.4229941368103,
+      "error": null
+    },
+    {
+      "task_id": "P_13098",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 30.70392608642578,
+      "error": null
+    },
+    {
+      "task_id": "P_13099",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 21.448753118515015,
+      "error": null
+    },
+    {
+      "task_id": "P_13104",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 29.227999925613403,
+      "error": null
+    },
+    {
+      "task_id": "P_13109",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.9379940032959,
+      "error": null
+    },
+    {
+      "task_id": "P_13110",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.000689268112183,
+      "error": null
+    },
+    {
+      "task_id": "P_13111",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.122833013534546,
+      "error": null
+    },
+    {
+      "task_id": "P_13113",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 22.96892213821411,
+      "error": null
+    },
+    {
+      "task_id": "P_13115",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.198920965194702,
+      "error": null
+    },
+    {
+      "task_id": "P_13116",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 15.638278007507324,
+      "error": null
+    },
+    {
+      "task_id": "P_13117",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 23.925753831863403,
+      "error": null
+    },
+    {
+      "task_id": "P_13118",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 44.54983973503113,
+      "error": null
+    },
+    {
+      "task_id": "P_13119",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 20.884000778198242,
+      "error": null
+    },
+    {
+      "task_id": "P_13121",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 17.322343826293945,
+      "error": null
+    },
+    {
+      "task_id": "P_13122",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.337984085083008,
+      "error": null
+    },
+    {
+      "task_id": "P_13125",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 20.112256050109863,
+      "error": null
+    },
+    {
+      "task_id": "P_13128",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 15.843144178390503,
+      "error": null
+    },
+    {
+      "task_id": "P_13129",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 33.267505168914795,
+      "error": null
+    },
+    {
+      "task_id": "P_13130",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.190250873565674,
+      "error": null
+    },
+    {
+      "task_id": "P_13131",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 13.397850275039673,
+      "error": null
+    },
+    {
+      "task_id": "P_13132",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.209805965423584,
+      "error": null
+    },
+    {
+      "task_id": "P_13134",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.513458967208862,
+      "error": null
+    },
+    {
+      "task_id": "P_13135",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.910828113555908,
+      "error": null
+    },
+    {
+      "task_id": "P_13137",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 17.179229974746704,
+      "error": null
+    },
+    {
+      "task_id": "P_13138",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 39.055851221084595,
+      "error": null
+    },
+    {
+      "task_id": "P_13139",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 14.916423320770264,
+      "error": null
+    },
+    {
+      "task_id": "P_13143",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.00230097770691,
+      "error": null
+    },
+    {
+      "task_id": "P_13144",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.9150550365448,
+      "error": null
+    },
+    {
+      "task_id": "P_13147",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 27.873705863952637,
+      "error": null
+    },
+    {
+      "task_id": "P_13149",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 22.945341110229492,
+      "error": null
+    },
+    {
+      "task_id": "P_13150",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 38.56876516342163,
+      "error": null
+    },
+    {
+      "task_id": "P_13154",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 59.432111740112305,
+      "error": null
+    },
+    {
+      "task_id": "P_13155",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 16.114273071289062,
+      "error": null
+    },
+    {
+      "task_id": "P_13156",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.932751893997192,
+      "error": null
+    },
+    {
+      "task_id": "P_13157",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 24.725640296936035,
+      "error": null
+    },
+    {
+      "task_id": "P_13159",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.559740781784058,
+      "error": null
+    },
+    {
+      "task_id": "P_13161",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 16.849510192871094,
+      "error": null
+    },
+    {
+      "task_id": "P_13162",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 14.409010171890259,
+      "error": null
+    },
+    {
+      "task_id": "P_13163",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.759302139282227,
+      "error": null
+    },
+    {
+      "task_id": "P_13164",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 15.764538764953613,
+      "error": null
+    },
+    {
+      "task_id": "P_13165",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 45.398197174072266,
+      "error": null
+    },
+    {
+      "task_id": "P_13166",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.40217423439026,
+      "error": null
+    },
+    {
+      "task_id": "P_13167",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.97901487350464,
+      "error": null
+    },
+    {
+      "task_id": "P_13168",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 21.769551753997803,
+      "error": null
+    },
+    {
+      "task_id": "P_13169",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 14.408180952072144,
+      "error": null
+    },
+    {
+      "task_id": "P_13170",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 35.674689054489136,
+      "error": null
+    },
+    {
+      "task_id": "P_13172",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 20.101481914520264,
+      "error": null
+    },
+    {
+      "task_id": "P_13173",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 28.47965908050537,
+      "error": null
+    },
+    {
+      "task_id": "P_13174",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.650022983551025,
+      "error": null
+    },
+    {
+      "task_id": "P_13175",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 16.29372000694275,
+      "error": null
+    },
+    {
+      "task_id": "P_13178",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 15.717907190322876,
+      "error": null
+    },
+    {
+      "task_id": "P_13179",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 15.688523769378662,
+      "error": null
+    },
+    {
+      "task_id": "P_13180",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.767702102661133,
+      "error": null
+    },
+    {
+      "task_id": "P_13181",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 16.440695762634277,
+      "error": null
+    },
+    {
+      "task_id": "P_13182",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.437803030014038,
+      "error": null
+    },
+    {
+      "task_id": "P_13183",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.761998891830444,
+      "error": null
+    },
+    {
+      "task_id": "P_13184",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.25295090675354,
+      "error": null
+    },
+    {
+      "task_id": "P_13185",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 16.58892798423767,
+      "error": null
+    },
+    {
+      "task_id": "P_13186",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 22.2784640789032,
+      "error": null
+    },
+    {
+      "task_id": "P_13187",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.796947240829468,
+      "error": null
+    },
+    {
+      "task_id": "P_13189",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 57.9799530506134,
+      "error": null
+    },
+    {
+      "task_id": "P_13190",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 32.77077627182007,
+      "error": null
+    },
+    {
+      "task_id": "P_13192",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 39.62988591194153,
+      "error": null
+    },
+    {
+      "task_id": "P_13193",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.091429948806763,
+      "error": null
+    },
+    {
+      "task_id": "P_13194",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.858861923217773,
+      "error": null
+    },
+    {
+      "task_id": "P_13195",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 14.484202146530151,
+      "error": null
+    },
+    {
+      "task_id": "P_13196",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 25.09504199028015,
+      "error": null
+    },
+    {
+      "task_id": "P_13197",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 19.302266120910645,
+      "error": null
+    },
+    {
+      "task_id": "P_13198",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.301207780838013,
+      "error": null
+    },
+    {
+      "task_id": "P_13199",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 32.00067687034607,
+      "error": null
+    },
+    {
+      "task_id": "P_13200",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 25.429206132888794,
+      "error": null
+    },
+    {
+      "task_id": "P_13204",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.03914499282837,
+      "error": null
+    },
+    {
+      "task_id": "P_13205",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.89785122871399,
+      "error": null
+    },
+    {
+      "task_id": "P_13206",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 16.77020525932312,
+      "error": null
+    },
+    {
+      "task_id": "P_13207",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 21.412437200546265,
+      "error": null
+    },
+    {
+      "task_id": "P_13208",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 16.40310311317444,
+      "error": null
+    },
+    {
+      "task_id": "P_13209",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 35.0798556804657,
+      "error": null
+    },
+    {
+      "task_id": "P_13210",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.477431058883667,
+      "error": null
+    },
+    {
+      "task_id": "P_13211",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.233386993408203,
+      "error": null
+    },
+    {
+      "task_id": "P_13212",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 33.50445318222046,
+      "error": null
+    },
+    {
+      "task_id": "P_13213",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 20.679941177368164,
+      "error": null
+    },
+    {
+      "task_id": "P_13215",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.42648983001709,
+      "error": null
+    },
+    {
+      "task_id": "P_13216",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.279405117034912,
+      "error": null
+    },
+    {
+      "task_id": "P_13217",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 23.001940965652466,
+      "error": null
+    },
+    {
+      "task_id": "P_13218",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.66166615486145,
+      "error": null
+    },
+    {
+      "task_id": "P_13219",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 20.9412522315979,
+      "error": null
+    },
+    {
+      "task_id": "P_13220",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 21.899800062179565,
+      "error": null
+    },
+    {
+      "task_id": "P_13222",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.35896325111389,
+      "error": null
+    },
+    {
+      "task_id": "P_13223",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.94615912437439,
+      "error": null
+    },
+    {
+      "task_id": "P_13224",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.50666618347168,
+      "error": null
+    },
+    {
+      "task_id": "P_13225",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.446342945098877,
+      "error": null
+    },
+    {
+      "task_id": "P_13228",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 22.254135847091675,
+      "error": null
+    },
+    {
+      "task_id": "P_13229",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 20.98442006111145,
+      "error": null
+    },
+    {
+      "task_id": "P_13230",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 28.694387197494507,
+      "error": null
+    },
+    {
+      "task_id": "P_13231",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 41.67291808128357,
+      "error": null
+    },
+    {
+      "task_id": "P_13234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 58.864558935165405,
+      "error": null
+    },
+    {
+      "task_id": "P_13237",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 19.947991847991943,
+      "error": null
+    },
+    {
+      "task_id": "P_13238",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 40.39330506324768,
+      "error": null
+    },
+    {
+      "task_id": "P_13239",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 22.529114961624146,
+      "error": null
+    },
+    {
+      "task_id": "P_13240",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.807601928710938,
+      "error": null
+    },
+    {
+      "task_id": "P_13241",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 31.182297945022583,
+      "error": null
+    },
+    {
+      "task_id": "P_13244",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.574921131134033,
+      "error": null
+    },
+    {
+      "task_id": "P_13245",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 45.120856046676636,
+      "error": null
+    },
+    {
+      "task_id": "P_13246",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 23.872826099395752,
+      "error": null
+    },
+    {
+      "task_id": "P_13247",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.467689990997314,
+      "error": null
+    },
+    {
+      "task_id": "P_13248",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 103.55102896690369,
+      "error": null
+    },
+    {
+      "task_id": "P_13249",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 14.9109787940979,
+      "error": null
+    },
+    {
+      "task_id": "P_13250",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 35.02263307571411,
+      "error": null
+    },
+    {
+      "task_id": "P_13254",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 20.615777015686035,
+      "error": null
+    },
+    {
+      "task_id": "P_13255",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.82024908065796,
+      "error": null
+    },
+    {
+      "task_id": "P_13256",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 16.87921690940857,
+      "error": null
+    },
+    {
+      "task_id": "P_13257",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 22.04552388191223,
+      "error": null
+    },
+    {
+      "task_id": "P_13258",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.067895889282227,
+      "error": null
+    },
+    {
+      "task_id": "P_13259",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.473999977111816,
+      "error": null
+    },
+    {
+      "task_id": "P_13260",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.509725093841553,
+      "error": null
+    },
+    {
+      "task_id": "P_13261",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 17.575189113616943,
+      "error": null
+    },
+    {
+      "task_id": "P_13263",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.683897972106934,
+      "error": null
+    },
+    {
+      "task_id": "P_13264",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.681628942489624,
+      "error": null
+    },
+    {
+      "task_id": "P_13265",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 25.266517162322998,
+      "error": null
+    },
+    {
+      "task_id": "P_13267",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 30.90851593017578,
+      "error": null
+    },
+    {
+      "task_id": "P_13268",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.745965242385864,
+      "error": null
+    },
+    {
+      "task_id": "P_13269",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 14.570185899734497,
+      "error": null
+    },
+    {
+      "task_id": "P_13270",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 15.587414026260376,
+      "error": null
+    },
+    {
+      "task_id": "P_13271",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.748420000076294,
+      "error": null
+    },
+    {
+      "task_id": "P_13272",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 16.71779203414917,
+      "error": null
+    },
+    {
+      "task_id": "P_13273",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.78899884223938,
+      "error": null
+    },
+    {
+      "task_id": "P_13274",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 12.566361665725708,
+      "error": null
+    },
+    {
+      "task_id": "P_13280",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 30.666784048080444,
+      "error": null
+    },
+    {
+      "task_id": "P_13282",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.347639083862305,
+      "error": null
+    },
+    {
+      "task_id": "P_13283",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 23.509724855422974,
+      "error": null
+    },
+    {
+      "task_id": "P_13284",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 47.622771978378296,
+      "error": null
+    },
+    {
+      "task_id": "P_13285",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.62882685661316,
+      "error": null
+    },
+    {
+      "task_id": "P_13287",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 14.28853988647461,
+      "error": null
+    },
+    {
+      "task_id": "P_13288",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 36.168051958084106,
+      "error": null
+    },
+    {
+      "task_id": "P_13289",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 22.230533123016357,
+      "error": null
+    },
+    {
+      "task_id": "P_13290",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.976253986358643,
+      "error": null
+    },
+    {
+      "task_id": "P_13291",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 26.46516489982605,
+      "error": null
+    },
+    {
+      "task_id": "P_13293",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 18.701691150665283,
+      "error": null
+    },
+    {
+      "task_id": "P_13294",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.517534971237183,
+      "error": null
+    },
+    {
+      "task_id": "P_13295",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 20.768411874771118,
+      "error": null
+    },
+    {
+      "task_id": "P_13296",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 20.502421617507935,
+      "error": null
+    },
+    {
+      "task_id": "P_13298",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 26.463629961013794,
+      "error": null
+    },
+    {
+      "task_id": "P_13300",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 13.10170578956604,
+      "error": null
+    },
+    {
+      "task_id": "P_13303",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 19.23703098297119,
+      "error": null
+    },
+    {
+      "task_id": "P_13304",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.263126134872437,
+      "error": null
+    },
+    {
+      "task_id": "P_13305",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 16.152402877807617,
+      "error": null
+    },
+    {
+      "task_id": "P_13306",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 30.040794849395752,
+      "error": null
+    },
+    {
+      "task_id": "P_13307",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.513566970825195,
+      "error": null
+    },
+    {
+      "task_id": "P_13309",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 21.02823305130005,
+      "error": null
+    },
+    {
+      "task_id": "P_13310",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 54.09137415885925,
+      "error": null
+    },
+    {
+      "task_id": "P_13312",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 25.122403621673584,
+      "error": null
+    },
+    {
+      "task_id": "P_13313",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.23573088645935,
+      "error": null
+    },
+    {
+      "task_id": "P_13314",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 16.205148935317993,
+      "error": null
+    },
+    {
+      "task_id": "P_13315",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 13.62333369255066,
+      "error": null
+    },
+    {
+      "task_id": "P_13316",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 23.62472105026245,
+      "error": null
+    },
+    {
+      "task_id": "P_13318",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 21.050310134887695,
+      "error": null
+    },
+    {
+      "task_id": "P_13319",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 34.74646592140198,
+      "error": null
+    },
+    {
+      "task_id": "P_13320",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.073095083236694,
+      "error": null
+    },
+    {
+      "task_id": "P_13322",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 17.085211277008057,
+      "error": null
+    },
+    {
+      "task_id": "P_13323",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 38.60901713371277,
+      "error": null
+    },
+    {
+      "task_id": "P_13324",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 14.466211080551147,
+      "error": null
+    },
+    {
+      "task_id": "P_13325",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 19.991447925567627,
+      "error": null
+    },
+    {
+      "task_id": "P_13328",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 22.87979483604431,
+      "error": null
+    },
+    {
+      "task_id": "P_13329",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 58.732648849487305,
+      "error": null
+    },
+    {
+      "task_id": "P_13330",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 13.369622230529785,
+      "error": null
+    },
+    {
+      "task_id": "P_13332",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.023134231567383,
+      "error": null
+    },
+    {
+      "task_id": "P_13333",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 27.71228528022766,
+      "error": null
+    },
+    {
+      "task_id": "P_13334",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.238318920135498,
+      "error": null
+    },
+    {
+      "task_id": "P_13335",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 18.037086009979248,
+      "error": null
+    },
+    {
+      "task_id": "P_13336",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 122.19772601127625,
+      "error": null
+    },
+    {
+      "task_id": "P_13337",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 56.30507016181946,
+      "error": null
+    },
+    {
+      "task_id": "P_13338",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 41.58633017539978,
+      "error": null
+    },
+    {
+      "task_id": "P_13339",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 16.74164390563965,
+      "error": null
+    },
+    {
+      "task_id": "P_13341",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 14.942005157470703,
+      "error": null
+    },
+    {
+      "task_id": "P_13342",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 46.83344602584839,
+      "error": null
+    },
+    {
+      "task_id": "P_13343",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.312175035476685,
+      "error": null
+    },
+    {
+      "task_id": "P_13344",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 16.20454716682434,
+      "error": null
+    },
+    {
+      "task_id": "P_13345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 23.330193042755127,
+      "error": null
+    },
+    {
+      "task_id": "P_13347",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 23.440692901611328,
+      "error": null
+    },
+    {
+      "task_id": "P_13348",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.926326036453247,
+      "error": null
+    },
+    {
+      "task_id": "P_13353",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 22.896116971969604,
+      "error": null
+    },
+    {
+      "task_id": "P_13354",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 14.866547346115112,
+      "error": null
+    },
+    {
+      "task_id": "P_13356",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 49.54497003555298,
+      "error": null
+    },
+    {
+      "task_id": "P_13358",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 24.118571996688843,
+      "error": null
+    },
+    {
+      "task_id": "P_13359",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.84169602394104,
+      "error": null
+    },
+    {
+      "task_id": "P_13361",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 19.60248589515686,
+      "error": null
+    },
+    {
+      "task_id": "P_13362",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 15.368721008300781,
+      "error": null
+    },
+    {
+      "task_id": "P_13363",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 28.56938099861145,
+      "error": null
+    },
+    {
+      "task_id": "P_13364",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.437052726745605,
+      "error": null
+    },
+    {
+      "task_id": "P_13365",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 33.42373609542847,
+      "error": null
+    },
+    {
+      "task_id": "P_13366",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.34114694595337,
+      "error": null
+    },
+    {
+      "task_id": "P_13367",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 12.456719160079956,
+      "error": null
+    },
+    {
+      "task_id": "P_13368",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 24.44182276725769,
+      "error": null
+    },
+    {
+      "task_id": "P_13369",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 31.26098084449768,
+      "error": null
+    },
+    {
+      "task_id": "P_13370",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 37.38111996650696,
+      "error": null
+    },
+    {
+      "task_id": "P_13371",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 21.576058864593506,
+      "error": null
+    },
+    {
+      "task_id": "P_13373",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 56.10342502593994,
+      "error": null
+    },
+    {
+      "task_id": "P_13375",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 17.233139038085938,
+      "error": null
+    },
+    {
+      "task_id": "P_13401",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 104.64563012123108,
+      "error": null
+    },
+    {
+      "task_id": "P_13402",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 35.80762076377869,
+      "error": null
+    },
+    {
+      "task_id": "P_13404",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 70.2785849571228,
+      "error": null
+    },
+    {
+      "task_id": "P_13405",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 25.636099815368652,
+      "error": null
+    },
+    {
+      "task_id": "P_13406",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 17.837989807128906,
+      "error": null
+    },
+    {
+      "task_id": "P_13408",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 109.95927619934082,
+      "error": null
+    },
+    {
+      "task_id": "P_13409",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 36.04057002067566,
+      "error": null
+    },
+    {
+      "task_id": "P_13410",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 44.082900047302246,
+      "error": null
+    },
+    {
+      "task_id": "P_13411",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 112.12465214729309,
+      "error": null
+    },
+    {
+      "task_id": "P_13412",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 19.48970913887024,
+      "error": null
+    },
+    {
+      "task_id": "P_13415",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 36.14400100708008,
+      "error": null
+    },
+    {
+      "task_id": "P_13417",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 75.73212099075317,
+      "error": null
+    },
+    {
+      "task_id": "P_13418",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 71.84280180931091,
+      "error": null
+    },
+    {
+      "task_id": "P_13420",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 105.77872705459595,
+      "error": null
+    },
+    {
+      "task_id": "P_13423",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 20.68149709701538,
+      "error": null
+    },
+    {
+      "task_id": "P_13424",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 18.156683921813965,
+      "error": null
+    },
+    {
+      "task_id": "P_13426",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class D"
+      },
+      "execution_time": 28.343749046325684,
+      "error": null
+    },
+    {
+      "task_id": "P_13427",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 31.445744037628174,
+      "error": null
+    },
+    {
+      "task_id": "P_13431",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class B"
+      },
+      "execution_time": 19.4609591960907,
+      "error": null
+    },
+    {
+      "task_id": "P_13432",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 27.2435462474823,
+      "error": null
+    },
+    {
+      "task_id": "P_13433",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 15.574782133102417,
+      "error": null
+    },
+    {
+      "task_id": "P_13434",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class C"
+      },
+      "execution_time": 31.937251091003418,
+      "error": null
+    },
+    {
+      "task_id": "P_13436",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Hazard Class A"
+      },
+      "execution_time": 19.763025045394897,
+      "error": null
+    },
+    {
+      "task_id": "P_13438",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 18.87081503868103,
+      "error": null
+    },
+    {
+      "task_id": "P_13440",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 62.28063893318176,
+      "error": null
+    },
+    {
+      "task_id": "P__13279",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 33.34080100059509,
+      "error": null
+    },
+    {
+      "task_id": "Product_14123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 18.473840713500977,
+      "error": null
+    },
+    {
+      "task_id": "Product_14124",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
+      "expected": {
+        "hazard_class": "Unable to Decide"
+      },
+      "execution_time": 18.205265998840332,
+      "error": null
+    }
+  ]
+}
