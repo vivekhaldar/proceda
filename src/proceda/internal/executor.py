@@ -120,7 +120,32 @@ class Executor:
                         continue
 
                 # Execute step via LLM loop
-                await self._execute_step(step.index)
+                step_result = await self._execute_step(step.index)
+
+                if step_result == "skip_remaining":
+                    # Skip all remaining steps — mark current step complete and break
+                    remaining = list(range(step.index + 1, self._skill.step_count + 1))
+                    for skipped_idx in remaining:
+                        session.skipped_steps.append(skipped_idx)
+                        await self._emit(
+                            RunEvent.create(
+                                session.id,
+                                EventType.STEP_SKIPPED,
+                                {
+                                    "step_index": skipped_idx,
+                                    "reason": "skip_remaining_steps called",
+                                },
+                            )
+                        )
+                    session.complete_current_step()
+                    await self._emit(
+                        RunEvent.create(
+                            session.id,
+                            EventType.STEP_COMPLETED,
+                            {"step_index": step.index, "step_title": step.title},
+                        )
+                    )
+                    break
 
                 # Handle post-approval
                 if step.requires_post_approval:
@@ -184,8 +209,8 @@ class Executor:
             )
             await self._emit_status_change(RunStatus.FAILED)
 
-    async def _execute_step(self, step_index: int) -> None:
-        """Execute a single step via the LLM loop."""
+    async def _execute_step(self, step_index: int) -> str | None:
+        """Execute a single step via the LLM loop. Returns 'skip_remaining' to end early."""
         step = self._skill.get_step(step_index)
         session = self._session
 
@@ -335,7 +360,9 @@ class Executor:
                 if is_control_tool(tc.name):
                     result = await self._handle_control_tool(tc)
                     if result == "step_complete":
-                        return
+                        return None
+                    if result == "skip_remaining":
+                        return "skip_remaining"
                 else:
                     await self._handle_app_tool(tc)
                     step_tool_call_count += 1
@@ -405,6 +432,18 @@ class Executor:
                 )
             )
             return "step_complete"
+
+        elif tool_call.name == "skip_remaining_steps":
+            summary = tool_call.arguments.get("summary", "Remaining steps skipped.")
+            session.add_message(RunMessage.create("tool", summary, tool_call_id=tool_call.id))
+            await self._emit(
+                RunEvent.create(
+                    session.id,
+                    EventType.SUMMARY_GENERATED,
+                    {"step_index": session.current_step, "summary": summary},
+                )
+            )
+            return "skip_remaining"
 
         elif tool_call.name == "request_clarification":
             question = tool_call.arguments.get("question", "")

@@ -5,7 +5,7 @@ from __future__ import annotations
 
 from typing import Any
 
-CONTROL_TOOLS = {"complete_step", "request_clarification"}
+CONTROL_TOOLS = {"complete_step", "request_clarification", "skip_remaining_steps"}
 
 
 def get_control_tool_schemas() -> list[dict[str, Any]]:
@@ -26,6 +26,31 @@ def get_control_tool_schemas() -> list[dict[str, Any]]:
                             "type": "string",
                             "description": "Brief summary of what was accomplished in this step.",
                         }
+                    },
+                    "required": ["summary"],
+                },
+            },
+        },
+        {
+            "type": "function",
+            "function": {
+                "name": "skip_remaining_steps",
+                "description": (
+                    "Skip all remaining steps and end the procedure immediately. "
+                    "Use this when the final answer is already determined and no "
+                    "further steps are needed (e.g. invalid input detected, terminal "
+                    "condition reached, or early exit per the SOP)."
+                ),
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "summary": {
+                            "type": "string",
+                            "description": (
+                                "Summary explaining why remaining steps are being skipped "
+                                "and what the final answer is."
+                            ),
+                        },
                     },
                     "required": ["summary"],
                 },

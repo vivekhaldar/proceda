@@ -30,6 +30,22 @@ description: A single step skill
 Do the thing.
 """
 
+THREE_STEP_SKILL = """\
+---
+name: three-step
+description: A three step skill
+---
+
+### Step 1: Validate input
+Check if the input is valid.
+
+### Step 2: Process data
+Process the validated data.
+
+### Step 3: Output results
+Produce the final output.
+"""
+
 PRE_APPROVAL_SKILL = """\
 ---
 name: pre-approval-test
@@ -315,6 +331,88 @@ class TestEmptyResponseRecovery:
         assert session.status == RunStatus.COMPLETED
         # Should have completed successfully (tool call on call 4 reset the counter)
         assert 1 in session.completed_steps
+
+
+def _make_skip_remaining_response(summary: str = "Early exit.") -> LLMResponse:
+    return LLMResponse(
+        content="",
+        tool_calls=[
+            ToolCall(
+                id=ToolCall.generate_id(),
+                name="skip_remaining_steps",
+                arguments={"summary": summary},
+            )
+        ],
+    )
+
+
+class TestSkipRemainingSteps:
+    """skip_remaining_steps control tool: early termination of the procedure."""
+
+    @pytest.mark.asyncio
+    async def test_skip_remaining_ends_run_at_step_1(self) -> None:
+        """Calling skip_remaining_steps at step 1 skips steps 2 and 3."""
+        skill = parse_skill(THREE_STEP_SKILL)
+        session = RunSession.create(skill.id, skill.name)
+        collector = CollectorEventSink()
+
+        async def mock_complete(messages, tools=None):
+            return _make_skip_remaining_response("Invalid input detected.")
+
+        llm = AsyncMock()
+        llm.complete = mock_complete
+        llm.format_messages = lambda msgs: [{"role": "user", "content": "test"}]
+
+        executor = Executor(
+            skill=skill,
+            session=session,
+            llm=llm,
+            tool_executor=None,
+            human=AutoApproveHumanInterface(),
+            emit=collector.handle,
+        )
+
+        await executor.execute()
+
+        assert session.status == RunStatus.COMPLETED
+        assert 1 in session.completed_steps
+        assert 2 in session.skipped_steps
+        assert 3 in session.skipped_steps
+
+        # STEP_SKIPPED events for steps 2 and 3
+        skip_events = collector.of_type(EventType.STEP_SKIPPED)
+        assert len(skip_events) == 2
+        assert skip_events[0].payload["step_index"] == 2
+        assert skip_events[1].payload["step_index"] == 3
+
+    @pytest.mark.asyncio
+    async def test_skip_remaining_at_last_step_just_completes(self) -> None:
+        """Calling skip_remaining_steps at the last step is equivalent to complete_step."""
+        skill = parse_skill(ONE_STEP_SKILL)
+        session = RunSession.create(skill.id, skill.name)
+        collector = CollectorEventSink()
+
+        async def mock_complete(messages, tools=None):
+            return _make_skip_remaining_response("Done early.")
+
+        llm = AsyncMock()
+        llm.complete = mock_complete
+        llm.format_messages = lambda msgs: [{"role": "user", "content": "test"}]
+
+        executor = Executor(
+            skill=skill,
+            session=session,
+            llm=llm,
+            tool_executor=None,
+            human=AutoApproveHumanInterface(),
+            emit=collector.handle,
+        )
+
+        await executor.execute()
+
+        assert session.status == RunStatus.COMPLETED
+        assert 1 in session.completed_steps
+        assert len(session.skipped_steps) == 0
 
 
 def _make_app_tool_response(tool_name: str = "app__do_thing") -> LLMResponse:
