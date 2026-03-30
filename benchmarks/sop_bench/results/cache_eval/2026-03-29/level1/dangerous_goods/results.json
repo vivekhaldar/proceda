@@ -3,11 +3,11 @@
     "domain": "dangerous_goods",
     "num_tasks": 274,
     "num_completed": 274,
-    "num_correct": 255,
-    "tsr": 0.9306569343065694,
+    "num_correct": 260,
+    "tsr": 0.948905109489051,
     "ecr": 1.0,
-    "c_tsr": 0.9306569343065694,
-    "timestamp": "2026-03-29T19:01:34.122300"
+    "c_tsr": 0.948905109489051,
+    "timestamp": "2026-03-29T23:30:10.231335"
   },
   "tasks": [
     {
@@ -20,7 +20,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 16.347894191741943,
+      "execution_time": 14.046916007995605,
       "error": null
     },
     {
@@ -33,7 +33,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 19.30440878868103,
+      "execution_time": 13.648447036743164,
       "error": null
     },
     {
@@ -46,7 +46,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.09014892578125,
+      "execution_time": 13.70425796508789,
       "error": null
     },
     {
@@ -59,7 +59,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 21.54808211326599,
+      "execution_time": 12.776705026626587,
       "error": null
     },
     {
@@ -72,7 +72,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 34.80752515792847,
+      "execution_time": 20.293970823287964,
       "error": null
     },
     {
@@ -80,12 +80,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 14.877457857131958,
+      "execution_time": 14.68165111541748,
       "error": null
     },
     {
@@ -98,7 +98,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 76.28795504570007,
+      "execution_time": 16.055500030517578,
       "error": null
     },
     {
@@ -106,12 +106,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.816975831985474,
+      "execution_time": 15.380552053451538,
       "error": null
     },
     {
@@ -124,7 +124,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.187378883361816,
+      "execution_time": 14.199651002883911,
       "error": null
     },
     {
@@ -137,7 +137,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.99970817565918,
+      "execution_time": 13.916048765182495,
       "error": null
     },
     {
@@ -150,7 +150,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 24.4061279296875,
+      "execution_time": 13.819065809249878,
       "error": null
     },
     {
@@ -163,7 +163,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 20.90772771835327,
+      "execution_time": 13.267357110977173,
       "error": null
     },
     {
@@ -176,7 +176,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.174758911132812,
+      "execution_time": 15.959131956100464,
       "error": null
     },
     {
@@ -189,7 +189,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 23.49731206893921,
+      "execution_time": 13.304172039031982,
       "error": null
     },
     {
@@ -197,12 +197,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.703884840011597,
+      "execution_time": 21.270210027694702,
       "error": null
     },
     {
@@ -215,7 +215,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.919681072235107,
+      "execution_time": 15.741318941116333,
       "error": null
     },
     {
@@ -228,7 +228,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 20.179821014404297,
+      "execution_time": 14.924839973449707,
       "error": null
     },
     {
@@ -236,12 +236,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 25.095216035842896,
+      "execution_time": 15.122619867324829,
       "error": null
     },
     {
@@ -254,7 +254,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.952900886535645,
+      "execution_time": 12.990564107894897,
       "error": null
     },
     {
@@ -267,7 +267,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 33.60814905166626,
+      "execution_time": 14.708207845687866,
       "error": null
     },
     {
@@ -280,7 +280,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 40.54989314079285,
+      "execution_time": 14.192148923873901,
       "error": null
     },
     {
@@ -293,7 +293,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.74539089202881,
+      "execution_time": 13.438554286956787,
       "error": null
     },
     {
@@ -306,7 +306,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 18.11362886428833,
+      "execution_time": 19.523833751678467,
       "error": null
     },
     {
@@ -319,7 +319,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 47.710516929626465,
+      "execution_time": 14.39342212677002,
       "error": null
     },
     {
@@ -332,7 +332,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.781891107559204,
+      "execution_time": 12.890718936920166,
       "error": null
     },
     {
@@ -345,7 +345,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.891287088394165,
+      "execution_time": 14.783408164978027,
       "error": null
     },
     {
@@ -358,7 +358,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 25.07505202293396,
+      "execution_time": 14.029305696487427,
       "error": null
     },
     {
@@ -371,7 +371,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.18870997428894,
+      "execution_time": 14.02731704711914,
       "error": null
     },
     {
@@ -384,7 +384,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 32.73365592956543,
+      "execution_time": 13.46389889717102,
       "error": null
     },
     {
@@ -397,7 +397,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 24.1181161403656,
+      "execution_time": 20.505661010742188,
       "error": null
     },
     {
@@ -410,7 +410,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.743360996246338,
+      "execution_time": 13.90912914276123,
       "error": null
     },
     {
@@ -423,7 +423,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.43905019760132,
+      "execution_time": 20.289471864700317,
       "error": null
     },
     {
@@ -431,12 +431,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.210471868515015,
+      "execution_time": 20.91590118408203,
       "error": null
     },
     {
@@ -449,7 +449,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 84.35147428512573,
+      "execution_time": 20.805793046951294,
       "error": null
     },
     {
@@ -462,20 +462,18 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.382564067840576,
+      "execution_time": 14.73441481590271,
       "error": null
     },
     {
       "task_id": "P_13078",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "D"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 31.856526851654053,
+      "execution_time": 26.82499885559082,
       "error": null
     },
     {
@@ -488,7 +486,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 24.546409130096436,
+      "execution_time": 16.754838943481445,
       "error": null
     },
     {
@@ -501,7 +499,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.180424928665161,
+      "execution_time": 15.521911144256592,
       "error": null
     },
     {
@@ -514,7 +512,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 14.143609046936035,
+      "execution_time": 14.071172952651978,
       "error": null
     },
     {
@@ -527,7 +525,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.641133069992065,
+      "execution_time": 12.323286056518555,
       "error": null
     },
     {
@@ -540,7 +538,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 13.95640230178833,
+      "execution_time": 17.631983757019043,
       "error": null
     },
     {
@@ -553,7 +551,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.285704135894775,
+      "execution_time": 14.081785202026367,
       "error": null
     },
     {
@@ -566,7 +564,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 32.82462811470032,
+      "execution_time": 13.720426082611084,
       "error": null
     },
     {
@@ -579,7 +577,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.824893951416016,
+      "execution_time": 14.230870008468628,
       "error": null
     },
     {
@@ -592,7 +590,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.583434104919434,
+      "execution_time": 13.90269684791565,
       "error": null
     },
     {
@@ -605,7 +603,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.6064670085907,
+      "execution_time": 14.352144956588745,
       "error": null
     },
     {
@@ -618,7 +616,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.808290004730225,
+      "execution_time": 13.384867191314697,
       "error": null
     },
     {
@@ -631,7 +629,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 20.098145008087158,
+      "execution_time": 15.645736932754517,
       "error": null
     },
     {
@@ -644,7 +642,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 38.4229941368103,
+      "execution_time": 19.65279722213745,
       "error": null
     },
     {
@@ -657,7 +655,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 30.70392608642578,
+      "execution_time": 15.095259189605713,
       "error": null
     },
     {
@@ -670,7 +668,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 21.448753118515015,
+      "execution_time": 15.164881229400635,
       "error": null
     },
     {
@@ -683,7 +681,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 29.227999925613403,
+      "execution_time": 13.855837106704712,
       "error": null
     },
     {
@@ -696,7 +694,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.9379940032959,
+      "execution_time": 14.437547206878662,
       "error": null
     },
     {
@@ -709,7 +707,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.000689268112183,
+      "execution_time": 21.133826971054077,
       "error": null
     },
     {
@@ -722,7 +720,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.122833013534546,
+      "execution_time": 13.67107605934143,
       "error": null
     },
     {
@@ -735,7 +733,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 22.96892213821411,
+      "execution_time": 18.382829666137695,
       "error": null
     },
     {
@@ -748,7 +746,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.198920965194702,
+      "execution_time": 14.55484127998352,
       "error": null
     },
     {
@@ -761,7 +759,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 15.638278007507324,
+      "execution_time": 19.827494859695435,
       "error": null
     },
     {
@@ -774,7 +772,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 23.925753831863403,
+      "execution_time": 19.498821020126343,
       "error": null
     },
     {
@@ -787,7 +785,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 44.54983973503113,
+      "execution_time": 14.642768859863281,
       "error": null
     },
     {
@@ -800,7 +798,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 20.884000778198242,
+      "execution_time": 20.255458116531372,
       "error": null
     },
     {
@@ -813,7 +811,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 17.322343826293945,
+      "execution_time": 13.606805324554443,
       "error": null
     },
     {
@@ -826,7 +824,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.337984085083008,
+      "execution_time": 13.907517910003662,
       "error": null
     },
     {
@@ -839,7 +837,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 20.112256050109863,
+      "execution_time": 13.648431777954102,
       "error": null
     },
     {
@@ -852,7 +850,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 15.843144178390503,
+      "execution_time": 13.997905015945435,
       "error": null
     },
     {
@@ -865,7 +863,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 33.267505168914795,
+      "execution_time": 13.50190019607544,
       "error": null
     },
     {
@@ -873,12 +871,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.190250873565674,
+      "execution_time": 14.85645580291748,
       "error": null
     },
     {
@@ -891,7 +889,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 13.397850275039673,
+      "execution_time": 21.407590866088867,
       "error": null
     },
     {
@@ -904,7 +902,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.209805965423584,
+      "execution_time": 13.590658903121948,
       "error": null
     },
     {
@@ -917,7 +915,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.513458967208862,
+      "execution_time": 14.303372144699097,
       "error": null
     },
     {
@@ -930,7 +928,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.910828113555908,
+      "execution_time": 13.90096402168274,
       "error": null
     },
     {
@@ -943,7 +941,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 17.179229974746704,
+      "execution_time": 14.575001001358032,
       "error": null
     },
     {
@@ -956,7 +954,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 39.055851221084595,
+      "execution_time": 13.446558952331543,
       "error": null
     },
     {
@@ -969,7 +967,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 14.916423320770264,
+      "execution_time": 13.726199865341187,
       "error": null
     },
     {
@@ -982,7 +980,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.00230097770691,
+      "execution_time": 13.779499053955078,
       "error": null
     },
     {
@@ -995,7 +993,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.9150550365448,
+      "execution_time": 14.44913101196289,
       "error": null
     },
     {
@@ -1008,7 +1006,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 27.873705863952637,
+      "execution_time": 13.384529829025269,
       "error": null
     },
     {
@@ -1021,7 +1019,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 22.945341110229492,
+      "execution_time": 14.81156301498413,
       "error": null
     },
     {
@@ -1029,23 +1027,25 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 38.56876516342163,
+      "execution_time": 19.509642124176025,
       "error": null
     },
     {
       "task_id": "P_13154",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 59.432111740112305,
+      "execution_time": 25.625066995620728,
       "error": null
     },
     {
@@ -1058,7 +1058,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 16.114273071289062,
+      "execution_time": 13.597899913787842,
       "error": null
     },
     {
@@ -1071,7 +1071,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.932751893997192,
+      "execution_time": 13.110381126403809,
       "error": null
     },
     {
@@ -1084,7 +1084,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 24.725640296936035,
+      "execution_time": 14.550369024276733,
       "error": null
     },
     {
@@ -1097,7 +1097,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.559740781784058,
+      "execution_time": 13.169620275497437,
       "error": null
     },
     {
@@ -1110,7 +1110,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 16.849510192871094,
+      "execution_time": 14.958791255950928,
       "error": null
     },
     {
@@ -1123,7 +1123,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 14.409010171890259,
+      "execution_time": 14.793272018432617,
       "error": null
     },
     {
@@ -1136,7 +1136,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.759302139282227,
+      "execution_time": 14.851586818695068,
       "error": null
     },
     {
@@ -1149,18 +1149,20 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 15.764538764953613,
+      "execution_time": 13.403754949569702,
       "error": null
     },
     {
       "task_id": "P_13165",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 45.398197174072266,
+      "execution_time": 15.906499862670898,
       "error": null
     },
     {
@@ -1173,7 +1175,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.40217423439026,
+      "execution_time": 19.138808012008667,
       "error": null
     },
     {
@@ -1186,7 +1188,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.97901487350464,
+      "execution_time": 20.78245210647583,
       "error": null
     },
     {
@@ -1199,7 +1201,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 21.769551753997803,
+      "execution_time": 22.987844228744507,
       "error": null
     },
     {
@@ -1212,7 +1214,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 14.408180952072144,
+      "execution_time": 14.579731225967407,
       "error": null
     },
     {
@@ -1225,7 +1227,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 35.674689054489136,
+      "execution_time": 15.230685234069824,
       "error": null
     },
     {
@@ -1238,7 +1240,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 20.101481914520264,
+      "execution_time": 13.512011051177979,
       "error": null
     },
     {
@@ -1251,7 +1253,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 28.47965908050537,
+      "execution_time": 24.74697208404541,
       "error": null
     },
     {
@@ -1264,7 +1266,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.650022983551025,
+      "execution_time": 13.060384035110474,
       "error": null
     },
     {
@@ -1277,7 +1279,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 16.29372000694275,
+      "execution_time": 15.332102298736572,
       "error": null
     },
     {
@@ -1290,7 +1292,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 15.717907190322876,
+      "execution_time": 13.453536033630371,
       "error": null
     },
     {
@@ -1303,7 +1305,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 15.688523769378662,
+      "execution_time": 14.08917498588562,
       "error": null
     },
     {
@@ -1316,7 +1318,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.767702102661133,
+      "execution_time": 14.363111734390259,
       "error": null
     },
     {
@@ -1329,7 +1331,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 16.440695762634277,
+      "execution_time": 14.21167802810669,
       "error": null
     },
     {
@@ -1342,7 +1344,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.437803030014038,
+      "execution_time": 15.732087135314941,
       "error": null
     },
     {
@@ -1355,7 +1357,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.761998891830444,
+      "execution_time": 20.270132780075073,
       "error": null
     },
     {
@@ -1363,12 +1365,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.25295090675354,
+      "execution_time": 13.791501760482788,
       "error": null
     },
     {
@@ -1381,7 +1383,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 16.58892798423767,
+      "execution_time": 12.927873849868774,
       "error": null
     },
     {
@@ -1394,7 +1396,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 22.2784640789032,
+      "execution_time": 15.093018770217896,
       "error": null
     },
     {
@@ -1407,18 +1409,20 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.796947240829468,
+      "execution_time": 21.27179718017578,
       "error": null
     },
     {
       "task_id": "P_13189",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "A"
+      },
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 57.9799530506134,
+      "execution_time": 13.391843795776367,
       "error": null
     },
     {
@@ -1431,7 +1435,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 32.77077627182007,
+      "execution_time": 13.988746166229248,
       "error": null
     },
     {
@@ -1444,7 +1448,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 39.62988591194153,
+      "execution_time": 15.168370962142944,
       "error": null
     },
     {
@@ -1457,7 +1461,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.091429948806763,
+      "execution_time": 13.962736129760742,
       "error": null
     },
     {
@@ -1470,7 +1474,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.858861923217773,
+      "execution_time": 13.429961919784546,
       "error": null
     },
     {
@@ -1483,7 +1487,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 14.484202146530151,
+      "execution_time": 14.495877981185913,
       "error": null
     },
     {
@@ -1496,7 +1500,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 25.09504199028015,
+      "execution_time": 12.946655988693237,
       "error": null
     },
     {
@@ -1509,7 +1513,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 19.302266120910645,
+      "execution_time": 13.846833944320679,
       "error": null
     },
     {
@@ -1522,7 +1526,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.301207780838013,
+      "execution_time": 15.194792985916138,
       "error": null
     },
     {
@@ -1535,7 +1539,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 32.00067687034607,
+      "execution_time": 14.043317794799805,
       "error": null
     },
     {
@@ -1548,7 +1552,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 25.429206132888794,
+      "execution_time": 14.25907301902771,
       "error": null
     },
     {
@@ -1561,7 +1565,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.03914499282837,
+      "execution_time": 21.207240343093872,
       "error": null
     },
     {
@@ -1574,7 +1578,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.89785122871399,
+      "execution_time": 20.45184302330017,
       "error": null
     },
     {
@@ -1587,7 +1591,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 16.77020525932312,
+      "execution_time": 13.83906102180481,
       "error": null
     },
     {
@@ -1600,7 +1604,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 21.412437200546265,
+      "execution_time": 21.659575700759888,
       "error": null
     },
     {
@@ -1608,12 +1612,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 16.40310311317444,
+      "execution_time": 19.734408855438232,
       "error": null
     },
     {
@@ -1626,7 +1630,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 35.0798556804657,
+      "execution_time": 13.949406862258911,
       "error": null
     },
     {
@@ -1634,12 +1638,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.477431058883667,
+      "execution_time": 13.106310844421387,
       "error": null
     },
     {
@@ -1652,7 +1656,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.233386993408203,
+      "execution_time": 14.597382068634033,
       "error": null
     },
     {
@@ -1665,7 +1669,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 33.50445318222046,
+      "execution_time": 27.591105937957764,
       "error": null
     },
     {
@@ -1678,7 +1682,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 20.679941177368164,
+      "execution_time": 16.285236835479736,
       "error": null
     },
     {
@@ -1691,7 +1695,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.42648983001709,
+      "execution_time": 14.874172925949097,
       "error": null
     },
     {
@@ -1704,7 +1708,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.279405117034912,
+      "execution_time": 12.803582906723022,
       "error": null
     },
     {
@@ -1717,7 +1721,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 23.001940965652466,
+      "execution_time": 13.24074125289917,
       "error": null
     },
     {
@@ -1730,7 +1734,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.66166615486145,
+      "execution_time": 19.934968948364258,
       "error": null
     },
     {
@@ -1743,7 +1747,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 20.9412522315979,
+      "execution_time": 12.856914043426514,
       "error": null
     },
     {
@@ -1756,7 +1760,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 21.899800062179565,
+      "execution_time": 14.439280986785889,
       "error": null
     },
     {
@@ -1769,7 +1773,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.35896325111389,
+      "execution_time": 13.01961612701416,
       "error": null
     },
     {
@@ -1782,7 +1786,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.94615912437439,
+      "execution_time": 14.514347076416016,
       "error": null
     },
     {
@@ -1790,12 +1794,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.50666618347168,
+      "execution_time": 15.020850896835327,
       "error": null
     },
     {
@@ -1808,7 +1812,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.446342945098877,
+      "execution_time": 13.51751708984375,
       "error": null
     },
     {
@@ -1821,7 +1825,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 22.254135847091675,
+      "execution_time": 14.788102149963379,
       "error": null
     },
     {
@@ -1834,7 +1838,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 20.98442006111145,
+      "execution_time": 13.224291801452637,
       "error": null
     },
     {
@@ -1847,7 +1851,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 28.694387197494507,
+      "execution_time": 21.243802785873413,
       "error": null
     },
     {
@@ -1860,18 +1864,20 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 41.67291808128357,
+      "execution_time": 13.485602140426636,
       "error": null
     },
     {
       "task_id": "P_13234",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 58.864558935165405,
+      "execution_time": 13.72324800491333,
       "error": null
     },
     {
@@ -1884,7 +1890,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 19.947991847991943,
+      "execution_time": 17.093651056289673,
       "error": null
     },
     {
@@ -1897,7 +1903,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 40.39330506324768,
+      "execution_time": 15.205297231674194,
       "error": null
     },
     {
@@ -1910,7 +1916,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 22.529114961624146,
+      "execution_time": 14.26212191581726,
       "error": null
     },
     {
@@ -1923,7 +1929,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.807601928710938,
+      "execution_time": 14.691481113433838,
       "error": null
     },
     {
@@ -1936,7 +1942,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 31.182297945022583,
+      "execution_time": 13.38520097732544,
       "error": null
     },
     {
@@ -1949,18 +1955,20 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.574921131134033,
+      "execution_time": 18.014570236206055,
       "error": null
     },
     {
       "task_id": "P_13245",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 45.120856046676636,
+      "execution_time": 14.91555118560791,
       "error": null
     },
     {
@@ -1973,7 +1981,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 23.872826099395752,
+      "execution_time": 14.959257125854492,
       "error": null
     },
     {
@@ -1986,7 +1994,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.467689990997314,
+      "execution_time": 14.732398271560669,
       "error": null
     },
     {
@@ -1999,7 +2007,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 103.55102896690369,
+      "execution_time": 15.281987190246582,
       "error": null
     },
     {
@@ -2012,7 +2020,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 14.9109787940979,
+      "execution_time": 14.819710969924927,
       "error": null
     },
     {
@@ -2025,7 +2033,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 35.02263307571411,
+      "execution_time": 15.106139898300171,
       "error": null
     },
     {
@@ -2038,7 +2046,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 20.615777015686035,
+      "execution_time": 15.055455207824707,
       "error": null
     },
     {
@@ -2051,7 +2059,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.82024908065796,
+      "execution_time": 15.568578958511353,
       "error": null
     },
     {
@@ -2064,7 +2072,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 16.87921690940857,
+      "execution_time": 13.792923927307129,
       "error": null
     },
     {
@@ -2077,7 +2085,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 22.04552388191223,
+      "execution_time": 15.768287181854248,
       "error": null
     },
     {
@@ -2090,7 +2098,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.067895889282227,
+      "execution_time": 13.590507745742798,
       "error": null
     },
     {
@@ -2103,7 +2111,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.473999977111816,
+      "execution_time": 17.233361959457397,
       "error": null
     },
     {
@@ -2116,7 +2124,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.509725093841553,
+      "execution_time": 14.65720796585083,
       "error": null
     },
     {
@@ -2129,7 +2137,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 17.575189113616943,
+      "execution_time": 32.90582489967346,
       "error": null
     },
     {
@@ -2140,7 +2148,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.683897972106934,
+      "execution_time": 17.166754961013794,
       "error": null
     },
     {
@@ -2153,7 +2161,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.681628942489624,
+      "execution_time": 19.035964965820312,
       "error": null
     },
     {
@@ -2166,7 +2174,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 25.266517162322998,
+      "execution_time": 13.791205167770386,
       "error": null
     },
     {
@@ -2179,7 +2187,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 30.90851593017578,
+      "execution_time": 25.310588836669922,
       "error": null
     },
     {
@@ -2192,7 +2200,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.745965242385864,
+      "execution_time": 14.063923120498657,
       "error": null
     },
     {
@@ -2205,7 +2213,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 14.570185899734497,
+      "execution_time": 13.510562181472778,
       "error": null
     },
     {
@@ -2218,7 +2226,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 15.587414026260376,
+      "execution_time": 13.95902705192566,
       "error": null
     },
     {
@@ -2231,7 +2239,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.748420000076294,
+      "execution_time": 13.818948030471802,
       "error": null
     },
     {
@@ -2244,7 +2252,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 16.71779203414917,
+      "execution_time": 13.89636516571045,
       "error": null
     },
     {
@@ -2252,12 +2260,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.78899884223938,
+      "execution_time": 13.167895078659058,
       "error": null
     },
     {
@@ -2265,12 +2273,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 12.566361665725708,
+      "execution_time": 12.020949840545654,
       "error": null
     },
     {
@@ -2283,7 +2291,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 30.666784048080444,
+      "execution_time": 13.654538869857788,
       "error": null
     },
     {
@@ -2296,7 +2304,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.347639083862305,
+      "execution_time": 23.410778999328613,
       "error": null
     },
     {
@@ -2309,7 +2317,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 23.509724855422974,
+      "execution_time": 15.660908937454224,
       "error": null
     },
     {
@@ -2322,7 +2330,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 47.622771978378296,
+      "execution_time": 13.715329885482788,
       "error": null
     },
     {
@@ -2335,7 +2343,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.62882685661316,
+      "execution_time": 14.996186971664429,
       "error": null
     },
     {
@@ -2348,7 +2356,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 14.28853988647461,
+      "execution_time": 15.668580055236816,
       "error": null
     },
     {
@@ -2361,7 +2369,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 36.168051958084106,
+      "execution_time": 21.175556898117065,
       "error": null
     },
     {
@@ -2374,7 +2382,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 22.230533123016357,
+      "execution_time": 13.356088876724243,
       "error": null
     },
     {
@@ -2387,7 +2395,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.976253986358643,
+      "execution_time": 13.89842700958252,
       "error": null
     },
     {
@@ -2400,7 +2408,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 26.46516489982605,
+      "execution_time": 12.271950960159302,
       "error": null
     },
     {
@@ -2413,7 +2421,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 18.701691150665283,
+      "execution_time": 13.994539022445679,
       "error": null
     },
     {
@@ -2421,12 +2429,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "D"
+        "hazard_class": "C"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.517534971237183,
+      "execution_time": 15.79417896270752,
       "error": null
     },
     {
@@ -2439,7 +2447,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 20.768411874771118,
+      "execution_time": 13.456424236297607,
       "error": null
     },
     {
@@ -2452,7 +2460,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 20.502421617507935,
+      "execution_time": 13.66338300704956,
       "error": null
     },
     {
@@ -2465,7 +2473,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 26.463629961013794,
+      "execution_time": 27.2672016620636,
       "error": null
     },
     {
@@ -2478,20 +2486,18 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 13.10170578956604,
+      "execution_time": 23.885930061340332,
       "error": null
     },
     {
       "task_id": "P_13303",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "C"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 19.23703098297119,
+      "execution_time": 127.3266658782959,
       "error": null
     },
     {
@@ -2504,7 +2510,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.263126134872437,
+      "execution_time": 13.899251937866211,
       "error": null
     },
     {
@@ -2517,7 +2523,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 16.152402877807617,
+      "execution_time": 13.550310850143433,
       "error": null
     },
     {
@@ -2530,7 +2536,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 30.040794849395752,
+      "execution_time": 13.731430053710938,
       "error": null
     },
     {
@@ -2543,7 +2549,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.513566970825195,
+      "execution_time": 13.874604940414429,
       "error": null
     },
     {
@@ -2556,18 +2562,20 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 21.02823305130005,
+      "execution_time": 14.042448043823242,
       "error": null
     },
     {
       "task_id": "P_13310",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 54.09137415885925,
+      "execution_time": 15.850910186767578,
       "error": null
     },
     {
@@ -2580,7 +2588,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 25.122403621673584,
+      "execution_time": 14.500801086425781,
       "error": null
     },
     {
@@ -2593,7 +2601,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.23573088645935,
+      "execution_time": 15.87482500076294,
       "error": null
     },
     {
@@ -2606,7 +2614,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 16.205148935317993,
+      "execution_time": 13.208899021148682,
       "error": null
     },
     {
@@ -2619,7 +2627,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 13.62333369255066,
+      "execution_time": 16.771960973739624,
       "error": null
     },
     {
@@ -2632,7 +2640,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 23.62472105026245,
+      "execution_time": 19.101646900177002,
       "error": null
     },
     {
@@ -2645,7 +2653,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 21.050310134887695,
+      "execution_time": 14.953908205032349,
       "error": null
     },
     {
@@ -2658,7 +2666,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 34.74646592140198,
+      "execution_time": 15.173496007919312,
       "error": null
     },
     {
@@ -2671,7 +2679,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.073095083236694,
+      "execution_time": 23.2592990398407,
       "error": null
     },
     {
@@ -2684,7 +2692,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 17.085211277008057,
+      "execution_time": 14.794809818267822,
       "error": null
     },
     {
@@ -2697,7 +2705,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 38.60901713371277,
+      "execution_time": 13.29918098449707,
       "error": null
     },
     {
@@ -2710,7 +2718,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 14.466211080551147,
+      "execution_time": 13.224318981170654,
       "error": null
     },
     {
@@ -2723,7 +2731,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 19.991447925567627,
+      "execution_time": 19.618531942367554,
       "error": null
     },
     {
@@ -2736,7 +2744,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 22.87979483604431,
+      "execution_time": 19.80135226249695,
       "error": null
     },
     {
@@ -2749,7 +2757,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 58.732648849487305,
+      "execution_time": 13.68018102645874,
       "error": null
     },
     {
@@ -2762,7 +2770,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 13.369622230529785,
+      "execution_time": 14.964974880218506,
       "error": null
     },
     {
@@ -2775,7 +2783,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.023134231567383,
+      "execution_time": 13.483386993408203,
       "error": null
     },
     {
@@ -2788,7 +2796,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 27.71228528022766,
+      "execution_time": 20.121596097946167,
       "error": null
     },
     {
@@ -2801,7 +2809,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.238318920135498,
+      "execution_time": 14.074517011642456,
       "error": null
     },
     {
@@ -2814,7 +2822,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 18.037086009979248,
+      "execution_time": 15.480642080307007,
       "error": null
     },
     {
@@ -2825,18 +2833,20 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 122.19772601127625,
+      "execution_time": 117.08960318565369,
       "error": null
     },
     {
       "task_id": "P_13337",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "B"
+      },
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 56.30507016181946,
+      "execution_time": 13.56488299369812,
       "error": null
     },
     {
@@ -2849,7 +2859,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 41.58633017539978,
+      "execution_time": 17.759749174118042,
       "error": null
     },
     {
@@ -2862,7 +2872,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 16.74164390563965,
+      "execution_time": 12.804702997207642,
       "error": null
     },
     {
@@ -2875,18 +2885,20 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 14.942005157470703,
+      "execution_time": 15.29094409942627,
       "error": null
     },
     {
       "task_id": "P_13342",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 46.83344602584839,
+      "execution_time": 14.275192260742188,
       "error": null
     },
     {
@@ -2899,7 +2911,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.312175035476685,
+      "execution_time": 19.870638132095337,
       "error": null
     },
     {
@@ -2912,7 +2924,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 16.20454716682434,
+      "execution_time": 19.60110330581665,
       "error": null
     },
     {
@@ -2925,7 +2937,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 23.330193042755127,
+      "execution_time": 16.2819881439209,
       "error": null
     },
     {
@@ -2938,7 +2950,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 23.440692901611328,
+      "execution_time": 14.042801141738892,
       "error": null
     },
     {
@@ -2951,7 +2963,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.926326036453247,
+      "execution_time": 15.9374361038208,
       "error": null
     },
     {
@@ -2964,7 +2976,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 22.896116971969604,
+      "execution_time": 15.24122428894043,
       "error": null
     },
     {
@@ -2972,23 +2984,25 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "C"
+        "hazard_class": "D"
       },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 14.866547346115112,
+      "execution_time": 16.534282684326172,
       "error": null
     },
     {
       "task_id": "P_13356",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 49.54497003555298,
+      "execution_time": 14.791297197341919,
       "error": null
     },
     {
@@ -3001,7 +3015,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 24.118571996688843,
+      "execution_time": 12.777008771896362,
       "error": null
     },
     {
@@ -3014,7 +3028,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.84169602394104,
+      "execution_time": 17.728127002716064,
       "error": null
     },
     {
@@ -3027,7 +3041,7 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 19.60248589515686,
+      "execution_time": 14.233120203018188,
       "error": null
     },
     {
@@ -3040,7 +3054,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 15.368721008300781,
+      "execution_time": 15.26180100440979,
       "error": null
     },
     {
@@ -3053,7 +3067,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 28.56938099861145,
+      "execution_time": 15.120643138885498,
       "error": null
     },
     {
@@ -3066,7 +3080,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.437052726745605,
+      "execution_time": 15.251485109329224,
       "error": null
     },
     {
@@ -3079,7 +3093,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 33.42373609542847,
+      "execution_time": 13.531110048294067,
       "error": null
     },
     {
@@ -3092,7 +3106,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.34114694595337,
+      "execution_time": 16.27982807159424,
       "error": null
     },
     {
@@ -3105,7 +3119,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 12.456719160079956,
+      "execution_time": 16.07559585571289,
       "error": null
     },
     {
@@ -3118,7 +3132,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 24.44182276725769,
+      "execution_time": 13.879143953323364,
       "error": null
     },
     {
@@ -3131,7 +3145,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 31.26098084449768,
+      "execution_time": 15.87903118133545,
       "error": null
     },
     {
@@ -3144,7 +3158,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 37.38111996650696,
+      "execution_time": 13.408699989318848,
       "error": null
     },
     {
@@ -3157,18 +3171,20 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 21.576058864593506,
+      "execution_time": 20.030545949935913,
       "error": null
     },
     {
       "task_id": "P_13373",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 56.10342502593994,
+      "execution_time": 14.491090774536133,
       "error": null
     },
     {
@@ -3181,7 +3197,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 17.233139038085938,
+      "execution_time": 13.254122018814087,
       "error": null
     },
     {
@@ -3192,31 +3208,31 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 104.64563012123108,
+      "execution_time": 127.6101348400116,
       "error": null
     },
     {
       "task_id": "P_13402",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "A"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 35.80762076377869,
+      "execution_time": 109.6138129234314,
       "error": null
     },
     {
       "task_id": "P_13404",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "D"
+      },
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 70.2785849571228,
+      "execution_time": 22.625091791152954,
       "error": null
     },
     {
@@ -3229,20 +3245,18 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 25.636099815368652,
+      "execution_time": 42.661463022232056,
       "error": null
     },
     {
       "task_id": "P_13406",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "D"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 17.837989807128906,
+      "execution_time": 116.91518115997314,
       "error": null
     },
     {
@@ -3253,7 +3267,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 109.95927619934082,
+      "execution_time": 97.32770705223083,
       "error": null
     },
     {
@@ -3266,7 +3280,7 @@
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 36.04057002067566,
+      "execution_time": 27.13528275489807,
       "error": null
     },
     {
@@ -3279,18 +3293,20 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 44.082900047302246,
+      "execution_time": 23.441553115844727,
       "error": null
     },
     {
       "task_id": "P_13411",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 112.12465214729309,
+      "execution_time": 57.01894187927246,
       "error": null
     },
     {
@@ -3303,7 +3319,7 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 19.48970913887024,
+      "execution_time": 18.95205807685852,
       "error": null
     },
     {
@@ -3316,18 +3332,20 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 36.14400100708008,
+      "execution_time": 26.58428120613098,
       "error": null
     },
     {
       "task_id": "P_13417",
       "success": true,
-      "is_correct": false,
-      "predicted": {},
+      "is_correct": true,
+      "predicted": {
+        "hazard_class": "C"
+      },
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 75.73212099075317,
+      "execution_time": 14.287191152572632,
       "error": null
     },
     {
@@ -3338,7 +3356,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 71.84280180931091,
+      "execution_time": 110.7234570980072,
       "error": null
     },
     {
@@ -3351,20 +3369,18 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 105.77872705459595,
+      "execution_time": 25.94798994064331,
       "error": null
     },
     {
       "task_id": "P_13423",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "C"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 20.68149709701538,
+      "execution_time": 92.36567378044128,
       "error": null
     },
     {
@@ -3377,7 +3393,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 18.156683921813965,
+      "execution_time": 24.196269989013672,
       "error": null
     },
     {
@@ -3390,7 +3406,7 @@
       "expected": {
         "hazard_class": "Hazard Class D"
       },
-      "execution_time": 28.343749046325684,
+      "execution_time": 31.133267879486084,
       "error": null
     },
     {
@@ -3398,12 +3414,12 @@
       "success": true,
       "is_correct": true,
       "predicted": {
-        "hazard_class": "A"
+        "hazard_class": "B"
       },
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 31.445744037628174,
+      "execution_time": 23.175151824951172,
       "error": null
     },
     {
@@ -3416,20 +3432,18 @@
       "expected": {
         "hazard_class": "Hazard Class B"
       },
-      "execution_time": 19.4609591960907,
+      "execution_time": 26.578817129135132,
       "error": null
     },
     {
       "task_id": "P_13432",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "C"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 27.2435462474823,
+      "execution_time": 104.71495699882507,
       "error": null
     },
     {
@@ -3442,33 +3456,29 @@
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 15.574782133102417,
+      "execution_time": 21.942936182022095,
       "error": null
     },
     {
       "task_id": "P_13434",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "D"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class C"
       },
-      "execution_time": 31.937251091003418,
+      "execution_time": 113.38027024269104,
       "error": null
     },
     {
       "task_id": "P_13436",
       "success": true,
-      "is_correct": true,
-      "predicted": {
-        "hazard_class": "A"
-      },
+      "is_correct": false,
+      "predicted": {},
       "expected": {
         "hazard_class": "Hazard Class A"
       },
-      "execution_time": 19.763025045394897,
+      "execution_time": 101.18559288978577,
       "error": null
     },
     {
@@ -3481,7 +3491,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 18.87081503868103,
+      "execution_time": 15.19829773902893,
       "error": null
     },
     {
@@ -3492,7 +3502,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 62.28063893318176,
+      "execution_time": 131.97902989387512,
       "error": null
     },
     {
@@ -3505,7 +3515,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 33.34080100059509,
+      "execution_time": 19.962394952774048,
       "error": null
     },
     {
@@ -3518,7 +3528,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 18.473840713500977,
+      "execution_time": 15.254637956619263,
       "error": null
     },
     {
@@ -3531,7 +3541,7 @@
       "expected": {
         "hazard_class": "Unable to Decide"
       },
-      "execution_time": 18.205265998840332,
+      "execution_time": 14.155617952346802,
       "error": null
     }
   ]
