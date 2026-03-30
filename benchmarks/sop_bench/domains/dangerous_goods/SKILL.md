@@ -1,30 +1,47 @@
 ---
 name: dangerous-goods
-description: Establishes a standardized methodology for the systematic identification and classification of dangerous goods hazard classes through multi-source data integration and quantitative severity assessment.
+description: Systematically identifies and classifies dangerous goods hazard classes using multi-source data and quantitative severity assessment.
 required_tools:
   - calculate_sds_label_score
   - calculate_handling_score
   - calculate_transportation_score
   - calculate_disposal_score
+output_fields:
+  - hazard_class
 ---
 
-### Step 1: Validate Product Identification Data
-Verify product identification documentation completeness using the Document Validation Protocol (DVP-2023). Cross-reference the `product_id` against the master dangerous goods database. If the `product_id` fails to meet format requirements (e.g., missing prefix, invalid character set, or non-resolvable reference), set `hazard_score` to 0 and `hazard_class` to "Unable to Decide", then terminate the procedure.
+### Step 1: Validate Product Data
+Verify the completeness of product identification documentation using the Document Validation Protocol (DVP-2023). Cross-reference the product ID against the master dangerous goods database. If the product ID fails to meet format requirements (e.g., missing "P_" prefix, invalid character set, or non-resolvable reference), stop the process immediately, set the hazard score to 0, and set the hazard class to "Unable to Decide".
 
-### Step 2: Calculate Safety Data Sheet Score
-Extract hazard statements from Section 2 of the Safety Data Sheet (SDS). Use the `calculate_sds_label_score` tool to determine the `safety_score` for the `product_id` based on the `sds_label_text`. Validate that the `safety_score` is between 1 and 5.
+### Step 2: Analyze Safety Data Sheet
+Extract hazard statements from Section 2 of the Safety Data Sheet (SDS). Use the `calculate_sds_label_score` tool with the `product_id` and `sds_label_text` to obtain a safety data sheet score. Validate that the resulting score is between 1 and 5.
 
-### Step 3: Calculate Handling and Storage Score
-Parse the provided Handling and Storage Guidelines. Use the `calculate_handling_score` tool to determine the `handling_score` for the `product_id` based on `handling_and_storage_guidelines`. Validate that the `handling_score` is between 1 and 5.
+### Step 3: Evaluate Handling and Storage
+Parse the handling and storage guidelines. Use the `calculate_handling_score` tool with the `product_id`, `handling_and_storage_guidelines`, and the `assessmentFormId` (CAF-01) to compute a handling score. Validate that the score is between 1 and 5.
 
-### Step 4: Calculate Transportation Severity Score
-Analyze the Transportation Requirements. Use the `calculate_transportation_score` tool to obtain the `transportation_score` for the `product_id` based on `transportation_requirements`. Validate that the `transportation_score` is between 1 and 5.
+### Step 4: Assess Transportation Requirements
+Analyze transportation requirements using the Transportation Compliance Module. Use the `calculate_transportation_score` tool with the `product_id` and `transportation_requirements` to obtain a transportation severity score. Validate that the score is between 1 and 5.
 
-### Step 5: Calculate Disposal Severity Score
-Process the Disposal Guidelines. Use the `calculate_disposal_score` tool to calculate the `disposal_score` for the `product_id` based on `disposal_guidelines`. Validate that the `disposal_score` is between 1 and 5.
+### Step 5: Evaluate Disposal Guidelines
+Process disposal guidelines through the waste classification API. Use the `calculate_disposal_score` tool with the `product_id` and `disposal_guidelines` to calculate a disposal severity score. Validate that the score is between 1 and 5.
 
 ### Step 6: Compute Cumulative Hazard Score
-If any individual score (safety_score, handling_score, transportation_score, disposal_score) is missing or 0, impute it by taking the maximum of the available scores. If more than two component scores are missing, set `hazard_score` to 0 and `hazard_class` to "Unable to Decide", then terminate the procedure. Calculate `hazard_score` = `safety_score` + `handling_score` + `transportation_score` + `disposal_score`. Validate that the `hazard_score` is within the acceptable range of 4-20.
+Calculate the cumulative `hazard_score` using the formula: `hazard_score = safety score + handling score + transportation score + disposal score`. 
+- If any single component is missing or 0, impute it by taking the maximum value of the other available scores.
+- If more than two component scores are missing, set the hazard class to "Unable to Decide" and the hazard score to 0.
+- Validate that the final total score is within the acceptable range (4-20) unless marked as 0.
 
-### Step 7: Determine and Document Hazard Class
-Based on the `hazard_score`, determine the `hazard_class` (A, B, C, or D), where a higher score indicates higher severity (D being the highest). Document the final `hazard_class` designation and `hazard_score` in the Hazard Classification Registry. Output the final classification in XML format with tags `<hazard_score>` and `<hazard_class>`.
+### Step 7: Determine and Register Hazard Class
+[APPROVAL REQUIRED]
+Assign a hazard class based on the cumulative score, where higher scores indicate higher severity:
+- Hazard Class A (Lowest severity)
+- Hazard Class B
+- Hazard Class C
+- Hazard Class D (Highest severity)
+- Unable to Decide (If criteria in Step 1 or Step 6 are met)
+
+Document the final classification in the Hazard Classification Registry and ensure all API response logs and audit trails are preserved. The final output must be formatted in XML.
+
+Include the final values in the summary:
+<hazard_score>value</hazard_score>
+<hazard_class>value</hazard_class>
