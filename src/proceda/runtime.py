@@ -202,6 +202,28 @@ class Runtime:
                     len(skill_cache.step_recipes),
                 )
 
+        # Load compiled steps if available
+        compiled_steps: dict[int, Any] = {}
+        if self._config.cache.enabled:
+            from proceda.compile.store import CompiledSkillStore
+
+            compiled_store = CompiledSkillStore(
+                str(Path(self._config.logging.run_dir).parent / "compiled")
+            )
+            manifest = compiled_store.load_manifest(skill.id, skill.raw_content)
+            if manifest:
+                for step_idx, info in manifest.steps.items():
+                    if info.status == "compiled":
+                        fn = compiled_store.load_step_function(skill.id, step_idx)
+                        if fn:
+                            compiled_steps[step_idx] = fn
+                if compiled_steps:
+                    logger.info(
+                        "Loaded %d compiled steps for skill %s",
+                        len(compiled_steps),
+                        skill.name,
+                    )
+
         # Create executor
         executor = Executor(
             skill=skill,
@@ -213,6 +235,7 @@ class Runtime:
             tool_schemas=tool_schemas,
             skill_cache=skill_cache,
             cache_config=self._config.cache,
+            compiled_steps=compiled_steps,
         )
 
         async def _run() -> None:

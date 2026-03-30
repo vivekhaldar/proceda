@@ -59,6 +59,7 @@ class Executor:
         max_tool_calls_per_step: int = 20,
         skill_cache: Any | None = None,
         cache_config: Any | None = None,
+        compiled_steps: dict[int, Any] | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -72,6 +73,7 @@ class Executor:
         self._max_tool_calls_per_step = max_tool_calls_per_step
         self._skill_cache = skill_cache
         self._cache_config = cache_config
+        self._compiled_steps = compiled_steps or {}
         self._step_results: dict[int, dict[str, Any]] = {}
 
     async def execute(self) -> None:
@@ -207,6 +209,60 @@ class Executor:
         """Execute a single step via the LLM loop."""
         step = self._skill.get_step(step_index)
         session = self._session
+
+        # Compiled step execution (highest priority — zero LLM calls)
+        compiled_fn = self._compiled_steps.get(step_index)
+        if compiled_fn is not None:
+            try:
+                # Build a tool caller that goes through our tool executor
+                async def _call_tool(name: str, args: dict) -> dict:
+                    tc = ToolCall(id=ToolCall.generate_id(), name=name, arguments=args)
+                    if self._tool_executor:
+                        result = await self._tool_executor.execute(tc, self._emit)
+                        content = result.get("content", "")
+                        try:
+                            return json.loads(content) if isinstance(content, str) else content
+                        except (json.JSONDecodeError, TypeError):
+                            return {"_raw": content}
+                    return {}
+
+                output = await compiled_fn(session.variables, self._step_results, _call_tool)
+                self._step_results[step_index] = output.captured_values
+
+                if output.terminate:
+                    if output.terminate_values and self._skill.output_fields:
+                        vals = " ".join(
+                            f"<{k}>{v}</{k}>" for k, v in output.terminate_values.items()
+                        )
+                        session.add_message(RunMessage.create("user", vals))
+                    await self._emit(
+                        RunEvent.create(
+                            session.id,
+                            EventType.SUMMARY_GENERATED,
+                            {"step_index": step_index, "summary": output.summary},
+                        )
+                    )
+                    # Mark remaining steps as skipped and end
+                    session.set_status(RunStatus.COMPLETED)
+                    return
+
+                if output.output_fields:
+                    vals = " ".join(f"<{k}>{v}</{k}>" for k, v in output.output_fields.items())
+                    summary = f"{output.summary}\n{vals}"
+                else:
+                    summary = output.summary
+
+                session.add_message(RunMessage.create("user", f"[Step {step_index}]: {summary}"))
+                await self._emit(
+                    RunEvent.create(
+                        session.id,
+                        EventType.SUMMARY_GENERATED,
+                        {"step_index": step_index, "summary": summary},
+                    )
+                )
+                return
+            except Exception as e:
+                logger.warning("Compiled step %d failed: %s. Falling back to LLM.", step_index, e)
 
         # Cache consultation
         hint = None
