@@ -412,6 +412,27 @@ class Executor:
             # Process tool calls
             for tc in response.tool_calls:
                 if is_control_tool(tc.name):
+                    # Guard: if cache recipe expects tool calls but none were made,
+                    # reject complete_step and tell the LLM to call the tools.
+                    if (
+                        tc.name == "complete_step"
+                        and step_tool_call_count == 0
+                        and hint is not None
+                        and self._skill_cache
+                        and self._skill_cache.get_recipe(step_index)
+                        and self._skill_cache.get_recipe(step_index).tool_call_recipes
+                    ):
+                        session.add_message(
+                            RunMessage.create(
+                                "tool",
+                                "You have not called any tools yet. "
+                                "This step requires tool calls before completion. "
+                                "Please call the required tool(s) first.",
+                                tool_call_id=tc.id,
+                            )
+                        )
+                        continue
+
                     result = await self._handle_control_tool(tc)
                     if result == "step_complete":
                         return
