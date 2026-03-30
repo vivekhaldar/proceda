@@ -1,5 +1,5 @@
 # ABOUTME: Tests for executor: iteration exhaustion, pre-approval context,
-# ABOUTME: status.changed on failure, two-tier text handling, and tool call circuit breaker.
+# ABOUTME: empty response recovery, two-tier text handling, and tool call circuit breaker.
 
 from __future__ import annotations
 
@@ -196,6 +196,125 @@ class TestFailureStatusChanged:
             if e.type == EventType.STATUS_CHANGED and e.payload.get("status") == "failed"
         ]
         assert len(status_events) == 1
+
+
+def _make_empty_response() -> LLMResponse:
+    return LLMResponse(content="", tool_calls=[])
+
+
+class TestEmptyResponseRecovery:
+    """Empty LLM responses get immediate nudges rather than silently counting."""
+
+    @pytest.mark.asyncio
+    async def test_empty_responses_get_nudge_then_recover(self) -> None:
+        """LLM returns empty twice, then recovers with complete_step."""
+        skill = parse_skill(ONE_STEP_SKILL)
+        session = RunSession.create(skill.id, skill.name)
+        collector = CollectorEventSink()
+
+        call_count = 0
+
+        async def mock_complete(messages, tools=None):
+            nonlocal call_count
+            call_count += 1
+            if call_count <= 2:
+                return _make_empty_response()
+            return _make_complete_response("Recovered.")
+
+        llm = AsyncMock()
+        llm.complete = mock_complete
+        llm.format_messages = lambda msgs: [{"role": "user", "content": "test"}]
+
+        executor = Executor(
+            skill=skill,
+            session=session,
+            llm=llm,
+            tool_executor=None,
+            human=AutoApproveHumanInterface(),
+            emit=collector.handle,
+        )
+
+        await executor.execute()
+
+        assert session.status == RunStatus.COMPLETED
+        # Two nudge messages for empty responses
+        nudge_msgs = [
+            m for m in session.messages if m.role == "user" and "empty" in m.content.lower()
+        ]
+        assert len(nudge_msgs) == 2
+
+    @pytest.mark.asyncio
+    async def test_force_complete_after_max_empty_responses(self) -> None:
+        """After 5 consecutive empty responses, step is force-completed."""
+        skill = parse_skill(ONE_STEP_SKILL)
+        session = RunSession.create(skill.id, skill.name)
+        collector = CollectorEventSink()
+
+        async def mock_complete(messages, tools=None):
+            return _make_empty_response()
+
+        llm = AsyncMock()
+        llm.complete = mock_complete
+        llm.format_messages = lambda msgs: [{"role": "user", "content": "test"}]
+
+        executor = Executor(
+            skill=skill,
+            session=session,
+            llm=llm,
+            tool_executor=None,
+            human=AutoApproveHumanInterface(),
+            emit=collector.handle,
+        )
+
+        await executor.execute()
+
+        assert session.status == RunStatus.COMPLETED
+        force_msgs = [
+            m
+            for m in session.messages
+            if m.role == "system"
+            and "empty" in m.content.lower()
+            and "force-completed" in m.content
+        ]
+        assert len(force_msgs) == 1
+
+    @pytest.mark.asyncio
+    async def test_empty_count_resets_on_tool_call(self) -> None:
+        """Empty response counter resets when a tool call happens."""
+        skill = parse_skill(ONE_STEP_SKILL)
+        session = RunSession.create(skill.id, skill.name)
+        collector = CollectorEventSink()
+
+        call_count = 0
+
+        async def mock_complete(messages, tools=None):
+            nonlocal call_count
+            call_count += 1
+            if call_count <= 3:
+                return _make_empty_response()
+            if call_count == 4:
+                # Tool call resets the counter
+                return _make_complete_response("Done after recovery.")
+            return _make_empty_response()
+
+        llm = AsyncMock()
+        llm.complete = mock_complete
+        llm.format_messages = lambda msgs: [{"role": "user", "content": "test"}]
+
+        executor = Executor(
+            skill=skill,
+            session=session,
+            llm=llm,
+            tool_executor=None,
+            human=AutoApproveHumanInterface(),
+            emit=collector.handle,
+        )
+
+        await executor.execute()
+
+        assert session.status == RunStatus.COMPLETED
+        # Should have completed successfully (tool call on call 4 reset the counter)
+        assert 1 in session.completed_steps
 
 
 def _make_app_tool_response(tool_name: str = "app__do_thing") -> LLMResponse:

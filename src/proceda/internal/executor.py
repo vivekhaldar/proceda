@@ -198,6 +198,8 @@ class Executor:
         session.add_message(RunMessage.create("user", step_prompt, is_critical=True))
 
         text_only_count = 0
+        empty_response_count = 0
+        max_empty_responses = 5
         iteration_count = 0
         step_tool_call_count = 0
         hard_cap = self._max_text_before_prompt * 5
@@ -258,8 +260,36 @@ class Executor:
                     )
                 )
 
-            # No tool calls - just text (two-tier handling)
+            # No tool calls - just text or empty (two-tier handling)
             if not response.tool_calls:
+                # Empty responses (no content AND no tool calls) get an immediate
+                # nudge rather than silently counting toward the force-complete cap.
+                # This recovers from transient LLM failures (e.g. Gemini returning
+                # empty choices) without wasting iterations.
+                if not response.content:
+                    empty_response_count += 1
+                    if empty_response_count >= max_empty_responses:
+                        logger.warning(
+                            "Step %d force-completed after %d empty LLM responses",
+                            step_index,
+                            empty_response_count,
+                        )
+                        session.add_message(
+                            RunMessage.create(
+                                "system",
+                                "Step force-completed after repeated empty LLM responses.",
+                            )
+                        )
+                        return
+                    session.add_message(
+                        RunMessage.create(
+                            "user",
+                            "Your previous response was empty. Please continue with the "
+                            "current step — call the appropriate tool or `complete_step`.",
+                        )
+                    )
+                    continue
+
                 text_only_count += 1
 
                 # Hard tier: force-complete the step
@@ -292,6 +322,7 @@ class Executor:
                 continue
 
             text_only_count = 0
+            empty_response_count = 0
 
             # If there's content with tool calls, record the assistant message with tool calls
             if not response.content:
