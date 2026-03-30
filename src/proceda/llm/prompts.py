@@ -30,6 +30,14 @@ def build_system_prompt(skill: Skill, variables: dict[str, str] | None = None) -
         "user input. Only `request_clarification` actually reaches the user.",
         "- If a step instructs you to call a specific tool, you MUST call it — do not "
         "skip tool calls based on your own judgment about whether the result is needed.",
+        "- If a step says to terminate the procedure, or you determine at any step that "
+        "the final answer is already known (e.g. invalid input, terminal condition, "
+        "early exit per the instructions), call `skip_remaining_steps` with a summary "
+        "that includes your final answer. This ends the procedure immediately.",
+        "- When a step asks you to re-run or re-evaluate using a tool you already called "
+        "in an earlier step, compare the results you already have from different steps "
+        "rather than re-calling the same tool. Stateless tools return identical results "
+        "when called with the same arguments.",
     ]
 
     if skill.output_fields:
@@ -38,8 +46,11 @@ def build_system_prompt(skill: Skill, variables: dict[str, str] | None = None) -
         parts.append("")
         parts.append(f"Output fields: {fields}")
         parts.append(
-            "When completing the FINAL step, you MUST include each output field "
-            f"in your complete_step summary using XML tags: {tags}"
+            "CRITICAL: When completing the FINAL step (or when calling "
+            "`skip_remaining_steps`), you MUST include each output field as "
+            f"literal XML tags in your summary: {tags}. "
+            "Do not describe the tags in prose — emit them directly. "
+            "The tags must appear verbatim in your summary text."
         )
 
     if variables:
@@ -86,8 +97,10 @@ def build_step_prompt(
     if is_last_step and output_fields:
         tags = "\n".join(f"  <{f}>YOUR_VALUE</{f}>" for f in output_fields)
         prompt += (
-            "\n\nIMPORTANT: This is the final step. Your complete_step summary "
-            "MUST include these output fields as XML tags:\n" + tags
+            "\n\nCRITICAL: This is the final step. Your complete_step summary "
+            "MUST include these output fields as literal XML tags:\n"
+            + tags
+            + "\nEmit the tags directly — do not describe them in prose."
         )
 
     return prompt

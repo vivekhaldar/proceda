@@ -81,14 +81,16 @@ class LLMRuntime:
         self,
         messages: list[dict[str, Any]],
         tools: list[dict[str, Any]] | None = None,
+        temperature: float | None = None,
     ) -> LLMResponse:
         """Make an LLM completion call with retries."""
-        return await self._complete_with_retry(messages, tools)
+        return await self._complete_with_retry(messages, tools, temperature)
 
     async def _complete_with_retry(
         self,
         messages: list[dict[str, Any]],
         tools: list[dict[str, Any]] | None = None,
+        temperature: float | None = None,
     ) -> LLMResponse:
         """Call the LLM with exponential backoff on retryable errors."""
         import litellm
@@ -105,7 +107,9 @@ class LLMRuntime:
                 kwargs: dict[str, Any] = {
                     "model": self._model,
                     "messages": messages,
-                    "temperature": self._config.temperature,
+                    "temperature": temperature
+                    if temperature is not None
+                    else self._config.temperature,
                     "max_tokens": self._config.max_tokens,
                 }
 

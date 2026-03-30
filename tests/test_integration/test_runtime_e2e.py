@@ -55,7 +55,7 @@ async def test_runtime_runs_to_completion():
     ]
     call_count = 0
 
-    async def mock_complete(messages, tools=None):
+    async def mock_complete(messages, tools=None, **kwargs):
         nonlocal call_count
         resp = responses[call_count]
         call_count += 1
@@ -92,7 +92,7 @@ async def test_runtime_emits_events_in_order():
     ]
     call_count = 0
 
-    async def mock_complete(messages, tools=None):
+    async def mock_complete(messages, tools=None, **kwargs):
         nonlocal call_count
         resp = responses[call_count]
         call_count += 1

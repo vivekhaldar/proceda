@@ -264,9 +264,18 @@ def run_evaluation(
     max_tasks: int | None = None,
     workers: int = 1,
     resume: bool = False,
+    task_ids: list[str] | None = None,
 ) -> dict[str, Any]:
     """Run Proceda against all tasks in a domain and return metrics."""
     tasks, input_columns, output_columns = load_benchmark_data(domain, data_dir)
+
+    if task_ids is not None:
+        allowed = set(task_ids)
+        tasks = [t for i, t in enumerate(tasks) if get_task_id(t, i) in allowed]
+        if not tasks:
+            print("Error: no tasks matched the provided task IDs")
+            sys.exit(1)
+        print(f"Filtered to {len(tasks)} tasks by task ID")
 
     if max_tasks is not None:
         tasks = tasks[:max_tasks]
@@ -424,9 +433,26 @@ def main() -> None:
     parser.add_argument(
         "--resume", action="store_true", help="Skip tasks completed in a previous run"
     )
+    parser.add_argument(
+        "--task-ids",
+        nargs="+",
+        default=None,
+        help="Run only specific task IDs (e.g. P_13057 PARTNER104)",
+    )
+    parser.add_argument(
+        "--task-ids-file",
+        default=None,
+        help="File containing task IDs to run (one per line)",
+    )
     args = parser.parse_args()
 
-    run_evaluation(args.domain, args.data_dir, args.max_tasks, args.workers, args.resume)
+    task_ids = args.task_ids
+    if args.task_ids_file:
+        with open(args.task_ids_file) as f:
+            file_ids = [line.strip() for line in f if line.strip()]
+        task_ids = (task_ids or []) + file_ids
+
+    run_evaluation(args.domain, args.data_dir, args.max_tasks, args.workers, args.resume, task_ids)
 
 
 if __name__ == "__main__":

@@ -95,7 +95,7 @@ class TestIterationExhaustion:
         # LLM always returns text-only responses, never calls complete_step
         call_count = 0
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             nonlocal call_count
             call_count += 1
             return _make_text_only_response(f"Still thinking... ({call_count})")
@@ -148,7 +148,7 @@ class TestPreApprovalContext:
 
                 return ErrorRecoveryDecision.CANCEL
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_complete_response("Done.")
 
         llm = AsyncMock()
@@ -181,7 +181,7 @@ class TestFailureStatusChanged:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             raise RuntimeError("LLM exploded")
 
         llm = AsyncMock()
@@ -230,7 +230,7 @@ class TestEmptyResponseRecovery:
 
         call_count = 0
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             nonlocal call_count
             call_count += 1
             if call_count <= 2:
@@ -266,7 +266,7 @@ class TestEmptyResponseRecovery:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_empty_response()
 
         llm = AsyncMock()
@@ -303,7 +303,7 @@ class TestEmptyResponseRecovery:
 
         call_count = 0
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             nonlocal call_count
             call_count += 1
             if call_count <= 3:
@@ -356,7 +356,7 @@ class TestSkipRemainingSteps:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_skip_remaining_response("Invalid input detected.")
 
         llm = AsyncMock()
@@ -392,7 +392,7 @@ class TestSkipRemainingSteps:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_skip_remaining_response("Done early.")
 
         llm = AsyncMock()
@@ -441,7 +441,7 @@ class TestTwoTierTextResponse:
 
         call_count = 0
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             nonlocal call_count
             call_count += 1
             return _make_text_only_response(f"Still thinking... ({call_count})")
@@ -487,7 +487,7 @@ class TestToolCallCircuitBreaker:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_app_tool_response("app__do_thing")
 
         llm = AsyncMock()
@@ -529,7 +529,7 @@ class TestToolCallCircuitBreaker:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_app_tool_response("app__do_thing")
 
         llm = AsyncMock()
@@ -571,7 +571,7 @@ class TestToolCallCircuitBreaker:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_app_tool_response("app__do_thing")
 
         llm = AsyncMock()
@@ -612,7 +612,7 @@ class TestTokenTracking:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_complete_response(
                 "Done.", prompt_tokens=100, completion_tokens=50, total_tokens=150
             )
@@ -650,7 +650,7 @@ class TestTokenTracking:
 
         call_count = 0
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             nonlocal call_count
             call_count += 1
             if call_count < 3:
@@ -695,7 +695,7 @@ class TestTokenTracking:
         session = RunSession.create(skill.id, skill.name)
         collector = CollectorEventSink()
 
-        async def mock_complete(messages, tools=None):
+        async def mock_complete(messages, tools=None, **kwargs):
             return _make_complete_response(
                 "Done.", prompt_tokens=500, completion_tokens=200, total_tokens=700
             )

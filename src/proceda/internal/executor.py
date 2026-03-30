@@ -228,6 +228,10 @@ class Executor:
         iteration_count = 0
         step_tool_call_count = 0
         hard_cap = self._max_text_before_prompt * 5
+        # Temperature escalation: bump temperature after consecutive empty responses
+        # to break out of degenerate sampling states.
+        temp_escalation = [0.1, 0.3, 0.5, 0.7, 0.9]
+        temp_override: float | None = None
 
         while iteration_count < MAX_TOOL_CALL_ITERATIONS:
             iteration_count += 1
@@ -239,7 +243,9 @@ class Executor:
             trimmed = self._context.trim_messages(session.messages)
             formatted = self._llm.format_messages(trimmed)
 
-            response = await self._llm.complete(formatted, tools=all_tools)
+            response = await self._llm.complete(
+                formatted, tools=all_tools, temperature=temp_override
+            )
 
             # Track token usage
             if response.total_tokens > 0:
@@ -293,6 +299,9 @@ class Executor:
                 # empty choices) without wasting iterations.
                 if not response.content:
                     empty_response_count += 1
+                    # Escalate temperature to break out of degenerate sampling
+                    esc_idx = min(empty_response_count - 1, len(temp_escalation) - 1)
+                    temp_override = temp_escalation[esc_idx]
                     if empty_response_count >= max_empty_responses:
                         logger.warning(
                             "Step %d force-completed after %d empty LLM responses",
@@ -305,7 +314,7 @@ class Executor:
                                 "Step force-completed after repeated empty LLM responses.",
                             )
                         )
-                        return
+                        return None
                     session.add_message(
                         RunMessage.create(
                             "user",
@@ -348,6 +357,7 @@ class Executor:
 
             text_only_count = 0
             empty_response_count = 0
+            temp_override = None
 
             # If there's content with tool calls, record the assistant message with tool calls
             if not response.content:
