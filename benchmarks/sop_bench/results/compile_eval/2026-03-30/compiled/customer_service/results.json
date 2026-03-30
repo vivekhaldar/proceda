@@ -1,0 +1,2008 @@
+{
+  "metrics": {
+    "domain": "customer_service",
+    "num_tasks": 156,
+    "num_completed": 156,
+    "num_correct": 115,
+    "tsr": 0.7371794871794872,
+    "ecr": 1.0,
+    "c_tsr": 0.7371794871794872,
+    "timestamp": "2026-03-30T01:58:23.400618"
+  },
+  "tasks": [
+    {
+      "task_id": "ABC--34572",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19292426109313965,
+      "error": null
+    },
+    {
+      "task_id": "ABC-12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 33.274625062942505,
+      "error": null
+    },
+    {
+      "task_id": "ABC-12346",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.375773191452026,
+      "error": null
+    },
+    {
+      "task_id": "ABC-34581",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.429987907409668,
+      "error": null
+    },
+    {
+      "task_id": "ABC-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 21.506350994110107,
+      "error": null
+    },
+    {
+      "task_id": "ABC-56807",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 23.212373971939087,
+      "error": null
+    },
+    {
+      "task_id": "ABC-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 27.854010105133057,
+      "error": null
+    },
+    {
+      "task_id": "BCD-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.132681131362915,
+      "error": null
+    },
+    {
+      "task_id": "BCD-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.827279806137085,
+      "error": null
+    },
+    {
+      "task_id": "BCD-34579",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 25.7914559841156,
+      "error": null
+    },
+    {
+      "task_id": "BCD-45678",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 29.21802306175232,
+      "error": null
+    },
+    {
+      "task_id": "BCD-56791",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.577597856521606,
+      "error": null
+    },
+    {
+      "task_id": "BCD-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.609479904174805,
+      "error": null
+    },
+    {
+      "task_id": "BCD-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.371085166931152,
+      "error": null
+    },
+    {
+      "task_id": "BCD-90130",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.760669946670532,
+      "error": null
+    },
+    {
+      "task_id": "CDE-12349",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 31.29339289665222,
+      "error": null
+    },
+    {
+      "task_id": "CDE-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 18.32845115661621,
+      "error": null
+    },
+    {
+      "task_id": "CDE-56798",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 24.789475917816162,
+      "error": null
+    },
+    {
+      "task_id": "CDE-78901",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 24.323191165924072,
+      "error": null
+    },
+    {
+      "task_id": "CDE-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 26.541167736053467,
+      "error": null
+    },
+    {
+      "task_id": "DEF-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 20.960857152938843,
+      "error": null
+    },
+    {
+      "task_id": "DEF-12356",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 25.763466358184814,
+      "error": null
+    },
+    {
+      "task_id": "DEF-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 19.875699996948242,
+      "error": null
+    },
+    {
+      "task_id": "DEF-56790",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 31.468544006347656,
+      "error": null
+    },
+    {
+      "task_id": "DEF-67890",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 26.030789136886597,
+      "error": null
+    },
+    {
+      "task_id": "DEF-90141",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 26.003422260284424,
+      "error": null
+    },
+    {
+      "task_id": "EFG--12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.1936171054840088,
+      "error": null
+    },
+    {
+      "task_id": "EFG--34574",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19376397132873535,
+      "error": null
+    },
+    {
+      "task_id": "EFG-45678",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 30.921458959579468,
+      "error": null
+    },
+    {
+      "task_id": "EFG-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 31.467288970947266,
+      "error": null
+    },
+    {
+      "task_id": "EFG-78901",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 24.73865509033203,
+      "error": null
+    },
+    {
+      "task_id": "FGH-01234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.633934020996094,
+      "error": null
+    },
+    {
+      "task_id": "FGH-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.923723936080933,
+      "error": null
+    },
+    {
+      "task_id": "FGH-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 20.114914894104004,
+      "error": null
+    },
+    {
+      "task_id": "FGH-56793",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 17.49164891242981,
+      "error": null
+    },
+    {
+      "task_id": "FGH-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.627912759780884,
+      "error": null
+    },
+    {
+      "task_id": "FGH-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 21.64945411682129,
+      "error": null
+    },
+    {
+      "task_id": "GHI-12351",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 28.422160148620605,
+      "error": null
+    },
+    {
+      "task_id": "GHI-12360",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 29.675291299819946,
+      "error": null
+    },
+    {
+      "task_id": "GHI-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 31.386343240737915,
+      "error": null
+    },
+    {
+      "task_id": "GHI-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 20.782426834106445,
+      "error": null
+    },
+    {
+      "task_id": "GHI-56800",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.60588812828064,
+      "error": null
+    },
+    {
+      "task_id": "GHI-78901",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.57793927192688,
+      "error": null
+    },
+    {
+      "task_id": "GHI-90123",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 39.475050926208496,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-01234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 22.122622966766357,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 25.115542888641357,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-34569",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.037709951400757,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 22.009615898132324,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.948068141937256,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-78901",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 24.946649074554443,
+      "error": null
+    },
+    {
+      "task_id": "HIJ-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 27.60234808921814,
+      "error": null
+    },
+    {
+      "task_id": "IJK-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 23.342808723449707,
+      "error": null
+    },
+    {
+      "task_id": "IJK-23456",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 21.037366151809692,
+      "error": null
+    },
+    {
+      "task_id": "IJK-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 22.001430988311768,
+      "error": null
+    },
+    {
+      "task_id": "IJK-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.673216104507446,
+      "error": null
+    },
+    {
+      "task_id": "IJK-89012",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 33.54767107963562,
+      "error": null
+    },
+    {
+      "task_id": "IJK-90127",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.259984016418457,
+      "error": null
+    },
+    {
+      "task_id": "JKL--23456",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.16587209701538086,
+      "error": null
+    },
+    {
+      "task_id": "JKL-12362",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 25.919127941131592,
+      "error": null
+    },
+    {
+      "task_id": "JKL-23457",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 57.51839303970337,
+      "error": null
+    },
+    {
+      "task_id": "JKL-56795",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 20.801826000213623,
+      "error": null
+    },
+    {
+      "task_id": "JKL-56804",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.251431941986084,
+      "error": null
+    },
+    {
+      "task_id": "JKL-67890",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 24.698955059051514,
+      "error": null
+    },
+    {
+      "task_id": "JKL-90134",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.3160400390625,
+      "error": null
+    },
+    {
+      "task_id": "KLM-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 36.19397211074829,
+      "error": null
+    },
+    {
+      "task_id": "KLM-12353",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 40.61180090904236,
+      "error": null
+    },
+    {
+      "task_id": "KLM-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 23.993586778640747,
+      "error": null
+    },
+    {
+      "task_id": "KLM-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.438397884368896,
+      "error": null
+    },
+    {
+      "task_id": "KLM-56802",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 23.59966206550598,
+      "error": null
+    },
+    {
+      "task_id": "KLM-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 27.460432052612305,
+      "error": null
+    },
+    {
+      "task_id": "LMN-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.053327083587646,
+      "error": null
+    },
+    {
+      "task_id": "LMN-23456",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.38736891746521,
+      "error": null
+    },
+    {
+      "task_id": "LMN-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 22.011807918548584,
+      "error": null
+    },
+    {
+      "task_id": "MNO--12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.1922469139099121,
+      "error": null
+    },
+    {
+      "task_id": "MNO--34578",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19275975227355957,
+      "error": null
+    },
+    {
+      "task_id": "MNO-12364",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 23.676005125045776,
+      "error": null
+    },
+    {
+      "task_id": "MNO-67891",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 24.920847177505493,
+      "error": null
+    },
+    {
+      "task_id": "MNO-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 26.8424551486969,
+      "error": null
+    },
+    {
+      "task_id": "NOP--67890",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.1929459571838379,
+      "error": null
+    },
+    {
+      "task_id": "NOP-01234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.68619704246521,
+      "error": null
+    },
+    {
+      "task_id": "NOP-12348",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 25.30236792564392,
+      "error": null
+    },
+    {
+      "task_id": "NOP-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 34.84678411483765,
+      "error": null
+    },
+    {
+      "task_id": "NOP-90136",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.498790979385376,
+      "error": null
+    },
+    {
+      "task_id": "OPQ--12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19221091270446777,
+      "error": null
+    },
+    {
+      "task_id": "OPQ--67890",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19308805465698242,
+      "error": null
+    },
+    {
+      "task_id": "OPQ-12355",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.33537530899048,
+      "error": null
+    },
+    {
+      "task_id": "OPQ-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.480560779571533,
+      "error": null
+    },
+    {
+      "task_id": "OPQ-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 31.485668182373047,
+      "error": null
+    },
+    {
+      "task_id": "OPQ-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.29112219810486,
+      "error": null
+    },
+    {
+      "task_id": "PQR--34582",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19774103164672852,
+      "error": null
+    },
+    {
+      "task_id": "PQR-01234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.049428939819336,
+      "error": null
+    },
+    {
+      "task_id": "PQR-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.467600107192993,
+      "error": null
+    },
+    {
+      "task_id": "PQR-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 24.070777893066406,
+      "error": null
+    },
+    {
+      "task_id": "PQR-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 23.910840272903442,
+      "error": null
+    },
+    {
+      "task_id": "PQR-90124",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.192217111587524,
+      "error": null
+    },
+    {
+      "task_id": "PQR-90140",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.732875108718872,
+      "error": null
+    },
+    {
+      "task_id": "QRS--34580",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.18955492973327637,
+      "error": null
+    },
+    {
+      "task_id": "QRS-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 24.98451828956604,
+      "error": null
+    },
+    {
+      "task_id": "QRS-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.354811191558838,
+      "error": null
+    },
+    {
+      "task_id": "QRS-90123",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 35.86209297180176,
+      "error": null
+    },
+    {
+      "task_id": "QRS-90131",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 24.08912682533264,
+      "error": null
+    },
+    {
+      "task_id": "RST-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 25.683958053588867,
+      "error": null
+    },
+    {
+      "task_id": "RST-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 27.09319519996643,
+      "error": null
+    },
+    {
+      "task_id": "RST-45678",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 23.46609592437744,
+      "error": null
+    },
+    {
+      "task_id": "RST-56799",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 27.122900247573853,
+      "error": null
+    },
+    {
+      "task_id": "RST-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.046106815338135,
+      "error": null
+    },
+    {
+      "task_id": "RST-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 28.30853819847107,
+      "error": null
+    },
+    {
+      "task_id": "STU--34584",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.1954631805419922,
+      "error": null
+    },
+    {
+      "task_id": "STU-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 33.95660424232483,
+      "error": null
+    },
+    {
+      "task_id": "STU-12357",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 23.140886068344116,
+      "error": null
+    },
+    {
+      "task_id": "STU-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 27.677239179611206,
+      "error": null
+    },
+    {
+      "task_id": "STU-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 21.866575002670288,
+      "error": null
+    },
+    {
+      "task_id": "STU-89012",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 24.819021224975586,
+      "error": null
+    },
+    {
+      "task_id": "STU-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 22.324899196624756,
+      "error": null
+    },
+    {
+      "task_id": "STU-90142",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 23.98720908164978,
+      "error": null
+    },
+    {
+      "task_id": "TUV-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.740103006362915,
+      "error": null
+    },
+    {
+      "task_id": "TUV-34575",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 26.59842586517334,
+      "error": null
+    },
+    {
+      "task_id": "TUV-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 26.51185894012451,
+      "error": null
+    },
+    {
+      "task_id": "TUV-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 20.199393033981323,
+      "error": null
+    },
+    {
+      "task_id": "TUV-90126",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 20.86032485961914,
+      "error": null
+    },
+    {
+      "task_id": "UVW--12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.16686606407165527,
+      "error": null
+    },
+    {
+      "task_id": "UVW-12359",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 24.705039739608765,
+      "error": null
+    },
+    {
+      "task_id": "UVW-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 25.734506130218506,
+      "error": null
+    },
+    {
+      "task_id": "UVW-56794",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 27.50709819793701,
+      "error": null
+    },
+    {
+      "task_id": "UVW-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 32.6565420627594,
+      "error": null
+    },
+    {
+      "task_id": "VWX--34586",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19697308540344238,
+      "error": null
+    },
+    {
+      "task_id": "VWX--67890",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.1942150592803955,
+      "error": null
+    },
+    {
+      "task_id": "VWX-01234",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 26.123459815979004,
+      "error": null
+    },
+    {
+      "task_id": "VWX-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 40.482112646102905,
+      "error": null
+    },
+    {
+      "task_id": "VWX-12352",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 21.638840913772583,
+      "error": null
+    },
+    {
+      "task_id": "VWX-12361",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 30.32943892478943,
+      "error": null
+    },
+    {
+      "task_id": "VWX-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 29.544180870056152,
+      "error": null
+    },
+    {
+      "task_id": "VWX-56801",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 17.778485774993896,
+      "error": null
+    },
+    {
+      "task_id": "WXY--12345",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.19295001029968262,
+      "error": null
+    },
+    {
+      "task_id": "WXY--34570",
+      "success": true,
+      "is_correct": false,
+      "predicted": {},
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 0.16675281524658203,
+      "error": null
+    },
+    {
+      "task_id": "WXY-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 21.213217973709106,
+      "error": null
+    },
+    {
+      "task_id": "WXY-90123",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.830375909805298,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-01234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 21.831434965133667,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-12363",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 25.444532871246338,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.089221000671387,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-56805",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 17.890888929367065,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.28182816505432,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-78901",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 23.66887402534485,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-89012",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.98722505569458,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-90128",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.00759506225586,
+      "error": null
+    },
+    {
+      "task_id": "XYZ-98765",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 21.912999868392944,
+      "error": null
+    },
+    {
+      "task_id": "YZA-12345",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "FAILED"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 28.500426054000854,
+      "error": null
+    },
+    {
+      "task_id": "YZA-12347",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 37.04696798324585,
+      "error": null
+    },
+    {
+      "task_id": "YZA-34567",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 26.788930892944336,
+      "error": null
+    },
+    {
+      "task_id": "YZA-56789",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.29678177833557,
+      "error": null
+    },
+    {
+      "task_id": "YZA-56796",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "expected": {
+        "final_resolution_status": "FAILED"
+      },
+      "execution_time": 33.33276319503784,
+      "error": null
+    },
+    {
+      "task_id": "YZA-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.20123600959778,
+      "error": null
+    },
+    {
+      "task_id": "YZA-90137",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 25.70080304145813,
+      "error": null
+    },
+    {
+      "task_id": "ZAB-45678",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "expected": {
+        "final_resolution_status": "RESOLVED"
+      },
+      "execution_time": 21.26036787033081,
+      "error": null
+    },
+    {
+      "task_id": "ZAB-67890",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "execution_time": 22.790109872817993,
+      "error": null
+    },
+    {
+      "task_id": "ZAB-89012",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "final_resolution_status": "ESCALATED"
+      },
+      "expected": {
+        "final_resolution_status": "PENDING_ACTION"
+      },
+      "execution_time": 28.171195030212402,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,2107 @@
+{
+  "metrics": {
+    "domain": "traffic_spoofing_detection",
+    "num_tasks": 161,
+    "num_completed": 161,
+    "num_correct": 142,
+    "tsr": 0.8819875776397516,
+    "ecr": 1.0,
+    "c_tsr": 0.8819875776397516,
+    "timestamp": "2026-03-30T00:59:02.091609"
+  },
+  "tasks": [
+    {
+      "task_id": "PARTNER100",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.17059922218322754,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER101",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15822291374206543,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER102",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15829706192016602,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER103",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15691494941711426,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER104",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15767812728881836,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER105",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15866422653198242,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER106",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1572890281677246,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER107",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1554100513458252,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER108",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1586921215057373,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER109",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15812206268310547,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER110",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15746092796325684,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER111",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15738606452941895,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER112",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15838098526000977,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER113",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15716195106506348,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER114",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15835118293762207,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER116",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1568892002105713,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER117",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15933799743652344,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER122",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1572730541229248,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER123",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15771484375,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER124",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15774202346801758,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER125",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15799975395202637,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER126",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15829825401306152,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER128",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15893197059631348,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER130",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15778088569641113,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER131",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15723013877868652,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER133",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.16983509063720703,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER136",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15775179862976074,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER137",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.17134809494018555,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER138",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1604900360107422,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER139",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.16510725021362305,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER140",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.16235113143920898,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER142",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1581859588623047,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER143",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15732622146606445,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER145",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1574690341949463,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER146",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15683889389038086,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER147",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15698909759521484,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER148",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15546393394470215,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER149",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15499615669250488,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER150",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15646576881408691,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER152",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15643787384033203,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER153",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15828394889831543,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER154",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1576519012451172,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER155",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15670132637023926,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER156",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15558600425720215,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER157",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15689396858215332,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER158",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15994596481323242,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER159",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1586921215057373,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER161",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15729928016662598,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER162",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15739798545837402,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER164",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1556389331817627,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER165",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15702509880065918,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER166",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15608882904052734,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER167",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15685319900512695,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER168",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1558380126953125,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER170",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15704798698425293,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER171",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1565558910369873,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER172",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15616321563720703,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER173",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15621089935302734,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER174",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15617895126342773,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER175",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15707111358642578,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER178",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15668606758117676,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER180",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15567708015441895,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER181",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15625,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER183",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15746092796325684,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER184",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15817999839782715,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER185",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15719819068908691,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER187",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15640497207641602,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER188",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15502691268920898,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER190",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1553199291229248,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER191",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15565204620361328,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER192",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15655803680419922,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER193",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.1640629768371582,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER194",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15816521644592285,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER195",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1569962501525879,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER197",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15571808815002441,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER198",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15592694282531738,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER199",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1680619716644287,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER200",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15714693069458008,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER201",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15639495849609375,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER203",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15859508514404297,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER204",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1575760841369629,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER207",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15610408782958984,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER208",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15588617324829102,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER209",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15543341636657715,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER210",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15715479850769043,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER211",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15836405754089355,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER212",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1580801010131836,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER213",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15743803977966309,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER214",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1568589210510254,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER217",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.16974115371704102,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER218",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1591179370880127,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER219",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.16010618209838867,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER220",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15684986114501953,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER221",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1662149429321289,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER223",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1588590145111084,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER224",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15560102462768555,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER225",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.1554102897644043,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER226",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15629076957702637,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER228",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15921378135681152,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER229",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.16252613067626953,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER230",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15778183937072754,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER231",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15619206428527832,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER233",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15597224235534668,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER234",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15650486946105957,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER235",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15618610382080078,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER236",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15539789199829102,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER237",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15570378303527832,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER238",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15643596649169922,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER239",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15716099739074707,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER240",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15964794158935547,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER241",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1571028232574463,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER242",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15639185905456543,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER243",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1591169834136963,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER245",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15672588348388672,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER246",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15768003463745117,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER247",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15723013877868652,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER248",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15745806694030762,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER249",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15610885620117188,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER251",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15488696098327637,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER252",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15562891960144043,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER253",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15561795234680176,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER254",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1571500301361084,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER255",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15690374374389648,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER256",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15894794464111328,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER257",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15682482719421387,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER258",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15661287307739258,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER259",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.16495108604431152,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER260",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15885686874389648,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER261",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15645408630371094,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER262",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15746307373046875,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER263",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15667414665222168,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER264",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15657496452331543,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER265",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1585679054260254,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER266",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15581917762756348,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER267",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1643061637878418,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER268",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15787291526794434,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER269",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15744304656982422,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER270",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1559450626373291,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER271",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15749311447143555,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER272",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.16611671447753906,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER273",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15836596488952637,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER274",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.1551969051361084,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER275",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15819215774536133,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER278",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15886688232421875,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER279",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1556692123413086,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER280",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15922904014587402,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER281",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.16440701484680176,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER282",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.16713762283325195,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER283",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15918803215026855,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER284",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1670842170715332,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER285",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1565558910369873,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER287",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.157426118850708,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER289",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.1582338809967041,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER290",
+      "success": true,
+      "is_correct": false,
+      "predicted": {
+        "enforcement_action": "Warning Issued"
+      },
+      "expected": {
+        "enforcement_action": "No Action"
+      },
+      "execution_time": 0.15682506561279297,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER291",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15719079971313477,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER292",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.1564488410949707,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER293",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1564807891845703,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER294",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.15784788131713867,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER297",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15684914588928223,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER298",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "execution_time": 0.1580359935760498,
+      "error": null
+    },
+    {
+      "task_id": "PARTNER299",
+      "success": true,
+      "is_correct": true,
+      "predicted": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "expected": {
+        "enforcement_action": "Temporary Suspension"
+      },
+      "execution_time": 0.15888404846191406,
+      "error": null
+    }
+  ]
+}

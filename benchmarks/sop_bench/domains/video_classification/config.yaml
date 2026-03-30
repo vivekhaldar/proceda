@@ -19,3 +19,4 @@ apps:
       - video_classification
       - --data-dir
       - /Users/haldar/repos/3p/sop-bench/src/amazon_sop_bench/benchmarks/data
+
