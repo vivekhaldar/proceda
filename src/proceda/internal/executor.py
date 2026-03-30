@@ -624,7 +624,7 @@ def _build_hint_from_recipe(recipe: StepRecipe) -> str:
     if not recipe.tool_call_recipes:
         return ""
 
-    lines = ["In previous successful executions, this step followed this pattern:"]
+    lines = ["Hint from previous executions (you MUST still call the tools and complete_step):"]
     for i, tc in enumerate(recipe.tool_call_recipes, 1):
         arg_descriptions = []
         for arg_name, mapping in tc.argument_mappings.items():
@@ -635,7 +635,7 @@ def _build_hint_from_recipe(recipe: StepRecipe) -> str:
             elif mapping.source == ArgumentSourceType.LITERAL:
                 arg_descriptions.append(f"{arg_name} = {mapping.literal_value!r}")
         args_text = ", ".join(arg_descriptions)
-        lines.append(f"{i}. Called `{tc.tool_name}` with: {args_text}")
+        lines.append(f"{i}. Call `{tc.tool_name}` with: {args_text}")
 
-    lines.append("Follow this pattern if applicable to the current inputs.")
+    lines.append("You MUST call the tool(s) above, then call complete_step with the result.")
     return "\n".join(lines)
