@@ -1,30 +1,32 @@
-# Skills, Not SDKs: How SKILL.md Replaces the Entire Google ADK
+# Skills, Not SDKs: How SKILL.md Compares to the Google ADK
 
-**Thesis:** You don't need to write code in ADK/LangGraph/LangChain/CrewAI to build agents. A well-written Standard Operating Procedure (SKILL.md) plus a thin runtime harness (Proceda) can replace the entire functionality set of a modern agent development kit.
+**Thesis:** For repeatable, regulated, human-reviewed workflows — the kind that enterprises write SOPs for — you don't need to write code in an agent SDK. A well-written Standard Operating Procedure (SKILL.md) plus a thin runtime harness (Proceda) can replace much of what a general-purpose agent development kit provides.
 
-This document maps every capability in [Google ADK 2.0](https://adk.dev/agents/) to its Proceda/SKILL.md equivalent — showing what maps directly, what maps with a different philosophy, and what genuinely requires extension.
+This document maps capabilities in [Google ADK 2.0](https://adk.dev/agents/) to their Proceda/SKILL.md equivalents — showing what maps directly, what maps with a different philosophy, what Proceda does better, and where ADK remains broader.
 
 ---
 
 ## Part 1: The Core Philosophical Shift
 
-ADK says: **"Define agents in code. Compose them with classes. Wire behavior with callbacks."**
+ADK's primary mode is: **"Define agents in code. Compose them with classes. Wire behavior with callbacks."**
 ([ADK: About](https://adk.dev/get-started/about/))
 
 Proceda says: **"Write a procedure. The procedure IS the agent."**
 
-This isn't a superficial difference. It changes everything:
+**Important caveat:** ADK is converging toward Proceda's territory. ADK 2.0 includes experimental [Skills for ADK agents](https://adk.dev/skills/) (using `SKILL.md` files based on the [Agent Skill specification](https://agentskills.io/specification)) and [YAML Agent Config](https://adk.dev/agents/config/) for building agents without code. These features are experimental and more limited than ADK's full Python API, but the direction is clear: Google recognizes that not every agent needs to be defined in code.
 
-| ADK Mental Model | Proceda Mental Model |
+That said, the approaches differ significantly in emphasis:
+
+| ADK (typical usage) | Proceda |
 |---|---|
-| Agent = Python class with config | Agent = Markdown document with steps |
-| Orchestration = Code composition | Orchestration = Step ordering + natural language |
+| Agent = Python class or YAML config | Agent = Markdown document with steps |
+| Orchestration = Code composition or graph DSL | Orchestration = Step ordering + natural language |
 | Behavior control = Callbacks + plugins | Behavior control = Step instructions + approval gates |
 | State = Programmatic key-value store | State = Conversation context + variables |
 | Planning = LLM or workflow graph | Planning = The SOP itself |
-| Testing = Unit tests + eval framework | Testing = SOP-Bench (run procedure, check outputs) |
+| Testing = Eval framework + web UI | Testing = SOP-Bench (run procedure, check outputs) |
 
-The key insight: **most "agent framework features" are solutions to problems created by the framework itself.** When you write a procedure in natural language, you don't need a `SequentialAgent` class — you just write Step 1, Step 2, Step 3. You don't need a `before_model_callback` — you just write "Before responding, verify that..." in the step instructions.
+Proceda's insight: **for SOP-style workflows, most "agent framework features" are solutions to problems created by the framework itself.** When you write a procedure in natural language, you don't need a `SequentialAgent` class — you just write Step 1, Step 2, Step 3. You don't need a `before_model_callback` — you just write "Before responding, verify that..." in the step instructions.
 
 ### A Note on Orthogonal Concerns
 
@@ -36,21 +38,19 @@ Several capabilities ADK bundles are **not agent framework features** — they'r
 
 These are excluded from the gap analysis below. Any agent harness (including Proceda) could add these by integrating with the underlying infrastructure/model APIs — they don't require a specific agent SDK.
 
-### The Scorecard (Agent Abstractions Only)
+### The Scorecard
 
-Once you strip out the orthogonal infrastructure, the gap analysis across ADK's ~35 agent-abstraction capabilities looks like this:
+The gap analysis depends on scope. For **SOP-style workflows** (Proceda's target), most gaps are small. For **general-purpose agent systems**, ADK remains substantially broader.
 
 | Gap Level | Count | Examples |
 |---|---|---|
-| **No gap** | 18 | Sequential execution, MCP tools, config, events, audit, replay, multi-model, secret redaction, context management |
-| **Low gap** | 12 | Tool auth, access control, guardrails, state templating, artifacts, input validation (different mechanism, same outcome) |
-| **Medium gap** | 2 | Parallel LLM chains, sub-skill composition |
-| **High gap** | 0 | — |
-| **Proceda ahead** | 4 | Human-in-the-loop, tool confirmation, replay, SOP linting/conversion |
+| **No gap** | 12 | Sequential execution, MCP tools, multi-model, events, audit, secret redaction, state templating, config |
+| **Low gap** | 8 | Tool auth, access control, session state, artifacts (partial), observability, evaluation |
+| **Medium gap** | 7 | Sub-skill composition, long-term memory, plugins/callbacks, A2A, streaming tools, context compaction, durable sessions |
+| **High gap** | 5 | True parallel execution, native graph/dynamic workflows, programmatic guardrails, web UI / API server, artifact services |
+| **Proceda ahead** | 3 | Human-in-the-loop markers, `proceda replay`, SOP linting/conversion |
 
-The only genuine architectural gap in the agent abstraction layer is **sub-skill composition** (one skill invoking another). Parallel execution is the other medium gap, but it's arguably a runtime scheduling concern, not an agent abstraction concern.
-
-**The punchline:** The only thing an agent SDK gives you over a well-written SOP is sub-agent composition — and that's a thin bridge to build, not a framework to buy.
+For SOP workflows specifically, the high gaps matter less — you rarely need parallel LLM chains or graph DAGs to process an expense report. But for general-purpose agent building, ADK's breadth is real.
 
 ---
 
@@ -167,11 +167,11 @@ gatherer = ParallelAgent(
 )
 ```
 
-**Proceda today:** A single step that instructs the LLM to gather multiple pieces of information. The LLM can make multiple tool calls within one step, and modern LLMs handle this naturally.
+**Proceda today:** A single step that instructs the LLM to gather multiple pieces of information. The LLM may return multiple tool calls in one response, but Proceda's executor processes them **sequentially** (`for tc in response.tool_calls: await ...` in `executor.py`). There is no concurrent execution.
 
 ```markdown
 ### Step 1: Gather data from all sources
-Fetch the following information simultaneously:
+Fetch the following information:
 - Current weather conditions from the weather service
 - Top news headlines from the news API
 - Current traffic conditions from the traffic service
@@ -179,9 +179,9 @@ Fetch the following information simultaneously:
 Collect all results before proceeding.
 ```
 
-**Honest assessment:** This works for tool-level parallelism (LLM issues multiple tool calls), but doesn't provide true concurrent execution of separate LLM reasoning chains. For most SOP use cases, tool-level parallelism is sufficient. True parallel agent execution would require a Proceda extension (e.g., a `[PARALLEL]` marker or nested skill invocation).
+**Honest assessment:** This is a real gap. ADK's `ParallelAgent` runs independent LLM reasoning chains concurrently, and its graph workflows support fan-out routes. Proceda has neither concurrent tool execution nor parallel LLM chains. For most SOP use cases (sequential procedures), this doesn't matter. For data-gathering or fan-out patterns, it's a meaningful limitation.
 
-**Gap level: Medium.** Works for 80% of cases. The remaining 20% (independent LLM reasoning chains) would need a `parallel_skills` mechanism.
+**Gap level: High.** No parallelism at any level — neither tool calls nor LLM chains.
 
 ---
 
@@ -318,7 +318,7 @@ Notify the product team.
 
 **Honest assessment:** This works well for simple branching (2-5 paths). For complex DAGs with many nodes and conditional edges, the natural language approach gets verbose and error-prone. However, complex DAGs in agent systems are often a code smell — if your workflow has 15 conditional branches, you probably need multiple simpler SOPs, not one complex graph.
 
-**Gap level: Low** for typical routing. **Medium-High** for genuinely complex graph workflows — but the Proceda philosophy would argue those should be decomposed into simpler skills.
+**Gap level: High** for graph workflows. ADK's `Workflow` class with typed edges, conditional routing, fan-out, and `RequestInput` nodes is a fundamentally different capability. Proceda has no graph DSL — conditional logic lives in natural language instructions, which the LLM may or may not follow correctly. For simple 2-3 way branching this works fine; for complex DAGs it's not a substitute.
 
 ---
 
@@ -412,7 +412,7 @@ with the topic from Step 1. Wait for completion and use the results.
 | **Iterative Refinement** | Multiple review/revise steps + `skip_remaining_steps` | Low-Medium |
 | **Broker/Router** | Conditional step instructions ("if X, do Y") | Low |
 | **Data Pipeline** | Sequential steps (the default) | None |
-| **Parallel Specialists** | Single step with multiple tool calls | Medium |
+| **Parallel Specialists** | Not supported (sequential tool calls) | High |
 
 ---
 
@@ -571,11 +571,13 @@ required_tools:
 
 ([ADK: Tool Confirmation](https://adk.dev/tools-custom/confirmation/))
 
-**ADK:** Tool confirmation via callback or UI integration — developer builds the confirmation flow.
+**ADK:** Built-in tool confirmation via `require_confirmation` flag or `request_confirmation()` method. Supports boolean confirmation, conditional confirmation (e.g., only confirm amounts > $1000), advanced structured data requests, and remote confirmation via REST API.
 
-**Proceda:** `[APPROVAL REQUIRED]` and `[PRE-APPROVAL REQUIRED]` markers on steps. The runtime handles the entire confirmation flow through the `HumanInterface` protocol.
+**Proceda:** `[APPROVAL REQUIRED]` and `[PRE-APPROVAL REQUIRED]` markers on steps. The runtime handles the confirmation flow through the `HumanInterface` protocol. Confirmation is at the step level, not the individual tool-call level.
 
-**Gap level: Proceda is ahead.** Confirmation is a first-class document-level concern, not a code-level concern.
+**Comparison:** ADK's confirmation is more granular (per-tool-call, conditional). Proceda's is more visible (document-level markers). Both are real primitives.
+
+**Gap level: Low.** Different granularity. ADK confirms individual tool calls; Proceda confirms entire steps. For SOPs, step-level approval is usually the right granularity.
 
 ---
 
@@ -706,9 +708,9 @@ await tool_context.save_artifact("chart.png", part)
 
 Versioned binary data with `ArtifactService` interface. Backends: `InMemoryArtifactService`, `GcsArtifactService`.
 
-**Proceda:** MCP tool results can include artifacts (`MCPArtifact` with content_type and content). The event log stores artifacts in the run directory.
+**Proceda:** MCP tool results can include artifacts (`MCPArtifact` with content_type and content), and the tool executor carries artifact metadata in tool results. However, `EventLogWriter.write_artifact()` exists but is **not wired into the execution pipeline** — artifacts are not actually persisted to the run directory during execution today.
 
-**Gap level: Low.** Proceda supports artifacts through MCP but doesn't have a standalone artifact service for storing/retrieving binary data across runs. For most SOP use cases (processing documents, generating reports), tool-level artifact handling is sufficient.
+**Gap level: Medium.** Artifact metadata flows through tool results, but there's no artifact storage or retrieval service. The plumbing exists; the wiring doesn't.
 
 ---
 
@@ -839,27 +841,26 @@ In Proceda, these patterns map to:
 
 ### 2.6 Human-in-the-Loop
 
-**This is where Proceda is stronger than ADK.**
+([ADK: Human Input in Workflows](https://adk.dev/workflows/human-input/), [ADK: Tool Confirmation](https://adk.dev/tools-custom/confirmation/))
 
-([ADK: Human Input in Workflows](https://adk.dev/workflows/human-input/))
+#### ADK Approach
 
-#### ADK Approach: Build It Yourself
+ADK 2.0 has real HITL primitives — this has improved significantly:
 
-ADK has no built-in human-in-the-loop primitives. The [workflow docs](https://adk.dev/workflows/human-input/) suggest patterns like:
-- Store pending decisions in session state
-- Build a separate approval UI
-- Poll for decisions
-- Resume agent on approval
+1. **[`RequestInput`](https://adk.dev/workflows/human-input/) nodes** in graph workflows — pause execution and request human input with optional message, payload, and response schema. Available since ADK Python v2.0.0.
+2. **[`require_confirmation` / `request_confirmation`](https://adk.dev/tools-custom/confirmation/)** on tools — pause before tool execution for boolean approval or structured data input. Available since ADK Python v1.14.0.
+3. **Remote confirmation** via REST API — handle confirmations through external channels (email, chat, etc.).
 
 ```python
-# ADK: You write all of this yourself
-def request_approval(tool_context, action, reason):
-    approval_id = store_approval_request(action, reason, ...)
-    return {"approval_id": approval_id, "status": "pending"}
-    # Then you need: approval UI, polling, session resumption...
+# ADK: RequestInput in graph workflow
+def approval_step():
+    yield RequestInput(message="Approve this transfer?", response_schema=str)
+
+# ADK: Tool confirmation
+FunctionTool(reimburse, require_confirmation=True)
 ```
 
-#### Proceda Approach: First-Class Primitives
+#### Proceda Approach
 
 Proceda has **four** built-in HITL mechanisms:
 
@@ -884,9 +885,14 @@ The `HumanInterface` protocol has three implementations:
 - `AutoApproveHumanInterface` — For testing/CI
 - `ScriptedHumanInterface` — Deterministic testing with pre-scripted responses
 
-**Proceda advantage:** Human oversight is a *document-level* concern, visible in the SOP itself. Reviewers can see exactly where humans are in the loop by scanning for `[APPROVAL REQUIRED]` markers. In ADK, approval logic is scattered across callbacks, tools, and custom code.
+#### Comparison
 
-**Gap level: Proceda is ahead.** ADK's HITL is DIY. Proceda's is built-in and declarative.
+Both frameworks now have real HITL. The difference is where approval logic lives:
+
+- **ADK:** HITL is wired in code — `RequestInput` nodes in graph definitions, `require_confirmation` on tool constructors. Flexible and programmable, but approval points are only visible by reading the code.
+- **Proceda:** HITL is visible in the document — `[APPROVAL REQUIRED]` markers are scannable by non-engineers. A compliance officer can audit where humans are in the loop by reading the SKILL.md alone.
+
+**Gap level: Proceda has an edge** for SOP auditability. ADK has an edge for programmatic confirmation flows (e.g., conditional confirmation based on amount thresholds). Both have real primitives — neither is DIY.
 
 ---
 
@@ -905,11 +911,13 @@ The `HumanInterface` protocol has three implementations:
 | **Rate limiting** | Custom plugin | Per-step tool call limit (default 20) |
 | **Audit trail** | Custom logging | Built-in: JSONL event log |
 
-**Proceda advantage:** Guardrails are visible in the procedure document. A compliance officer can read the SKILL.md and see every safety check. In ADK, safety logic is buried in Python callbacks.
+**Proceda advantage:** Guardrails are visible in the procedure document. A compliance officer can read the SKILL.md and see every safety check.
 
-**Proceda limitation:** No programmatic guardrails at the LLM request/response level. You're trusting the LLM to follow the instructions in the SOP. For high-stakes applications, you might want a separate safety model check — this could be added as an MCP tool or a runtime-level feature.
+**Proceda limitation:** A validation step that says "check for prompt injection" is **not equivalent** to a deterministic `before_model_callback` that runs code before the LLM sees the input. In high-stakes settings, "tell the LLM not to do X" is fundamentally weaker than enforcing X in code before the model or tool call. ADK's callbacks execute deterministic code at precise points in the pipeline; Proceda's steps rely on the LLM following instructions.
 
-**Gap level: Low-Medium.** Different philosophy (declarative vs. programmatic), but both achieve the goal. Proceda's approach is more auditable; ADK's is more programmable.
+The denylist/allowlist is the one exception — those are enforced deterministically in Proceda's runtime, not by the LLM.
+
+**Gap level: Medium-High.** Proceda is more auditable; ADK is more enforceable. For regulated workflows where auditability matters most, Proceda's approach works. For safety-critical systems where you need deterministic enforcement (not LLM compliance), ADK's programmatic callbacks are stronger.
 
 ---
 
@@ -966,10 +974,10 @@ Both systems are event-driven. Proceda's is actually more comprehensive for SOP 
 |---|---|---|
 | **Token budgeting** | Context caching, compaction | `ContextManager` with configurable budget (100k default, 4k reserve) |
 | **History trimming** | Context compaction plugin | Automatic: preserve system + critical messages, trim oldest non-critical |
-| **Step summarization** | Not built-in (manual) | Built-in: after step completion, messages summarized |
+| **Step summarization** | Not built-in (manual) | `ContextManager.summarize_completed_step()` exists but is **not called** in the runtime — not wired yet |
 | **Caching** | Gemini context caching | Not built-in (model-level if supported) |
 
-**Gap level: Low.** Both handle context management. Proceda's step-based summarization is actually a better fit for SOPs — each completed step collapses to a summary, keeping context focused.
+**Gap level: Low-Medium.** Proceda has token budgeting and history trimming. Step summarization (compacting completed steps into summaries to save context) is implemented but not yet wired into the execution pipeline. The `SUMMARY_GENERATED` event is emitted from `complete_step`, but that's a log event, not actual context compaction.
 
 ---
 
@@ -1015,15 +1023,15 @@ Features: trajectory evaluation, response metrics (exact match, semantic similar
 
 | Aspect | ADK | Proceda |
 |---|---|---|
-| **Agent config** | Python code (class params) | SKILL.md frontmatter |
-| **Model config** | Per-agent in code | `proceda.yaml` (global or overridable) |
-| **Tool config** | Python code | `proceda.yaml` apps section |
+| **Agent config** | Python code, or [YAML Agent Config](https://adk.dev/agents/config/) (experimental) | SKILL.md frontmatter |
+| **Model config** | Per-agent in code or YAML | `proceda.yaml` (global or overridable) |
+| **Tool config** | Python code or YAML | `proceda.yaml` apps section |
 | **Security config** | Callbacks/plugins | `proceda.yaml` security section |
 | **Runtime config** | `RunConfig` object | `proceda.yaml` + CLI flags |
 
-**Proceda advantage:** Configuration is declarative YAML, not code. Easier to version-control, review, and modify without touching Python.
+**Note:** ADK's YAML Agent Config is converging toward a no-code agent definition, similar in spirit to SKILL.md. However, it's experimental, Gemini-only, and doesn't include step-based execution or approval markers.
 
-**Gap level: None.** Different approach, but Proceda's is arguably better for the SOP use case.
+**Gap level: None.** Both support YAML-based configuration. Proceda's is simpler for SOPs.
 
 ---
 
@@ -1091,32 +1099,32 @@ Features: trajectory evaluation, response metrics (exact match, semantic similar
 |---|---|---|---|
 | **[LlmAgent](https://adk.dev/agents/llm-agents/)** | SKILL.md | None | The skill IS the agent |
 | **[SequentialAgent](https://adk.dev/agents/workflow-agents/sequential-agents/)** | Steps 1, 2, 3... | None | Built-in primitive |
-| **[ParallelAgent](https://adk.dev/agents/workflow-agents/parallel-agents/)** | Multi-tool-call step | Medium | No true parallel LLM chains |
+| **[ParallelAgent](https://adk.dev/agents/workflow-agents/parallel-agents/)** | Not supported | High | No parallel execution at any level |
 | **[LoopAgent](https://adk.dev/agents/workflow-agents/loop-agents/)** | Repeated steps + skip_remaining | Low-Med | Works for 1-3 iterations |
 | **[CustomAgent](https://adk.dev/agents/custom-agents/)** | MCP tool + detailed steps | Low | Compute goes in tools |
-| **[Graph Workflow](https://adk.dev/workflows/graph-routes/)** | Conditional step instructions | Med | Verbose for complex DAGs |
+| **[Graph Workflow](https://adk.dev/workflows/graph-routes/)** | Conditional step instructions | High | No graph DSL; NL branching only |
 | **[Multi-Agents](https://adk.dev/agents/multi-agents/)** | Role-per-step / skill-as-tool | Medium | No native sub-skill yet |
 | **[Function tools](https://adk.dev/tools-custom/function-tools/)** | MCP tools | None | Different mechanism, same result |
 | **[MCP tools](https://adk.dev/tools-custom/mcp-tools/)** | MCP tools | None | Native in both |
 | **[Built-in tools](https://adk.dev/integrations/)** | MCP tools | None | Philosophy: tools are external |
 | **[Streaming tools](https://adk.dev/streaming/streaming-tools/)** | MCP tools (blocking) | Medium | No streaming mid-tool |
 | **[Tool auth](https://adk.dev/tools-custom/authentication/)** | Env vars in config | Low | Standard MCP pattern |
-| **[Tool confirmation](https://adk.dev/tools-custom/confirmation/)** | Approval markers | **Ahead** | First-class in Proceda |
+| **[Tool confirmation](https://adk.dev/tools-custom/confirmation/)** | Approval markers | Low | Step-level vs. tool-call-level |
 | **[Session state](https://adk.dev/sessions/state/)** | Conversation context | Low-Med | No explicit key-value store |
 | **[Memory](https://adk.dev/sessions/memory/)** | Event logs (no search) | Medium | Needs memory MCP tool |
-| **[Artifacts](https://adk.dev/artifacts/)** | MCP artifacts | Low | Tool-level, not framework-level |
-| **[Callbacks](https://adk.dev/callbacks/)** | Step structure + markers | Low | Visible in document |
+| **[Artifacts](https://adk.dev/artifacts/)** | MCP artifacts (partial) | Medium | Metadata flows; storage not wired |
+| **[Callbacks](https://adk.dev/callbacks/)** | Step structure + markers | Medium | No programmatic hooks |
 | **[Plugins](https://adk.dev/plugins/)** | Event sinks + config | Medium | No arbitrary code hooks |
-| **[Safety](https://adk.dev/safety/)** | Steps + denylist + approval | Low-Med | More auditable |
-| **[Human input](https://adk.dev/workflows/human-input/)** | First-class markers | **Ahead** | Proceda is stronger here |
+| **[Safety](https://adk.dev/safety/)** | Steps + denylist + approval | Med-High | Auditable but not deterministic |
+| **[Human input](https://adk.dev/workflows/human-input/)** | First-class markers | Edge | Both have primitives; Proceda more auditable |
 | **[Events](https://adk.dev/events/)** | 26 RunEvent types | None | Richer for SOP tracking |
 | **[Evaluation](https://adk.dev/evaluate/)** | SOP-Bench | Low-Med | Different focus |
-| **[Context mgmt](https://adk.dev/context/)** | ContextManager | Low | Step summarization built-in |
-| **[Config](https://adk.dev/agents/config/)** | proceda.yaml | None | Declarative YAML |
+| **[Context mgmt](https://adk.dev/context/)** | ContextManager | Low-Med | Trimming works; summarization not wired |
+| **[Config](https://adk.dev/agents/config/)** | proceda.yaml | None | Both support YAML; Proceda's is simpler |
 | **[Multi-model](https://adk.dev/agents/models/)** | LiteLLM | None | Same approach |
 | **[Observability](https://adk.dev/observability/)** | Event log + replay | Low | Strong single-machine |
 | **[A2A](https://adk.dev/a2a/)** | Not built-in | Medium | MCP bridge possible |
-| **[Session services](https://adk.dev/sessions/session/)** | RunSession + event log | Low-Med | Single-session focus |
+| **[Session services](https://adk.dev/sessions/session/)** | RunSession + event log | Medium | No durable session service |
 | **Audit trail** | Custom logging | JSONL event log | None | Built-in |
 | **Secret redaction** | Custom plugin | Built-in config | None | Built-in |
 | **Replay** | Not in ADK | `proceda replay` | **Ahead** | Proceda-only |
@@ -1127,16 +1135,29 @@ Features: trajectory evaluation, response metrics (exact match, semantic similar
 
 ## Part 4: What Proceda Genuinely Can't Do (Yet)
 
-These are real gaps in the agent abstraction layer, not orthogonal infrastructure concerns:
+### High Gaps (ADK has it, Proceda doesn't)
 
-### 4.1 True Parallel Execution
-Multiple independent LLM reasoning chains running simultaneously. Workaround: multiple tool calls in one step. Fix: `[PARALLEL]` marker or sub-skill invocation.
+1. **True Parallel Execution.** No concurrent tool calls, no parallel LLM chains. Proceda processes everything sequentially. ADK has `ParallelAgent`, graph fan-out, and collaborative sub-agents.
 
-### 4.2 Sub-Skill Composition
-One skill calling another as a sub-routine. Workaround: role-per-step. Fix: skill-as-MCP-tool bridge.
+2. **Native Graph/Dynamic Workflows.** No graph DSL, no typed edges, no conditional routing nodes. Branching is expressed in natural language within step instructions. ADK has `Workflow` with edges, `RequestInput` nodes, and route conditions.
 
-### 4.3 Long-Term Memory with Semantic Search
-Recalling information from past runs. Workaround: manual reference. Fix: memory MCP tool indexing event logs.
+3. **Programmatic Guardrails.** No `before_model_callback` or `before_tool_callback` — no way to run deterministic code before the LLM sees input or before a tool executes. Denylist/allowlist is the exception. For everything else, you're relying on the LLM to follow instructions.
+
+4. **Web UI / API Server.** No browser-based dev UI, no REST API server. ADK has `adk web` and `adk api_server`.
+
+5. **Artifact Services.** `EventLogWriter.write_artifact()` exists but is not wired into execution. No versioned artifact storage or retrieval.
+
+### Medium Gaps
+
+6. **Sub-Skill Composition.** One skill calling another as a sub-routine. Workaround: role-per-step. Fix: skill-as-MCP-tool bridge.
+
+7. **Long-Term Memory with Semantic Search.** Event logs store everything but there's no indexing or retrieval layer. Fix: memory MCP tool.
+
+8. **Durable Session Services.** No persistent session storage across runs. Each `proceda run` is independent.
+
+9. **Plugin/Callback Hooks.** No way to inject custom code at arbitrary execution points across all skills.
+
+10. **Context Compaction.** `ContextManager.summarize_completed_step()` exists but is not called. Token budgeting and history trimming work; step summarization doesn't.
 
 ---
 
@@ -1145,8 +1166,8 @@ Recalling information from past runs. Workaround: manual reference. Fix: memory 
 ### 5.1 Auditability
 Every step, every tool call, every approval decision is logged as a structured event. The SKILL.md itself is a human-readable audit document. Compliance officers can review the procedure without reading code.
 
-### 5.2 Human Oversight
-First-class approval gates, clarification requests, and error recovery — not bolted on via callbacks. ([Compare ADK's DIY approach](https://adk.dev/workflows/human-input/) to Proceda's declarative markers.)
+### 5.2 Human Oversight Visibility
+Both Proceda and ADK have HITL primitives. Proceda's advantage is that approval points are visible in the document itself — `[APPROVAL REQUIRED]` markers are scannable by non-engineers. ADK's `RequestInput` nodes and `require_confirmation` flags live in code. For regulated workflows where auditors need to verify oversight, Proceda's approach is more accessible.
 
 ### 5.3 Accessibility
 Non-engineers can write, read, and modify SKILL.md files. The barrier to creating an agent is "can you write a procedure?" not "can you write Python."
@@ -1164,11 +1185,11 @@ No class hierarchies, no design patterns, no framework concepts to learn. Just: 
 
 ## Part 6: The Strategic Argument
 
-ADK (and frameworks like it) optimizes for **developer power** — maximum flexibility, composability, and programmability. This is valuable when you're building novel, complex agent systems.
+ADK (and frameworks like it) optimizes for **developer power** — maximum flexibility, composability, and programmability. This is valuable when you're building novel, complex agent systems. ADK is also broadening toward Proceda's territory with experimental Skills and YAML config.
 
 Proceda optimizes for **operational clarity** — readable procedures, visible oversight, auditable execution. This is valuable when you're automating real business processes that have compliance, safety, and handoff requirements.
 
-The question isn't "which is more powerful?" (ADK is). The question is: **"For the 80% of agent use cases that are essentially SOPs, do you need that power?"**
+> Proceda makes SOPs the primary execution abstraction. For regulated, repeatable, human-reviewed workflows, that is simpler and more auditable than a general-purpose agent SDK. For open-ended, stateful, multi-agent, graph, streaming, or cloud-deployed systems, ADK remains broader.
 
 Most enterprise agent deployments are:
 - Customer service routing
@@ -1184,33 +1205,38 @@ These are all SOPs. They don't need [`ParallelAgent`](https://adk.dev/agents/wor
 3. Human oversight at critical points
 4. An audit trail
 
-That's what Proceda provides.
+That's what Proceda provides. ADK can do these things too — but with more code, more abstraction, and less visibility into what the agent is actually doing.
 
 ---
 
-## Part 7: Prioritized Roadmap for Full Parity
+## Part 7: Prioritized Roadmap
 
-If the goal is to cover 95% of ADK's agent-abstraction functionality, here's the priority order:
+Not aiming for "full parity" — ADK is a broader system. Instead, these close the gaps that matter most for SOP workflows:
 
 ### P0: Sub-Skill Composition
 - `proceda serve` command exposing skills as MCP tools
 - One skill can invoke another via tool call
 - Unlocks: delegation, multi-agent patterns, complex workflows
 
-### P1: Long-Term Memory
+### P1: Concurrent Tool Execution
+- Execute independent tool calls in parallel (`asyncio.gather`)
+- Wire `ContextManager.summarize_completed_step()` into the runtime
+- Low-hanging fruit: parallel tool calls are already returned by the LLM
+
+### P2: Artifact Storage
+- Wire `EventLogWriter.write_artifact()` into tool execution
+- Store binary artifacts in run directory during execution
+- Enables: document processing workflows that produce output files
+
+### P3: Long-Term Memory
 - Memory MCP tool that indexes past run event logs
 - Semantic search over past executions
 - Enables: learning from past runs, user preference recall
 
-### P2: Parallel Step Execution
-- `[PARALLEL]` marker for steps that can run concurrently
-- Or: parallel sub-skill invocation via composition
-- Enables: independent data gathering, parallel processing
-
-### P3: Structured Output Schemas
-- Pydantic-style output validation (beyond XML tag extraction)
-- Type-checked outputs from skills
-- Enables: reliable downstream consumption of skill results
+### P4: Programmatic Pre-Tool Hooks
+- Optional `before_tool` hook in `proceda.yaml` for deterministic enforcement
+- Enables: policy enforcement without relying on LLM compliance
+- Bridges the safety gap for high-stakes workflows
 
 ---
 
