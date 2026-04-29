@@ -239,20 +239,62 @@ tests/test_voice/
 #### Inbound request shape
 
 Vapi POSTs to `POST /v1/chat/completions` with an OpenAI-shaped body **plus
-extras** under top-level keys `call`, `assistant`, `phoneNumber`, `metadata`.
-The MVP only reads:
+a Vapi-specific envelope**. The canonical body, synthesized from
+`docs.vapi.ai/customization/custom-llm/using-your-server` and the official
+Flask example at `github.com/VapiAI/server-side-example-python-flask`:
 
-- `messages: list[Message]` — the source of truth for what was said.
-- `call.id: str` — our session key.
-- `call.assistantId: str` — used to look up the SOP if `metadata.sop_id` is
-  absent.
-- `metadata.sop_id: str | None` — preferred SOP routing key (set per Vapi
-  Assistant in the Vapi dashboard).
-- `metadata.sop_version: str | None` — pin a version for replay/audit. If
-  absent, latest at call-start is pinned and stored in the session.
+```jsonc
+// Headers:
+//   Authorization: Bearer <configured-byom-token>
+//   Content-Type: application/json
+{
+  // --- Standard OpenAI fields, forwarded by Vapi ---
+  "model": "gpt-4o",                  // ignored by us — assistant-config carry
+  "messages": [
+    { "role": "system",    "content": "..." },
+    { "role": "user",      "content": "..." },
+    { "role": "assistant", "content": "..." },
+    { "role": "user",      "content": "..." }
+  ],
+  "temperature": 0.7,                 // ignored by us
+  "max_tokens": 250,                  // ignored by us
+  "stream": true,                     // ALWAYS true on voice calls; SSE expected
+  "tools": [ /* OpenAI-format tool schemas, ignored — our MCP owns tools */ ],
 
-We **ignore** Vapi's `tools`, `temperature`, `model` and everything else. Our
-SOP owns those.
+  // --- Vapi-specific envelope ---
+  "call": {
+    "id": "<call-uuid>",              // our session key
+    "orgId": "<org-uuid>",
+    "type": "outboundPhoneCall",      // | "inboundPhoneCall" | "webCall"
+    "phoneNumber":  { /* E.164 etc. */ },
+    "customer":     { "number": "+15551234567" },
+    "assistantId":  "<assistant-uuid>",
+    "startedAt":    "2026-04-29T17:01:22.001Z"
+  },
+  "metadata": { /* assistantOverrides.variableValues passthrough */ }
+}
+```
+
+The MVP reads exactly four things:
+
+- `messages: list[Message]` — source of truth for what was said.
+- `call.id: str` — session key.
+- `call.assistantId: str` — fallback SOP-resolution key if `metadata.sop_id`
+  is absent.
+- `metadata.sop_id`, `metadata.sop_version` — preferred SOP routing keys
+  (set per Vapi Assistant via `assistantOverrides.variableValues` or
+  `serverMessages` config).
+
+We **ignore** `model`, `temperature`, `max_tokens`, and `tools`. Our SOP
+owns all of those. We treat `tools` in the inbound payload as authoring
+noise — Proceda's tool registry is authoritative.
+
+> **Note on schema stability.** The full `call` schema is version-dependent
+> (Vapi exposes it at `docs.vapi.ai/api-reference/calls/create/llms-full.txt`).
+> Our payload parser must (a) ignore unknown fields, (b) snapshot the parsed
+> payload to the audit log under `vapi_request_schema_version`, and (c)
+> raise loudly on missing `call.id` or `messages` (the only true required
+> fields).
 
 Authentication: Vapi sends the bearer token configured per-Assistant. We
 verify it against `VOICE_BYOM_TOKEN` env var (single shared secret for v1).
@@ -373,22 +415,27 @@ side effects — all while yielding SSE-framed bytes.
 
 ### 4.6 Slot extension to SKILL.md
 
-Minimal additive change to `skills/parser.py`. Frontmatter:
+Minimal additive change to `skills/parser.py`. The hardened FNOL frontmatter
+demonstrates every feature:
 
 ```yaml
 ---
 name: insurance_fnol
-description: First Notice of Loss intake for auto insurance.
-sop_version: "0.1.0"
+description: First Notice of Loss intake for auto insurance,
+             with required recording-consent disclosure.
+sop_version: "0.2.0"
 
 slots:
+  - id: consent_to_record_acknowledged    # required-before-progress gating slot
+    type: boolean
+    required: true
   - id: customer_name
     type: string
     required: true
   - id: policy_number
     type: string
     required: true
-    pattern: '^\d{3}-\d{3}$'      # validation hint, not enforcement (v1)
+    pattern: '^\d{3}-\d{3}$'              # validation hint, not enforcement (v1)
   - id: incident_date
     type: date
     required: true
@@ -397,6 +444,10 @@ slots:
     required: true
   - id: incident_description
     type: string
+    required: true
+  - id: injuries_reported                  # closed-vocabulary, eval-friendly
+    type: enum
+    values: [none, minor, serious, unknown]
     required: true
   - id: vehicle_damage_description
     type: string
@@ -407,29 +458,67 @@ required_tools:
   - claims__file_fnol
 ---
 
-### Step 1: Greet
-prompt: "Hi, I'm Aria with Acme Insurance. Could I get your name and policy number?"
+### Step 1: Greet and disclose recording
+prompt: "Hi, I'm Aria with Acme Insurance. This call is being recorded for quality and claim-handling purposes — is that okay with you?"
+fills: [consent_to_record_acknowledged]
+on_mismatch: escalate_to_human            # if user refuses, no further progress
+
+### Step 2: Identify caller
+prompt: "Thanks. Could I get your name and policy number, please?"
 fills: [customer_name, policy_number]
 
-### Step 2: Verify policy
+### Step 3: Verify policy
 prompt: "Let me pull up policy {policy_number}…"
 fills: []
 calls: crm__lookup_policy(policy_number={policy_number})
-on_mismatch: confirm_then_proceed   # MVP: hard-coded handler set
+on_mismatch: confirm_then_proceed
 
-### Step 3: Gather incident
-prompt: "Can you tell me what happened? When and where did it occur?"
+### Step 4: Gather incident facts
+prompt: "Can you tell me when and where it happened, and what occurred?"
 fills: [incident_date, incident_location, incident_description]
 
-### Step 4: Gather damage
+### Step 5: Check for injuries
+prompt: "Were there any injuries — to you, anyone in your vehicle, or anyone else?"
+fills: [injuries_reported]
+
+### Step 6: Gather vehicle damage
 prompt: "What damage do you see on the vehicle?"
 fills: [vehicle_damage_description]
 
-### Step 5: File claim
+### Step 7: Confirm and file
 [APPROVAL REQUIRED]
-prompt: "Filing now…"
+prompt: "To confirm: on {incident_date} at {incident_location}, {incident_description}. Injuries: {injuries_reported}. Damage: {vehicle_damage_description}. I'll file the claim now."
 calls: claims__file_fnol(...)
 ```
+
+#### Why these specific slots
+
+- **`consent_to_record_acknowledged`** is a *required-before-progress* slot
+  with `on_mismatch: escalate_to_human`. It is the audit artifact's sharpest
+  moment: a compliance officer reading `audit.json` instantly recognizes
+  "the agent disclosed recording on this call before substantive
+  conversation, and the caller acknowledged." If the agent ever proceeds
+  without this slot filled, `deviations_from_sop` lights up unmistakably.
+  This pattern (required-before-progress gating slot) generalizes to
+  mini-Miranda for collections, GLBA disclosure for financial services,
+  HIPAA acknowledgment for healthcare, and so on. Single demo SOP, multiple
+  vertical signals.
+- **`injuries_reported` as an enum** rather than letting injury status
+  collapse into free-form `incident_description` gives the slot extractor
+  (§4.8) a closed-vocabulary target with crisp confidence scoring. Enum
+  slots are how the extraction eval (§7.7) gets reliable accuracy
+  measurements without LLM-as-judge fuzziness.
+- **6 required slots + 1 optional** sits at the upper edge of comfortable
+  for a 2–4 minute call. Drop any one and the design barely gets exercised.
+
+#### A note on terminology
+
+The FNOL SOP handles auto-policy and crash facts. That is **PII-adjacent**,
+not **PHI-adjacent** — PHI is HIPAA-protected health data specifically.
+This matters because "PHI" signals to buyers that they should expect
+HIPAA-grade controls (BAA, encryption-at-rest, FedRAMP-style audit posture).
+We do not have those (§2.2 N8). Calling FNOL "PII-adjacent" is honest and
+survivable; calling it "PHI-adjacent" picks an unwinnable fight.
 
 Notes on the format:
 
@@ -1167,6 +1256,58 @@ product.
 A compliance-officer-grade artifact is one a regulator can replay. AV-02
 is the structural guarantee for that.
 
+### 7.5b The Vapi-side test ladder (this is how we iterate on the integration)
+
+The MVP's primary feedback loop must work **without making real phone
+calls.** Each rung exercises more of the stack at higher cost; the engineer
+or AI agent climbs the ladder per change. Findings here come from a
+research pass on `docs.vapi.ai` (April 2026); the underlying primitives
+are version-pinned in §10 q7.
+
+| Rung | What it is | Cost per run | Hits BYOM endpoint? | Catches |
+|---|---|---|---|---|
+| **0. Local fixture replay** | Captured Vapi `/chat/completions` request bodies replayed against our own server with `httpx.AsyncClient` | free, offline | yes, 100% | per-turn logic, SSE framing, idempotency, audit assembly |
+| **1. Vapi Chat API** (`POST https://api.vapi.ai/chat`) | Text-only multi-turn against a real Vapi assistant | small | **only if** assistant's `model.provider = "custom-llm"` points at us | request-shape drift, auth, network |
+| **2. Simulations — `vapi.webchat`** | Scenario-driven multi-turn with tool mocks + LLM-as-judge rubric | small | yes | end-to-end conformance, regressions in conversational behavior |
+| **3. Simulations — `vapi.websocket`** | Full STT/TTS pipeline | **real telephony minutes** | yes | barge-in, endpointing, ASR errors, audio artifacts |
+| **4. Real phone call** | Manual smoke before launch | real minutes | yes | everything; the only ground truth |
+
+Rung 0 is the day-to-day loop and is already specified in §7.2. Rung 2 is
+what runs in CI on PRs. Rungs 3 and 4 are pre-release only.
+
+#### Five gotchas to bake into the implementation
+
+1. **`Test Suites` is deprecated.** Vapi's docs explicitly redirect to
+   `Simulations` (Alpha). Do not write any code against the old test-suites
+   API. Wrap Simulations in a thin adapter (`proceda.voice.testkit`) so a
+   breaking change is one edit. Tracked as a §11 risk row.
+2. **Chat API ≠ BYOM unless wired up.** It is easy to call `POST /chat`,
+   get a plausible response, and conclude the integration works — when in
+   fact Vapi used a stock OpenAI model server-side. Our test harness must
+   verify the assistant's `model.provider` field via `GET /assistant/<id>`
+   before asserting on behavior. Add `assert_uses_byom(assistant_id)`
+   helper to `proceda.voice.testkit`.
+3. **Web SDK is browser-only.** No documented headless Node mode. Anyone
+   suggesting otherwise is conflating it with Vapi's server SDKs (which
+   place phone calls). Driving a "web call" from Puppeteer with
+   `--use-file-for-fake-audio-capture` is a community hack, undocumented
+   and brittle. Cut from the test plan; if rung 2 isn't enough, jump
+   straight to rung 3.
+4. **No mock or free test phone numbers.** Voice tests cost real money and
+   are capped at ~15 minutes per run. Budget for it; don't expect rung 3+4
+   to scale.
+5. **Per-turn latency is not in the BYOM payload nor in
+   `end-of-call-report`.** Server-side instrumentation is the only option.
+   The §6.4 / Phase C6 instrumentation plan is correct; flagging here
+   because earlier drafts assumed Vapi exposed timings (it does not).
+
+#### Recommended fixture-record command
+
+`proceda voice fixture record <call_id>` captures the next inbound POST to
+disk under `tests/fixtures/voice/<scenario>/`. This is the cheapest way to
+seed rung 0 with realistic Vapi-shaped payloads. Decision tracked in §10
+q7.
+
 ### 7.6 Real-call dry-run protocol (Phase D4)
 
 Not automated. Runs once before demo. Checklist:
@@ -1295,6 +1436,18 @@ and either fix it or scope it out explicitly.
    — Answer this before the demo. Otherwise the audit artifact is
    designed for an audience that may not exist. Find one design-partner
    adjuster *before* finalizing the artifact schema.
+7. **Should we ship `proceda voice fixture record <call_id>`?** —
+   Captures the next inbound Vapi BYOM POST to disk for replay-based
+   testing (rung 0 of the §7.5b ladder). Argument for: it's the only
+   cheap way to seed our fixture set with payloads that match real
+   Vapi-version-of-the-day. Argument against: one extra CLI command and a
+   small bit of state machinery. **Recommend ship it in Phase C5** — pays
+   back within the Phase D4 dry-run, because we'll record canonical
+   payloads from those calls for permanent regression coverage.
+8. **Vapi `metadata` passthrough — does it really work for SOP routing?**
+   Verify in week 1. The `assistantOverrides.variableValues` field is the
+   most likely vehicle; if Vapi strips unknown keys, fall back to a
+   `assistant_id → sop_id` map in `proceda.yaml` (already noted in §10 q1).
 
 ---
 
@@ -1310,6 +1463,9 @@ and either fix it or scope it out explicitly.
 | SOP author confusion (slot vs step) | medium | medium | `proceda lint` catches mismatches; `voice test` is the REPL; `docs/voice-mvp-getting-started.md` has a worked example |
 | Tool exec blocks first audio | high (by design) | medium | Acknowledgment-prefix in plan §4.10; per-turn tool budget |
 | Vapi changes BYOM auth | low | high | Centralize auth in one function; design-partner alert path |
+| Simulations API churn (Alpha) | medium | medium | Wrap in `proceda.voice.testkit` adapter; pin Vapi SDK version; rung-2 tests are nice-to-have, not load-bearing |
+| Test Suites code mistakenly written | low | medium | Linter rule / code-review check: any reference to `/test/test-suites` is a bug |
+| Latency instrumentation gap (Vapi exposes none) | medium | high | Server-side per-turn timing is in scope (§6.4 C6); do not depend on Vapi telemetry |
 
 The two highest-impact rows are **latency** and **audit credibility**.
 Both have named owners (D3, §10 q6) and named test layers (§7.3, §7.5).
