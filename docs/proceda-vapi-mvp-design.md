@@ -69,8 +69,10 @@ state. Everything else is in §9 (Future Work).
 3. **G3 — Audit artifact.** At end-of-call, emit a structured artifact (JSON +
    human-readable Markdown) containing: SOP id+version, slot fill timeline
    with provenance, every tool call, every state transition, the full
-   transcript, and a `deviations: []` field. Stored to
-   `.proceda/voice-runs/<call_id>/`.
+   transcript, the Vapi `endedReason` (from the end-of-call webhook), and a
+   `deviations: []` field. Stored under
+   `.proceda/voice-runs/<call_id>/` (canonical addressing — see §4.11 for
+   layout details and §4.12 for the chronological index).
 4. **G4 — Voice-aware authoring.** SKILL.md is extended with a minimal
    `slots:` declaration and per-step `prompt:` (utterance template). No new
    file format, no separate config tree.
@@ -97,14 +99,23 @@ state. Everything else is in §9 (Future Work).
 - **N6.** Speculative parallel extraction + main-response calls.
 - **N7.** Web UI for live monitoring. The audit artifact is on disk; a CLI
   command renders it.
-- **N8.** SOC 2 / HIPAA-grade encryption-at-rest, fine-grained PII redaction
-  beyond the existing `redact_secrets`. We **must** be honest with any design
-  partner that this is a POC.
-- **N9.** Integration with Vapi's webhook/event system for end-of-call
-  callbacks. We infer end-of-call from Vapi's `call.endedReason`-bearing final
-  POST or from a session inactivity timeout.
-- **N10.** Custom voice authoring tools (per-step prosody, barge-in tuning).
+- **N8.** SOC 2 / HIPAA-grade encryption-at-rest. **Value-pattern PII
+  redaction in transcripts** (SSN, credit-card, account-number patterns)
+  is also explicitly out of scope — the existing `redact_secrets` matches
+  *key names* like `api_key`/`token`, not free-form values in chat content.
+  The MVP audit directory is local-disk-only, never uploaded; that's the
+  only PII control we offer. We **must** be honest with any design partner
+  that this is a POC.
+- **N9.** Custom voice authoring tools (per-step prosody, barge-in tuning).
   The Vapi assistant config owns voice modality knobs.
+
+> **Reversal from earlier draft:** the Vapi `end-of-call-report` webhook is
+> now **in MVP scope** (Phase C3). Previous drafts deferred it; that was
+> wrong. The webhook is where `endedReason`, the recording URL, and Vapi's
+> final transcript live. Without it, the audit artifact is structurally
+> incomplete and the §G3 promise is hollow. The reaper still exists as a
+> *fallback* (network-flake or webhook-misfire), but the webhook is the
+> primary signal.
 
 ### 2.3 Non-functional constraints
 
@@ -279,11 +290,15 @@ The MVP reads exactly four things:
 
 - `messages: list[Message]` — source of truth for what was said.
 - `call.id: str` — session key.
-- `call.assistantId: str` — fallback SOP-resolution key if `metadata.sop_id`
-  is absent.
-- `metadata.sop_id`, `metadata.sop_version` — preferred SOP routing keys
-  (set per Vapi Assistant via `assistantOverrides.variableValues` or
-  `serverMessages` config).
+- `call.assistantId: str` — **primary SOP-resolution key** for v1. The
+  `proceda.yaml`'s `voice.assistant_sop_map` (an
+  `assistant_id → (sop_id, sop_version)` mapping) is the authoritative
+  router. This is the path that *definitely works* against Vapi today.
+- `metadata.sop_id`, `metadata.sop_version` — **optional override**, used
+  if the `assistant_sop_map` entry has `metadata_overrides_allowed: true`.
+  Whether Vapi actually passes `metadata` through to BYOM is unverified
+  (§10 q1). Treat passthrough as best-effort and never depend on it for
+  correctness.
 
 We **ignore** `model`, `temperature`, `max_tokens`, and `tools`. Our SOP
 owns all of those. We treat `tools` in the inbound payload as authoring
@@ -328,17 +343,36 @@ The `sop-event` extension stream described in the research note is **deferred
 to v2** — it is only valuable to first-class embedders (LiveKit, Pipecat),
 not to Vapi BYOM, which doesn't read sideband channels.
 
-#### End-of-call detection
+#### End-of-call detection (webhook-primary, reaper-fallback)
 
-Vapi sends an `end-of-call-report` webhook out of band when the call hangs
-up. For MVP we don't subscribe to that webhook. Instead, the audit artifact
-is finalized lazily by either:
-1. A **session-inactivity reaper** that sweeps every 30 s and finalizes
-   sessions older than 60 s without a turn.
-2. The next call to `GET /v1/voice/audit/<call_id>`, which forces
-   finalization.
+Vapi sends an `end-of-call-report` webhook to a configured server URL when
+a call ends. **The MVP subscribes to this webhook** because it is the only
+path to a structurally complete audit artifact (it carries `endedReason`,
+final transcript, recording URL, and any Vapi-side errors). Architecture:
 
-This is mildly ugly but bounded; v2 will subscribe to the webhook properly.
+1. **Primary: `POST /v1/voice/webhooks/end-of-call`.** A second FastAPI
+   route (separate from `/v1/chat/completions`) auth'd via a shared HMAC
+   over the body using `VOICE_WEBHOOK_SECRET`. On receipt:
+   (a) look up session by `message.call.id`,
+   (b) merge `endedReason` and recording metadata into session,
+   (c) call `AuditBuilder.finalize(session)`,
+   (d) reply `200 OK`.
+   Vapi retries on non-2xx with exponential backoff, so the handler must
+   be idempotent — a finalized session re-receiving the webhook returns
+   the same response without re-finalizing.
+2. **Fallback: session-inactivity reaper.** Sweeps every 30 s; finalizes
+   sessions older than 60 s without a turn or webhook. Only fires when
+   the webhook fails (network flake, Vapi misfire, server URL
+   mis-configured). Tagged in the audit as `finalized_via:
+   inactivity_reaper` so we can track how often the fallback is needed.
+3. **On-demand finalization.** A `GET /v1/voice/audit/<call_id>` request
+   on a non-finalized session forces finalization-from-state (no Vapi
+   webhook data) and returns the artifact. Only useful for debugging;
+   tag as `finalized_via: on_demand`.
+
+The `finalized_via` tag is itself a load-bearing audit field: it tells a
+compliance reviewer how trustworthy the artifact's metadata is.
+Webhook-finalized > on-demand > reaper.
 
 ---
 
@@ -350,11 +384,18 @@ Inside `VoiceRuntime.handle_turn(call_id, vapi_payload)`:
 1. Auth + parse                       (  <  1 ms)
 2. SessionStore.get_or_create(call_id, sop_id, sop_version)
                                       (  <  1 ms)
-3. Idempotency check
-   - h = sha256(messages)
-   - if session.last_message_hash == h: replay cached SSE bytes; return
+3. Idempotency check + per-turn lock
+   - h = sha256(canonicalize(messages))
+   - acquire session.turn_lock           ← serializes concurrent retries
+   - if session.in_flight_hash == h:
+        → another request is currently streaming this exact turn.
+          Await its completion future, then replay cached bytes.
+     elif session.last_completed_hash == h:
+        → already-completed turn (Vapi retried). Replay cached bytes.
+     else:
+        → new turn. Mark session.in_flight_hash = h. Continue.
                                       (  <  1 ms)
-4. Latest user turn extraction        ( ~150–250 ms — long pole)
+4. Latest user turn extraction        ( ~150–250 ms — long pole )
    - SlotEngine.extract(messages, session)
    - returns: { extracted_slots, corrections, intent, confidence }
 5. State mutation
@@ -367,20 +408,54 @@ Inside `VoiceRuntime.handle_turn(call_id, vapi_payload)`:
    - Build per-turn LLM prompt scoped to focus
    - Pick allowed tools for this step from MCPOrchestrator
                                       (  <  5 ms)
+6b. Stream acknowledgment prefix      (  first byte: <50 ms )
+    - If plan.user_visible_acknowledgment is set, frame and yield it
+      directly from the planner output (no responder LLM round-trip).
+    - This is what makes the latency budget realistic for tool-call turns
+      and correction turns. See §7.3 L-01 split.
 7. Stream main response               ( first token: 100–200 ms )
    - LLMRuntime.complete_stream(prompt, allowed_tools)
    - On tool call: intercept, execute via MCPOrchestrator,
      fold result back, continue stream
    - For each delta: yield to SSE frame writer
-8. Persist
+8. Persist + commit hash
    - Append turn record + audit-log entries (background task)
-   - Update session.last_message_hash
+   - session.last_completed_hash = h
+   - session.in_flight_hash = None
+   - Cache last response bytes for replay
+   - release session.turn_lock
                                       (  <  10 ms async )
 9. Emit [DONE]
 ```
 
-The clock starts at step 1 and the first byte we owe Vapi is the first delta
-in step 7. So **steps 1–6 are in the critical path**.
+The clock starts at step 1 and the first byte we owe Vapi is in step 6b
+(if the plan has an acknowledgment) or step 7 (if not). So **steps 1–6
+are in the critical path** for any plain-answer turn, and **steps 1–6b are
+the critical path** for any turn with an acknowledgment prefix.
+
+#### Critical: idempotency under streaming retries
+
+Vapi can retry a POST while the original is mid-stream. The naïve check
+"hash matches `last_message_hash`?" fails because `last_message_hash` is
+only set *after* streaming completes — a duplicate arriving during the
+first stream sees an empty cache, advances state again, and corrupts the
+session.
+
+The fix is the per-session `(turn_lock, in_flight_hash, completion_future,
+response_bytes_buffer)` quadruple. The handler:
+
+1. Takes the lock before reading `in_flight_hash` (prevents concurrent
+   reads from disagreeing on what's in flight).
+2. If a duplicate is in flight, awaits the completion future and replays
+   the *exact* bytes the original stream emits, including chunks that
+   haven't been emitted yet. Concretely: the response bytes go into a
+   shared buffer (`bytes_appended_event` notified per chunk); the duplicate
+   handler iterates the buffer in lockstep.
+3. Only releases the lock after `last_completed_hash` is set and the
+   response bytes are fully buffered.
+
+This costs ~1 ms of lock acquisition per turn. The buffer adds ≤ 32 KB
+per active session (one cached SSE response). Cleared on next turn.
 
 #### Pseudocode for the handler
 
@@ -391,25 +466,42 @@ async def chat_completions(req: Request) -> StreamingResponse:
     auth_or_403(req.headers)
 
     call_id = body["call"]["id"]
-    sop_id = (body.get("metadata") or {}).get("sop_id") or _resolve_from_assistant(body)
-    sop_version = (body.get("metadata") or {}).get("sop_version")
-
+    sop_id, sop_version = sop_router.resolve(body)   # assistantId-first
     session = await session_store.get_or_create(call_id, sop_id, sop_version)
     msg_hash = hash_messages(body["messages"])
 
-    if session.last_message_hash == msg_hash and session.last_response_bytes is not None:
-        return _replay(session.last_response_bytes)
-
     async def stream() -> AsyncIterator[bytes]:
-        async for chunk in voice_runtime.handle_turn(session, body["messages"], msg_hash):
-            yield chunk
+        async with session.turn_lock:
+            if session.in_flight_hash == msg_hash:
+                # Concurrent duplicate. Replay the in-progress buffer.
+                async for chunk in session.tail_in_flight():
+                    yield chunk
+                return
+            if session.last_completed_hash == msg_hash:
+                # After-the-fact duplicate. Replay completed bytes.
+                yield from session.last_response_bytes
+                return
+            session.in_flight_hash = msg_hash
+            session.in_flight_buffer = []
+            try:
+                async for chunk in voice_runtime.handle_turn(session,
+                                                             body["messages"]):
+                    session.in_flight_buffer.append(chunk)
+                    session.in_flight_buffer_event.set()
+                    yield chunk
+                session.last_completed_hash = msg_hash
+                session.last_response_bytes = b"".join(session.in_flight_buffer)
+            finally:
+                session.in_flight_hash = None
 
     return StreamingResponse(stream(), media_type="text/event-stream")
 ```
 
-`voice_runtime.handle_turn` is an async generator. It does extraction, plans,
-streams the response, intercepts tool calls, and writes to the audit log as
-side effects — all while yielding SSE-framed bytes.
+`voice_runtime.handle_turn` is an async generator. It does extraction,
+plans, streams the response, intercepts tool calls, and writes to the
+audit log as side effects — all while yielding SSE-framed bytes. The
+locking and buffering live in the handler, not in `VoiceRuntime`, so the
+runtime stays testable in isolation.
 
 ---
 
@@ -459,36 +551,59 @@ required_tools:
 ---
 
 ### Step 1: Greet and disclose recording
+---
 prompt: "Hi, I'm Aria with Acme Insurance. This call is being recorded for quality and claim-handling purposes — is that okay with you?"
 fills: [consent_to_record_acknowledged]
-on_mismatch: escalate_to_human            # if user refuses, no further progress
+on_mismatch: escalate_to_human
+---
 
 ### Step 2: Identify caller
+---
 prompt: "Thanks. Could I get your name and policy number, please?"
 fills: [customer_name, policy_number]
+---
 
 ### Step 3: Verify policy
+---
 prompt: "Let me pull up policy {policy_number}…"
-fills: []
-calls: crm__lookup_policy(policy_number={policy_number})
+calls:
+  - tool: crm__lookup_policy
+    args: { policy_number: "{policy_number}" }
 on_mismatch: confirm_then_proceed
+---
 
 ### Step 4: Gather incident facts
+---
 prompt: "Can you tell me when and where it happened, and what occurred?"
 fills: [incident_date, incident_location, incident_description]
+---
 
 ### Step 5: Check for injuries
+---
 prompt: "Were there any injuries — to you, anyone in your vehicle, or anyone else?"
 fills: [injuries_reported]
+---
 
 ### Step 6: Gather vehicle damage
+---
 prompt: "What damage do you see on the vehicle?"
 fills: [vehicle_damage_description]
+---
 
 ### Step 7: Confirm and file
-[APPROVAL REQUIRED]
-prompt: "To confirm: on {incident_date} at {incident_location}, {incident_description}. Injuries: {injuries_reported}. Damage: {vehicle_damage_description}. I'll file the claim now."
-calls: claims__file_fnol(...)
+[CALLER CONFIRM REQUIRED]
+---
+prompt: "To confirm: on {incident_date} at {incident_location}, {incident_description}. Injuries: {injuries_reported}. Damage: {vehicle_damage_description}. Should I file the claim now?"
+caller_confirm:
+  slot: file_claim_confirmed
+  values_yes: ["yes", "go ahead", "file it", "do it"]
+  values_no:  ["no", "wait", "stop", "hold on", "don't"]
+  on_no: escalate_to_human
+calls:
+  - tool: claims__file_fnol
+    args: { policy_number: "{policy_number}", incident_date: "{incident_date}", ... }
+    requires_slot: { file_claim_confirmed: true }
+---
 ```
 
 #### Why these specific slots
@@ -520,18 +635,79 @@ HIPAA-grade controls (BAA, encryption-at-rest, FedRAMP-style audit posture).
 We do not have those (§2.2 N8). Calling FNOL "PII-adjacent" is honest and
 survivable; calling it "PHI-adjacent" picks an unwinnable fight.
 
-Notes on the format:
+#### Per-step directive grammar (formal)
+
+After the `### Step N: Title` heading and any optional `[MARKER]` line, an
+**optional fenced YAML block** carries the per-step directives. The fence
+is the same `---` triple-dash used for frontmatter:
+
+```
+### Step N: Title
+[OPTIONAL_MARKER]
+---
+prompt: "..."
+fills: [...]
+calls: [...]
+caller_confirm: {...}
+on_mismatch: handler_name
+---
+
+Free-form description / human notes go here, after the closing fence.
+```
+
+Recognized directive keys (closed set; unknown keys are a `proceda lint`
+error):
+
+- `prompt: str` — utterance template; `{slot_id}` interpolation against
+  current state. Required if the step is voice-eligible.
+- `fills: list[slot_id]` — slot IDs the user is expected to provide
+  during this step. May be filled out-of-order.
+- `calls: list[ToolCall]` — server-side tool invocations.
+  `{ tool: str, args: dict, requires_slot: dict | None }`. Multiple
+  tools execute in declared order; halt on first failure.
+- `caller_confirm: CallerConfirmSpec | None` — see "Approval gates",
+  below.
+- `on_mismatch: handler_name` — handler from a closed set:
+  `escalate_to_human | confirm_then_proceed | retry_once | abort_call`.
+
+A step body without a fenced block is treated as raw content (legacy
+SKILL.md skills still parse and run in non-voice mode).
+
+#### Approval gates in voice mode
+
+The existing `[APPROVAL REQUIRED]` and `[PRE-APPROVAL REQUIRED]` markers
+mean "pause and wait for a human via `HumanInterface`." In voice mode there
+is no TUI prompt and no synchronous human at the keyboard — pretending to
+honor those markers by silently skipping them is a **bug**, not "graceful
+degradation."
+
+The MVP introduces a new marker — `[CALLER CONFIRM REQUIRED]` — and
+**bans** the existing approval markers in voice-mode skills:
+
+- A SKILL.md tagged `voice: true` (in frontmatter) with `[APPROVAL
+  REQUIRED]` or `[PRE-APPROVAL REQUIRED]` on any step is a **lint error
+  blocking publish.** `proceda lint` rejects it with: *"approval markers
+  are not honored in voice mode; use `[CALLER CONFIRM REQUIRED]` with a
+  `caller_confirm:` block, or `escalate_to_human` via `on_mismatch:`."*
+- `[CALLER CONFIRM REQUIRED]` requires a sibling `caller_confirm:` block
+  declaring the boolean confirmation slot, the yes/no synonym sets, and
+  the `on_no` handler. The runtime treats this slot exactly like any
+  other required slot — extracted from the user's reply, with confidence
+  scoring. The action's `requires_slot:` predicate gates execution.
+- This makes "approval" a *first-class slot fill*, not a runtime
+  interrupt. The audit artifact records the slot value, the user's exact
+  utterance that produced it, and the resulting decision. A compliance
+  reviewer can replay the determination with the same machinery as any
+  other slot.
+
+For escalations to a live human, `on_mismatch: escalate_to_human` triggers
+the Vapi `transferCall` control tool (see §4.10b). That is the *only*
+voice-mode "approval" path that actually involves a non-runtime human.
+
+Other notes:
 
 - `slots:` lives in frontmatter because slots are global to the SOP, not
   per-step.
-- Per-step `prompt:`, `fills:`, `calls:`, and `on_mismatch:` are inline YAML
-  inside the step body, parsed as a leading YAML block before any free-form
-  description. Backwards-compatible — old skills with no YAML block just
-  treat the body as raw content.
-- `[APPROVAL REQUIRED]` retains its semantics from the existing parser, but
-  in voice it does not pause for a TUI prompt — it instead emits an
-  audit-log entry `pre_approval_skipped: voice_mode` and proceeds. (Honest
-  about the limitation. Real gating in v2.)
 - `required_tools:` already exists; nothing changes.
 
 ### 4.7 The session-state record
@@ -713,35 +889,111 @@ Two things to call out:
 1. **Tool calls block first audio.** If a tool call happens before any text,
    the user hears silence until tool completes. For an MVP this is
    acceptable for one or two short tool calls per turn; we do not chain.
-   Mitigation: the planner can include a *user-visible acknowledgment*
-   prefix ("Let me look that up real quick…") which is streamed before the
-   tool call. The responder's prompt is constructed to make it say that
-   prefix first.
+   Mitigation: the planner streams its `user_visible_acknowledgment`
+   prefix directly to the SSE wire (step 6b in §4.5) before the responder
+   LLM call begins. This gets first-byte to the wire in <50 ms even for
+   tool-call turns, masking the tool-execution latency.
 2. **Per-turn tool budget.** Hard cap of 3 tool calls per turn; on the 4th,
    we abort and escalate. Prevents runaway loops blowing the latency budget
    silently.
+
+### 4.10b Vapi control-tool exceptions (transferCall, endCall)
+
+§5.6 says "all tools in Proceda; Vapi sees zero tool definitions." That is
+true for *MCP-defined* tools. There are exactly **two exceptions**: the
+Vapi-side call-control tools that *only* Vapi can execute, because they
+manipulate the live audio session that Vapi owns. Without these, the SOP
+can't transfer to a human or hang up.
+
+The MVP exposes these to Vapi as a tightly-scoped control-tool whitelist:
+
+- **`transferCall(destination: string)`** — Vapi-side built-in. Transfers
+  the live call to a phone number, SIP URI, or another Vapi assistant.
+  Used by `on_mismatch: escalate_to_human` and the runtime's
+  `escalate_to_human` planner strategy.
+- **`endCall(reason: string)`** — Vapi-side built-in. Hangs up the call.
+  Used by the `wrap_up` planner strategy after the final assistant
+  utterance has streamed.
+
+Mechanics: when the planner decides to escalate or wrap up, the streaming
+response includes a single OpenAI-format `tool_calls` chunk in the SSE
+stream — but exclusively for one of the two whitelisted control tools.
+Vapi recognizes the tool by name (it has its own built-in handlers for
+both) and executes it client-side. We never define them as MCP tools and
+the responder LLM never sees them as available tools (the responder gets
+*MCP* tools only, from the planner's `allowed_tools`).
+
+This means the SSE response is *not* "content-only" in the strict sense —
+two specific tool-call chunks can appear, by name. We treat it as a
+narrow exception, not a general capability. Auditing: every emitted
+control-tool call is logged as a `VAPI_CONTROL_TOOL_EMITTED` event with
+the tool name, args, and emitting strategy.
+
+| Behavior the SOP wants | How it fires |
+|---|---|
+| "Connect me to a human" | `escalate_to_human` planner strategy → emits `transferCall` |
+| Step's `on_mismatch: escalate_to_human` triggers | runtime → emits `transferCall` |
+| End-of-call after wrap-up utterance | `wrap_up` planner strategy → emits `endCall` |
+| OOS redirect cap (3rd OOS) hits | runtime → emits `endCall` with `reason: oos_cap_hit` |
+
+A future v2 SOP-author surface may declare custom `transferCall`
+destinations per step. For MVP, the destination is a single
+`voice.escalation_destination` config value (e.g. a fallback queue
+number).
 
 ---
 
 ### 4.11 Audit artifact
 
-Source of truth: append-only event log under
-`.proceda/voice-runs/<call_id>/`, identical shape to existing
-`.proceda/runs/`:
+#### Source of truth
+
+The **append-only event log (`events.jsonl`) is the canonical
+record**. Every state-affecting decision (slot fill, slot correction,
+step completion, tool call begin/end, escalation, control-tool emission)
+emits a `RunEvent` *before* in-memory state is mutated. From any complete
+event log, `AuditBuilder.from_events_only(events)` deterministically
+reconstructs the audit artifact.
+
+In-memory `VoiceSession` and `state-final.json` are **a derived cache**,
+not a source of truth. `AuditBuilder.finalize(session)` is a fast-path
+that reads the cache; it asserts in CI that
+`from_events_only == finalize` byte-for-byte (modulo timestamps). This
+asymmetry is what makes the artifact replayable and gives a compliance
+team the structural guarantee that the audit can be re-derived
+independently — see AV-02 (§7.5).
+
+#### Run directory layout
 
 ```
-.proceda/voice-runs/2026-04-29_18-04-12_a1b2c3/
-    metadata.json          # call_id, sop_id, sop_version, started_at, ended_at
-    events.jsonl           # one RunEvent per line (existing format)
-    transcript.jsonl       # one RunMessage per line (clean transcript)
-    state-final.json       # final VoiceSession dict
-    audit.json             # the artifact (the deliverable)
-    audit.md               # human-readable rendering of audit.json
-    artifacts/             # any tool-produced artifacts
+.proceda/voice-runs/<call_id>/         ← canonical addressing (Vapi call IDs are unique)
+    metadata.json                       # call_id, sop_id, sop_version, started_at, ended_at
+    events.jsonl                        # one RunEvent per line (existing format) — the truth
+    transcript.jsonl                    # one RunMessage per line (clean transcript)
+    state-final.json                    # derived cache; not authoritative
+    audit.json                          # the artifact (the deliverable)
+    audit.md                            # human-readable rendering of audit.json
+    vapi-end-of-call-report.json        # raw Vapi webhook payload, if received
+    artifacts/                          # any tool-produced artifacts
 ```
 
-The artifact (`audit.json`) is built by `AuditBuilder.finalize(session)` from
-the event log + final state. Fields, exhaustively:
+Note the divergence from existing `RunDirectoryManager`'s
+`{timestamp}_{shortid}` layout: voice runs use `<call_id>` directly
+because the call ID is externally meaningful (it's how Vapi addresses the
+call, how `GET /v1/voice/audit/<call_id>` looks it up, and how a
+compliance officer references the artifact). The existing
+`RunDirectoryManager` is reused for non-voice runs; voice runs get a new
+`VoiceRunDirectoryManager` so the two paths don't entangle.
+
+Chronological browsing is served by `.proceda/voice-runs/index.jsonl`,
+which append-only logs `{call_id, sop_id, started_at, dir, finalized_via}`
+per call. `proceda voice replay --recent N` reads it. No filesystem
+traversal of the parent dir is needed.
+
+#### Artifact fields
+
+The artifact (`audit.json`) is built by
+`AuditBuilder.from_events_only(events)` and (for fast-path) cached in
+`AuditBuilder.finalize(session)`. Fields, exhaustively:
 
 ```json
 {
@@ -781,6 +1033,13 @@ the event log + final state. Fields, exhaustively:
   "escalations": [],
   "out_of_scope_redirects": 0,
   "deviations_from_sop": [],
+  "vapi_end_of_call": {
+    "endedReason": "customer-ended-call",
+    "ended_at": "...",
+    "recording_url": "https://...",
+    "received_via": "webhook" | "reaper" | "on_demand"
+  },
+  "finalized_via": "webhook" | "reaper" | "on_demand",
   "transcript_ref": "transcript.jsonl"
 }
 ```
@@ -788,9 +1047,11 @@ the event log + final state. Fields, exhaustively:
 `deviations_from_sop` is computed by replaying the event log against the
 declared step graph: any `STEP_COMPLETED` whose preconditions weren't met,
 any required slot left empty at end-of-call, any tool called outside its
-declared step. **This computation is the actual product**; everything else
-is plumbing. It must be deterministic and replayable from the event log
-alone — that's how a compliance officer trusts it.
+declared step, any `[CALLER CONFIRM REQUIRED]` step that ran an action
+without the matching `caller_confirm` slot set to true. **This
+computation is the actual product**; everything else is plumbing. It is
+deterministic and replayable from the event log alone — that is how a
+compliance officer trusts it.
 
 ---
 
@@ -804,16 +1065,27 @@ voice:
   host: "0.0.0.0"
   port: 8080
   byom_token_env: "VOICE_BYOM_TOKEN"
-  default_sop_id: "insurance_fnol"      # fallback if metadata.sop_id absent
+  webhook_secret_env: "VOICE_WEBHOOK_SECRET"   # HMAC for end-of-call webhook
   extractor_model: "anthropic/claude-haiku-4-5-20251001"
   responder_model: "anthropic/claude-sonnet-4-6"
   per_turn_tool_budget: 3
   inactivity_finalize_seconds: 60
   reaper_interval_seconds: 30
   audit_dir: ".proceda/voice-runs"
+  escalation_destination: "+15555550100"        # transferCall target
+
+  # Authoritative SOP routing: assistantId → SOP. metadata.sop_id may
+  # override only when metadata_overrides_allowed is true.
+  assistant_sop_map:
+    asst_demo_fnol_2026:
+      sop_id: insurance_fnol
+      sop_version: "0.2.0"
+      metadata_overrides_allowed: false
 ```
 
-All fields have sensible defaults so an empty `voice:` block works.
+All fields have sensible defaults so an empty `voice:` block boots a
+no-op server (which 503s every BYOM request, with a clear log message
+about the missing `assistant_sop_map`).
 
 ---
 
@@ -944,6 +1216,51 @@ We don't invent `event:` types because Vapi will not consume them.
 The research note's `sop-event` extension stream is **not in MVP scope** —
 deferred until LiveKit/Pipecat where it's useful.
 
+### 5.7b End-of-call: webhook-primary vs reaper-only
+
+**Decision:** subscribe to Vapi's `end-of-call-report` webhook in MVP.
+Reaper is a fallback, not the primary path.
+
+Earlier drafts deferred the webhook because "one less inbound surface."
+That was wrong. Without the webhook the audit artifact is missing
+canonical Vapi-side metadata: `endedReason`, recording URL, Vapi's
+final transcript, and any platform-side errors. G3 is the wedge; an audit
+artifact that lacks those fields is hollow.
+
+Cost of inclusion: one additional FastAPI route (~50 LOC), HMAC
+verification (~10 LOC), and idempotent finalization (~20 LOC). Total
+maybe 100 lines plus tests.
+
+The reaper still earns its keep — it's the only path when the webhook
+fires against a misconfigured server URL. But it's a fallback, not a
+substitute.
+
+### 5.7c Approval as slot-fill, not runtime interrupt
+
+**Decision:** in voice mode, the existing `[APPROVAL REQUIRED]` markers
+are a lint error. Approval is modeled either as `caller_confirm:` (a
+boolean slot extracted like any other) or `escalate_to_human` (a Vapi
+control-tool emission).
+
+The earlier draft said voice mode would "log
+`pre_approval_skipped: voice_mode` and proceed." That preserves the
+appearance of oversight while removing it — the worst of both worlds. A
+compliance reviewer sees `[APPROVAL REQUIRED]` in the SOP and assumes a
+human signed off; in reality nobody did.
+
+Modeling caller-confirmation as a slot has nice properties:
+
+- The slot has provenance (which user utterance set it, with what
+  confidence), and the audit shows the determination directly.
+- The action's `requires_slot:` predicate is the gate, so the gate is
+  enforced by the same code path as any other slot dependency.
+- The eval suite covers it for free — confirmation is just another
+  enum slot.
+
+The cost is that SOP authors have to re-tag any voice-mode steps that
+used `[APPROVAL REQUIRED]`. `proceda lint` catches it with a clear
+error message.
+
 ### 5.8 Authorship surface: minimal vs full voice DSL
 
 **Decision:** minimal additive YAML in existing SKILL.md.
@@ -976,14 +1293,19 @@ overlap somewhat in practice; the dependency graph is in §6.5.
   FastAPI on the configured port).
 - Acceptance: `proceda voice serve` returns 200 on `/healthz`.
 
-**A2. SKILL.md slot parser extension**  ·  1 d
-- Extend `skills/parser.py` to parse `slots:` frontmatter and per-step YAML
-  block (`prompt:`, `fills:`, `calls:`, `on_mismatch:`).
-- Add `Slot` and `StepDirectives` dataclasses (in `proceda/skill.py`).
-- Backwards-compat: skills without these keys still parse.
-- Update `proceda lint` to validate slot/step coherence (`fills` references
-  declared slots; `calls` references declared `required_tools`).
-- Acceptance: parser tests pass for both extended and legacy skills.
+**A2. SKILL.md slot parser extension**  ·  1.5 d
+- Extend `skills/parser.py` to parse `slots:` frontmatter, the per-step
+  fenced YAML directive block (§4.6 grammar: `prompt:`, `fills:`,
+  `calls:`, `caller_confirm:`, `on_mismatch:`), and the new
+  `[CALLER CONFIRM REQUIRED]` marker.
+- Add `Slot`, `StepDirectives`, `CallerConfirmSpec`, `ToolCall` dataclasses
+  in `proceda/skill.py`.
+- Backwards-compat: skills without slots/directives still parse.
+- Update `proceda lint` to: (a) validate slot/step coherence; (b) reject
+  `[APPROVAL REQUIRED]` / `[PRE-APPROVAL REQUIRED]` in voice-mode skills
+  with the §4.6 error message; (c) reject unknown directive keys; (d)
+  ensure `caller_confirm.slot` is declared in the global `slots:` block.
+- Acceptance: parser tests pass for extended, legacy, and lint-error cases.
 
 **A3. `LLMRuntime.complete_stream()`**  ·  1 d
 - Add async-generator method on `LLMRuntime` that calls litellm with
@@ -1012,11 +1334,26 @@ overlap somewhat in practice; the dependency graph is in §6.5.
 - Use `sse-starlette` for the response wrapper.
 - Acceptance: unit tests for byte-exact framing.
 
-**A7. Idempotency cache**  ·  0.5 d
+**A7. Idempotency lock + cache**  ·  1 d
 - `hash_messages(messages) -> str`: canonicalize and SHA-256.
-- Cache last response bytes per session.
-- Acceptance: unit tests on stable hashes across noisy reorderings of
-  irrelevant fields.
+- `VoiceSession.turn_lock`, `in_flight_hash`, `in_flight_buffer`,
+  `in_flight_buffer_event`, `last_completed_hash`, `last_response_bytes`
+  fields per the §4.5 quadruple. `tail_in_flight()` async generator that
+  serves the buffer to a duplicate request.
+- Acceptance: (a) stable-hash tests across noisy reorderings; (b) a
+  concurrency test that fires two identical POSTs ~10 ms apart and
+  asserts byte-identical SSE output, single state advance, and that the
+  duplicate's response started arriving before the original finished.
+
+**A8. Vapi end-of-call webhook handler**  ·  0.5 d
+- `POST /v1/voice/webhooks/end-of-call` route. HMAC-verify body against
+  `VOICE_WEBHOOK_SECRET`. Look up session by `message.call.id`. Merge
+  `endedReason`, recording URL, ended_at into session. Trigger
+  `AuditBuilder.finalize` (idempotent on already-finalized sessions).
+- Acceptance: integration test posts a recorded webhook payload, asserts
+  audit artifact contains `vapi_end_of_call.endedReason` and
+  `finalized_via: webhook`; second identical webhook returns 200 and
+  doesn't duplicate work.
 
 ### 6.2 Phase B — The per-turn loop (week 2, ~5 days)
 
@@ -1062,10 +1399,14 @@ overlap somewhat in practice; the dependency graph is in §6.5.
 - Acceptance: golden-file tests for the FNOL scenario; plus a deliberately
   broken event log that produces the expected non-empty deviations.
 
-**C3. End-of-call detection (lazy + reaper)**  ·  0.5 d
-- Reaper finalizes; explicit `GET /v1/voice/audit/<call_id>` finalizes on
-  demand.
-- Acceptance: integration test for both paths.
+**C3. End-of-call wiring (webhook + reaper + on-demand)**  ·  1 d
+- Webhook handler is built in A8; this task wires its output into
+  `AuditBuilder` plus the chronological `index.jsonl`. Reaper sweeps for
+  inactive sessions and tags `finalized_via: reaper`. Explicit
+  `GET /v1/voice/audit/<call_id>` finalizes on demand and tags
+  accordingly.
+- Acceptance: integration tests for all three paths; assert that
+  `finalized_via` is recorded in `audit.json` correctly for each.
 
 **C4. CLI: `proceda voice replay <call_id>`**  ·  0.5 d
 - Reads `.proceda/voice-runs/<id>/` and renders `audit.md` to terminal,
@@ -1213,13 +1554,29 @@ Re-record only when the prompt or model changes.
 `tests/test_voice/test_latency.py`, marked `@pytest.mark.bench`. **Not** in
 the default test run (would slow CI). Run nightly + before release.
 
-- **L-01 happy turn p50/p95.** Drive 100 happy-path turns through the
-  runtime against a `ReplayingLLMRuntime` configured with realistic
-  delays (extractor: 200 ms, responder: 150 ms first token). Assert
-  p50 ≤ 350 ms, p95 ≤ 700 ms server-side.
-- **L-02 tool-call turn p50/p95.** Same as L-01 but with one tool call.
-  Budget: p50 ≤ 700 ms, p95 ≤ 1500 ms.
-- **L-03 burst.** 20 concurrent calls; assert no latency cliff.
+Two latency targets per turn — first-byte and full-response — are tracked
+independently because Vapi's TTS engine starts speaking on the first SSE
+delta. Earlier drafts conflated them.
+
+- **L-01a first-byte (acknowledgment-prefix turn).** Driven 100 turns
+  through a `ReplayingLLMRuntime` with extractor-only delay (200 ms) and
+  a planner that emits a `user_visible_acknowledgment`. Measured: time
+  from request received to first SSE delta on the wire. Assert
+  **p50 ≤ 100 ms, p95 ≤ 200 ms server-side.** This is achievable because
+  the prefix is streamed directly from the planner, before the responder
+  LLM call begins (§4.5 step 6b).
+- **L-01b first-byte (no-acknowledgment turn).** Same setup but planner
+  emits no prefix; first byte must come from the responder. Measured the
+  same way. Assert **p50 ≤ 500 ms, p95 ≤ 900 ms server-side** (extractor
+  150–250 ms + responder 100–200 ms first-token + plumbing).
+- **L-01c full response.** Time from request received to `[DONE]` on the
+  wire. Assert **p50 ≤ 1200 ms, p95 ≤ 2500 ms server-side** for typical
+  responses (~30 tokens at ~50 tok/s after first token).
+- **L-02 tool-call turn p50/p95.** Same as L-01a/c but with one tool call.
+  First-byte budget unchanged (acknowledgment prefix masks the tool
+  latency); full-response budget: p50 ≤ 1800 ms, p95 ≤ 3500 ms.
+- **L-03 burst.** 20 concurrent calls; assert no latency cliff at any
+  percentile.
 
 Run against a realistic mock; not against real LLM (slow, flaky, costly,
 and the LLM's latency is not what we own anyway).
@@ -1250,8 +1607,21 @@ product.
   them exactly.
 - **AV-04 corrections preserved.** Replayed audit shows the slot's
   history including pre-correction value.
-- **AV-05 no PII leak.** Run a scenario including a fake SSN; assert
-  redaction on `events.jsonl` per existing `redact_secrets` behavior.
+- **AV-05 PII handling: no transport leak.** The audit directory is
+  local-disk-only — no cloud upload, no external HTTP transport, no
+  cross-tenant leakage. AV-05 asserts that no code path in
+  `src/proceda/voice/` sends file contents over the network. Existing
+  `redact_secrets` matches *key names* (`api_key`, `token`, etc.) — it
+  does **not** redact PII *values* in transcripts (SSN, account number,
+  free-form medical detail). That is N8 and stays out of MVP scope. A
+  design partner deploying this gets an explicit "this is a POC; the
+  audit directory may contain raw PII" warning in the getting-started
+  doc.
+- **AV-06 control-tool emission audit.** Every `transferCall` and
+  `endCall` emission records a `VAPI_CONTROL_TOOL_EMITTED` event with the
+  emitting strategy (`escalate_to_human`, `wrap_up`, `oos_cap_hit`) and
+  args. Tested by hand-crafted event logs that assert the audit's
+  `escalations[]` and outcome are derived from these events alone.
 
 A compliance-officer-grade artifact is one a regulator can replay. AV-02
 is the structural guarantee for that.
@@ -1267,7 +1637,7 @@ are version-pinned in §10 q7.
 | Rung | What it is | Cost per run | Hits BYOM endpoint? | Catches |
 |---|---|---|---|---|
 | **0. Local fixture replay** | Captured Vapi `/chat/completions` request bodies replayed against our own server with `httpx.AsyncClient` | free, offline | yes, 100% | per-turn logic, SSE framing, idempotency, audit assembly |
-| **1. Vapi Chat API** (`POST https://api.vapi.ai/chat`) | Text-only multi-turn against a real Vapi assistant | small | **only if** assistant's `model.provider = "custom-llm"` points at us | request-shape drift, auth, network |
+| **1. Vapi Chat API** (`POST https://api.vapi.ai/chat`) — **exploratory** | Text-only multi-turn against a real Vapi assistant | small | **only if** assistant's `model.provider = "custom-llm"` points at us, AND our parser accepts whatever ID Chat API actually sends (see gotcha 6) | request-shape drift, auth, network |
 | **2. Simulations — `vapi.webchat`** | Scenario-driven multi-turn with tool mocks + LLM-as-judge rubric | small | yes | end-to-end conformance, regressions in conversational behavior |
 | **3. Simulations — `vapi.websocket`** | Full STT/TTS pipeline | **real telephony minutes** | yes | barge-in, endpointing, ASR errors, audio artifacts |
 | **4. Real phone call** | Manual smoke before launch | real minutes | yes | everything; the only ground truth |
@@ -1300,6 +1670,15 @@ what runs in CI on PRs. Rungs 3 and 4 are pre-release only.
    `end-of-call-report`.** Server-side instrumentation is the only option.
    The §6.4 / Phase C6 instrumentation plan is correct; flagging here
    because earlier drafts assumed Vapi exposed timings (it does not).
+6. **Chat API may not provide `call.id`.** Vapi's `POST /chat` is
+   chat/session-keyed (likely `chatId`/`sessionId`), not call-keyed like
+   the BYOM phone path. Our parser currently *requires* `call.id`
+   (§4.4). Until we verify against a live sandbox what the Chat API
+   actually sends, **rung 1 is exploratory only** — not a reliable CI
+   test surface. Either (a) extend the parser to accept
+   `chat.id`/`sessionId` as a fallback session key, or (b) restrict
+   rung-1 testing to specific fixtures with a synthetic `call.id`.
+   Decision deferred until week-1 verification (see §10 q1).
 
 #### Recommended fixture-record command
 
@@ -1350,10 +1729,12 @@ time.
 | Wrong state mutation | unit (test_state) + E2E |
 | Wrong response strategy | unit (test_plan) |
 | Bytes-on-wire bugs | unit (test_sse) + test_runtime |
-| Idempotency bugs | E2E-04 + test_state_idempotency |
-| Latency regressions | bench (L-01/02/03) |
+| Idempotency bugs (incl. concurrent retry race) | E2E-04 + test_state_idempotency + A7 concurrency test |
+| Latency regressions (first-byte and full) | bench (L-01a/b/c, L-02, L-03) |
 | LLM prompt drift | live smoke |
-| Dishonest audit | AV-01..05 |
+| Dishonest audit | AV-01..06 |
+| Webhook missing or malformed | A8 + C3 integration |
+| Approval-marker confusion in voice mode | proceda lint (caught at parse time) |
 | Real-world surprises | Phase D4 dry-run |
 
 Every named failure mode has a named test owner. None of them is
@@ -1412,42 +1793,48 @@ and either fix it or scope it out explicitly.
 
 ## 10. Open questions (need answers before / during build)
 
-1. **Does Vapi actually pass `metadata` to the BYOM endpoint, or only
-   `assistantId`?** — The docs are ambiguous; verify against a live
-   sandbox in week 1 (Phase A1). If only `assistantId`, we maintain a
-   `assistant_id → sop_id` map in `proceda.yaml`.
-2. **End-of-call signal reliability.** — Vapi's
-   `end-of-call-report` webhook is the proper mechanism but adds a second
-   inbound surface. The reaper-based approach is good enough for MVP;
-   re-evaluate in v2 once we know how often Vapi sends a final empty
-   POST vs. just stops calling.
-3. **Confidence-threshold tuning.** — The 0.5 floor in §4.8 is a
+1. **Does Vapi pass `metadata` to BYOM, and what shape do Chat API
+   payloads take?** — Two related sub-questions, verifiable in one
+   week-1 sandbox session:
+   - (a) Does `metadata.sop_id` arrive at our endpoint when set on the
+     Vapi Assistant? Our default routing (§4.4) uses `assistantId →
+     sop_id` and treats `metadata` as best-effort; if `metadata`
+     reliably passes through, we can document it as the preferred
+     authoring path. If it gets stripped, the override path is
+     deleted from the design.
+   - (b) When `POST /chat` (the rung-1 test surface) hits our endpoint,
+     does the body include `call.id`, or only `chatId`/`sessionId`?
+     Determines whether rung 1 is a usable CI surface or merely
+     exploratory (see §7.5b gotcha 6).
+2. **Confidence-threshold tuning.** — The 0.5 floor in §4.8 is a
    guess. Tune via the Phase B1 eval cases before the latency pass.
-4. **Tool-call latency policy.** — One inline tool call per turn is
-   safe; two is borderline. Should we declare a per-step `inline:
-   true|false` knob now or wait? **Recommend wait**: ship with all tools
-   inline, profile, decide.
-5. **Should the responder model be told the slot schema?** — Currently
+3. **Tool-call latency policy.** — One inline tool call per turn is
+   safe; two is borderline. Should we declare a per-step
+   `inline: true|false` knob now or wait? **Recommend wait**: ship
+   with all tools inline, profile, decide.
+4. **Should the responder model be told the slot schema?** — Currently
    the planner builds a step-scoped prompt that doesn't include the
    global slot schema. Including it costs tokens; excluding it might
    make the responder confused about what's already known. Empirical
    question for week 3.
-6. **What does a successful FNOL look like to a real claims adjuster?**
+5. **What does a successful FNOL look like to a real claims adjuster?**
    — Answer this before the demo. Otherwise the audit artifact is
    designed for an audience that may not exist. Find one design-partner
    adjuster *before* finalizing the artifact schema.
-7. **Should we ship `proceda voice fixture record <call_id>`?** —
+6. **Should we ship `proceda voice fixture record <call_id>`?** —
    Captures the next inbound Vapi BYOM POST to disk for replay-based
-   testing (rung 0 of the §7.5b ladder). Argument for: it's the only
-   cheap way to seed our fixture set with payloads that match real
-   Vapi-version-of-the-day. Argument against: one extra CLI command and a
-   small bit of state machinery. **Recommend ship it in Phase C5** — pays
-   back within the Phase D4 dry-run, because we'll record canonical
-   payloads from those calls for permanent regression coverage.
-8. **Vapi `metadata` passthrough — does it really work for SOP routing?**
-   Verify in week 1. The `assistantOverrides.variableValues` field is the
-   most likely vehicle; if Vapi strips unknown keys, fall back to a
-   `assistant_id → sop_id` map in `proceda.yaml` (already noted in §10 q1).
+   testing (rung 0 of the §7.5b ladder). Argument for: only cheap way
+   to seed fixtures with payloads that match real Vapi-version-of-the-day.
+   Argument against: one extra CLI command and a small bit of state
+   machinery. **Recommend ship it in Phase C5** — pays back within the
+   Phase D4 dry-run, because we'll record canonical payloads from those
+   calls for permanent regression coverage.
+7. **What's the correct webhook delivery semantics?** — Vapi's
+   `end-of-call-report` retries on non-2xx, but does it retry once or
+   indefinitely? What's the timeout? The handler is idempotent
+   regardless, but knowing the retry policy informs how aggressive our
+   "respond immediately, finalize in background" optimization can be.
+   Verify alongside q1 in week 1.
 
 ---
 
@@ -1466,6 +1853,11 @@ and either fix it or scope it out explicitly.
 | Simulations API churn (Alpha) | medium | medium | Wrap in `proceda.voice.testkit` adapter; pin Vapi SDK version; rung-2 tests are nice-to-have, not load-bearing |
 | Test Suites code mistakenly written | low | medium | Linter rule / code-review check: any reference to `/test/test-suites` is a bug |
 | Latency instrumentation gap (Vapi exposes none) | medium | high | Server-side per-turn timing is in scope (§6.4 C6); do not depend on Vapi telemetry |
+| Webhook delivery failures leave audit incomplete | medium | high | Reaper fallback finalizes from state alone; `finalized_via` flag tells reviewers which path ran; alert on `finalized_via != webhook` rate |
+| Idempotency lock contention | low | medium | Per-session lock is per-call; no cross-call contention; bench in L-03 |
+| Approval-marker confusion (legacy `[APPROVAL REQUIRED]`) | medium | medium | Lint error blocks publish (§4.6); `proceda lint` runs in pre-commit and CI |
+| Acknowledgment-prefix latency optimization breaks | low | high | If planner can't emit a prefix, fall through to plain responder path; L-01b budget covers this case |
+| Vapi control-tool exception list expands beyond 2 | low | medium | Whitelist enforcement in code; PR review check for new entries; document why each exists |
 
 The two highest-impact rows are **latency** and **audit credibility**.
 Both have named owners (D3, §10 q6) and named test layers (§7.3, §7.5).
@@ -1508,3 +1900,52 @@ not a domain bug:
 *End of design doc. Review notes welcome inline; substantive disagreements
 should result in either a §5 entry being added/edited or a non-goal being
 moved into goals.*
+
+---
+
+## Appendix A — Changelog
+
+### v0.3 (2026-04-29) — Internal review pass
+
+Eleven findings from internal review folded in:
+
+**High-severity fixes:**
+
+- §4.6 + §5.7c: removed the "log `pre_approval_skipped: voice_mode` and
+  proceed" anti-pattern. Voice-mode SOPs now reject `[APPROVAL REQUIRED]`
+  at lint time; approval is modeled as a `caller_confirm:` slot
+  (real, audit-able) or as `escalate_to_human` via `transferCall`.
+- §2.2 N9 + §4.4 + §5.7b: Vapi `end-of-call-report` webhook moved into
+  MVP scope (Phase A8 + C3). Reaper demoted to fallback. `finalized_via`
+  is a load-bearing audit field.
+- §4.5: idempotency now uses per-session `(turn_lock, in_flight_hash,
+  in_flight_buffer, last_completed_hash)` quadruple. Prevents
+  state-corruption from concurrent retries during streaming.
+- §4.10b: new subsection. Two and only two Vapi control-tool emissions
+  (`transferCall`, `endCall`) are allowed exceptions to "Vapi sees no
+  tools." Without them, transfer/hang-up are impossible.
+- §2.2 N8 + §7.5 AV-05: PII-redaction language tightened. The existing
+  `redact_secrets` matches key names, not transcript values; AV-05 now
+  asserts only "no transport leak," and the design partner gets a
+  warning that the audit dir contains raw PII.
+
+**Medium-severity fixes:**
+
+- §7.3: latency budget split into first-byte (L-01a/b) and full-response
+  (L-01c) tiers. Acknowledgment prefix streamed directly from planner
+  for first-byte ≤ 100 ms; full responses up to 1.2 s.
+- §4.11: event log declared canonical, final state demoted to derived
+  cache. `from_events_only` is the truth function; `finalize` is a
+  fast-path with CI-asserted equality.
+- §G3 + §4.11: run directory layout pinned to
+  `.proceda/voice-runs/<call_id>/`. Chronological browsing via
+  `index.jsonl`. New `VoiceRunDirectoryManager` to avoid entangling with
+  existing `RunDirectoryManager`.
+- §4.4: SOP routing default is now `assistant_sop_map` keyed by
+  `assistantId`. `metadata.sop_id` is an opt-in override only, never
+  load-bearing.
+- §7.5b gotcha 6: rung 1 (Vapi Chat API) marked exploratory until
+  `chatId`/`sessionId` vs `call.id` is resolved. Parser-extension or
+  fixture-restriction decision deferred to week-1 verification.
+- §4.6: per-step directive grammar formalized as fenced YAML block;
+  unknown keys are lint errors.
