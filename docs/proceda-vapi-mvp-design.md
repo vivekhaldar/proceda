@@ -353,13 +353,25 @@ final transcript, recording URL, and any Vapi-side errors). Architecture:
 1. **Primary: `POST /v1/voice/webhooks/end-of-call`.** A second FastAPI
    route (separate from `/v1/chat/completions`) auth'd via a shared HMAC
    over the body using `VOICE_WEBHOOK_SECRET`. On receipt:
-   (a) look up session by `message.call.id`,
-   (b) merge `endedReason` and recording metadata into session,
-   (c) call `AuditBuilder.finalize(session)`,
-   (d) reply `200 OK`.
+   (a) look up session by `message.call.id`;
+   (b) **wait for any in-flight turn to drain** — a webhook that arrives
+       while the BYOM handler is mid-stream must not finalize before the
+       turn's events are committed (otherwise the audit is missing the
+       last turn's state). Concretely: `async with session.turn_lock`
+       (which the producer also holds at commit time), then
+       `if session.in_flight is not None: await session.in_flight.done.wait()`.
+       Bounded by `voice.webhook_drain_timeout_ms` (default 5000); on
+       timeout, we finalize anyway and tag `finalized_via:
+       webhook_with_drain_timeout` so the audit reflects the partial
+       state honestly;
+   (c) merge `endedReason` and recording metadata into session;
+   (d) call `AuditBuilder.finalize(session)`;
+   (e) reply `200 OK`.
    Vapi retries on non-2xx with exponential backoff, so the handler must
    be idempotent — a finalized session re-receiving the webhook returns
-   the same response without re-finalizing.
+   the same response without re-finalizing. The `session.finalized` flag
+   guards re-entry; it's set inside the same critical section that
+   finalizes.
 2. **Fallback: session-inactivity reaper.** Sweeps every 30 s; finalizes
    sessions older than 60 s without a turn or webhook. Only fires when
    the webhook fails (network flake, Vapi misfire, server URL
@@ -384,16 +396,16 @@ Inside `VoiceRuntime.handle_turn(call_id, vapi_payload)`:
 1. Auth + parse                       (  <  1 ms)
 2. SessionStore.get_or_create(call_id, sop_id, sop_version)
                                       (  <  1 ms)
-3. Idempotency check + per-turn lock
+3. Idempotency role selection (lock held only during this step)
    - h = sha256(canonicalize(messages))
-   - acquire session.turn_lock           ← serializes concurrent retries
-   - if session.in_flight_hash == h:
-        → another request is currently streaming this exact turn.
-          Await its completion future, then replay cached bytes.
+   - acquire session.turn_lock           ← briefly, just to read/install in_flight
+   - if session.in_flight is not None and session.in_flight.msg_hash == h:
+        → role = "tail"; capture session.in_flight reference
      elif session.last_completed_hash == h:
-        → already-completed turn (Vapi retried). Replay cached bytes.
+        → role = "replay"; capture session.last_response_bytes
      else:
-        → new turn. Mark session.in_flight_hash = h. Continue.
+        → role = "produce"; install new InFlightTurn(msg_hash=h)
+   - release session.turn_lock           ← producer streams without holding lock
                                       (  <  1 ms)
 4. Latest user turn extraction        ( ~150–250 ms — long pole )
    - SlotEngine.extract(messages, session)
@@ -408,11 +420,19 @@ Inside `VoiceRuntime.handle_turn(call_id, vapi_payload)`:
    - Build per-turn LLM prompt scoped to focus
    - Pick allowed tools for this step from MCPOrchestrator
                                       (  <  5 ms)
-6b. Stream acknowledgment prefix      (  first byte: <50 ms )
+2b. (Optional) Stream pre-extraction filler ( first byte: <100 ms )
+    - If voice.use_pre_extraction_filler is true and the previous turn's
+      focus had `calls:` (i.e., user is likely waiting on a tool), emit
+      a static neutral filler — "Let me check that," "One moment," etc.
+      — directly from a config-driven template. No LLM call.
+    - Static-string framing means first byte hits the wire <100 ms after
+      request receipt. This is the only mechanism that meets the L-01a
+      target. See §4.5b for filler policy.
+6b. (Optional) Stream post-extraction acknowledgment ( <50 ms after step 6 )
     - If plan.user_visible_acknowledgment is set, frame and yield it
       directly from the planner output (no responder LLM round-trip).
-    - This is what makes the latency budget realistic for tool-call turns
-      and correction turns. See §7.3 L-01 split.
+    - Still streamed before the responder LLM call begins; bridges the
+      time from end-of-extraction to first responder token.
 7. Stream main response               ( first token: 100–200 ms )
    - LLMRuntime.complete_stream(prompt, allowed_tools)
    - On tool call: intercept, execute via MCPOrchestrator,
@@ -420,18 +440,51 @@ Inside `VoiceRuntime.handle_turn(call_id, vapi_payload)`:
    - For each delta: yield to SSE frame writer
 8. Persist + commit hash
    - Append turn record + audit-log entries (background task)
-   - session.last_completed_hash = h
-   - session.in_flight_hash = None
-   - Cache last response bytes for replay
-   - release session.turn_lock
+   - acquire session.turn_lock briefly:
+       session.last_completed_hash = h
+       session.last_response_bytes = b"".join(in_flight.chunks)
+       session.in_flight = None
+     release lock
+   - in_flight.finalize()  ← wakes any tailing duplicates
                                       (  <  10 ms async )
 9. Emit [DONE]
 ```
 
-The clock starts at step 1 and the first byte we owe Vapi is in step 6b
-(if the plan has an acknowledgment) or step 7 (if not). So **steps 1–6
-are in the critical path** for any plain-answer turn, and **steps 1–6b are
-the critical path** for any turn with an acknowledgment prefix.
+The clock starts at step 1 and the first byte we owe Vapi is in step 2b
+(if the pre-extraction filler fires), step 6b (if a post-extraction
+acknowledgment is planned), or step 7 (otherwise). So:
+
+- For a **filler turn**: steps 1–2b are critical path; first byte ≤ 100 ms.
+- For a **post-extraction acknowledgment turn** (no filler): steps 1–6b
+  are critical path; first byte ≤ 500 ms.
+- For a **plain-answer turn**: steps 1–7 first-token are critical path;
+  first byte ≤ 500 ms.
+
+#### 4.5b Filler policy (when do we say "let me check"?)
+
+The pre-extraction filler is a UX-vs-latency knob. Always-on is annoying
+("Let me check… let me check… let me check…"); never-on misses the L-01a
+budget for tool-call turns. The MVP rule:
+
+A pre-extraction filler is emitted only when **all** of these hold:
+
+1. `voice.use_pre_extraction_filler` is true (default: true).
+2. The previous turn's resolved focus step had `calls:` (we expect a
+   tool round-trip).
+3. The session's last filler was emitted ≥ N turns ago, where N =
+   `voice.filler_min_turn_gap` (default: 3).
+
+When fired, the filler text is sampled from
+`voice.filler_templates: list[str]` (default:
+`["Let me check.", "One moment.", "Just a sec.", "Looking that up."]`)
+and the choice is recorded in the audit (`fillers_emitted: [{turn, text}]`).
+
+Failure mode to avoid: filler fires, then extraction reveals the user
+actually changed the topic (tangent / OOS / restart). The filler's text
+is generic enough to survive any of those — "Let me check" doesn't
+commit to a path. But the planner *must* be able to produce a coherent
+follow-up regardless of whether the filler was emitted; it can't assume
+the filler set the user's expectations.
 
 #### Critical: idempotency under streaming retries
 
@@ -441,21 +494,56 @@ only set *after* streaming completes — a duplicate arriving during the
 first stream sees an empty cache, advances state again, and corrupts the
 session.
 
-The fix is the per-session `(turn_lock, in_flight_hash, completion_future,
-response_bytes_buffer)` quadruple. The handler:
+**Key constraint**: the lock must NOT be held while the producer is
+streaming. If it is, a concurrent duplicate can't enter the
+"already-in-flight" branch until the original finishes — by which time
+the in-flight slot has been cleared and the duplicate just sees a
+"completed turn" and replays bytes after the fact. That defeats the
+whole purpose of the in-flight buffer.
 
-1. Takes the lock before reading `in_flight_hash` (prevents concurrent
-   reads from disagreeing on what's in flight).
-2. If a duplicate is in flight, awaits the completion future and replays
-   the *exact* bytes the original stream emits, including chunks that
-   haven't been emitted yet. Concretely: the response bytes go into a
-   shared buffer (`bytes_appended_event` notified per chunk); the duplicate
-   handler iterates the buffer in lockstep.
-3. Only releases the lock after `last_completed_hash` is set and the
-   response bytes are fully buffered.
+The right structure is a small **`InFlightTurn`** object that holds the
+shared streaming state and a *separate* `asyncio.Condition` for
+fan-out. The session-level lock is held only across the
+check-or-create critical section.
 
-This costs ~1 ms of lock acquisition per turn. The buffer adds ≤ 32 KB
-per active session (one cached SSE response). Cleared on next turn.
+```python
+@dataclass
+class InFlightTurn:
+    msg_hash: str
+    chunks: list[bytes] = field(default_factory=list)   # producer appends
+    cond: asyncio.Condition = field(default_factory=asyncio.Condition)
+    done: asyncio.Event = field(default_factory=asyncio.Event)
+    error: Exception | None = None
+
+    async def append(self, chunk: bytes) -> None:
+        async with self.cond:
+            self.chunks.append(chunk)
+            self.cond.notify_all()
+
+    async def finalize(self, error: Exception | None = None) -> None:
+        async with self.cond:
+            self.error = error
+            self.done.set()
+            self.cond.notify_all()
+
+    async def subscribe(self) -> AsyncIterator[bytes]:
+        idx = 0
+        while True:
+            async with self.cond:
+                while idx >= len(self.chunks) and not self.done.is_set():
+                    await self.cond.wait()
+                while idx < len(self.chunks):
+                    yield self.chunks[idx]
+                    idx += 1
+                if self.done.is_set():
+                    if self.error:
+                        raise self.error
+                    return
+```
+
+The handler holds the session lock just long enough to read or install
+the `InFlightTurn`, then releases. Producer and any concurrent duplicates
+operate on the `InFlightTurn` directly via its own condvar.
 
 #### Pseudocode for the handler
 
@@ -470,38 +558,65 @@ async def chat_completions(req: Request) -> StreamingResponse:
     session = await session_store.get_or_create(call_id, sop_id, sop_version)
     msg_hash = hash_messages(body["messages"])
 
+    # Critical section: pick role (producer or replay/tail) under the lock,
+    # then exit the lock before streaming.
+    role: Literal["produce", "tail", "replay"]
+    in_flight: InFlightTurn | None = None
+    cached_bytes: bytes | None = None
+
+    async with session.turn_lock:
+        if session.in_flight is not None and session.in_flight.msg_hash == msg_hash:
+            in_flight = session.in_flight
+            role = "tail"
+        elif session.last_completed_hash == msg_hash:
+            cached_bytes = session.last_response_bytes
+            role = "replay"
+        else:
+            in_flight = InFlightTurn(msg_hash=msg_hash)
+            session.in_flight = in_flight
+            role = "produce"
+    # Lock released — producer streams, tailers consume.
+
     async def stream() -> AsyncIterator[bytes]:
-        async with session.turn_lock:
-            if session.in_flight_hash == msg_hash:
-                # Concurrent duplicate. Replay the in-progress buffer.
-                async for chunk in session.tail_in_flight():
-                    yield chunk
-                return
-            if session.last_completed_hash == msg_hash:
-                # After-the-fact duplicate. Replay completed bytes.
-                yield from session.last_response_bytes
-                return
-            session.in_flight_hash = msg_hash
-            session.in_flight_buffer = []
-            try:
-                async for chunk in voice_runtime.handle_turn(session,
-                                                             body["messages"]):
-                    session.in_flight_buffer.append(chunk)
-                    session.in_flight_buffer_event.set()
-                    yield chunk
+        if role == "replay":
+            yield cached_bytes
+            return
+        if role == "tail":
+            async for chunk in in_flight.subscribe():
+                yield chunk
+            return
+        # role == "produce"
+        try:
+            async for chunk in voice_runtime.handle_turn(session,
+                                                         body["messages"]):
+                await in_flight.append(chunk)
+                yield chunk
+            # Successful completion: commit hash + cached bytes under the lock.
+            async with session.turn_lock:
                 session.last_completed_hash = msg_hash
-                session.last_response_bytes = b"".join(session.in_flight_buffer)
-            finally:
-                session.in_flight_hash = None
+                session.last_response_bytes = b"".join(in_flight.chunks)
+                session.in_flight = None
+            await in_flight.finalize()
+        except Exception as e:
+            async with session.turn_lock:
+                session.in_flight = None
+            await in_flight.finalize(error=e)
+            raise
 
     return StreamingResponse(stream(), media_type="text/event-stream")
 ```
 
+This satisfies the A7 acceptance test ("duplicate's response started
+arriving before the original finished") because the duplicate's
+`subscribe()` returns a chunk as soon as the producer appends one — it
+doesn't wait for the producer to finish.
+
 `voice_runtime.handle_turn` is an async generator. It does extraction,
 plans, streams the response, intercepts tool calls, and writes to the
 audit log as side effects — all while yielding SSE-framed bytes. The
-locking and buffering live in the handler, not in `VoiceRuntime`, so the
-runtime stays testable in isolation.
+locking, fan-out, and buffering live in the handler and the
+`InFlightTurn` helper, not in `VoiceRuntime`, so the runtime stays
+testable in isolation.
 
 ---
 
@@ -543,6 +658,9 @@ slots:
     required: true
   - id: vehicle_damage_description
     type: string
+    required: false
+  - id: file_claim_confirmed                # caller-confirmation control slot for step 7
+    type: boolean
     required: false
 
 required_tools:
@@ -736,27 +854,45 @@ class VoiceSession:
     sop_version: str
     started_at: datetime
     last_turn_idx: int = 0
-    last_message_hash: str | None = None
-    last_response_bytes: bytes | None = None       # for idempotent replay
+
+    # Idempotency state (see §4.5):
+    turn_lock: asyncio.Lock = field(default_factory=asyncio.Lock)
+    in_flight: InFlightTurn | None = None             # active producer's turn
+    last_completed_hash: str | None = None            # last fully-streamed turn
+    last_response_bytes: bytes | None = None          # cached for after-the-fact replay
+
+    # SOP state:
     slots: dict[str, SlotValue | None] = field(default_factory=dict)
     steps: dict[int, StepRecord] = field(default_factory=dict)
     focus: int | None = None
     transcript: list[RunMessage] = field(default_factory=list)
     tool_calls: list[ToolCallRecord] = field(default_factory=list)
     escalations: list[EscalationRecord] = field(default_factory=list)
+
+    # Filler state (see §4.5b):
+    last_filler_turn_idx: int | None = None
+
+    # Lifecycle:
     finalized: bool = False
+    finalized_via: Literal["webhook", "webhook_with_drain_timeout",
+                           "reaper", "on_demand"] | None = None
+    vapi_end_of_call: dict | None = None              # raw webhook payload, if received
 ```
 
 Key invariants:
 
 - **No `current_step` integer.** `focus` is derived per turn from
-  "highest-priority `eligible` step." Consequence: when the user answers
-  ahead, we mark side-effect completions and recompute focus naturally.
+  "highest-priority eligible-but-not-completed step" (see §5.2 for the
+  eligibility/completion distinction). Consequence: when the user
+  answers ahead, we mark side-effect completions and recompute focus
+  naturally.
 - **Slot values are append-only.** Corrections push to `history`, then
   overwrite `value`. Audit can reconstruct full timeline.
-- **`last_response_bytes` is the idempotency cache.** On retry we re-emit
-  exactly the SSE bytes we sent before. Bounded by 1 cached response per
-  session — no unbounded memory growth.
+- **`(turn_lock, in_flight, last_completed_hash, last_response_bytes)`
+  is the idempotency quartet.** On retry we either tail the in-flight
+  buffer or re-emit cached bytes; never advance state twice. Bounded by
+  one cached response and one in-flight buffer per session — no
+  unbounded memory growth.
 
 ---
 
@@ -905,29 +1041,80 @@ Vapi-side call-control tools that *only* Vapi can execute, because they
 manipulate the live audio session that Vapi owns. Without these, the SOP
 can't transfer to a human or hang up.
 
-The MVP exposes these to Vapi as a tightly-scoped control-tool whitelist:
+#### Vapi-side configuration contract
 
-- **`transferCall(destination: string)`** — Vapi-side built-in. Transfers
-  the live call to a phone number, SIP URI, or another Vapi assistant.
-  Used by `on_mismatch: escalate_to_human` and the runtime's
-  `escalate_to_human` planner strategy.
-- **`endCall(reason: string)`** — Vapi-side built-in. Hangs up the call.
-  Used by the `wrap_up` planner strategy after the final assistant
-  utterance has streamed.
+`transferCall` and `endCall` are not magic — they are Vapi's "default
+tools" that **must be added to the assistant's `tools` array** in the
+Vapi dashboard or API for the agent to be allowed to invoke them
+([Vapi default tools docs](https://docs.vapi.ai/tools/default-tools)).
+The transfer destination(s) live in the tool config, not in our
+emitted args. So the integration has two halves:
 
-Mechanics: when the planner decides to escalate or wrap up, the streaming
-response includes a single OpenAI-format `tool_calls` chunk in the SSE
-stream — but exclusively for one of the two whitelisted control tools.
-Vapi recognizes the tool by name (it has its own built-in handlers for
-both) and executes it client-side. We never define them as MCP tools and
-the responder LLM never sees them as available tools (the responder gets
-*MCP* tools only, from the planner's `allowed_tools`).
+1. **Vapi-side config (Phase D2):** the assistant's `tools` array
+   includes:
+   ```jsonc
+   {
+     "type": "transferCall",
+     "destinations": [
+       { "type": "number", "number": "+15555550100", "message": "Transferring to a specialist." }
+     ]
+   }
+   ```
+   plus a `{ "type": "endCall" }` entry. Without these in the assistant
+   config, our emitted tool calls fall on the floor and the call
+   continues with no transfer/hangup.
 
-This means the SSE response is *not* "content-only" in the strict sense —
-two specific tool-call chunks can appear, by name. We treat it as a
-narrow exception, not a general capability. Auditing: every emitted
-control-tool call is logged as a `VAPI_CONTROL_TOOL_EMITTED` event with
-the tool name, args, and emitting strategy.
+2. **Proceda-side emission (in the SSE stream):** when the planner
+   decides to escalate or wrap up, our SSE stream includes a single
+   OpenAI-format `tool_calls` chunk naming `transferCall` or `endCall`.
+   Vapi's built-in handlers match by tool name and execute the action
+   using the destination(s) configured server-side. We do not include
+   destination args in the emitted call (Vapi's config supplies them).
+
+The exact streamed shape (subject to week-1 sandbox validation against
+Vapi's BYOM expectations):
+
+```jsonc
+data: {
+  "id": "vc_<call_id>_t<turn_idx>",
+  "object": "chat.completion.chunk",
+  "choices": [{
+    "index": 0,
+    "delta": {
+      "tool_calls": [{
+        "index": 0,
+        "id": "call_xyz",
+        "type": "function",
+        "function": { "name": "transferCall", "arguments": "{}" }
+      }]
+    },
+    "finish_reason": "tool_calls"
+  }]
+}
+data: [DONE]
+```
+
+#### What we own vs. what Vapi owns
+
+| Concern | Owned by |
+|---|---|
+| Decision to transfer/hangup | Proceda (planner strategy) |
+| Tool config + destinations | Vapi assistant config (D2) |
+| Tool-call SSE shape | Proceda (emitter) |
+| Audio handoff after transfer | Vapi |
+| Hangup signaling on the line | Vapi |
+| Audit event `VAPI_CONTROL_TOOL_EMITTED` | Proceda |
+
+We never define them as MCP tools and the responder LLM never sees them
+as available tools (the responder gets *MCP* tools only, from the
+planner's `allowed_tools`). This means the SSE response is *not*
+"content-only" in the strict sense — two specific tool-call chunks can
+appear, by name. We treat it as a narrow exception, not a general
+capability. Auditing: every emitted control-tool call is logged as a
+`VAPI_CONTROL_TOOL_EMITTED` event with the tool name, args, the emitting
+strategy, **and** the assistant config snapshot showing the destination
+that Vapi was configured to use (so the audit can prove where a transfer
+went, since we don't choose it).
 
 | Behavior the SOP wants | How it fires |
 |---|---|
@@ -1129,12 +1316,24 @@ eligibility set." Correct, but a full graph-based rewrite of the SOP
 abstraction is too much for an MVP. Compromise:
 
 - Steps remain numbered 1..N as today.
-- `focus = highest-priority eligible step` is computed per turn, where
-  "eligible" means "all required slots are filled and any prior `calls:`
-  have completed."
+- Each step has **two distinct conditions** that the runtime tracks
+  independently:
+  - **Prerequisites satisfied** ("eligible" — can we drive toward this
+    step?). Step N's prerequisites are: every step M < N has either
+    completed *or* has all its `fills:` slots already filled out of order.
+    This means step 1 (with no prior steps) is always eligible at call
+    start regardless of whether its own `fills:` are populated.
+  - **Completion criteria met** ("completed" — is this step done?).
+    Every slot in the step's `fills:` is filled, every `calls:` has
+    succeeded, and (if `[CALLER CONFIRM REQUIRED]`) the
+    `caller_confirm.slot` is set to true.
+- `focus = highest-priority step that is eligible AND not yet completed`
+  is computed per turn.
 - Steps in voice mode can be marked completed via `completed_via:
   side_effect` when their declared `fills:` slots get filled by a turn
   ostensibly answering a different question.
+- Step state machine: `pending → eligible → in_progress → completed |
+  skipped | blocked`. `in_progress` is "currently the focus."
 - Authors still write SKILL.md as a 1..N sequence. The runtime is permitted
   to reach step N early or to advance focus past steps whose slots are
   already filled.
@@ -1334,16 +1533,19 @@ overlap somewhat in practice; the dependency graph is in §6.5.
 - Use `sse-starlette` for the response wrapper.
 - Acceptance: unit tests for byte-exact framing.
 
-**A7. Idempotency lock + cache**  ·  1 d
+**A7. Idempotency primitives + InFlightTurn helper**  ·  1 d
 - `hash_messages(messages) -> str`: canonicalize and SHA-256.
-- `VoiceSession.turn_lock`, `in_flight_hash`, `in_flight_buffer`,
-  `in_flight_buffer_event`, `last_completed_hash`, `last_response_bytes`
-  fields per the §4.5 quadruple. `tail_in_flight()` async generator that
-  serves the buffer to a duplicate request.
+- `InFlightTurn` dataclass with `msg_hash`, `chunks`, condvar `cond`,
+  `done` event, `error` field, and async methods `append(chunk)`,
+  `finalize(error=None)`, `subscribe() -> AsyncIterator[bytes]` per §4.5.
+- `VoiceSession` fields: `turn_lock`, `in_flight: InFlightTurn | None`,
+  `last_completed_hash`, `last_response_bytes` per §4.7.
 - Acceptance: (a) stable-hash tests across noisy reorderings; (b) a
-  concurrency test that fires two identical POSTs ~10 ms apart and
-  asserts byte-identical SSE output, single state advance, and that the
-  duplicate's response started arriving before the original finished.
+  concurrency test that fires two identical POSTs ~10 ms apart against
+  a runtime instrumented to slow-stream chunks; asserts byte-identical
+  SSE output, single state advance, and that the duplicate's
+  response **started arriving before the original finished** (this is
+  the bit the lock-while-streaming bug would silently break).
 
 **A8. Vapi end-of-call webhook handler**  ·  0.5 d
 - `POST /v1/voice/webhooks/end-of-call` route. HMAC-verify body against
@@ -1432,10 +1634,24 @@ overlap somewhat in practice; the dependency graph is in §6.5.
 - Mock CRM and FNOL-filing MCP servers (existing `examples/` pattern).
 - Acceptance: `proceda voice test fnol --scenario happy-path` succeeds.
 
-**D2. Vapi assistant configuration**  ·  0.5 d
-- Provision a Vapi Assistant with our endpoint as Custom LLM.
-- Document the assistant config (TTS voice, first-message, transcriber)
-  in `examples/voice-fnol/vapi-assistant.json`.
+**D2. Vapi assistant configuration**  ·  1 d
+- Provision a Vapi Assistant with our endpoint as Custom LLM
+  (`model.provider = "custom-llm"`, `model.url` = our deployed
+  `/v1/chat/completions`).
+- **Add `transferCall` and `endCall` to the assistant's `tools` array**
+  per [docs.vapi.ai/tools/default-tools](https://docs.vapi.ai/tools/default-tools).
+  Configure `transferCall.destinations` to include the
+  `voice.escalation_destination` from `proceda.yaml`.
+- Configure the Vapi `serverUrl` to our
+  `/v1/voice/webhooks/end-of-call` route, with the same shared secret
+  as `VOICE_WEBHOOK_SECRET` for HMAC.
+- Document everything in `examples/voice-fnol/vapi-assistant.json`
+  including the tools array, server URL, TTS voice, first-message, and
+  transcriber.
+- **Validate the streamed control-tool shape** against the live Vapi
+  sandbox: emit a synthetic `transferCall` and confirm Vapi actually
+  initiates the transfer; same for `endCall`. If the shape is wrong,
+  this is the first test that catches it.
 
 **D3. Latency tuning pass**  ·  1.5 d
 - Profile a real call. Identify hottest stage. Likely candidates: extractor
@@ -1471,17 +1687,19 @@ component for the wedge; do not skimp on it under time pressure.
 
 ### 6.6 Effort summary
 
-| Phase | Days |
-|---|---|
-| A — plumbing | 5 |
-| B — per-turn loop | 5 |
-| C — HTTP + audit | 5 |
-| D — live demo | 5 |
-| **Total** | **20** |
+After two review-pass revisions, current estimates:
 
-20 working days = 4 calendar weeks, single engineer, no slack. Realistic
-expectation including review and small unknowns: **5–6 weeks**. If the team
-is one engineer, plan 6.
+| Phase | Days | Detail |
+|---|---|---|
+| A — plumbing | 6.5 | A1 0.5 + A2 1.5 + A3 1 + A4 0.5 + A5 1 + A6 0.5 + A7 1 + A8 0.5 |
+| B — per-turn loop | 5 | B1 1.5 + B2 1 + B3 1 + B4 1.5 |
+| C — HTTP + audit | 5.5 | C1 1 + C2 1.5 + C3 1 + C4 0.5 + C5 1 + C6 0.5 |
+| D — live demo | 5.5 | D1 1 + D2 1 + D3 1.5 + D4 1 + D5 1 |
+| **Total** | **22.5** | |
+
+22.5 working days = ~4.5 calendar weeks single-engineer with no slack.
+Realistic expectation including review and small unknowns: **6.5 weeks**.
+If the team is one engineer, plan 7.
 
 ---
 
@@ -1558,13 +1776,14 @@ Two latency targets per turn — first-byte and full-response — are tracked
 independently because Vapi's TTS engine starts speaking on the first SSE
 delta. Earlier drafts conflated them.
 
-- **L-01a first-byte (acknowledgment-prefix turn).** Driven 100 turns
-  through a `ReplayingLLMRuntime` with extractor-only delay (200 ms) and
-  a planner that emits a `user_visible_acknowledgment`. Measured: time
-  from request received to first SSE delta on the wire. Assert
-  **p50 ≤ 100 ms, p95 ≤ 200 ms server-side.** This is achievable because
-  the prefix is streamed directly from the planner, before the responder
-  LLM call begins (§4.5 step 6b).
+- **L-01a first-byte (pre-extraction filler turn).** Driven 100 turns
+  where the filler-policy (§4.5b) fires. Measured: time from request
+  received to first SSE delta on the wire. The filler is a static
+  config-driven string framed without any LLM call, so timing is
+  dominated by request parse + framing. Assert
+  **p50 ≤ 100 ms, p95 ≤ 200 ms server-side.** This is the only test
+  asserting sub-150 ms first-byte; the filler-eligibility precondition
+  is part of the test setup.
 - **L-01b first-byte (no-acknowledgment turn).** Same setup but planner
   emits no prefix; first byte must come from the responder. Measured the
   same way. Assert **p50 ≤ 500 ms, p95 ≤ 900 ms server-side** (extractor
@@ -1905,6 +2124,50 @@ moved into goals.*
 
 ## Appendix A — Changelog
 
+### v0.4 (2026-04-29) — Second review pass
+
+Eight findings from the v0.3-review-of-the-review folded in. Mostly
+concurrency details and platform-contract gaps.
+
+**High-severity fixes:**
+
+- §4.5: idempotency lock no longer wraps the streaming generator. New
+  `InFlightTurn` helper (own condvar) lets the producer release the
+  session lock before yielding any bytes; concurrent duplicates can
+  enter the "tail" branch and start receiving bytes before the original
+  finishes. The A7 acceptance test now actually means something.
+- §4.5 + §4.5b + §7.3 L-01a: pre-extraction filler concept added.
+  Original L-01a budget (≤100 ms first byte after extraction) was
+  unphysical. Now the filler is a config-driven static string emitted
+  before extraction begins; L-01a tests only fire when the filler
+  policy fires. Filler-policy is a UX-vs-latency knob with explicit
+  rules (§4.5b).
+- §4.10b + §6.4 D2: Vapi control-tool exception no longer hand-wavy.
+  `transferCall` and `endCall` must be added to the assistant's `tools`
+  array via Vapi config; transfer destinations live there too.
+  D2 grew from 0.5 d to 1 d to include this configuration plus a
+  live-sandbox validation of the streamed tool-call shape.
+- §4.4 webhook handler: webhook finalization now waits for any
+  in-flight turn to drain before calling `AuditBuilder.finalize`.
+  Bounded by `voice.webhook_drain_timeout_ms`; on timeout, audit is
+  tagged `finalized_via: webhook_with_drain_timeout` so partial state
+  is honestly disclosed.
+
+**Medium-severity fixes:**
+
+- §4.6 FNOL example: `file_claim_confirmed` slot added to the global
+  `slots:` block so the example doesn't fail its own A2 lint rule.
+- §5.2: step state machine split into "prerequisites satisfied"
+  (eligible) and "completion criteria met" (completed). Earlier wording
+  conflated them; step 1 with no prior steps is now correctly always
+  eligible regardless of `fills:` state.
+- §4.7: `VoiceSession` dataclass aligned with the §4.5 idempotency
+  design — now has `turn_lock`, `in_flight`, `last_completed_hash`,
+  `last_response_bytes`. Removed the stale `last_message_hash` field.
+  Added `finalized_via`, `vapi_end_of_call`, `last_filler_turn_idx`.
+- §6.6: schedule summary updated. Total: 20 d → 22.5 d nominal,
+  6.5 weeks → 7 weeks realistic.
+
 ### v0.3 (2026-04-29) — Internal review pass
 
 Eleven findings from internal review folded in:
@@ -1918,9 +2181,10 @@ Eleven findings from internal review folded in:
 - §2.2 N9 + §4.4 + §5.7b: Vapi `end-of-call-report` webhook moved into
   MVP scope (Phase A8 + C3). Reaper demoted to fallback. `finalized_via`
   is a load-bearing audit field.
-- §4.5: idempotency now uses per-session `(turn_lock, in_flight_hash,
-  in_flight_buffer, last_completed_hash)` quadruple. Prevents
-  state-corruption from concurrent retries during streaming.
+- §4.5: idempotency now uses per-session lock + `last_completed_hash` +
+  cached response bytes. Prevents state-corruption from concurrent
+  retries during streaming. (v0.4 superseded the initial flat-state
+  attempt with a proper `InFlightTurn` helper — see v0.4 entry above.)
 - §4.10b: new subsection. Two and only two Vapi control-tool emissions
   (`transferCall`, `endCall`) are allowed exceptions to "Vapi sees no
   tools." Without them, transfer/hang-up are impossible.
