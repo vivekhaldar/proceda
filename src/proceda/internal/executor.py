@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import logging
+import uuid
 from collections.abc import Callable, Coroutine
 from dataclasses import asdict
 from datetime import UTC, datetime
@@ -26,10 +27,12 @@ from proceda.session import (
     ApprovalDecision,
     ApprovalRecord,
     ApprovalRequest,
+    ClarificationRecord,
     ClarificationRequest,
     ErrorContext,
     ErrorRecoveryDecision,
     ErrorRecoveryRequest,
+    ExecutedToolReceipt,
     RunMessage,
     RunSession,
     RunStatus,
@@ -65,6 +68,7 @@ class Executor:
         decision_config: DecisionConfig | None = None,
         fallback_llm: LLMRuntime | None = None,
         tool_aliases: dict[str, str] | None = None,
+        resolve_tool_identity: Callable[[str], tuple[str, str] | None] | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -79,8 +83,8 @@ class Executor:
         self._decisions = decision_service
         self._decision_config = decision_config or DecisionConfig()
         self._fallback_llm = fallback_llm
-        self._tool_aliases = tool_aliases or {}
-        self._receipt_errors: dict[str, bool] = {}
+        self._tool_aliases = dict(tool_aliases or {})
+        self._resolve_tool_identity = resolve_tool_identity
 
     async def execute(self) -> None:
         """Run the full skill from current step to completion."""
@@ -235,7 +239,6 @@ class Executor:
             is_last_step=is_last_step,
             output_fields=self._skill.output_fields,
         )
-        step_message_start = len(session.messages)
         session.add_message(RunMessage.create("user", step_prompt, is_critical=True))
 
         text_only_count = 0
@@ -359,7 +362,7 @@ class Executor:
                 )
 
             # Process tool calls
-            batch_results_start = len(session.step_tool_results)
+            batch_receipts_start = len(session.executed_tool_receipts)
             for tc in response.tool_calls:
                 if is_control_tool(tc.name):
                     result = await self._handle_control_tool(tc)
@@ -418,23 +421,26 @@ class Executor:
 
             # Check only a fully processed app-tool batch. Control transitions,
             # failed tools, and final-output steps retain ordinary execution.
-            fresh_results = session.step_tool_results[batch_results_start:]
+            fresh_receipts = session.executed_tool_receipts[batch_receipts_start:]
             if (
                 self._decisions is not None
                 and self._decision_config.fast_completion
                 and not is_last_step
                 and response.tool_calls
                 and all(not is_control_tool(tc.name) for tc in response.tool_calls)
-                and len(fresh_results) == len(response.tool_calls)
-                and all(not r.get("is_error", True) for r in fresh_results)
+                and len(fresh_receipts) == len(response.tool_calls)
+                and all(
+                    r.is_error is False and r.qualified_tool_name is not None
+                    for r in fresh_receipts
+                )
             ):
                 gate = await self._decisions.check_completion(
                     step=step.content,
-                    evidence=self._completion_evidence(step_message_start),
+                    evidence=self._completion_evidence(),
                 )
                 await self._record_gate("completion", gate, step_index)
                 if gate.value is True:
-                    receipt_ids = [r["tool_call_id"] for r in fresh_results]
+                    receipt_ids = [r.receipt_id for r in fresh_receipts]
                     summary = (
                         "Step obligations accepted by the configured decision gate. "
                         f"Original tool receipts: {', '.join(receipt_ids)}."
@@ -456,59 +462,53 @@ class Executor:
             "without calling complete_step"
         )
 
-    def _completion_evidence(self, step_message_start: int) -> dict[str, Any]:
+    def _completion_evidence(self) -> dict[str, Any]:
         """Separate recorded business observations from pending runtime bookkeeping."""
-        current_ids = {
-            tc.id
-            for message in self._session.messages[step_message_start:]
-            for tc in (message.tool_calls or [])
-            if not is_control_tool(tc.name)
-        }
         receipts = []
-        for receipt in self._observed_tool_receipts():
-            result = receipt["result"]
+        for receipt in self._session.executed_tool_receipts:
+            result = receipt.result
             try:
                 result = json.loads(result)
             except (json.JSONDecodeError, TypeError):
                 pass
-            name = receipt["tool_name"]
             receipts.append(
                 {
-                    "tool_call_id": receipt["tool_call_id"],
-                    "qualified_tool_name": name,
-                    "sop_tool_name": self._tool_aliases.get(name, name),
-                    "arguments": receipt["arguments"],
+                    "receipt_id": receipt.receipt_id,
+                    "tool_call_id": receipt.tool_call_id,
+                    "qualified_tool_name": receipt.qualified_tool_name,
+                    "sop_tool_name": receipt.sop_tool_name,
+                    "arguments": receipt.arguments,
                     "result": result,
                     "persisted": True,
-                    "current_step": receipt["tool_call_id"] in current_ids,
-                    "is_error": self._receipt_errors.get(receipt["tool_call_id"]),
+                    "current_step": receipt.step_index == self._session.current_step,
+                    "is_error": receipt.is_error,
                 }
             )
-        return {"inputs": self._session.variables, "receipts": receipts}
+        evidence = {"inputs": dict(self._session.variables), "receipts": receipts}
+        if self._session.clarification_records:
+            evidence["clarifications"] = self._clarification_evidence()
+        return evidence
+
+    def _clarification_evidence(self) -> list[dict[str, Any]]:
+        return [
+            {**asdict(record), "current_step": record.step_index == self._session.current_step}
+            for record in self._session.clarification_records
+        ]
 
     def _observed_tool_receipts(self) -> list[dict[str, Any]]:
         """Preserve actual app observations even when the LLM context was trimmed."""
-        calls = {
-            tc.id: tc
-            for message in self._session.messages
-            for tc in (message.tool_calls or [])
-            if not is_control_tool(tc.name)
-        }
-        receipts = []
-        for message in self._session.messages:
-            if message.role != "tool" or not message.app_name:
-                continue
-            call = calls.get(message.tool_call_id or "")
-            if call is not None:
-                receipts.append(
-                    {
-                        "tool_call_id": call.id,
-                        "tool_name": call.name,
-                        "arguments": call.arguments,
-                        "result": message.content,
-                    }
-                )
-        return receipts
+        return [
+            {
+                "receipt_id": receipt.receipt_id,
+                "tool_call_id": receipt.tool_call_id,
+                "tool_name": receipt.qualified_tool_name or receipt.requested_tool_name,
+                "arguments": receipt.arguments,
+                "result": receipt.result,
+                "step_index": receipt.step_index,
+                "is_error": receipt.is_error,
+            }
+            for receipt in self._session.executed_tool_receipts
+        ]
 
     async def _record_gate(self, purpose: str, gate: GateResult, step_index: int) -> None:
         await self._emit(
@@ -587,6 +587,7 @@ class Executor:
                         "messages": messages,
                         "inputs": self._session.variables,
                         "observed_tool_receipts": self._observed_tool_receipts(),
+                        "clarifications": self._clarification_evidence(),
                     },
                     proposal={
                         "content": response.content,
@@ -678,6 +679,7 @@ class Executor:
         elif tool_call.name == "request_clarification":
             question = tool_call.arguments.get("question", "")
             options = tool_call.arguments.get("options", [])
+            recorded_options = tuple(options)
 
             request = ClarificationRequest(question=question, options=options, context=None)
 
@@ -694,6 +696,16 @@ class Executor:
             )
 
             answer = await self._human.request_clarification(request)
+            session.clarification_records.append(
+                ClarificationRecord(
+                    receipt_id=f"clarification_{uuid.uuid4().hex}",
+                    tool_call_id=tool_call.id,
+                    step_index=session.current_step,
+                    question=question,
+                    options=recorded_options,
+                    answer=answer,
+                )
+            )
 
             await self._emit(
                 RunEvent.create(
@@ -717,11 +729,34 @@ class Executor:
     async def _handle_app_tool(self, tool_call: ToolCall) -> None:
         """Handle an app (MCP) tool call."""
         session = self._session
+        # Snapshot before dispatch: tool clients may retain or mutate their arguments.
+        arguments_json = json.dumps(tool_call.arguments, ensure_ascii=False)
+        requested_name = tool_call.name
+        call_id = tool_call.id
+        step_index = session.current_step
+        identity = (
+            self._resolve_tool_identity(requested_name)
+            if self._resolve_tool_identity is not None
+            else (requested_name, self._tool_aliases[requested_name])
+            if requested_name in self._tool_aliases
+            else None
+        )
 
         if self._tool_executor:
             result = await self._tool_executor.execute(tool_call, self._emit)
-            self._receipt_errors[tool_call.id] = bool(result.get("is_error", True))
             content = result.get("content", "")
+            receipt = ExecutedToolReceipt(
+                receipt_id=f"receipt_{uuid.uuid4().hex}",
+                tool_call_id=call_id,
+                step_index=step_index,
+                requested_tool_name=requested_name,
+                qualified_tool_name=identity[0] if identity else None,
+                sop_tool_name=identity[1] if identity else None,
+                arguments_json=arguments_json,
+                result=content,
+                is_error=result.get("is_error") if type(result.get("is_error")) is bool else None,
+            )
+            session.executed_tool_receipts.append(receipt)
             session.add_message(
                 RunMessage.create(
                     "tool",
@@ -730,7 +765,7 @@ class Executor:
                     app_name=result.get("tool_name"),
                 )
             )
-            session.step_tool_results.append(result)
+            session.step_tool_results.append({**result, "receipt_id": receipt.receipt_id})
         else:
             # No tool executor - return error
             error_msg = f"Tool '{tool_call.name}' is not available (no MCP apps configured)."

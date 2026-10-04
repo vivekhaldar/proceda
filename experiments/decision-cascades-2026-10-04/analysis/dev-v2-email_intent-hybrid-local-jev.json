@@ -1,0 +1,766 @@
+{
+  "baseline": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 8,
+      "cost_complete": true,
+      "cost_usd": 0.005424749999999999,
+      "cost_usd_lower_bound": 0.005424749999999999,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "input_tokens_known": 25545,
+      "known_input_usage_requests": 8,
+      "known_output_usage_requests": 8,
+      "known_usage_requests": 8,
+      "llm_requests": 8,
+      "output_tokens_known": 3186,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.005424749999999999,
+          "input_tokens_known": 25545,
+          "known_usage_requests": 8,
+          "output_tokens_known": 3186,
+          "requests": 8,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 10.956670166997355,
+      "n": 2,
+      "p50": 10.956670166997355,
+      "p95": 11.952113666704099
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
+    "terminal_cases": 2
+  },
+  "baseline_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 4,
+        "cost_complete": true,
+        "cost_usd": 0.0027940499999999997,
+        "cost_usd_lower_bound": 0.0027940499999999997,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 12987,
+        "known_input_usage_requests": 4,
+        "known_output_usage_requests": 4,
+        "known_usage_requests": 4,
+        "llm_requests": 4,
+        "output_tokens_known": 1692,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0027940499999999997,
+            "input_tokens_known": 12987,
+            "known_usage_requests": 4,
+            "output_tokens_known": 1692,
+            "requests": 4,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 12.062718500004848,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "status": "completed",
+      "task_id": "E1022",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 4,
+        "cost_complete": true,
+        "cost_usd": 0.0026306999999999997,
+        "cost_usd_lower_bound": 0.0026306999999999997,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 12558,
+        "known_input_usage_requests": 4,
+        "known_output_usage_requests": 4,
+        "known_usage_requests": 4,
+        "llm_requests": 4,
+        "output_tokens_known": 1494,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0026306999999999997,
+            "input_tokens_known": 12558,
+            "known_usage_requests": 4,
+            "output_tokens_known": 1494,
+            "requests": 4,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 9.850621833989862,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "status": "completed",
+      "task_id": "E1028",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "baseline_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/baseline",
+  "by_domain": {
+    "email_intent": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 8,
+          "cost_complete": true,
+          "cost_usd": 0.005424749999999999,
+          "cost_usd_lower_bound": 0.005424749999999999,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 25545,
+          "known_input_usage_requests": 8,
+          "known_output_usage_requests": 8,
+          "known_usage_requests": 8,
+          "llm_requests": 8,
+          "output_tokens_known": 3186,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.005424749999999999,
+              "input_tokens_known": 25545,
+              "known_usage_requests": 8,
+              "output_tokens_known": 3186,
+              "requests": 8,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 10.956670166997355,
+          "n": 2,
+          "p50": 10.956670166997355,
+          "p95": 11.952113666704099
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
+        "terminal_cases": 2
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": -0.48288479248731164,
+        "n": 2,
+        "p50": -0.48288479248731164,
+        "p95": 0.20969918206610583
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 12,
+          "cost_complete": true,
+          "cost_usd": 0.005453876,
+          "cost_usd_lower_bound": 0.005453876,
+          "decision_preflight_records": 0,
+          "decision_requests": 4,
+          "input_tokens_known": 32312,
+          "known_input_usage_requests": 12,
+          "known_output_usage_requests": 12,
+          "known_usage_requests": 12,
+          "llm_requests": 8,
+          "output_tokens_known": 3157,
+          "providers": {
+            "decision:ollaya:winnow:e4b": {
+              "cost_usd_lower_bound": 0.0,
+              "input_tokens_known": 4068,
+              "known_usage_requests": 2,
+              "output_tokens_known": 0,
+              "requests": 2,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "decision:typesafe:jev-1.13.0": {
+              "cost_usd_lower_bound": 0.000122976,
+              "input_tokens_known": 2928,
+              "known_usage_requests": 2,
+              "output_tokens_known": 90,
+              "requests": 2,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.0053308999999999995,
+              "input_tokens_known": 25316,
+              "known_usage_requests": 8,
+              "output_tokens_known": 3067,
+              "requests": 8,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 10.473785374510044,
+          "n": 2,
+          "p50": 10.473785374510044,
+          "p95": 10.77664489966337
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
+        "terminal_cases": 2
+      },
+      "cases": [
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -8.981999999999827e-06,
+          "candidate_minus_baseline_seconds": -1.252422541991109,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1022"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 3.810800000000024e-05,
+          "candidate_minus_baseline_seconds": 0.28665295701648574,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1028"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 2,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -8.981999999999827e-06,
+        "mean_difference": 1.4563000000000206e-05,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 3.810800000000024e-05
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -1.252422541991109,
+        "mean_difference": -0.48288479248731164,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 0.28665295701648574
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 2,
+      "terminal_pairs": 2,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "candidate": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 12,
+      "cost_complete": true,
+      "cost_usd": 0.005453876,
+      "cost_usd_lower_bound": 0.005453876,
+      "decision_preflight_records": 0,
+      "decision_requests": 4,
+      "input_tokens_known": 32312,
+      "known_input_usage_requests": 12,
+      "known_output_usage_requests": 12,
+      "known_usage_requests": 12,
+      "llm_requests": 8,
+      "output_tokens_known": 3157,
+      "providers": {
+        "decision:ollaya:winnow:e4b": {
+          "cost_usd_lower_bound": 0.0,
+          "input_tokens_known": 4068,
+          "known_usage_requests": 2,
+          "output_tokens_known": 0,
+          "requests": 2,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "decision:typesafe:jev-1.13.0": {
+          "cost_usd_lower_bound": 0.000122976,
+          "input_tokens_known": 2928,
+          "known_usage_requests": 2,
+          "output_tokens_known": 90,
+          "requests": 2,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.0053308999999999995,
+          "input_tokens_known": 25316,
+          "known_usage_requests": 8,
+          "output_tokens_known": 3067,
+          "requests": 8,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 10.473785374510044,
+      "n": 2,
+      "p50": 10.473785374510044,
+      "p95": 10.77664489966337
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
+    "terminal_cases": 2
+  },
+  "candidate_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 6,
+        "cost_complete": true,
+        "cost_usd": 0.002785068,
+        "cost_usd_lower_bound": 0.002785068,
+        "decision_preflight_records": 0,
+        "decision_requests": 2,
+        "input_tokens_known": 16497,
+        "known_input_usage_requests": 6,
+        "known_output_usage_requests": 6,
+        "known_usage_requests": 6,
+        "llm_requests": 4,
+        "output_tokens_known": 1653,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 2171,
+            "known_usage_requests": 1,
+            "output_tokens_known": 0,
+            "requests": 1,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 6.5268e-05,
+            "input_tokens_known": 1554,
+            "known_usage_requests": 1,
+            "output_tokens_known": 45,
+            "requests": 1,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0027198,
+            "input_tokens_known": 12772,
+            "known_usage_requests": 4,
+            "output_tokens_known": 1608,
+            "requests": 4,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 10.81029595801374,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "status": "completed",
+      "task_id": "E1022",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 6,
+        "cost_complete": true,
+        "cost_usd": 0.002668808,
+        "cost_usd_lower_bound": 0.002668808,
+        "decision_preflight_records": 0,
+        "decision_requests": 2,
+        "input_tokens_known": 15815,
+        "known_input_usage_requests": 6,
+        "known_output_usage_requests": 6,
+        "known_usage_requests": 6,
+        "llm_requests": 4,
+        "output_tokens_known": 1504,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 1897,
+            "known_usage_requests": 1,
+            "output_tokens_known": 0,
+            "requests": 1,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 5.7708000000000004e-05,
+            "input_tokens_known": 1374,
+            "known_usage_requests": 1,
+            "output_tokens_known": 45,
+            "requests": 1,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0026111,
+            "input_tokens_known": 12544,
+            "known_usage_requests": 4,
+            "output_tokens_known": 1459,
+            "requests": 4,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 10.137274791006348,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "status": "completed",
+      "task_id": "E1028",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "candidate_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/hybrid-local-jev",
+  "notes": [
+    "All provider attempts, including failures and retries, come from audits only.",
+    "LLM request means acompletion attempt; decision request means client.post attempted.",
+    "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Output tokens include reasoning; reasoning detail is never added again.",
+    "Latency covers whole-case execution, including failures; percentiles interpolate.",
+    "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+    "Discordance counts are descriptive; no population guarantee or significance claimed.",
+    "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+    "Correlated cases or shared entities can make these intervals too narrow.",
+    "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+    "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+    "Bootstrap captures observed case variation, not repeat-run/provider or order effects."
+  ],
+  "paired": {
+    "accuracy_delta": 0.0,
+    "baseline_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.005424749999999999,
+        "cost_usd_lower_bound": 0.005424749999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 25545,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "output_tokens_known": 3186,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.005424749999999999,
+            "input_tokens_known": 25545,
+            "known_usage_requests": 8,
+            "output_tokens_known": 3186,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 10.956670166997355,
+        "n": 2,
+        "p50": 10.956670166997355,
+        "p95": 11.952113666704099
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
+      "terminal_cases": 2
+    },
+    "candidate_minus_baseline_latency_seconds": {
+      "mean": -0.48288479248731164,
+      "n": 2,
+      "p50": -0.48288479248731164,
+      "p95": 0.20969918206610583
+    },
+    "candidate_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 12,
+        "cost_complete": true,
+        "cost_usd": 0.005453876,
+        "cost_usd_lower_bound": 0.005453876,
+        "decision_preflight_records": 0,
+        "decision_requests": 4,
+        "input_tokens_known": 32312,
+        "known_input_usage_requests": 12,
+        "known_output_usage_requests": 12,
+        "known_usage_requests": 12,
+        "llm_requests": 8,
+        "output_tokens_known": 3157,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 4068,
+            "known_usage_requests": 2,
+            "output_tokens_known": 0,
+            "requests": 2,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.000122976,
+            "input_tokens_known": 2928,
+            "known_usage_requests": 2,
+            "output_tokens_known": 90,
+            "requests": 2,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0053308999999999995,
+            "input_tokens_known": 25316,
+            "known_usage_requests": 8,
+            "output_tokens_known": 3067,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 10.473785374510044,
+        "n": 2,
+        "p50": 10.473785374510044,
+        "p95": 10.77664489966337
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
+      "terminal_cases": 2
+    },
+    "cases": [
+      {
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -8.981999999999827e-06,
+        "candidate_minus_baseline_seconds": -1.252422541991109,
+        "candidate_status": "completed",
+        "domain": "email_intent",
+        "outcome": "both_correct",
+        "task_id": "E1022"
+      },
+      {
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": 3.810800000000024e-05,
+        "candidate_minus_baseline_seconds": 0.28665295701648574,
+        "candidate_status": "completed",
+        "domain": "email_intent",
+        "outcome": "both_correct",
+        "task_id": "E1028"
+      }
+    ],
+    "discordance_counts": {
+      "both_correct": 2,
+      "both_incorrect": 0,
+      "improved": 0,
+      "regressed": 0
+    },
+    "mean_cost_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -8.981999999999827e-06,
+      "mean_difference": 1.4563000000000206e-05,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 3.810800000000024e-05
+    },
+    "mean_latency_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -1.252422541991109,
+      "mean_difference": -0.48288479248731164,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 0.28665295701648574
+    },
+    "paired_accuracy_test": {
+      "discordant_pairs": 0,
+      "method": "exact McNemar",
+      "two_sided_p": 1.0
+    },
+    "pending_pairs": [],
+    "planned_overlap": 2,
+    "terminal_pairs": 2,
+    "unpaired_baseline": [],
+    "unpaired_candidate": []
+  },
+  "prices_usd_per_million_tokens": {
+    "jev_input": 0.042,
+    "llm_input_output": {
+      "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+        0.2,
+        0.6
+      ],
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": [
+        0.1,
+        0.3
+      ],
+      "zai-org/GLM-5.3": [
+        1.4,
+        4.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ]
+    },
+    "local_marginal_api_fee": 0.0
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "split": "dev"
+}

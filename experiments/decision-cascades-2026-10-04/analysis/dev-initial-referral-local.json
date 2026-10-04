@@ -43,6 +43,12 @@
       "completed": 2
     },
     "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
     "terminal_cases": 2
   },
   "baseline_cases": [
@@ -179,6 +185,12 @@
           "completed": 2
         },
         "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
         "terminal_cases": 2
       },
       "candidate_minus_baseline_latency_seconds": {
@@ -249,11 +261,18 @@
           "completed": 2
         },
         "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
         "terminal_cases": 2
       },
       "cases": [
         {
           "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.0003330640000000001,
           "candidate_minus_baseline_seconds": 0.8805189999984577,
           "candidate_status": "completed",
           "domain": "referral_abuse_detection_v1",
@@ -262,6 +281,7 @@
         },
         {
           "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.00034017799999999914,
           "candidate_minus_baseline_seconds": -1.37001508299727,
           "candidate_status": "completed",
           "domain": "referral_abuse_detection_v1",
@@ -274,6 +294,37 @@
         "both_incorrect": 0,
         "improved": 0,
         "regressed": 0
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -0.00034017799999999914,
+        "mean_difference": -3.556999999999519e-06,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 0.0003330640000000001
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -1.37001508299727,
+        "mean_difference": -0.2447480414994061,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 0.8805189999984577
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
       },
       "pending_pairs": [],
       "planned_overlap": 2,
@@ -344,6 +395,12 @@
       "completed": 2
     },
     "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
     "terminal_cases": 2
   },
   "candidate_cases": [
@@ -477,7 +534,12 @@
     "Output tokens include reasoning; reasoning detail is never added again.",
     "Latency covers whole-case execution, including failures; percentiles interpolate.",
     "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
-    "Discordance counts are descriptive; no population guarantee or significance claimed."
+    "Discordance counts are descriptive; no population guarantee or significance claimed.",
+    "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+    "Correlated cases or shared entities can make these intervals too narrow.",
+    "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+    "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+    "Bootstrap captures observed case variation, not repeat-run/provider or order effects."
   ],
   "paired": {
     "accuracy_delta": 0.0,
@@ -525,6 +587,12 @@
         "completed": 2
       },
       "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
       "terminal_cases": 2
     },
     "candidate_minus_baseline_latency_seconds": {
@@ -595,11 +663,18 @@
         "completed": 2
       },
       "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
       "terminal_cases": 2
     },
     "cases": [
       {
         "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": 0.0003330640000000001,
         "candidate_minus_baseline_seconds": 0.8805189999984577,
         "candidate_status": "completed",
         "domain": "referral_abuse_detection_v1",
@@ -608,6 +683,7 @@
       },
       {
         "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.00034017799999999914,
         "candidate_minus_baseline_seconds": -1.37001508299727,
         "candidate_status": "completed",
         "domain": "referral_abuse_detection_v1",
@@ -620,6 +696,37 @@
       "both_incorrect": 0,
       "improved": 0,
       "regressed": 0
+    },
+    "mean_cost_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -0.00034017799999999914,
+      "mean_difference": -3.556999999999519e-06,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 0.0003330640000000001
+    },
+    "mean_latency_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -1.37001508299727,
+      "mean_difference": -0.2447480414994061,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 0.8805189999984577
+    },
+    "paired_accuracy_test": {
+      "discordant_pairs": 0,
+      "method": "exact McNemar",
+      "two_sided_p": 1.0
     },
     "pending_pairs": [],
     "planned_overlap": 2,

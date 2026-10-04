@@ -25,6 +25,7 @@ from benchmarks.sop_bench.paired_experiment import (
 )
 
 PROFILES = ("baseline", "hybrid-jev", "hybrid-local-jev")
+PROFILE_CHOICES = (*PROFILES, "hybrid-local")
 PASS_ENTRIES = {
     "NEBIUS_API_KEY": "NEBIUS/TOKEN_FACTORY_API_KEY",
     "TYPESAFE_API_KEY": "API_KEYS/TYPESAFE_AI_JEV_API_KEY",
@@ -90,8 +91,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--split", choices=("dev", "holdout", "all"), default="dev")
     parser.add_argument("--limit", type=int, help="Cases per domain; defaults to 2 for dev only")
-    parser.add_argument("--jobs", type=int, choices=(1, 2), default=1)
-    parser.add_argument("--profiles", nargs="+", choices=PROFILES, default=list(PROFILES))
+    parser.add_argument("--jobs", type=int, choices=(1, 2, 4), default=1)
+    parser.add_argument("--profiles", nargs="+", choices=PROFILE_CHOICES, default=list(PROFILES))
     parser.add_argument("--domains", nargs="+", choices=DOMAINS, default=list(DOMAINS))
     args = parser.parse_args(argv)
     import re

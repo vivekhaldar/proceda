@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import random
 import statistics
 from collections import Counter
 from pathlib import Path
@@ -22,6 +23,9 @@ LLM_PRICES = {
     "Qwen/Qwen3-235B-A22B-Instruct-2507": (0.20, 0.60),
 }
 JEV_INPUT_PRICE = 0.042
+BOOTSTRAP_SEED = 20261004
+BOOTSTRAP_RESAMPLES = 2000
+NATIVE_DURATION_FIELDS = ("total", "load", "eval")
 
 
 def read_json(path: Path) -> Any:
@@ -52,11 +56,73 @@ def latency(values: list[float]) -> dict[str, Any]:
     }
 
 
+def wilson_interval(successes: int, n: int) -> dict[str, Any]:
+    """Nominal 95% Wilson interval, including failures in the observed denominator."""
+    if n == 0:
+        return {"n": 0, "successes": successes, "lower": None, "upper": None}
+    z = 1.959963984540054
+    proportion = successes / n
+    denominator = 1 + z * z / n
+    center = (proportion + z * z / (2 * n)) / denominator
+    radius = z * math.sqrt(proportion * (1 - proportion) / n + z * z / (4 * n * n))
+    radius /= denominator
+    return {
+        "n": n,
+        "successes": successes,
+        "lower": max(0.0, center - radius),
+        "upper": min(1.0, center + radius),
+    }
+
+
+def paired_bootstrap(differences: list[float], excluded_pairs: list[list[str]]) -> dict[str, Any]:
+    """Resample matched case differences, retaining both arms of every sampled pair."""
+    n = len(differences)
+    result = {
+        "n": n,
+        "excluded_pair_count": len(excluded_pairs),
+        "excluded_pairs": excluded_pairs,
+        "mean_difference": statistics.mean(differences) if n else None,
+        "lower": None,
+        "upper": None,
+        "confidence": 0.95,
+        "resamples": BOOTSTRAP_RESAMPLES if n >= 2 else 0,
+        "seed": BOOTSTRAP_SEED,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "insufficient_pairs": n < 2,
+    }
+    if n < 2:
+        # A one-pair degenerate interval would imply unsupported precision.
+        return result
+    generator = random.Random(BOOTSTRAP_SEED)
+    means = sorted(
+        statistics.mean(generator.choices(differences, k=n)) for _ in range(BOOTSTRAP_RESAMPLES)
+    )
+    for field, quantile in (("lower", 0.025), ("upper", 0.975)):
+        position = (len(means) - 1) * quantile
+        lower = int(position)
+        result[field] = means[lower] + (means[lower + 1] - means[lower]) * (position - lower)
+    return result
+
+
+def discordant_test(improved: int, regressed: int) -> dict[str, Any]:
+    """Exact two-sided McNemar/binomial test; lack of significance is not equivalence."""
+    n = improved + regressed
+    probability = (
+        min(1.0, 2 * sum(math.comb(n, k) for k in range(min(improved, regressed) + 1)) / (2**n))
+        if n
+        else 1.0
+    )
+    return {"discordant_pairs": n, "two_sided_p": probability, "method": "exact McNemar"}
+
+
 def new_accounting() -> dict[str, Any]:
     return {
         "audit_records": 0,
         "llm_requests": 0,
         "decision_requests": 0,
+        "local_decision_requests": 0,
+        **{f"local_native_{field}_seconds": None for field in NATIVE_DURATION_FIELDS},
+        **{f"local_native_{field}_known_calls": 0 for field in NATIVE_DURATION_FIELDS},
         "decision_preflight_records": 0,
         "unknown_request_status": 0,
         "known_usage_requests": 0,
@@ -98,6 +164,16 @@ def account_audits(case_dir: Path, terminal: dict | None) -> dict[str, Any]:
                     continue
             result["decision_requests"] += 1
             raw = record.get("response")
+            if record["kind"] == "ollaya":
+                result["local_decision_requests"] += 1
+                for field in NATIVE_DURATION_FIELDS:
+                    duration = (
+                        count(raw.get(f"{field}_duration")) if isinstance(raw, dict) else None
+                    )
+                    if duration is not None:
+                        key = f"local_native_{field}_seconds"
+                        result[key] = (result[key] or 0.0) + duration / 1_000_000_000
+                        result[f"local_native_{field}_known_calls"] += 1
             usage = raw.get("usage") if isinstance(raw, dict) else None
             if not isinstance(usage, dict):
                 usage = record.get("usage")
@@ -186,6 +262,9 @@ def sum_accounting(items: list[dict[str, Any]]) -> dict[str, Any]:
                         target[name] += value
             elif key == "audit_errors":
                 result[key].extend(item[key])
+            elif key.startswith("local_native_") and key.endswith("_seconds"):
+                if item[key] is not None:
+                    result[key] = (result[key] or 0.0) + item[key]
             else:
                 result[key] += item[key]
     finish_accounting(result)
@@ -244,6 +323,7 @@ def summarize(cases: list[dict[str, Any]]) -> dict[str, Any]:
         "completed_cases": sum(case["completed"] for case in cases),
         "correct_cases": correct,
         "strict_accuracy_terminal": correct / len(terminal) if terminal else None,
+        "strict_accuracy_wilson95": wilson_interval(correct, len(terminal)),
         "all_planned_terminal": len(terminal) == len(cases),
         "status_counts": dict(Counter(case["status"] for case in cases)),
         "latency_seconds": latency(
@@ -253,12 +333,61 @@ def summarize(cases: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def local_active_seconds(accounting: dict[str, Any]) -> float | None:
+    """Zero only for no local calls; missing native duration is not a zero observation."""
+    calls = accounting["local_decision_requests"]
+    if not calls:
+        return 0.0
+    if accounting["local_native_total_known_calls"] != calls:
+        return None
+    return accounting["local_native_total_seconds"]
+
+
+def local_break_even(baseline: dict, candidate: dict, paired: list) -> dict[str, Any]:
+    """Observed API savings per incremental native active hour, not a TCO estimate."""
+    savings = 0.0
+    additional_seconds = 0.0
+    excluded = []
+    for key in paired:
+        left, right = baseline[key]["accounting"], candidate[key]["accounting"]
+        left_seconds, right_seconds = local_active_seconds(left), local_active_seconds(right)
+        if any(
+            value is None
+            for value in (left["cost_usd"], right["cost_usd"], left_seconds, right_seconds)
+        ):
+            excluded.append(list(key))
+            continue
+        savings += left["cost_usd"] - right["cost_usd"]
+        additional_seconds += right_seconds - left_seconds
+    included = len(paired) - len(excluded)
+    return {
+        "included_pairs": included,
+        "excluded_pair_count": len(excluded),
+        "excluded_pairs": excluded,
+        "hosted_api_savings_usd": savings if included else None,
+        "additional_local_native_total_seconds": additional_seconds if included else None,
+        "usd_per_additional_active_model_hour": savings * 3600 / additional_seconds
+        if included and additional_seconds > 0 and savings >= 0
+        else None,
+        "positive_api_savings": savings > 0 if included else None,
+        "interpretation": (
+            "Observed hosted list-price savings divided by additional summed local native total "
+            "duration. Active time is not provisioned model-hours; idle hardware, electricity, "
+            "hosting overhead and TCO are unmeasured. Total includes its components; do not add "
+            "load or eval duration again. Unknown cost or local duration excludes the pair."
+        ),
+    }
+
+
 def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
     keys = sorted(set(baseline) & set(candidate))
     paired = [key for key in keys if baseline[key]["terminal"] and candidate[key]["terminal"]]
     outcome_counts = Counter()
     comparisons = []
     deltas = []
+    cost_deltas = []
+    excluded_latency = []
+    excluded_cost = []
     for key in paired:
         left, right = baseline[key], candidate[key]
         if left["correct"] and right["correct"]:
@@ -274,6 +403,16 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
         if left["elapsed_seconds"] is not None and right["elapsed_seconds"] is not None:
             delta = right["elapsed_seconds"] - left["elapsed_seconds"]
             deltas.append(delta)
+        else:
+            excluded_latency.append(list(key))
+        left_cost = left["accounting"]["cost_usd"]
+        right_cost = right["accounting"]["cost_usd"]
+        cost_delta = None
+        if left_cost is not None and right_cost is not None:
+            cost_delta = right_cost - left_cost
+            cost_deltas.append(cost_delta)
+        else:
+            excluded_cost.append(list(key))
         comparisons.append(
             {
                 "domain": key[0],
@@ -282,6 +421,7 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
                 "baseline_status": left["status"],
                 "candidate_status": right["status"],
                 "candidate_minus_baseline_seconds": delta,
+                "candidate_minus_baseline_cost_usd": cost_delta,
             }
         )
     return {
@@ -298,6 +438,12 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
         if paired
         else None,
         "candidate_minus_baseline_latency_seconds": latency(deltas),
+        "paired_accuracy_test": discordant_test(
+            outcome_counts["improved"], outcome_counts["regressed"]
+        ),
+        "mean_latency_difference_bootstrap95": paired_bootstrap(deltas, excluded_latency),
+        "mean_cost_difference_bootstrap95": paired_bootstrap(cost_deltas, excluded_cost),
+        "local_active_model_hour_break_even": local_break_even(baseline, candidate, paired),
         "baseline_paired": summarize([baseline[key] for key in paired]),
         "candidate_paired": summarize([candidate[key] for key in paired]),
         "cases": comparisons,
@@ -327,10 +473,17 @@ def analyze(baseline_dir: Path, candidate_dir: Path) -> dict[str, Any]:
             "LLM request means acompletion attempt; decision request means client.post attempted.",
             "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
             "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+            "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
+            "Native total/load/eval known-call counts are separate; components are not summed.",
             "Output tokens include reasoning; reasoning detail is never added again.",
             "Latency covers whole-case execution, including failures; percentiles interpolate.",
             "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
             "Discordance counts are descriptive; no population guarantee or significance claimed.",
+            "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+            "Correlated cases or shared entities can make these intervals too narrow.",
+            "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+            "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+            "Bootstrap captures observed case variation, not repeat-run/provider or order effects.",
         ],
         "baseline": summarize(list(baseline.values())),
         "candidate": summarize(list(candidate.values())),

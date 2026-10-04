@@ -84,6 +84,7 @@ class DecisionBackendConfig:
     max_input_chars: int = 60000
     timeout: float = 20.0
     input_cost_per_million: float = 0.042
+    threshold: float | None = None
 
 
 @dataclass
@@ -185,6 +186,10 @@ class ProcedaConfig:
                     raise ConfigError(f"Invalid decision backend fields: {exc}") from exc
                 if backend.kind not in {"typesafe", "ollaya"}:
                     raise ConfigError("Decision backend kind must be typesafe or ollaya")
+                if backend.threshold is not None and (
+                    type(backend.threshold) not in (int, float) or not 0.5 < backend.threshold <= 1
+                ):
+                    raise ConfigError("Backend threshold must be in (0.5, 1]")
                 if (
                     type(backend.max_input_chars) is not int
                     or backend.max_input_chars < 1

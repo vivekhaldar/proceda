@@ -111,9 +111,9 @@ class Runtime:
         handle = await self.start(skill, variables=variables, event_sinks=event_sinks)
         self._last_handle = handle
 
-        # Wait for completion (events are processed internally)
-        while not handle.session.status.is_terminal:
-            await asyncio.sleep(0.01)
+        # The sentinel follows cleanup; terminal status alone can race disconnection/log close.
+        async for _event in handle.events():
+            pass
 
         return handle.to_result()
 
@@ -204,6 +204,14 @@ class Runtime:
                 )
 
         # Create executor
+        allowed_tools = {tool.qualified_name for tool in orchestrator.get_available_tools()}
+
+        def resolve_tool_identity(name: str) -> tuple[str, str] | None:
+            tool = orchestrator.resolve_tool(name)
+            if tool is None or tool.qualified_name not in allowed_tools:
+                return None
+            return tool.qualified_name, tool.name
+
         executor = Executor(
             skill=skill,
             session=session,
@@ -218,23 +226,23 @@ class Runtime:
             tool_aliases={
                 tool.qualified_name: tool.name for tool in orchestrator.get_available_tools()
             },
+            resolve_tool_identity=resolve_tool_identity,
         )
 
         async def _run() -> None:
             try:
                 await executor.execute()
             finally:
-                # Clean up
-                if self._orchestrator:
-                    await self._orchestrator.disconnect_all()
-
-                # Write summary
-                summary = generate_run_summary(session, skill)
-                log_writer.write_summary(summary)
-                await log_writer.close()
-
-                # Signal end of events
-                await handle._event_queue.put(None)
+                try:
+                    await orchestrator.disconnect_all()
+                    summary = generate_run_summary(session, skill)
+                    log_writer.write_summary(summary)
+                finally:
+                    try:
+                        await log_writer.close()
+                    finally:
+                        # Signal only after cleanup; even a cleanup failure must wake readers.
+                        await handle._event_queue.put(None)
 
         # Run in background
         asyncio.create_task(_run())

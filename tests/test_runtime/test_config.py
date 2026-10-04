@@ -170,3 +170,11 @@ class TestProcedaConfig:
         config = ProcedaConfig.from_dict(data)
         assert config.logging.run_dir == "/tmp/runs"
         assert config.logging.redact_secrets is False
+
+    def test_decision_stage_threshold_override(self) -> None:
+        config = ProcedaConfig.from_dict({"decisions": {"backends": [{"threshold": 0.99}, {}]}})
+        assert config.decisions.backends[0].threshold == 0.99
+        assert config.decisions.backends[1].threshold is None
+        for invalid in (True, "0.99", 0.5, 1.1):
+            with pytest.raises(ConfigError, match="Backend threshold"):
+                ProcedaConfig.from_dict({"decisions": {"backends": [{"threshold": invalid}]}})

@@ -341,3 +341,21 @@ def test_public_event_stream_cleanup_finishes_before_return():
         )
     )
     assert result == "result"
+
+
+def test_four_jobs_complete_all_frozen_holdout_cases(experiment, fake_agent):
+    args = options(experiment)
+    args.update(split="holdout", jobs=4)
+    result = paired.evaluate(**args)
+    assert result["tasks"] == 4 and result["completed"] == 4
+    assert result["full_frozen_holdout"] is True
+    assert len(fake_agent) == 4
+    terminals = list(Path(result["run_dir"]).glob("patient_intake/*/terminal.json"))
+    assert len(terminals) == 4
+    assert len({json.loads(p.read_text())["task_id"] for p in terminals}) == 4
+
+
+@pytest.mark.parametrize("jobs", [0, 3, 5])
+def test_unsupported_worker_counts_are_rejected(experiment, jobs):
+    with pytest.raises(ValueError, match="one, two, or four"):
+        paired.evaluate(**options(experiment), jobs=jobs)

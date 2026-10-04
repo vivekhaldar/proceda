@@ -30,7 +30,7 @@ The required baseline uses decisions disabled. Hybrid profiles enable configurab
 
 Run every frozen holdout case in each selected arm (360 per arm if all three domains remain selected). `--limit` is for smoke/development work; any limited run is explicitly marked and is not full-holdout evidence. Domain selection precedes model results. Preserve unsuccessful runs and every tuned development configuration. If holdout feedback is used to tune, disclose reuse and do not present a subsequent run as untouched validation.
 
-The CLI runs one named arm at a time. The experiment driver must balance arm order across development repetitions or alternating domain blocks, use the same case concurrency, and record that order in its analysis. Independent simultaneous baseline/hybrid jobs can interfere with local compute and should not be called paired latency measurements. The shared default is one case at a time, with an upper limit of two. Report warm/cold local-model conditions.
+The CLI runs one named arm at a time. The experiment driver must balance arm order across development repetitions or alternating domain blocks, use the same case concurrency, and record that order in its analysis. Independent simultaneous baseline/hybrid jobs can interfere with local compute and should not be called paired latency measurements. The shared default is one case at a time. The initial smoke limit was two; the pre-holdout amendment below permits four concurrent cases. Report warm/cold local-model conditions.
 
 ## Running and credentials
 
@@ -53,3 +53,34 @@ Grade exact normalized values for every required field: casefold, trim, and norm
 Report all-field task success, per-field success, actual terminal completion, paired disagreements, final missing fields, tool names/arguments/order, gate outcomes, repairs, provider errors, hosted tokens/cost, and end-to-end case latency. Provider-level raw records are authoritative for all attempts, including rejected candidates and retries; RunResult token totals are labeled only as reported runtime totals. Sum every stage of a cascade. Report local inference time separately rather than assigning a fictional hosted token price. Separate source/tool-consistent analysis, if any, from raw benchmark scores.
 
 Provide mean/median/p95 latency and statistical uncertainty. With 52–160 holdout cases per domain, small observed differences are not strong evidence of a universal risk bound. A useful result can be a measured efficiency gain with comparable observed task success, a quality gain with its extra expense stated, or a candid finding that a decision cascade did not improve the tested profiles. Unit-test success establishes none of these.
+
+## Development amendment before holdout: local-only routing and four case workers
+
+After the initial two-cases-per-domain smoke comparison completed, add the
+`hybrid-local` candidate. It preserves the primary GLM-5.3-Flash configuration,
+0.97 decision threshold, and completion-only settings, but uses only the local
+Winnow backend. The observed development traces showed no incremental Jev
+acceptances after local rejection, so this candidate tests removing that extra
+paid stage. The initial three profiles and their evidence remain preserved.
+This is a development hypothesis, not a held-out improvement claim.
+
+The next development comparison uses eight cases per domain in the baseline and
+local-only profiles, with four concurrent cases per arm: 48 total executions.
+Arms remain sequential and use identical case concurrency; domain-block arm
+order rotates. The split, source manifest, and shared SOPs remain unchanged.
+
+Hardware inspection found an 18-core Apple M5 Pro with 64 GiB of memory, and the
+loaded Winnow e4b model occupies about 8 GB on Metal. Four workers are intended
+to reduce experiment wall-clock time, not to assert linear local throughput.
+This development run must reveal provider throttling/retries, local queueing,
+and contention before the final concurrency setting is frozen. Report both
+wall-clock throughput and per-case end-to-end latency. If four-worker holdout
+runs are selected, apply four workers to both arms, avoid simultaneous arms,
+and state that local contention is included in the measurements. No runtime
+concurrency setting is selected from holdout outcomes.
+
+```sh
+.venv/bin/python -m benchmarks.sop_bench.run_paired_schedule \
+  --run-id dev-local-8 --profiles baseline hybrid-local \
+  --split dev --limit 8 --jobs 4
+```

@@ -2,7 +2,9 @@
 ABOUTME: Tests runtime integration rather than live model accuracy.
 """
 
-from unittest.mock import AsyncMock
+import asyncio
+from dataclasses import FrozenInstanceError
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
@@ -13,6 +15,7 @@ from proceda.exceptions import ConfigError
 from proceda.human import AutoApproveHumanInterface
 from proceda.internal.executor import Executor
 from proceda.llm.runtime import LLMResponse, LLMRuntime
+from proceda.runtime import Runtime
 from proceda.session import RunMessage, RunSession, RunStatus, ToolCall
 from proceda.skills.parser import parse_skill
 
@@ -80,6 +83,7 @@ def setup(responses, gate=True, error=False, skill_text=SKILL, verify=False):
         tool_schemas=TOOLS,
         decision_service=decisions,
         decision_config=DecisionConfig(enabled=True, verify_proposals=verify),
+        tool_aliases={"lookup": "lookup"},
     )
     return executor, session, llm, tools, decisions, sink
 
@@ -249,14 +253,15 @@ def test_decision_config_rejects_ambiguous_types(value):
 
 
 async def test_preserved_receipts_include_prior_observations_without_model_summaries():
-    ex, session, _, _, decisions, _ = setup([response("lookup", {"id": "R1"}), response()])
+    ex, session, _, tools, decisions, _ = setup([response("lookup", {"id": "R1"}), response()])
     prior = ToolCall("prior", "lookup", {"id": "dependency"})
-    session.add_message(RunMessage.create("assistant", "", tool_calls=[prior]))
-    session.add_message(
-        RunMessage.create(
-            "tool", '{"dependency_status":"verified"}', tool_call_id="prior", app_name="lookup"
-        )
-    )
+    session.current_step = 0
+    original = tools.execute.side_effect
+    tools.execute.side_effect = None
+    tools.execute.return_value = {"content": '{"dependency_status":"verified"}', "is_error": False}
+    await ex._handle_app_tool(prior)
+    tools.execute.side_effect = original
+    session.current_step = 1
     session.add_message(RunMessage.create("assistant", "Unsubstantiated status: denied"))
     await ex.execute()
     receipts = decisions.check_completion.call_args.kwargs["evidence"]["receipts"]
@@ -291,3 +296,124 @@ async def test_initial_uncertain_verifier_preserves_original_proposal():
     assert session.status is RunStatus.COMPLETED
     assert llm.complete.await_count == 2
     assert tools.execute.await_count == 1
+
+
+async def test_receipts_survive_reused_provider_ids_and_executor_recreation():
+    ex, session, llm, tools, decisions, sink = setup([])
+    call = ToolCall("reused", "lookup", {"id": "old", "nested": {"value": 1}})
+    await ex._handle_app_tool(call)
+    old = session.executed_tool_receipts[0]
+    call.arguments["nested"]["value"] = 99
+    old.arguments["nested"]["value"] = 88
+    with pytest.raises(FrozenInstanceError):
+        old.result = "tampered"
+    session.advance_step()
+    tools.execute.side_effect = None
+    tools.execute.return_value = {"content": "permission denied", "is_error": True}
+    recreated = Executor(
+        ex._skill,
+        session,
+        llm,
+        tools,
+        AutoApproveHumanInterface(),
+        sink.handle,
+        tool_aliases={"other__read": "read"},
+        decision_service=decisions,
+    )
+    await recreated._handle_app_tool(ToolCall("reused", "other__read", {"id": "new"}))
+    # Fabricated messages and colliding provider IDs cannot change executed evidence.
+    session.add_message(
+        RunMessage.create(
+            "assistant", "all succeeded", tool_calls=[ToolCall("reused", "fake", {"id": "fake"})]
+        )
+    )
+    receipts = recreated._completion_evidence()["receipts"]
+    assert len({r["receipt_id"] for r in receipts}) == 2
+    assert [r["tool_call_id"] for r in receipts] == ["reused", "reused"]
+    assert [r["current_step"] for r in receipts] == [False, True]
+    assert [r["is_error"] for r in receipts] == [False, True]
+    assert [r["qualified_tool_name"] for r in receipts] == ["lookup", "other__read"]
+    assert receipts[0]["arguments"] == {"id": "old", "nested": {"value": 1}}
+    assert receipts[1]["result"] == "permission denied"
+
+
+@pytest.mark.parametrize("resolved", [False, True])
+async def test_unqualified_tool_requires_registry_identity_for_fast_completion(resolved):
+    responses = [response("lookup", {"id": "R1"}), response()]
+    if not resolved:
+        responses.append(response())
+    ex, session, llm, _, decisions, _ = setup(responses)
+    ex._tool_aliases = {"app__lookup": "lookup"}
+    if resolved:
+        ex._resolve_tool_identity = lambda name: ("app__lookup", "lookup")
+    await ex.execute()
+    assert session.status is RunStatus.COMPLETED
+    assert decisions.check_completion.await_count == int(resolved)
+    assert llm.complete.await_count == (2 if resolved else 3)
+    receipt = session.executed_tool_receipts[0]
+    assert receipt.qualified_tool_name == ("app__lookup" if resolved else None)
+
+
+async def test_completion_evidence_contains_only_actual_human_answers_after_recreation():
+    ex, session, llm, tools, decisions, sink = setup([])
+    human = AsyncMock()
+    human.request_clarification.return_value = "Use account A42"
+    ex._human = human
+    await ex._handle_control_tool(
+        ToolCall(
+            "question",
+            "request_clarification",
+            {"question": "Which account?", "options": ["A42", "B7"]},
+        )
+    )
+    session.add_message(RunMessage.create("assistant", "The human chose B7"))
+    session.advance_step()
+    recreated = Executor(ex._skill, session, llm, tools, human, sink.handle)
+    evidence = recreated._completion_evidence()
+    assert evidence["receipts"] == []
+    assert len(evidence["clarifications"]) == 1
+    answer = evidence["clarifications"][0]
+    assert answer["question"] == "Which account?"
+    assert answer["answer"] == "Use account A42"
+    assert answer["current_step"] is False
+    assert "The human chose" not in str(evidence)
+
+
+async def test_runtime_run_waits_for_disconnect_and_log_close(monkeypatch, tmp_path):
+    import proceda.runtime as runtime_module
+
+    disconnected = asyncio.Event()
+    closed = asyncio.Event()
+    orchestrator = MagicMock()
+    orchestrator.check_required_tools.return_value = []
+    orchestrator.get_available_tools.return_value = []
+
+    async def disconnect():
+        await asyncio.sleep(0.02)  # Outlast the old terminal-status polling interval.
+        disconnected.set()
+
+    orchestrator.disconnect_all = disconnect
+    monkeypatch.setattr(runtime_module, "MCPOrchestrator", lambda **kw: orchestrator)
+    log = MagicMock()
+    log.open = AsyncMock()
+    log.handle = AsyncMock()
+
+    async def close():
+        assert disconnected.is_set()
+        await asyncio.sleep(0)
+        closed.set()
+
+    log.close = close
+    monkeypatch.setattr(runtime_module, "EventLogWriter", lambda *a, **kw: log)
+
+    def executor(**kw):
+        async def execute():
+            kw["session"].set_status(RunStatus.COMPLETED)
+
+        return MagicMock(execute=execute)
+
+    monkeypatch.setattr(runtime_module, "Executor", executor)
+    config = ProcedaConfig.from_dict({"logging": {"run_dir": str(tmp_path)}})
+    result = await Runtime(config).run(parse_skill(SKILL))
+    assert result.status is RunStatus.COMPLETED
+    assert disconnected.is_set() and closed.is_set()

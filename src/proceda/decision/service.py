@@ -147,7 +147,9 @@ class DecisionService:
             "qualified_tool_name is the runtime name; sop_tool_name is its verified SOP alias. "
             "persisted=true means the exact result is already recorded, so retaining these "
             "fields fulfills record/capture/read instructions unless a separate artifact or "
-            "write is explicitly required. is_error=false denotes a successful call. "
+            "write is explicitly required. Retaining results does not perform any required "
+            "derived analysis, summary, or communication. "
+            "is_error=false denotes a successful call. "
             "current_step=true identifies calls made in this step; earlier receipts can supply "
             "inputs but do not prove a newly required call happened. "
         )

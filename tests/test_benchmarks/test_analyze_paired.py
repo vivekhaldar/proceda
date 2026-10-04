@@ -9,7 +9,15 @@ from pathlib import Path
 
 import pytest
 
-from benchmarks.sop_bench.analyze_paired import account_audits, analyze, latency
+from benchmarks.sop_bench.analyze_paired import (
+    account_audits,
+    analyze,
+    discordant_test,
+    latency,
+    paired_bootstrap,
+    sum_accounting,
+    wilson_interval,
+)
 
 
 def write(path: Path, value):
@@ -192,3 +200,114 @@ def test_different_frozen_splits_cannot_be_paired(tmp_path):
 def test_latency_has_documented_linear_percentiles():
     assert latency([1, 3, 5]) == {"n": 3, "mean": 3, "p50": 3, "p95": 4.8}
     assert latency([]) == {"n": 0, "mean": None, "p50": None, "p95": None}
+
+
+def test_wilson_interval_is_wide_at_small_sample_sizes():
+    interval = wilson_interval(0, 10)
+    assert interval["lower"] == pytest.approx(0, abs=1e-15)
+    assert interval["upper"] == pytest.approx(0.2775327998628892)
+    assert wilson_interval(2, 2)["lower"] == pytest.approx(0.342380227506653)
+    assert wilson_interval(0, 0)["lower"] is None
+
+
+def test_paired_bootstrap_is_deterministic_and_reports_excluded_pairs():
+    first = paired_bootstrap([-2.0, 2.0], [["domain", "unknown"]])
+    assert first == paired_bootstrap([-2.0, 2.0], [["domain", "unknown"]])
+    assert first["mean_difference"] == 0
+    assert first["lower"] == -2 and first["upper"] == 2
+    assert first["resamples"] >= 1000
+    assert first["excluded_pair_count"] == 1
+    assert paired_bootstrap([2], [])["lower"] is None
+    assert paired_bootstrap([], [])["mean_difference"] is None
+
+
+def test_exact_discordance_probability():
+    assert discordant_test(3, 0)["two_sided_p"] == 0.25
+    assert discordant_test(0, 3)["two_sided_p"] == 0.25
+    assert discordant_test(2, 1)["two_sided_p"] == 1.0
+    assert discordant_test(0, 0)["two_sided_p"] == 1.0
+
+
+def test_unknown_pair_cost_excluded_from_cost_interval_only(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    make_arm(baseline, {"A": ("valid", "completed", 1), "B": ("valid", "completed", 3)})
+    make_arm(candidate, {"A": ("valid", "completed", 2), "B": ("valid", "completed", 2)})
+    write(candidate / "domain/B/providers/request.json", llm())
+    result = analyze(baseline, candidate)
+    for pair in (result["paired"], result["by_domain"]["domain"]):
+        cost = pair["mean_cost_difference_bootstrap95"]
+        assert cost["n"] == 1 and cost["excluded_pair_count"] == 1
+        assert cost["excluded_pairs"] == [["domain", "B"]]
+        assert cost["lower"] is None and cost["insufficient_pairs"]
+        assert pair["mean_latency_difference_bootstrap95"]["n"] == 2
+    assert result["candidate"]["strict_accuracy_wilson95"]["n"] == 2
+
+
+def test_native_duration_units_known_zero_and_missing_are_distinct(tmp_path):
+    for name, response in {
+        "known": {"total_duration": 500_000_000, "load_duration": 0, "eval_duration": 400_000_000},
+        "missing": {},
+    }.items():
+        write(
+            tmp_path / f"providers/{name}.json",
+            {
+                "kind": "ollaya",
+                "model": "winnow:e4b",
+                "request_sent": True,
+                "response": response,
+            },
+        )
+    accounting = account_audits(tmp_path, None)
+    assert accounting["local_decision_requests"] == 2
+    assert accounting["local_native_total_seconds"] == 0.5
+    assert accounting["local_native_total_known_calls"] == 1
+    assert accounting["local_native_load_seconds"] == 0
+    assert accounting["local_native_load_known_calls"] == 1
+    assert accounting["local_native_eval_seconds"] == 0.4
+    empty = account_audits(tmp_path / "empty", None)
+    assert empty["local_native_total_seconds"] is None
+    summed = sum_accounting([empty, accounting, accounting])
+    assert summed["local_native_total_seconds"] == 1
+    assert summed["local_native_total_known_calls"] == 2
+    assert summed["local_native_load_seconds"] == 0
+    assert sum_accounting([empty])["local_native_load_seconds"] is None
+
+
+def test_active_model_hour_break_even_excludes_missing_duration_and_cost(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    cases = {name: ("valid", "completed", 1) for name in ("A", "B", "C")}
+    make_arm(baseline, cases)
+    make_arm(candidate, cases)
+    for name in cases:
+        write(
+            candidate / f"domain/{name}/providers/request.json",
+            llm({"prompt_tokens": 0, "completion_tokens": 0}),
+        )
+        write(
+            candidate / f"domain/{name}/providers/local.json",
+            {
+                "kind": "ollaya",
+                "model": "winnow:e4b",
+                "request_sent": True,
+                "response": {"total_duration": 1_000_000_000} if name != "B" else {},
+            },
+        )
+    write(candidate / "domain/C/providers/request.json", llm())
+    result = analyze(baseline, candidate)
+    for pair in (result["paired"], result["by_domain"]["domain"]):
+        breakeven = pair["local_active_model_hour_break_even"]
+        assert breakeven["included_pairs"] == 1
+        assert breakeven["excluded_pairs"] == [["domain", "B"], ["domain", "C"]]
+        assert breakeven["hosted_api_savings_usd"] == pytest.approx(0.000025)
+        assert breakeven["additional_local_native_total_seconds"] == 1
+        assert breakeven["usd_per_additional_active_model_hour"] == pytest.approx(0.09)
+
+
+def test_active_model_hour_break_even_has_no_rate_without_extra_local_compute(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    make_arm(baseline, {"A": ("valid", "completed", 1)})
+    make_arm(candidate, {"A": ("valid", "completed", 1)})
+    breakeven = analyze(baseline, candidate)["paired"]["local_active_model_hour_break_even"]
+    assert breakeven["included_pairs"] == 1
+    assert breakeven["additional_local_native_total_seconds"] == 0
+    assert breakeven["usd_per_additional_active_model_hour"] is None

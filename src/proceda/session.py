@@ -4,6 +4,7 @@ ABOUTME: Defines RunMessage, RunSession, approval/error types, and run lifecycle
 from __future__ import annotations
 
 import enum
+import json
 import uuid
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -104,6 +105,41 @@ class ClarificationRequest:
     context: str | None = None
 
 
+@dataclass(frozen=True)
+class ExecutedToolReceipt:
+    """Immutable execution evidence, independent of reusable provider call IDs.
+
+    Arguments are stored as JSON so nested caller-owned objects cannot mutate history.
+    The result is the exact tool response text, not an assistant summary.
+    """
+
+    receipt_id: str
+    tool_call_id: str
+    step_index: int
+    requested_tool_name: str
+    qualified_tool_name: str | None
+    sop_tool_name: str | None
+    arguments_json: str
+    result: str
+    is_error: bool | None
+
+    @property
+    def arguments(self) -> dict[str, Any]:
+        return json.loads(self.arguments_json)
+
+
+@dataclass(frozen=True)
+class ClarificationRecord:
+    """An actual human-interface answer, retained separately from model messages."""
+
+    receipt_id: str
+    tool_call_id: str
+    step_index: int
+    question: str
+    options: tuple[str, ...]
+    answer: str
+
+
 @dataclass
 class ErrorContext:
     """Context about a pending error for recovery decisions."""
@@ -164,6 +200,8 @@ class RunSession:
     pending_error: ErrorContext | None = None
     pending_tool_calls: list[ToolCall] = field(default_factory=list)
     step_tool_results: list[dict[str, Any]] = field(default_factory=list)
+    executed_tool_receipts: list[ExecutedToolReceipt] = field(default_factory=list)
+    clarification_records: list[ClarificationRecord] = field(default_factory=list)
     approval_records: list[ApprovalRecord] = field(default_factory=list)
     completed_steps: list[int] = field(default_factory=list)
     skipped_steps: list[int] = field(default_factory=list)

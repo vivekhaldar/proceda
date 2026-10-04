@@ -78,6 +78,12 @@ Decision models can handle bounded checks inside the existing natural-language
 execution loop. No changes to a skill's Markdown are required. The feature is
 disabled by default.
 
+Backends are attempted in the configured order. Each may set its own `threshold`
+to override the shared decision threshold. An uncertain or unavailable stage
+continues to the next configured backend; exhausted completion checks return to
+the ordinary LLM loop. A local-only backend list therefore has no hidden hosted
+decision call.
+
 ```yaml
 llm:
   model: openai/zai-org/GLM-5.3-Flash

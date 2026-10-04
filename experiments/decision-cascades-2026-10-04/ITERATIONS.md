@@ -43,3 +43,32 @@ responses. They are not deleted. Each arm records its code commit and source
 hashes, and each case retains inputs, expected outputs separately, events, tool
 calls/results, provider attempts, and terminal output. Cost analysis uses every
 provider attempt; missing usage remains unknown rather than a zero-dollar claim.
+
+## Normalized receipts — e525ef4
+
+The corrected-harness smoke used six distinct development inputs, each run in
+three arms, with one case at a time and rotating arm order across domains. All
+18 executions passed. The local→Jev profile reduced referral LLM calls from 16
+to 12 through four recorded auto-completions. No email or patient completion
+was accepted, and Jev accepted no gate in any domain.
+
+Across six cases per arm, list-price API charges were $0.03826725 for the
+baseline and $0.035642532 for local→Jev (6.86% lower). Mean case latency was
+18.080 versus 18.699 seconds (3.42% higher). This is an early cost signal,
+not a demonstrated joint cost-and-latency win: the sample is small and local
+work and unsuccessful hosted checks add overhead. A separate patient LLM-call
+difference occurred without a gate acceptance and is generation variation,
+not credited to the optimization. Full analyses are in `analysis/dev-v2-*.json`.
+
+Decision-only replay of six real completed receipt sets plus seven deliberately
+incomplete counterexamples accepted 4/6 positives with Winnow and 0/6 with Jev,
+and falsely accepted 0/7 negatives for either provider. The local wrong-tool
+counterexample scored 0.9694, just below 0.97, so the threshold was not lowered.
+These diagnostic fixtures are not counted as successful benchmark tasks.
+
+The next profile retains the local backend and falls back directly to the LLM
+when it abstains, eliminating a hosted stage that showed no incremental benefit
+on development. Jev support and both earlier profiles remain available. Before
+the larger run, receipt provenance is being hardened against reused provider
+tool-call IDs, with actual human answers retained separately. A four-case
+concurrency development probe will precede any holdout concurrency decision.

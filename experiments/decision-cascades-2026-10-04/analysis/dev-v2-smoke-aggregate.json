@@ -1,0 +1,865 @@
+{
+  "aggregate": {
+    "baseline": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 51,
+        "cost_complete": true,
+        "cost_usd": 0.03826725,
+        "cost_usd_lower_bound": 0.03826725,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 208485,
+        "known_input_usage_requests": 51,
+        "known_output_usage_requests": 51,
+        "known_usage_requests": 51,
+        "llm_requests": 51,
+        "output_tokens_known": 13989,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.03826725,
+            "input_tokens_known": 208485,
+            "known_usage_requests": 51,
+            "output_tokens_known": 13989,
+            "requests": 51,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 6,
+      "correct_cases": 6,
+      "latency_seconds": {
+        "mean": 18.080163743162604,
+        "n": 6,
+        "p50": 18.412387562493677,
+        "p95": 26.71146164599486
+      },
+      "planned_cases": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.6096657120978346,
+        "n": 6,
+        "successes": 6,
+        "upper": 1.0
+      },
+      "terminal_cases": 6
+    },
+    "hybrid-jev": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 70,
+        "cost_complete": true,
+        "cost_usd": 0.03901648800000001,
+        "cost_usd_lower_bound": 0.03901648800000001,
+        "decision_preflight_records": 0,
+        "decision_requests": 20,
+        "input_tokens_known": 233902,
+        "known_input_usage_requests": 70,
+        "known_output_usage_requests": 70,
+        "known_usage_requests": 70,
+        "llm_requests": 50,
+        "output_tokens_known": 15402,
+        "providers": {
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.001291038,
+            "input_tokens_known": 30739,
+            "known_usage_requests": 20,
+            "output_tokens_known": 900,
+            "requests": 20,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.03772545,
+            "input_tokens_known": 203163,
+            "known_usage_requests": 50,
+            "output_tokens_known": 14502,
+            "requests": 50,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 6,
+      "correct_cases": 6,
+      "latency_seconds": {
+        "mean": 16.94647911116772,
+        "n": 6,
+        "p50": 18.286254291495425,
+        "p95": 23.55680526074866
+      },
+      "planned_cases": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.6096657120978346,
+        "n": 6,
+        "successes": 6,
+        "upper": 1.0
+      },
+      "terminal_cases": 6
+    },
+    "hybrid-local-jev": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 82,
+        "cost_complete": true,
+        "cost_usd": 0.035642532,
+        "cost_usd_lower_bound": 0.035642532,
+        "decision_preflight_records": 0,
+        "decision_requests": 36,
+        "input_tokens_known": 252634,
+        "known_input_usage_requests": 82,
+        "known_output_usage_requests": 82,
+        "known_usage_requests": 82,
+        "llm_requests": 46,
+        "output_tokens_known": 13044,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 37272,
+            "known_usage_requests": 20,
+            "output_tokens_known": 0,
+            "requests": 20,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.001098132,
+            "input_tokens_known": 26146,
+            "known_usage_requests": 16,
+            "output_tokens_known": 720,
+            "requests": 16,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.034544399999999996,
+            "input_tokens_known": 189216,
+            "known_usage_requests": 46,
+            "output_tokens_known": 12324,
+            "requests": 46,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 6,
+      "correct_cases": 6,
+      "latency_seconds": {
+        "mean": 18.69927367333973,
+        "n": 6,
+        "p50": 18.17590404150542,
+        "p95": 29.367814031000307
+      },
+      "planned_cases": 6,
+      "status_counts": {
+        "completed": 6
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.6096657120978346,
+        "n": 6,
+        "successes": 6,
+        "upper": 1.0
+      },
+      "terminal_cases": 6
+    }
+  },
+  "domain_arms": [
+    {
+      "arm": "baseline",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 0,
+      "decision_stage_outcomes": {},
+      "decision_stage_seconds": {},
+      "domain": "email_intent",
+      "gates": {},
+      "known_cost_usd": 0.005424749999999999,
+      "latency_seconds": {
+        "mean": 10.956670166997355,
+        "n": 2,
+        "p50": 10.956670166997355,
+        "p95": 11.952113666704099
+      },
+      "llm_requests": 8
+    },
+    {
+      "arm": "hybrid-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 2,
+      "decision_stage_outcomes": {
+        "typesafe:uncertain": 2
+      },
+      "decision_stage_seconds": {
+        "typesafe": 0.5201939999969909
+      },
+      "domain": "email_intent",
+      "gates": {
+        "abstained": 2
+      },
+      "known_cost_usd": 0.005589394,
+      "latency_seconds": {
+        "mean": 10.090620437506004,
+        "n": 2,
+        "p50": 10.090620437506004,
+        "p95": 10.476576568454039
+      },
+      "llm_requests": 8
+    },
+    {
+      "arm": "hybrid-local-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 4,
+      "decision_stage_outcomes": {
+        "ollaya:uncertain": 2,
+        "typesafe:uncertain": 2
+      },
+      "decision_stage_seconds": {
+        "ollaya": 1.4861612909880932,
+        "typesafe": 0.5269405839935644
+      },
+      "domain": "email_intent",
+      "gates": {
+        "abstained": 2
+      },
+      "known_cost_usd": 0.005453876,
+      "latency_seconds": {
+        "mean": 10.473785374510044,
+        "n": 2,
+        "p50": 10.473785374510044,
+        "p95": 10.77664489966337
+      },
+      "llm_requests": 8
+    },
+    {
+      "arm": "baseline",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 0,
+      "decision_stage_outcomes": {},
+      "decision_stage_seconds": {},
+      "domain": "patient_intake",
+      "gates": {},
+      "known_cost_usd": 0.022760600000000002,
+      "latency_seconds": {
+        "mean": 24.871433499996783,
+        "n": 2,
+        "p50": 24.871433499996783,
+        "p95": 28.18348416279332
+      },
+      "llm_requests": 27
+    },
+    {
+      "arm": "hybrid-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 12,
+      "decision_stage_outcomes": {
+        "typesafe:uncertain": 12
+      },
+      "decision_stage_seconds": {
+        "typesafe": 3.2328211269923486
+      },
+      "domain": "patient_intake",
+      "gates": {
+        "abstained": 12
+      },
+      "known_cost_usd": 0.022829650000000003,
+      "latency_seconds": {
+        "mean": 22.341178729497187,
+        "n": 2,
+        "p50": 22.341178729497187,
+        "p95": 24.420060998245752
+      },
+      "llm_requests": 26
+    },
+    {
+      "arm": "hybrid-local-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 24,
+      "decision_stage_outcomes": {
+        "ollaya:uncertain": 12,
+        "typesafe:uncertain": 12
+      },
+      "decision_stage_seconds": {
+        "ollaya": 8.588345500000287,
+        "typesafe": 3.1932625400077086
+      },
+      "domain": "patient_intake",
+      "gates": {
+        "abstained": 12
+      },
+      "known_cost_usd": 0.022616472,
+      "latency_seconds": {
+        "mean": 27.44813160400372,
+        "n": 2,
+        "p50": 27.44813160400372,
+        "p95": 30.903559972597577
+      },
+      "llm_requests": 26
+    },
+    {
+      "arm": "baseline",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 0,
+      "decision_stage_outcomes": {},
+      "decision_stage_seconds": {},
+      "domain": "referral_abuse_detection_v1",
+      "gates": {},
+      "known_cost_usd": 0.0100819,
+      "latency_seconds": {
+        "mean": 18.412387562493677,
+        "n": 2,
+        "p50": 18.412387562493677,
+        "p95": 18.554517756245332
+      },
+      "llm_requests": 16
+    },
+    {
+      "arm": "hybrid-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 0,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 6,
+      "decision_stage_outcomes": {
+        "typesafe:uncertain": 6
+      },
+      "decision_stage_seconds": {
+        "typesafe": 1.6767447499878472
+      },
+      "domain": "referral_abuse_detection_v1",
+      "gates": {
+        "abstained": 6
+      },
+      "known_cost_usd": 0.010597444000000001,
+      "latency_seconds": {
+        "mean": 18.407638166499964,
+        "n": 2,
+        "p50": 18.407638166499964,
+        "p95": 20.08743337945707
+      },
+      "llm_requests": 16
+    },
+    {
+      "arm": "hybrid-local-jev",
+      "audit_errors": [],
+      "auto_completed_steps": 4,
+      "cases": 2,
+      "correct": 2,
+      "decision_requests": 8,
+      "decision_stage_outcomes": {
+        "ollaya:accepted": 4,
+        "ollaya:uncertain": 2,
+        "typesafe:uncertain": 2
+      },
+      "decision_stage_seconds": {
+        "ollaya": 2.98282425099751,
+        "typesafe": 0.49541620899981353
+      },
+      "domain": "referral_abuse_detection_v1",
+      "gates": {
+        "abstained": 2,
+        "accepted": 4
+      },
+      "known_cost_usd": 0.007572184000000001,
+      "latency_seconds": {
+        "mean": 18.17590404150542,
+        "n": 2,
+        "p50": 18.17590404150542,
+        "p95": 21.093125153861184
+      },
+      "llm_requests": 12
+    }
+  ],
+  "paired": {
+    "hybrid-jev": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 51,
+          "cost_complete": true,
+          "cost_usd": 0.03826725,
+          "cost_usd_lower_bound": 0.03826725,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 208485,
+          "known_input_usage_requests": 51,
+          "known_output_usage_requests": 51,
+          "known_usage_requests": 51,
+          "llm_requests": 51,
+          "output_tokens_known": 13989,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.03826725,
+              "input_tokens_known": 208485,
+              "known_usage_requests": 51,
+              "output_tokens_known": 13989,
+              "requests": 51,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 6,
+        "correct_cases": 6,
+        "latency_seconds": {
+          "mean": 18.080163743162604,
+          "n": 6,
+          "p50": 18.412387562493677,
+          "p95": 26.71146164599486
+        },
+        "planned_cases": 6,
+        "status_counts": {
+          "completed": 6
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6096657120978346,
+          "n": 6,
+          "successes": 6,
+          "upper": 1.0
+        },
+        "terminal_cases": 6
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": -1.1336846319948866,
+        "n": 6,
+        "p50": -1.3516627915014396,
+        "p95": 1.4674987397665973
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 70,
+          "cost_complete": true,
+          "cost_usd": 0.03901648800000001,
+          "cost_usd_lower_bound": 0.03901648800000001,
+          "decision_preflight_records": 0,
+          "decision_requests": 20,
+          "input_tokens_known": 233902,
+          "known_input_usage_requests": 70,
+          "known_output_usage_requests": 70,
+          "known_usage_requests": 70,
+          "llm_requests": 50,
+          "output_tokens_known": 15402,
+          "providers": {
+            "decision:typesafe:jev-1.13.0": {
+              "cost_usd_lower_bound": 0.001291038,
+              "input_tokens_known": 30739,
+              "known_usage_requests": 20,
+              "output_tokens_known": 900,
+              "requests": 20,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.03772545,
+              "input_tokens_known": 203163,
+              "known_usage_requests": 50,
+              "output_tokens_known": 14502,
+              "requests": 50,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 6,
+        "correct_cases": 6,
+        "latency_seconds": {
+          "mean": 16.94647911116772,
+          "n": 6,
+          "p50": 18.286254291495425,
+          "p95": 23.55680526074866
+        },
+        "planned_cases": 6,
+        "status_counts": {
+          "completed": 6
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6096657120978346,
+          "n": 6,
+          "successes": 6,
+          "upper": 1.0
+        },
+        "terminal_cases": 6
+      },
+      "cases": [
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.0001285940000000001,
+          "candidate_minus_baseline_seconds": -1.5432579170010285,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1022"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 3.605000000000058e-05,
+          "candidate_minus_baseline_seconds": -0.1888415419816738,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1028"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.00046773800000000053,
+          "candidate_minus_baseline_seconds": -1.1600676660018507,
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100002"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0003986879999999995,
+          "candidate_minus_baseline_seconds": -3.900441874997341,
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100003"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.0002832020000000015,
+          "candidate_minus_baseline_seconds": -2.0291109590034466,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100000"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.0002323419999999991,
+          "candidate_minus_baseline_seconds": 2.019612167016021,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100001"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 6,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -0.00010928129999999945,
+        "mean_difference": 0.0001248730000000004,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 6,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 0.00031894600000000094
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -2.513224298663166,
+        "mean_difference": -1.1336846319948866,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 6,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 0.4468027223435153
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 6,
+      "terminal_pairs": 6,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    },
+    "hybrid-local-jev": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 51,
+          "cost_complete": true,
+          "cost_usd": 0.03826725,
+          "cost_usd_lower_bound": 0.03826725,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 208485,
+          "known_input_usage_requests": 51,
+          "known_output_usage_requests": 51,
+          "known_usage_requests": 51,
+          "llm_requests": 51,
+          "output_tokens_known": 13989,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.03826725,
+              "input_tokens_known": 208485,
+              "known_usage_requests": 51,
+              "output_tokens_known": 13989,
+              "requests": 51,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 6,
+        "correct_cases": 6,
+        "latency_seconds": {
+          "mean": 18.080163743162604,
+          "n": 6,
+          "p50": 18.412387562493677,
+          "p95": 26.71146164599486
+        },
+        "planned_cases": 6,
+        "status_counts": {
+          "completed": 6
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6096657120978346,
+          "n": 6,
+          "successes": 6,
+          "upper": 1.0
+        },
+        "terminal_cases": 6
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": 0.6191099301771222,
+        "n": 6,
+        "p50": 1.3520212495132,
+        "p95": 2.819214791263221
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 82,
+          "cost_complete": true,
+          "cost_usd": 0.035642532,
+          "cost_usd_lower_bound": 0.035642532,
+          "decision_preflight_records": 0,
+          "decision_requests": 36,
+          "input_tokens_known": 252634,
+          "known_input_usage_requests": 82,
+          "known_output_usage_requests": 82,
+          "known_usage_requests": 82,
+          "llm_requests": 46,
+          "output_tokens_known": 13044,
+          "providers": {
+            "decision:ollaya:winnow:e4b": {
+              "cost_usd_lower_bound": 0.0,
+              "input_tokens_known": 37272,
+              "known_usage_requests": 20,
+              "output_tokens_known": 0,
+              "requests": 20,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "decision:typesafe:jev-1.13.0": {
+              "cost_usd_lower_bound": 0.001098132,
+              "input_tokens_known": 26146,
+              "known_usage_requests": 16,
+              "output_tokens_known": 720,
+              "requests": 16,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.034544399999999996,
+              "input_tokens_known": 189216,
+              "known_usage_requests": 46,
+              "output_tokens_known": 12324,
+              "requests": 46,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 6,
+        "correct_cases": 6,
+        "latency_seconds": {
+          "mean": 18.69927367333973,
+          "n": 6,
+          "p50": 18.17590404150542,
+          "p95": 29.367814031000307
+        },
+        "planned_cases": 6,
+        "status_counts": {
+          "completed": 6
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6096657120978346,
+          "n": 6,
+          "successes": 6,
+          "upper": 1.0
+        },
+        "terminal_cases": 6
+      },
+      "cases": [
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -8.981999999999827e-06,
+          "candidate_minus_baseline_seconds": -1.252422541991109,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1022"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 3.810800000000024e-05,
+          "candidate_minus_baseline_seconds": 0.28665295701648574,
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1028"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 0.0002930499999999961,
+          "candidate_minus_baseline_seconds": 2.4173895420099143,
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100002"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0004371780000000016,
+          "candidate_minus_baseline_seconds": 2.7360066660039593,
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100003"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0009700579999999985,
+          "candidate_minus_baseline_seconds": 2.846950833016308,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100000"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0015396580000000006,
+          "candidate_minus_baseline_seconds": -3.319917874992825,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100001"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 6,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -0.000982451,
+        "mean_difference": -0.0004374530000000007,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 6,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 3.602599999999854e-05
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -1.346428729489465,
+        "mean_difference": 0.6191099301771222,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 6,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 2.3116595828444892
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 6,
+      "terminal_pairs": 6,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "run_family": "dev-v2-smoke"
+}

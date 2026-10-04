@@ -1,0 +1,626 @@
+[
+  {
+    "id": "positive-ACC100000-1",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `determine_enforcement_action` with `account_id` to retrieve enforcement action guidelines.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_a4445db098cf47a4bc9e4c15",
+          "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+          "sop_tool_name": "analyze_traffic_patterns",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "revenue_amount": 37.04,
+            "click_through_rate": 0.52,
+            "page_views": 838,
+            "device_distribution": "Mixed",
+            "referral_source_quality": "High",
+            "payment_method_shared": true,
+            "order_patterns_suspicious": true
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_f8ddb0b750dd4eab926eecc5",
+          "qualified_tool_name": "sop-bench__determine_enforcement_action",
+          "sop_tool_name": "determine_enforcement_action",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "enforcement_guidelines": {
+              "Abusive Account Creation": "Account Closure",
+              "Misleading Ad Copy": "Account Closure",
+              "Personal Orders (Related)": "No Action",
+              "No Violation": "No Action"
+            },
+            "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-0e481a99c04e40d4a33b2ae93bf91e32.json",
+      "sha256": "0599b73de24900de47a71b7cc2d9b5a489699f0f8dcae44a5a62f7bbbdfa78ce",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "positive-ACC100000-2",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "positive-ACC100000-3",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `analyze_traffic_patterns` with `account_id`. Record all returned fields: `revenue_amount`, `click_through_rate`, `page_views`, `device_distribution`, `referral_source_quality`, `payment_method_shared`, and `order_patterns_suspicious`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_a4445db098cf47a4bc9e4c15",
+          "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+          "sop_tool_name": "analyze_traffic_patterns",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "revenue_amount": 37.04,
+            "click_through_rate": 0.52,
+            "page_views": 838,
+            "device_distribution": "Mixed",
+            "referral_source_quality": "High",
+            "payment_method_shared": true,
+            "order_patterns_suspicious": true
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-d8e61dfb3ade48b8a10d685bfd075e09.json",
+      "sha256": "60cb51aed03af788c29e1e40c79d7a8fc65fc36c592e43dd4dd19d60225c891b",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "positive-ACC100001-4",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100001"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_72c66f1a3fae4f2ab8e98061",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "address_validity": true,
+            "email_pattern_suspicious": false,
+            "website_verified": true,
+            "business_description": "Digital magazine subscription",
+            "account_status": "Active",
+            "connected_accounts": 2,
+            "login_geographic_consistency": true
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-34f3a6cc4efe4b5fbd3d039cbf51221c.json",
+      "sha256": "181c538972e249615cee8dc8a871a741f3be6bc4231273323d6615cf4d52a344",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "positive-ACC100001-5",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `determine_enforcement_action` with `account_id` to retrieve enforcement action guidelines.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100001"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_72c66f1a3fae4f2ab8e98061",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "address_validity": true,
+            "email_pattern_suspicious": false,
+            "website_verified": true,
+            "business_description": "Digital magazine subscription",
+            "account_status": "Active",
+            "connected_accounts": 2,
+            "login_geographic_consistency": true
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_516ea5c92069475889da8836",
+          "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+          "sop_tool_name": "analyze_traffic_patterns",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "revenue_amount": 1185.17,
+            "click_through_rate": 3.02,
+            "page_views": 3280,
+            "device_distribution": "Tablet",
+            "referral_source_quality": "High",
+            "payment_method_shared": false,
+            "order_patterns_suspicious": false
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_50881e1d3cc64764a767da72",
+          "qualified_tool_name": "sop-bench__determine_enforcement_action",
+          "sop_tool_name": "determine_enforcement_action",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "enforcement_guidelines": {
+              "Abusive Account Creation": "Account Closure",
+              "Misleading Ad Copy": "Account Closure",
+              "Personal Orders (Related)": "No Action",
+              "No Violation": "No Action"
+            },
+            "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-8c0e1a621e0f4cde9df1f2c8e682ac46.json",
+      "sha256": "33ef452bd870432a4302602079a3670fda7c77c6145927ea48fe73fdc66761a9",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "positive-ACC100001-6",
+    "expected_gate": true,
+    "fixture_kind": "recorded_completed_read_step",
+    "step": "Call `analyze_traffic_patterns` with `account_id`. Record all returned fields: `revenue_amount`, `click_through_rate`, `page_views`, `device_distribution`, `referral_source_quality`, `payment_method_shared`, and `order_patterns_suspicious`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100001"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_72c66f1a3fae4f2ab8e98061",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "address_validity": true,
+            "email_pattern_suspicious": false,
+            "website_verified": true,
+            "business_description": "Digital magazine subscription",
+            "account_status": "Active",
+            "connected_accounts": 2,
+            "login_geographic_consistency": true
+          },
+          "persisted": true,
+          "current_step": false,
+          "is_error": false
+        },
+        {
+          "tool_call_id": "call_516ea5c92069475889da8836",
+          "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+          "sop_tool_name": "analyze_traffic_patterns",
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "result": {
+            "account_id": "ACC100001",
+            "revenue_amount": 1185.17,
+            "click_through_rate": 3.02,
+            "page_views": 3280,
+            "device_distribution": "Tablet",
+            "referral_source_quality": "High",
+            "payment_method_shared": false,
+            "order_patterns_suspicious": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-aaf96a0c4c91453a907d303af6f13d0d.json",
+      "sha256": "42470584c9b4c0a3dc92e2152da5e45b9bc79ffd1f09a04b8a42f7a8b0a6d5ef",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+    }
+  },
+  {
+    "id": "missing-receipt",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": []
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "missing-receipt"
+    }
+  },
+  {
+    "id": "missing-required-result-field",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "missing-required-result-field",
+      "removed_field": "address_validity"
+    }
+  },
+  {
+    "id": "wrong-tool",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "test__unrelated_tool",
+          "sop_tool_name": "unrelated_tool",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "wrong-tool"
+    }
+  },
+  {
+    "id": "wrong-argument",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "DIFFERENT_INPUT_VALUE"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "wrong-argument"
+    }
+  },
+  {
+    "id": "failed-call",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "error": "call failed"
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": true
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "failed-call"
+    }
+  },
+  {
+    "id": "remaining-user-action",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`. Before completing, ask the user to confirm these details and wait for a reply.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "remaining-user-action"
+    }
+  },
+  {
+    "id": "partial-two-call-batch",
+    "expected_gate": false,
+    "fixture_kind": "synthetic_counterfactual",
+    "step": "Call `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`. Then call `analyze_traffic_patterns` with `account_id` and record its returned result.",
+    "evidence": {
+      "inputs": {
+        "account_id": "ACC100000"
+      },
+      "receipts": [
+        {
+          "tool_call_id": "call_205d7644214844dbab9e51c5",
+          "qualified_tool_name": "sop-bench__investigate_account",
+          "sop_tool_name": "investigate_account",
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "result": {
+            "account_id": "ACC100000",
+            "address_validity": false,
+            "email_pattern_suspicious": true,
+            "website_verified": false,
+            "business_description": "Project management tool",
+            "account_status": "Suspended",
+            "connected_accounts": 20,
+            "login_geographic_consistency": false
+          },
+          "persisted": true,
+          "current_step": true,
+          "is_error": false
+        }
+      ]
+    },
+    "provenance": {
+      "source_audit": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3233d55d43784f9589262306705e9f7b.json",
+      "sha256": "11923403524b904ae62389d3000f49b55cd7e2e0625e8a47588469540a84845c",
+      "toolspecs": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/referral_abuse_detection_v1/toolspecs.json",
+      "toolspecs_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+      "mutation": "partial-two-call-batch"
+    }
+  }
+]

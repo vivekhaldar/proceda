@@ -71,3 +71,45 @@ def test_driver_passes_two_jobs_without_cross_arm_concurrency(tmp_path, monkeypa
     assert all(args[args.index("--jobs") + 1] == "2" for args in calls)
     schedule = json.loads((tmp_path / "runs/parallel-cases/schedule.json").read_text())
     assert schedule["jobs"] == 2 and schedule["concurrency_between_arms"] == 0
+
+
+def test_local_only_profile_keeps_initial_defaults_and_primary_model():
+    from proceda.config import ProcedaConfig
+
+    base = driver.DEFAULT_EXPERIMENT / "configs"
+    local = ProcedaConfig.load(base / "hybrid-local.yaml")
+    original = ProcedaConfig.load(base / "hybrid-local-jev.yaml")
+    assert local.llm == original.llm
+    assert local.decisions.threshold == 0.97
+    assert local.decisions.backends == original.decisions.backends[:1]
+    assert driver.PROFILES == ("baseline", "hybrid-jev", "hybrid-local-jev")
+    assert "hybrid-local" in driver.PROFILE_CHOICES
+
+
+def test_four_job_local_only_development_schedule(tmp_path, monkeypatch):
+    monkeypatch.setattr(driver, "DEFAULT_EXPERIMENT", tmp_path)
+    monkeypatch.setattr(driver, "load_pass_credentials", lambda entries: {})
+    calls = []
+    monkeypatch.setattr(driver, "run_experiment", lambda args, credentials: calls.append(args) or 0)
+    assert (
+        driver.main(
+            [
+                "--run-id",
+                "dev-next",
+                "--profiles",
+                "baseline",
+                "hybrid-local",
+                "--limit",
+                "8",
+                "--jobs",
+                "4",
+            ]
+        )
+        == 0
+    )
+    assert len(calls) == 6
+    assert all(args[args.index("--jobs") + 1] == "4" for args in calls)
+    assert all(args[args.index("--limit") + 1] == "8" for args in calls)
+    schedule = json.loads((tmp_path / "runs/dev-next/schedule.json").read_text())
+    assert schedule["jobs"] == 4 and schedule["concurrency_between_arms"] == 0
+    assert schedule["profiles"] == ["baseline", "hybrid-local"]

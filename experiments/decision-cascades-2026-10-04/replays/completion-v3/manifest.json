@@ -1,0 +1,33 @@
+{
+  "scope": "Decision-only development replay; not end-to-end benchmark results.",
+  "threshold": 0.97,
+  "source": "experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev",
+  "source_manifest_sha256": "fc2a549a5fa2c181473838a74ded3640b77f37de3efc7a6fb5d3ccfa540527df",
+  "backends": [
+    {
+      "name": "jev",
+      "kind": "typesafe",
+      "model": "jev-1.13.0",
+      "base_url": "https://api.typesafe.ai",
+      "api_key_env": "TYPESAFE_API_KEY",
+      "max_input_chars": 60000,
+      "timeout": 30,
+      "input_cost_per_million": 0.042,
+      "threshold": null
+    },
+    {
+      "name": "local",
+      "kind": "ollaya",
+      "model": "winnow:e4b",
+      "base_url": "http://127.0.0.1:11435",
+      "api_key_env": "",
+      "max_input_chars": 18000,
+      "timeout": 90,
+      "input_cost_per_million": 0,
+      "threshold": null
+    }
+  ],
+  "service_sha256": "c2bdc35e3d1fd3cdec1475a2cc9db7a534cca0b44a59eefae9f4c96e7cd8b0e8",
+  "script_sha256": "4e6f0ab8a2aca8ee6cfd3c9b10a89f7a8cfed8be47831bc389eee69c2430b2bc",
+  "labels_sent_to_models": false
+}

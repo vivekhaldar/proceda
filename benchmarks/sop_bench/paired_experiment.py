@@ -390,8 +390,8 @@ def evaluate(
     resume: bool = False,
     secrets: Sequence[str] = (),
 ) -> dict[str, Any]:
-    if jobs not in (1, 2):
-        raise ValueError("Use one or two concurrent cases")
+    if jobs not in (1, 2, 4):
+        raise ValueError("Use one, two, or four concurrent cases")
     if limit is not None and limit < 1:
         raise ValueError("limit must be positive")
     for value in (arm, run_id):
@@ -548,7 +548,7 @@ def main(argv: Sequence[str] | None = None, credentials: Mapping[str, str] | Non
     parser.add_argument(
         "--limit", type=int, help="Maximum tasks per selected domain (smoke runs only)"
     )
-    parser.add_argument("--jobs", type=int, choices=(1, 2), default=1)
+    parser.add_argument("--jobs", type=int, choices=(1, 2, 4), default=1)
     parser.add_argument("--run-id")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument(

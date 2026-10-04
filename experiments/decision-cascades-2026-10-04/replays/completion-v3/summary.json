@@ -1,0 +1,18 @@
+{
+  "jev": {
+    "positive_accepted": 0,
+    "positive_total": 6,
+    "negative_rejected": 2,
+    "negative_abstained": 5,
+    "negative_false_accepted": 0,
+    "negative_total": 7
+  },
+  "local": {
+    "positive_accepted": 3,
+    "positive_total": 6,
+    "negative_rejected": 1,
+    "negative_abstained": 6,
+    "negative_false_accepted": 0,
+    "negative_total": 7
+  }
+}
