@@ -183,3 +183,21 @@ completion. No repeated-run selection solely to obtain a favorable random score.
   fallback cannot automatically repeat a planned prefix.
 - Synthetic SOPs with renamed fields/tools demonstrate generality.
 - Real development choice and end-to-end runs before any wider performance claim.
+
+## Development revision: conservative step fallback
+
+The first two source-only email compilations were structurally invalid. In the
+second, the finite decision itself validated, but later tool guards and a render
+referenced unsupported evidence. Rejecting the whole procedure discarded that
+independently usable decision. Before the next inference, add a generic compiler
+recovery: validate steps in source order and replace an invalid step with the
+entire original step as `llm`. Remove any facts tentatively introduced by the
+invalid step; dependent steps must then validate against the remaining facts.
+Never repair a business rule, invent a value, rewrite a quote, or admit an invalid
+operation. A malformed root/step count still rejects the whole candidate.
+
+Preserve the unmodified compiler response, every downgrade reason, the resulting
+candidate and a separate review of that candidate against the full original SOP.
+The independent reviewer must approve even a partially compiled plan. This is
+graceful loss of optimization, not a relaxation of execution validation. Report
+the two failed attempts and their costs; do not overwrite or relabel their results.
