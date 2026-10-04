@@ -26,3 +26,4 @@ benchmarks/sop_bench/results/
 
 # Full experiment traces are retained locally; reports/manifests remain tracked.
 experiments/*/runs/
+experiments/*/phase2/runs/

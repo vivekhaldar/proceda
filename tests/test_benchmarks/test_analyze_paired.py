@@ -153,6 +153,83 @@ def make_arm(directory: Path, predictions: dict, split="dev", domain="domain"):
         write(case / "providers/request.json", llm({"prompt_tokens": 100, "completion_tokens": 20}))
 
 
+def add_provenance(directory: Path, **fields):
+    manifest = json.loads((directory / "run.json").read_text())
+    write(directory / "run.json", {**manifest, **fields})
+
+
+def test_phase2_reused_validation_and_shared_schedule_survive_paired_analysis(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    metadata = {
+        "phase": 2,
+        "validation_status": "reused_validation",
+        "untouched_confirmation": False,
+        "schedule_sha256": "frozen-phase2-schedule",
+        "run_id": "phase2-validation",
+    }
+    for directory in (baseline, candidate):
+        make_arm(directory, {}, split="holdout")
+        add_provenance(directory, arm=directory.name, **metadata)
+    report = analyze(baseline, candidate)
+    for key in ("phase", "validation_status", "untouched_confirmation", "schedule_sha256"):
+        assert report[key] == metadata[key]
+    for side, directory in (("baseline", baseline), ("candidate", candidate)):
+        assert report["provenance"][f"{side}_runs"] == [
+            {
+                **metadata,
+                "arm": directory.name,
+                "source_arm_dir": str(directory.resolve()),
+                "run_manifest_path": str((directory / "run.json").resolve()),
+            }
+        ]
+
+
+def test_legacy_three_domain_blocks_keep_unknown_freshness_and_individual_schedules(tmp_path):
+    arms = {"baseline": [], "candidate": []}
+    for arm, directories in arms.items():
+        for domain in ("one", "two", "three"):
+            directory = tmp_path / arm / domain
+            make_arm(directory, {}, split="holdout", domain=domain)
+            add_provenance(directory, schedule_sha256=f"{domain}-schedule")
+            directories.append(directory)
+    report = analyze(arms["baseline"], arms["candidate"])
+    assert all(
+        report[name] is None
+        for name in ("phase", "validation_status", "untouched_confirmation", "schedule_sha256")
+    )
+    for arm in arms:
+        runs = report["provenance"][f"{arm}_runs"]
+        assert len(runs) == 3
+        assert [run["schedule_sha256"] for run in runs] == [
+            f"{domain}-schedule" for domain in ("one", "two", "three")
+        ]
+        assert all(run["untouched_confirmation"] is None for run in runs)
+        assert all(run["phase"] is None and run["validation_status"] is None for run in runs)
+
+
+def test_mixed_run_provenance_is_retained_without_promoting_first_manifest(tmp_path):
+    old, new, candidate = tmp_path / "old", tmp_path / "new", tmp_path / "candidate"
+    for directory, domain in ((old, "old-domain"), (new, "new-domain"), (candidate, "old-domain")):
+        make_arm(directory, {}, split="holdout", domain=domain)
+    add_provenance(old, phase=1, untouched_confirmation=True, schedule_sha256="old-schedule")
+    add_provenance(
+        new,
+        phase=2,
+        validation_status="reused_validation",
+        untouched_confirmation=False,
+        schedule_sha256="new-schedule",
+    )
+    report = analyze([old, new], candidate)
+    assert report["phase"] is None and report["untouched_confirmation"] is None
+    assert report["validation_status"] is None and report["schedule_sha256"] is None
+    runs = report["provenance"]["baseline_runs"]
+    assert [(run["phase"], run["untouched_confirmation"]) for run in runs] == [
+        (1, True),
+        (2, False),
+    ]
+    assert report["provenance"]["candidate_runs"][0]["untouched_confirmation"] is None
+
+
 def test_pairing_regrades_strictly_and_keeps_pending_cases_visible(tmp_path):
     baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
     make_arm(

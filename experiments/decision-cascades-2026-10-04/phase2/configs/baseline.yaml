@@ -1,0 +1,11 @@
+llm:
+  model: openai/zai-org/GLM-5.3-Flash
+  api_base: https://api.tokenfactory.nebius.com/v1
+  api_key_env: NEBIUS_API_KEY
+  temperature: 0.0
+  max_tokens: 2048
+  max_retries: 2
+  timeout: 90
+  reasoning_effort: low
+decisions:
+  enabled: false

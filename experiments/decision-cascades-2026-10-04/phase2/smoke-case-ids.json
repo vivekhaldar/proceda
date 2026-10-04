@@ -1,0 +1,17 @@
+{
+  "referral_abuse_detection_v1": [
+    "ACC100030",
+    "ACC100033",
+    "ACC100051"
+  ],
+  "email_intent": [
+    "E1093",
+    "E1105",
+    "E1110"
+  ],
+  "patient_intake": [
+    "P100058",
+    "P100063",
+    "P100071"
+  ]
+}

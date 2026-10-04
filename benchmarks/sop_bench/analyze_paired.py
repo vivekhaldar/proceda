@@ -27,6 +27,12 @@ BOOTSTRAP_SEED = 20261004
 BOOTSTRAP_RESAMPLES = 2000
 NATIVE_DURATION_FIELDS = ("total", "load", "eval")
 CACHE_RATE_FRACTIONS = (0.0, 0.2, 1.0)
+PROVENANCE_FIELDS = (
+    "phase",
+    "validation_status",
+    "untouched_confirmation",
+    "schedule_sha256",
+)
 CACHE_METRICS = (
     "known_cached_usage_requests",
     "unknown_cached_usage_requests",
@@ -415,8 +421,18 @@ def load_arms(directories: list[Path]) -> tuple[dict[str, Any], dict[tuple[str, 
         raise ValueError("At least one arm directory is required")
     reference = None
     merged = {}
+    source_runs = []
     for directory in directories:
         manifest, cases = load_arm(directory)
+        source_runs.append(
+            {
+                "source_arm_dir": str(directory.resolve()),
+                "run_manifest_path": str((directory / "run.json").resolve()),
+                "run_id": manifest.get("run_id"),
+                "arm": manifest.get("arm"),
+                **{name: manifest.get(name) for name in PROVENANCE_FIELDS},
+            }
+        )
         if reference is None:
             reference = manifest
         for name in ("manifest_sha256", "split"):
@@ -430,7 +446,21 @@ def load_arms(directories: list[Path]) -> tuple[dict[str, Any], dict[tuple[str, 
                 )
             merged[key] = case
     assert reference is not None
-    return reference, merged
+    return {**reference, "_analysis_source_runs": source_runs}, merged
+
+
+def shared_provenance(source_runs: list[dict[str, Any]]) -> dict[str, Any]:
+    """Repeat only metadata explicitly shared by every run; never infer freshness."""
+    result = {}
+    for name in PROVENANCE_FIELDS:
+        values = [run[name] for run in source_runs]
+        first = values[0] if values else None
+        result[name] = (
+            first
+            if all(type(value) is type(first) and value == first for value in values)
+            else None
+        )
+    return result
 
 
 def summarize(cases: list[dict[str, Any]]) -> dict[str, Any]:
@@ -680,6 +710,8 @@ def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -
         if baseline_manifest[name] != candidate_manifest[name]:
             raise ValueError(f"Cannot pair runs with different {name}")
     domains = sorted({key[0] for key in baseline} | {key[0] for key in candidate})
+    baseline_runs = baseline_manifest["_analysis_source_runs"]
+    candidate_runs = candidate_manifest["_analysis_source_runs"]
     return {
         "schema_version": 1,
         "baseline_dir": str(baseline_dirs[0].resolve()) if len(baseline_dirs) == 1 else None,
@@ -688,6 +720,8 @@ def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -
         "candidate_dirs": [str(directory.resolve()) for directory in candidate_dirs],
         "split": baseline_manifest["split"],
         "source_manifest_sha256": baseline_manifest["manifest_sha256"],
+        **shared_provenance(baseline_runs + candidate_runs),
+        "provenance": {"baseline_runs": baseline_runs, "candidate_runs": candidate_runs},
         "cost_basis": COST_BASIS,
         "prices_usd_per_million_tokens": {
             "llm_input_output": LLM_PRICES,
@@ -708,6 +742,9 @@ def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -
             "Latency covers whole-case execution, including failures; percentiles interpolate.",
             "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
             "Merged runs share a frozen split; duplicate (domain, task_id) keys are rejected.",
+            "Provenance retains every source run. Summary fields repeat only values shared by "
+            "all runs; null means missing or mixed. A holdout split alone never implies untouched "
+            "confirmation, and legacy missing metadata remains unknown.",
             "Discordance counts are descriptive; no population guarantee or significance claimed.",
             "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
             "Correlated cases or shared entities can make these intervals too narrow.",
