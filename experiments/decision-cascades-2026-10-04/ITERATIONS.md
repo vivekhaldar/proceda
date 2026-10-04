@@ -145,3 +145,65 @@ baseline with proposal-verification-only and completion-plus-verification using
 two cases per domain. Both candidates retain the same 4B model, threshold,
 primary LLM, reasoning effort, and repair limit. This tests the optional feature
 before final profile selection; no holdout case has been used for tuning.
+
+## Verification results and held-out freeze — 161742d / 00ae813
+
+The verification ablation completed all 18 executions. Baseline passed 6/6;
+verification-only and combined candidates each passed 4/6. The two patient cases
+failed in each hybrid because the source tool schema requires nine-digit patient
+identifiers while the dataset and lookup implementation use six digits. Schema
+validation rejected those proposals; repair contexts then exceeded the configured
+input guard. No patient app tool executed. These failures, repaired proposals,
+and expenses are preserved; the source schema was not weakened to improve scores.
+
+`FINAL_PROFILE.md` was committed at `00ae813` before the full held-out run. It
+selects local e4b completion only, keeps proposal verification disabled, and
+compares it with the same explicit-low-effort LLM-only profile. The schedule uses
+all 360 frozen cases per arm, with no limit or outcome-based exclusions. Runtime,
+skills, provider settings, and benchmark execution code remained frozen throughout
+the schedule. Later changes are offline accounting, tests, review, and reporting.
+
+## Cache-rate sensitivity and durable trace packaging
+
+The offline analyzer now records cached and uncached token counts, checks the
+provider's cache-field aliases for consistency, and computes hypothetical cache
+rates of zero, 20%, and 100% of the ordinary input price. The actual cached-input
+tariff is unverified. Full-rate costs remain unchanged; all 26 regenerated
+canonical development analyses were checked against their earlier counts,
+outcomes, latencies, and original cost metrics. Under a hypothetical free-cache
+tariff, the 24-case e4b development cost advantage reverses. This limitation is
+reported rather than assuming cache hits are billed at full rate.
+
+Raw run directories remain intact. An offline archive utility creates immutable
+compressed copies with per-member SHA-256 manifests, refuses unfinished groups,
+and permits the aborted probe only with explicit identification. Exact known
+credential scans run in memory before packaging. Development archives were
+verified and a fresh restoration reproduced counts and full accounting. No
+model calls or runtime mutations are part of this packaging process.
+
+## Completed frozen holdout — 720 executions
+
+Both arms completed all 360 frozen cases. Baseline passed 350/360 and the local
+completion candidate passed 346/360. Referral passed 160/160 in each arm; the
+candidate accepted 187/480 checks, removed 187 hosted calls, and reduced its
+full-rate API estimate 15.39%. Email passed 138/148 versus 134/148, with zero
+accepted checks and the same 555 hosted calls. Patient passed 52/52 in each arm,
+also with zero accepted checks and the same 699 hosted calls.
+
+The full-rate aggregate estimate fell from $1.316093 to $1.23046505 (6.51%), and
+mean observed case time fell from 19.873 to 15.196 seconds (23.53%), alongside
+four additional strict failures. Sequential arm blocks and substantial provider
+timing changes confound latency attribution. The requested broad
+accuracy-preserving joint win was not achieved. The narrower referral result
+supports selective enablement; no retrospectively combined policy is presented
+as another executed experiment.
+
+No runtime, skill, source, or provider-configuration changes were made during
+the held-out schedule. A later read-only residency check showed only e4b, so the
+freeze's continuous-two-model residency assumption was not established; no manual
+loading intervention was made. Native loading durations remain in accounting.
+All 720 trace structures and 5,784 provider audits passed independent checks,
+with no provider errors, retries, unknown usage, or driver warnings. The final
+archive's fresh restoration reproduced the original results and accounting.
+All seven archives retain 15,754 files. Final repository checks passed: 505 tests,
+Ruff lint/formatting, and types. See `REPORT.md` for all results and limitations.

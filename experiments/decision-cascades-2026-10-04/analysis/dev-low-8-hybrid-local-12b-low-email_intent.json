@@ -3,16 +3,43 @@
     "accounting": {
       "audit_errors": [],
       "audit_records": 30,
+      "cache_usage_errors": [],
+      "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
       "cost_complete": true,
       "cost_usd": 0.014349,
       "cost_usd_lower_bound": 0.014349,
       "decision_preflight_records": 0,
       "decision_requests": 0,
+      "hypothetical_cache_price_costs": {
+        "0.0": {
+          "cached_input_rate_fraction": 0.0,
+          "cost_usd": 0.0044034,
+          "hypothetical_not_actual_invoice": true
+        },
+        "0.2": {
+          "cached_input_rate_fraction": 0.2,
+          "cost_usd": 0.0063925200000000005,
+          "hypothetical_not_actual_invoice": true
+        },
+        "1.0": {
+          "cached_input_rate_fraction": 1.0,
+          "cost_usd": 0.014349,
+          "hypothetical_not_actual_invoice": true
+        }
+      },
       "input_tokens_known": 85570,
       "known_input_usage_requests": 30,
       "known_output_usage_requests": 30,
       "known_usage_requests": 30,
+      "llm_cached_input_cost_at_full_rate_usd_known": 0.0099456,
+      "llm_cached_input_tokens": 66304,
+      "llm_cached_input_tokens_known": 66304,
+      "llm_cached_usage_complete": true,
+      "llm_known_cached_usage_requests": 30,
       "llm_requests": 30,
+      "llm_uncached_input_tokens": 19266,
+      "llm_uncached_input_tokens_known": 19266,
+      "llm_unknown_cached_usage_requests": 0,
       "local_decision_requests": 0,
       "local_native_eval_known_calls": 0,
       "local_native_eval_seconds": null,
@@ -23,11 +50,16 @@
       "output_tokens_known": 3027,
       "providers": {
         "llm:zai-org/GLM-5.3-Flash": {
+          "cached_input_cost_at_full_rate_usd_known": 0.0099456,
+          "cached_input_tokens_known": 66304,
           "cost_usd_lower_bound": 0.014349,
           "input_tokens_known": 85570,
+          "known_cached_usage_requests": 30,
           "known_usage_requests": 30,
           "output_tokens_known": 3027,
           "requests": 30,
+          "uncached_input_tokens_known": 19266,
+          "unknown_cached_usage_requests": 0,
           "unknown_cost_requests": 0,
           "unknown_usage_requests": 0
         }
@@ -63,16 +95,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0018752,
         "cost_usd_lower_bound": 0.0018752,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.00037760000000000007,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00067712,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0018752,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11348,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0014976,
+        "llm_cached_input_tokens": 9984,
+        "llm_cached_input_tokens_known": 9984,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 1364,
+        "llm_uncached_input_tokens_known": 1364,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -83,11 +142,16 @@
         "output_tokens_known": 346,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0014976,
+            "cached_input_tokens_known": 9984,
             "cost_usd_lower_bound": 0.0018752,
             "input_tokens_known": 11348,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 346,
             "requests": 4,
+            "uncached_input_tokens_known": 1364,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -114,16 +178,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00191495,
         "cost_usd_lower_bound": 0.00191495,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006477499999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0009011899999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00191495,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11473,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0012672,
+        "llm_cached_input_tokens": 8448,
+        "llm_cached_input_tokens_known": 8448,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 3025,
+        "llm_uncached_input_tokens_known": 3025,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -134,11 +225,16 @@
         "output_tokens_known": 388,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0012672,
+            "cached_input_tokens_known": 8448,
             "cost_usd_lower_bound": 0.00191495,
             "input_tokens_known": 11473,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 388,
             "requests": 4,
+            "uncached_input_tokens_known": 3025,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -165,16 +261,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019340499999999997,
         "cost_usd_lower_bound": 0.0019340499999999997,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0005516499999999997,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0008281299999999996,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019340499999999997,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11537,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013824,
+        "llm_cached_input_tokens": 9216,
+        "llm_cached_input_tokens_known": 9216,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2321,
+        "llm_uncached_input_tokens_known": 2321,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -185,11 +308,16 @@
         "output_tokens_known": 407,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013824,
+            "cached_input_tokens_known": 9216,
             "cost_usd_lower_bound": 0.0019340499999999997,
             "input_tokens_known": 11537,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 407,
             "requests": 4,
+            "uncached_input_tokens_known": 2321,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -216,16 +344,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0018876000000000001,
         "cost_usd_lower_bound": 0.0018876000000000001,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.00039000000000000037,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0006895200000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0018876000000000001,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11354,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0014975999999999998,
+        "llm_cached_input_tokens": 9984,
+        "llm_cached_input_tokens_known": 9984,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 1370,
+        "llm_uncached_input_tokens_known": 1370,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -236,11 +391,16 @@
         "output_tokens_known": 369,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0014975999999999998,
+            "cached_input_tokens_known": 9984,
             "cost_usd_lower_bound": 0.0018876000000000001,
             "input_tokens_known": 11354,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 369,
             "requests": 4,
+            "uncached_input_tokens_known": 1370,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -267,16 +427,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019219499999999995,
         "cost_usd_lower_bound": 0.0019219499999999995,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0010387499999999995,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0012153899999999994,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019219499999999995,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11473,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0008832,
+        "llm_cached_input_tokens": 5888,
+        "llm_cached_input_tokens_known": 5888,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 5585,
+        "llm_uncached_input_tokens_known": 5585,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -287,11 +474,16 @@
         "output_tokens_known": 402,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0008832,
+            "cached_input_tokens_known": 5888,
             "cost_usd_lower_bound": 0.0019219499999999995,
             "input_tokens_known": 11473,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 402,
             "requests": 4,
+            "uncached_input_tokens_known": 5585,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -318,16 +510,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 3,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00143015,
         "cost_usd_lower_bound": 0.00143015,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0004701500000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00066215,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00143015,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 8421,
         "known_input_usage_requests": 3,
         "known_output_usage_requests": 3,
         "known_usage_requests": 3,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0009599999999999999,
+        "llm_cached_input_tokens": 6400,
+        "llm_cached_input_tokens_known": 6400,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 3,
         "llm_requests": 3,
+        "llm_uncached_input_tokens": 2021,
+        "llm_uncached_input_tokens_known": 2021,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -338,11 +557,16 @@
         "output_tokens_known": 334,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0009599999999999999,
+            "cached_input_tokens_known": 6400,
             "cost_usd_lower_bound": 0.00143015,
             "input_tokens_known": 8421,
+            "known_cached_usage_requests": 3,
             "known_usage_requests": 3,
             "output_tokens_known": 334,
             "requests": 3,
+            "uncached_input_tokens_known": 2021,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -369,16 +593,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0018717499999999997,
         "cost_usd_lower_bound": 0.0018717499999999997,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0004893499999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0007658299999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0018717499999999997,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 11355,
         "known_input_usage_requests": 4,
         "known_output_usage_requests": 4,
         "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+        "llm_cached_input_tokens": 9216,
+        "llm_cached_input_tokens_known": 9216,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2139,
+        "llm_uncached_input_tokens_known": 2139,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -389,11 +640,16 @@
         "output_tokens_known": 337,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+            "cached_input_tokens_known": 9216,
             "cost_usd_lower_bound": 0.0018717499999999997,
             "input_tokens_known": 11355,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 337,
             "requests": 4,
+            "uncached_input_tokens_known": 2139,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -420,16 +676,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 3,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00151335,
         "cost_usd_lower_bound": 0.00151335,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0004381499999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0006531899999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00151335,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 8609,
         "known_input_usage_requests": 3,
         "known_output_usage_requests": 3,
         "known_usage_requests": 3,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0010752000000000001,
+        "llm_cached_input_tokens": 7168,
+        "llm_cached_input_tokens_known": 7168,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 3,
         "llm_requests": 3,
+        "llm_uncached_input_tokens": 1441,
+        "llm_uncached_input_tokens_known": 1441,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -440,11 +723,16 @@
         "output_tokens_known": 444,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0010752000000000001,
+            "cached_input_tokens_known": 7168,
             "cost_usd_lower_bound": 0.00151335,
             "input_tokens_known": 8609,
+            "known_cached_usage_requests": 3,
             "known_usage_requests": 3,
             "output_tokens_known": 444,
             "requests": 3,
+            "uncached_input_tokens_known": 1441,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -479,16 +767,43 @@
         "accounting": {
           "audit_errors": [],
           "audit_records": 30,
+          "cache_usage_errors": [],
+          "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
           "cost_complete": true,
           "cost_usd": 0.014349,
           "cost_usd_lower_bound": 0.014349,
           "decision_preflight_records": 0,
           "decision_requests": 0,
+          "hypothetical_cache_price_costs": {
+            "0.0": {
+              "cached_input_rate_fraction": 0.0,
+              "cost_usd": 0.0044034,
+              "hypothetical_not_actual_invoice": true
+            },
+            "0.2": {
+              "cached_input_rate_fraction": 0.2,
+              "cost_usd": 0.0063925200000000005,
+              "hypothetical_not_actual_invoice": true
+            },
+            "1.0": {
+              "cached_input_rate_fraction": 1.0,
+              "cost_usd": 0.014349,
+              "hypothetical_not_actual_invoice": true
+            }
+          },
           "input_tokens_known": 85570,
           "known_input_usage_requests": 30,
           "known_output_usage_requests": 30,
           "known_usage_requests": 30,
+          "llm_cached_input_cost_at_full_rate_usd_known": 0.0099456,
+          "llm_cached_input_tokens": 66304,
+          "llm_cached_input_tokens_known": 66304,
+          "llm_cached_usage_complete": true,
+          "llm_known_cached_usage_requests": 30,
           "llm_requests": 30,
+          "llm_uncached_input_tokens": 19266,
+          "llm_uncached_input_tokens_known": 19266,
+          "llm_unknown_cached_usage_requests": 0,
           "local_decision_requests": 0,
           "local_native_eval_known_calls": 0,
           "local_native_eval_seconds": null,
@@ -499,11 +814,16 @@
           "output_tokens_known": 3027,
           "providers": {
             "llm:zai-org/GLM-5.3-Flash": {
+              "cached_input_cost_at_full_rate_usd_known": 0.0099456,
+              "cached_input_tokens_known": 66304,
               "cost_usd_lower_bound": 0.014349,
               "input_tokens_known": 85570,
+              "known_cached_usage_requests": 30,
               "known_usage_requests": 30,
               "output_tokens_known": 3027,
               "requests": 30,
+              "uncached_input_tokens_known": 19266,
+              "unknown_cached_usage_requests": 0,
               "unknown_cost_requests": 0,
               "unknown_usage_requests": 0
             }
@@ -544,16 +864,43 @@
         "accounting": {
           "audit_errors": [],
           "audit_records": 38,
+          "cache_usage_errors": [],
+          "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
           "cost_complete": true,
           "cost_usd": 0.014816,
           "cost_usd_lower_bound": 0.014816,
           "decision_preflight_records": 0,
           "decision_requests": 7,
+          "hypothetical_cache_price_costs": {
+            "0.0": {
+              "cached_input_rate_fraction": 0.0,
+              "cost_usd": 0.004332800000000001,
+              "hypothetical_not_actual_invoice": true
+            },
+            "0.2": {
+              "cached_input_rate_fraction": 0.2,
+              "cost_usd": 0.00642944,
+              "hypothetical_not_actual_invoice": true
+            },
+            "1.0": {
+              "cached_input_rate_fraction": 1.0,
+              "cost_usd": 0.014816,
+              "hypothetical_not_actual_invoice": true
+            }
+          },
           "input_tokens_known": 103709,
           "known_input_usage_requests": 38,
           "known_output_usage_requests": 38,
           "known_usage_requests": 38,
+          "llm_cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+          "llm_cached_input_tokens": 69888,
+          "llm_cached_input_tokens_known": 69888,
+          "llm_cached_usage_complete": true,
+          "llm_known_cached_usage_requests": 31,
           "llm_requests": 31,
+          "llm_uncached_input_tokens": 18782,
+          "llm_uncached_input_tokens_known": 18782,
+          "llm_unknown_cached_usage_requests": 0,
           "local_decision_requests": 7,
           "local_native_eval_known_calls": 7,
           "local_native_eval_seconds": 23.238873374999997,
@@ -573,11 +920,16 @@
               "unknown_usage_requests": 0
             },
             "llm:zai-org/GLM-5.3-Flash": {
+              "cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+              "cached_input_tokens_known": 69888,
               "cost_usd_lower_bound": 0.014816,
               "input_tokens_known": 88670,
+              "known_cached_usage_requests": 31,
               "known_usage_requests": 31,
               "output_tokens_known": 3031,
               "requests": 31,
+              "uncached_input_tokens_known": 18782,
+              "unknown_cached_usage_requests": 0,
               "unknown_cost_requests": 0,
               "unknown_usage_requests": 0
             }
@@ -704,13 +1056,104 @@
         "improved": 0,
         "regressed": 1
       },
+      "hypothetical_cache_price_sensitivity": {
+        "assumption": "LLM cached input costs 0%, 20%, or 100% of each model's ordinary input list rate. These are hypothetical rates, not verified Nebius billing. Output and decision prices stay unchanged. Cache aliases are counted once; missing cache usage is unknown, never assumed zero. Full-rate estimates do not require cache detail.",
+        "break_even": {
+          "cached_input_rate_fraction": 0.13132440476190255,
+          "cached_input_rate_usd_per_million": 0.01969866071428538,
+          "candidate_minus_baseline_at_free_cache_usd": -7.059999999999879e-05,
+          "candidate_minus_baseline_full_rate_cached_input_usd": 0.0005375999999999998,
+          "comparison": "candidate cheaper below crossover; baseline cheaper above",
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 8,
+          "ordinary_input_rates_usd_per_million": [
+            0.15
+          ],
+          "scope": "A common fraction of normal input price applies to every LLM model. A single USD-per-million crossover is reported only when ordinary input rates agree. No local compute, idle capacity or TCO is priced by this crossover.",
+          "unconstrained_cached_input_rate_fraction": 0.13132440476190255,
+          "within_zero_to_full_rate": true
+        },
+        "hypothetical_not_actual_invoice": true,
+        "scenarios": {
+          "0.0": {
+            "baseline_cost_usd": 0.004403399999999999,
+            "cached_input_rate_fraction": 0.0,
+            "candidate_cost_usd": 0.0043328,
+            "candidate_minus_baseline_cost_usd": -7.059999999999879e-05,
+            "candidate_relative_cost_change": -0.016033065358586285,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 8,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -0.00017738124999999968,
+              "mean_difference": -8.824999999999849e-06,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 8,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": 0.0001310673437499999
+            }
+          },
+          "0.2": {
+            "baseline_cost_usd": 0.006392519999999999,
+            "cached_input_rate_fraction": 0.2,
+            "candidate_cost_usd": 0.00642944,
+            "candidate_minus_baseline_cost_usd": 3.692000000000116e-05,
+            "candidate_relative_cost_change": 0.005775500115760446,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 8,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -0.0001382126562499997,
+              "mean_difference": 4.615000000000145e-06,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 8,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": 0.00013105303124999996
+            }
+          },
+          "1.0": {
+            "baseline_cost_usd": 0.014348999999999999,
+            "cached_input_rate_fraction": 1.0,
+            "candidate_cost_usd": 0.014816,
+            "candidate_minus_baseline_cost_usd": 0.00046700000000000105,
+            "candidate_relative_cost_change": 0.03254582200850242,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 8,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -1.0340312499999731e-05,
+              "mean_difference": 5.837500000000013e-05,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 8,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": 0.0001695181250000001
+            }
+          }
+        }
+      },
       "local_active_model_hour_break_even": {
         "additional_local_native_total_seconds": 23.242280958000002,
         "excluded_pair_count": 0,
         "excluded_pairs": [],
         "hosted_api_savings_usd": -0.00046700000000000105,
         "included_pairs": 8,
-        "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+        "interpretation": "Full-rate input/output price-model savings divided by additional local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair. Cached input is priced at the full input rate; this is not observed invoice savings.",
         "positive_api_savings": false,
         "usd_per_additional_active_model_hour": null
       },
@@ -756,16 +1199,43 @@
     "accounting": {
       "audit_errors": [],
       "audit_records": 38,
+      "cache_usage_errors": [],
+      "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
       "cost_complete": true,
       "cost_usd": 0.014816,
       "cost_usd_lower_bound": 0.014816,
       "decision_preflight_records": 0,
       "decision_requests": 7,
+      "hypothetical_cache_price_costs": {
+        "0.0": {
+          "cached_input_rate_fraction": 0.0,
+          "cost_usd": 0.004332800000000001,
+          "hypothetical_not_actual_invoice": true
+        },
+        "0.2": {
+          "cached_input_rate_fraction": 0.2,
+          "cost_usd": 0.00642944,
+          "hypothetical_not_actual_invoice": true
+        },
+        "1.0": {
+          "cached_input_rate_fraction": 1.0,
+          "cost_usd": 0.014816,
+          "hypothetical_not_actual_invoice": true
+        }
+      },
       "input_tokens_known": 103709,
       "known_input_usage_requests": 38,
       "known_output_usage_requests": 38,
       "known_usage_requests": 38,
+      "llm_cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+      "llm_cached_input_tokens": 69888,
+      "llm_cached_input_tokens_known": 69888,
+      "llm_cached_usage_complete": true,
+      "llm_known_cached_usage_requests": 31,
       "llm_requests": 31,
+      "llm_uncached_input_tokens": 18782,
+      "llm_uncached_input_tokens_known": 18782,
+      "llm_unknown_cached_usage_requests": 0,
       "local_decision_requests": 7,
       "local_native_eval_known_calls": 7,
       "local_native_eval_seconds": 23.238873374999997,
@@ -785,11 +1255,16 @@
           "unknown_usage_requests": 0
         },
         "llm:zai-org/GLM-5.3-Flash": {
+          "cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+          "cached_input_tokens_known": 69888,
           "cost_usd_lower_bound": 0.014816,
           "input_tokens_known": 88670,
+          "known_cached_usage_requests": 31,
           "known_usage_requests": 31,
           "output_tokens_known": 3031,
           "requests": 31,
+          "uncached_input_tokens_known": 18782,
+          "unknown_cached_usage_requests": 0,
           "unknown_cost_requests": 0,
           "unknown_usage_requests": 0
         }
@@ -825,16 +1300,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019188,
         "cost_usd_lower_bound": 0.0019188,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0004980000000000002,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0007821600000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019188,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13825,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0014207999999999998,
+        "llm_cached_input_tokens": 9472,
+        "llm_cached_input_tokens_known": 9472,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2020,
+        "llm_uncached_input_tokens_known": 2020,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 7.180089334,
@@ -854,11 +1356,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0014207999999999998,
+            "cached_input_tokens_known": 9472,
             "cost_usd_lower_bound": 0.0019188,
             "input_tokens_known": 11492,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 390,
             "requests": 4,
+            "uncached_input_tokens_known": 2020,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -885,16 +1392,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00190035,
         "cost_usd_lower_bound": 0.00190035,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0005179500000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0007944300000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00190035,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13470,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+        "llm_cached_input_tokens": 9216,
+        "llm_cached_input_tokens_known": 9216,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2243,
+        "llm_uncached_input_tokens_known": 2243,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 3.494210583,
@@ -914,11 +1448,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+            "cached_input_tokens_known": 9216,
             "cost_usd_lower_bound": 0.00190035,
             "input_tokens_known": 11459,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 363,
             "requests": 4,
+            "uncached_input_tokens_known": 2243,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -945,16 +1484,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00192435,
         "cost_usd_lower_bound": 0.00192435,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006187499999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0008798699999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00192435,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13856,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013056,
+        "llm_cached_input_tokens": 8704,
+        "llm_cached_input_tokens_known": 8704,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2815,
+        "llm_uncached_input_tokens_known": 2815,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 5.338352958,
@@ -974,11 +1540,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013056,
+            "cached_input_tokens_known": 8704,
             "cost_usd_lower_bound": 0.00192435,
             "input_tokens_known": 11519,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 393,
             "requests": 4,
+            "uncached_input_tokens_known": 2815,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1005,16 +1576,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019014499999999998,
         "cost_usd_lower_bound": 0.0019014499999999998,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0005190500000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00079553,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019014499999999998,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13400,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+        "llm_cached_input_tokens": 9216,
+        "llm_cached_input_tokens_known": 9216,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2177,
+        "llm_uncached_input_tokens_known": 2177,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 1.761506667,
@@ -1034,11 +1632,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013823999999999998,
+            "cached_input_tokens_known": 9216,
             "cost_usd_lower_bound": 0.0019014499999999998,
             "input_tokens_known": 11393,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 385,
             "requests": 4,
+            "uncached_input_tokens_known": 2177,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1065,16 +1668,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.00187165,
         "cost_usd_lower_bound": 0.00187165,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0004892500000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0007657300000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00187165,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13708,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013824,
+        "llm_cached_input_tokens": 9216,
+        "llm_cached_input_tokens_known": 9216,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2165,
+        "llm_uncached_input_tokens_known": 2165,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 1.928932167,
@@ -1094,11 +1724,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013824,
+            "cached_input_tokens_known": 9216,
             "cost_usd_lower_bound": 0.00187165,
             "input_tokens_known": 11381,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 329,
             "requests": 4,
+            "uncached_input_tokens_known": 2165,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1125,16 +1760,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 3,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0014511,
         "cost_usd_lower_bound": 0.0014511,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0003759000000000002,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0005909400000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0014511,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 8514,
         "known_input_usage_requests": 3,
         "known_output_usage_requests": 3,
         "known_usage_requests": 3,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0010752,
+        "llm_cached_input_tokens": 7168,
+        "llm_cached_input_tokens_known": 7168,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 3,
         "llm_requests": 3,
+        "llm_uncached_input_tokens": 1346,
+        "llm_uncached_input_tokens_known": 1346,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -1145,11 +1807,16 @@
         "output_tokens_known": 348,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0010752,
+            "cached_input_tokens_known": 7168,
             "cost_usd_lower_bound": 0.0014511,
             "input_tokens_known": 8514,
+            "known_cached_usage_requests": 3,
             "known_usage_requests": 3,
             "output_tokens_known": 348,
             "requests": 3,
+            "uncached_input_tokens_known": 1346,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1176,16 +1843,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019194999999999998,
         "cost_usd_lower_bound": 0.0019194999999999998,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006522999999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0009057399999999997,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019194999999999998,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13461,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0012672,
+        "llm_cached_input_tokens": 8448,
+        "llm_cached_input_tokens_known": 8448,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 2992,
+        "llm_uncached_input_tokens_known": 2992,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 1.764346,
@@ -1205,11 +1899,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0012672,
+            "cached_input_tokens_known": 8448,
             "cost_usd_lower_bound": 0.0019194999999999998,
             "input_tokens_known": 11440,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 407,
             "requests": 4,
+            "uncached_input_tokens_known": 2992,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1236,16 +1935,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 5,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.0019288,
         "cost_usd_lower_bound": 0.0019288,
         "decision_preflight_records": 0,
         "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006616,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00091504,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019288,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 13475,
         "known_input_usage_requests": 5,
         "known_output_usage_requests": 5,
         "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0012672,
+        "llm_cached_input_tokens": 8448,
+        "llm_cached_input_tokens_known": 8448,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
         "llm_requests": 4,
+        "llm_uncached_input_tokens": 3024,
+        "llm_uncached_input_tokens_known": 3024,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 1,
         "local_native_eval_known_calls": 1,
         "local_native_eval_seconds": 1.771435666,
@@ -1265,11 +1991,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0012672,
+            "cached_input_tokens_known": 8448,
             "cost_usd_lower_bound": 0.0019288,
             "input_tokens_known": 11472,
+            "known_cached_usage_requests": 4,
             "known_usage_requests": 4,
             "output_tokens_known": 416,
             "requests": 4,
+            "uncached_input_tokens_known": 3024,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1297,10 +2028,14 @@
   "candidate_dirs": [
     "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/hybrid-local-12b-low"
   ],
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
   "notes": [
     "All provider attempts, including failures and retries, come from audits only.",
     "LLM request means acompletion attempt; decision request means client.post attempted.",
     "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Known cost means known usage under the stated price assumption, not a verified bill.",
+    "Cached input uses list price; 0%/20%/100% cache-price scenarios are hypothetical.",
+    "Cache aliases must agree and are never summed; absent cache counts remain unknown.",
     "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
     "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
     "Native total/load/eval known-call counts are separate; components are not summed.",
@@ -1321,16 +2056,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 30,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.014349,
         "cost_usd_lower_bound": 0.014349,
         "decision_preflight_records": 0,
         "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0044034,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0063925200000000005,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.014349,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 85570,
         "known_input_usage_requests": 30,
         "known_output_usage_requests": 30,
         "known_usage_requests": 30,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0099456,
+        "llm_cached_input_tokens": 66304,
+        "llm_cached_input_tokens_known": 66304,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 30,
         "llm_requests": 30,
+        "llm_uncached_input_tokens": 19266,
+        "llm_uncached_input_tokens_known": 19266,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 0,
         "local_native_eval_known_calls": 0,
         "local_native_eval_seconds": null,
@@ -1341,11 +2103,16 @@
         "output_tokens_known": 3027,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0099456,
+            "cached_input_tokens_known": 66304,
             "cost_usd_lower_bound": 0.014349,
             "input_tokens_known": 85570,
+            "known_cached_usage_requests": 30,
             "known_usage_requests": 30,
             "output_tokens_known": 3027,
             "requests": 30,
+            "uncached_input_tokens_known": 19266,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1386,16 +2153,43 @@
       "accounting": {
         "audit_errors": [],
         "audit_records": 38,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
         "cost_complete": true,
         "cost_usd": 0.014816,
         "cost_usd_lower_bound": 0.014816,
         "decision_preflight_records": 0,
         "decision_requests": 7,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.004332800000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00642944,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.014816,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
         "input_tokens_known": 103709,
         "known_input_usage_requests": 38,
         "known_output_usage_requests": 38,
         "known_usage_requests": 38,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+        "llm_cached_input_tokens": 69888,
+        "llm_cached_input_tokens_known": 69888,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 31,
         "llm_requests": 31,
+        "llm_uncached_input_tokens": 18782,
+        "llm_uncached_input_tokens_known": 18782,
+        "llm_unknown_cached_usage_requests": 0,
         "local_decision_requests": 7,
         "local_native_eval_known_calls": 7,
         "local_native_eval_seconds": 23.238873374999997,
@@ -1415,11 +2209,16 @@
             "unknown_usage_requests": 0
           },
           "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.010483199999999998,
+            "cached_input_tokens_known": 69888,
             "cost_usd_lower_bound": 0.014816,
             "input_tokens_known": 88670,
+            "known_cached_usage_requests": 31,
             "known_usage_requests": 31,
             "output_tokens_known": 3031,
             "requests": 31,
+            "uncached_input_tokens_known": 18782,
+            "unknown_cached_usage_requests": 0,
             "unknown_cost_requests": 0,
             "unknown_usage_requests": 0
           }
@@ -1546,13 +2345,104 @@
       "improved": 0,
       "regressed": 1
     },
+    "hypothetical_cache_price_sensitivity": {
+      "assumption": "LLM cached input costs 0%, 20%, or 100% of each model's ordinary input list rate. These are hypothetical rates, not verified Nebius billing. Output and decision prices stay unchanged. Cache aliases are counted once; missing cache usage is unknown, never assumed zero. Full-rate estimates do not require cache detail.",
+      "break_even": {
+        "cached_input_rate_fraction": 0.13132440476190255,
+        "cached_input_rate_usd_per_million": 0.01969866071428538,
+        "candidate_minus_baseline_at_free_cache_usd": -7.059999999999879e-05,
+        "candidate_minus_baseline_full_rate_cached_input_usd": 0.0005375999999999998,
+        "comparison": "candidate cheaper below crossover; baseline cheaper above",
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "included_pairs": 8,
+        "ordinary_input_rates_usd_per_million": [
+          0.15
+        ],
+        "scope": "A common fraction of normal input price applies to every LLM model. A single USD-per-million crossover is reported only when ordinary input rates agree. No local compute, idle capacity or TCO is priced by this crossover.",
+        "unconstrained_cached_input_rate_fraction": 0.13132440476190255,
+        "within_zero_to_full_rate": true
+      },
+      "hypothetical_not_actual_invoice": true,
+      "scenarios": {
+        "0.0": {
+          "baseline_cost_usd": 0.004403399999999999,
+          "cached_input_rate_fraction": 0.0,
+          "candidate_cost_usd": 0.0043328,
+          "candidate_minus_baseline_cost_usd": -7.059999999999879e-05,
+          "candidate_relative_cost_change": -0.016033065358586285,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 8,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -0.00017738124999999968,
+            "mean_difference": -8.824999999999849e-06,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 8,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": 0.0001310673437499999
+          }
+        },
+        "0.2": {
+          "baseline_cost_usd": 0.006392519999999999,
+          "cached_input_rate_fraction": 0.2,
+          "candidate_cost_usd": 0.00642944,
+          "candidate_minus_baseline_cost_usd": 3.692000000000116e-05,
+          "candidate_relative_cost_change": 0.005775500115760446,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 8,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -0.0001382126562499997,
+            "mean_difference": 4.615000000000145e-06,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 8,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": 0.00013105303124999996
+          }
+        },
+        "1.0": {
+          "baseline_cost_usd": 0.014348999999999999,
+          "cached_input_rate_fraction": 1.0,
+          "candidate_cost_usd": 0.014816,
+          "candidate_minus_baseline_cost_usd": 0.00046700000000000105,
+          "candidate_relative_cost_change": 0.03254582200850242,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 8,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -1.0340312499999731e-05,
+            "mean_difference": 5.837500000000013e-05,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 8,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": 0.0001695181250000001
+          }
+        }
+      }
+    },
     "local_active_model_hour_break_even": {
       "additional_local_native_total_seconds": 23.242280958000002,
       "excluded_pair_count": 0,
       "excluded_pairs": [],
       "hosted_api_savings_usd": -0.00046700000000000105,
       "included_pairs": 8,
-      "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+      "interpretation": "Full-rate input/output price-model savings divided by additional local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair. Cached input is priced at the full input rate; this is not observed invoice savings.",
       "positive_api_savings": false,
       "usd_per_additional_active_model_hour": null
     },

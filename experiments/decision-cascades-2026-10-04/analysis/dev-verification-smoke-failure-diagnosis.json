@@ -1,0 +1,571 @@
+{
+  "conclusion": "The four patient failures arise from a frozen upstream schema/data mismatch, followed by intentionally fail-closed uncertainty on a repaired proposal. No decision-model request was sent for any failed patient case.",
+  "failed_cases": [
+    {
+      "app_tool_calls": 0,
+      "decision_model_requests_sent": 0,
+      "events_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100002/events.jsonl",
+      "events_sha256": "7d4c4a0399c5ddbc2cd0d1f651f05b743c47d7da9b5e98590e1a6cd06565925b",
+      "initial_rejection": {
+        "attempt": 0,
+        "content": null,
+        "reasons": [
+          "sop-bench__validateInsurance: 'P100002' does not match '^P[0-9]{9}$'"
+        ],
+        "step_index": 1,
+        "tool_calls": [
+          {
+            "arguments": {
+              "coverage_start_date": "2023-02-15",
+              "group_number": "GRP345678",
+              "insurance_provider": "Aetna",
+              "insurance_type": "Private",
+              "patient_id": "P100002",
+              "policy_number": "INS789012"
+            },
+            "id": "call_ec70c03dba6549f68cb6e641",
+            "name": "sop-bench__validateInsurance"
+          }
+        ]
+      },
+      "initial_rejection_type": "deterministic_json_schema",
+      "profile": "hybrid-local-verify-low",
+      "repair_proposal": {
+        "content": "The patient ID \"P100002\" doesn't match the required format (P followed by exactly 9 digits). I need to confirm the correct patient ID before proceeding.",
+        "tool_calls": [
+          {
+            "arguments": {
+              "options": [
+                "P100000002",
+                "P000100002"
+              ],
+              "question": "The provided patient ID \"P100002\" does not match the required format (P followed by exactly 9 digits, e.g., P100000002). Could you provide the correct 9-digit patient ID?"
+            },
+            "id": "call_5ee90016cf66418cb6249c09",
+            "name": "request_clarification"
+          }
+        ]
+      },
+      "repair_verification": {
+        "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100002/providers/decisions/decision-43ede14cfefe49c1ab27338135eb8001.json",
+        "input_chars": 19793,
+        "outcome": "skipped",
+        "reason": "input_too_large",
+        "request_sent": false
+      },
+      "task_id": "P100002",
+      "terminal": {
+        "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100002",
+        "completed": false,
+        "correct": false,
+        "domain": "patient_intake",
+        "elapsed_seconds": 4.868582916999003,
+        "error": null,
+        "field_correct": {
+          "insurance_validation": false,
+          "life_style_risk_level": false,
+          "overall_risk_level": false,
+          "pharmacy_check": false,
+          "prescription_insurance_validation": false,
+          "user_registration": false
+        },
+        "finished_at": "2026-10-04T21:09:35.132655+00:00",
+        "predicted": {},
+        "provider_audit_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100002/providers",
+        "provider_audit_files": [
+          "providers/5d554b6330d342a1b7fbbc72344cc932-001.json",
+          "providers/94fe76d5b43140848007807e6c720189-001.json",
+          "providers/decisions/decision-43ede14cfefe49c1ab27338135eb8001.json"
+        ],
+        "reported_tokens": {
+          "completion_tokens": 209,
+          "prompt_tokens": 7547,
+          "total_tokens": 7756
+        },
+        "session_id": "run_799cf083d045",
+        "status": "failed",
+        "task_id": "P100002"
+      }
+    },
+    {
+      "app_tool_calls": 0,
+      "decision_model_requests_sent": 0,
+      "events_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100003/events.jsonl",
+      "events_sha256": "657270288d4ea28182a18703f6f78183bc831c96e9ecf1a6b6c7fdc134a7568b",
+      "initial_rejection": {
+        "attempt": 0,
+        "content": null,
+        "reasons": [
+          "sop-bench__validateInsurance: 'P100003' does not match '^P[0-9]{9}$'"
+        ],
+        "step_index": 1,
+        "tool_calls": [
+          {
+            "arguments": {
+              "coverage_start_date": "2022-12-01",
+              "group_number": "GRP901234",
+              "insurance_provider": "United",
+              "insurance_type": "Private",
+              "patient_id": "P100003",
+              "policy_number": "INS345678"
+            },
+            "id": "call_94f3648c36db48e8b981a302",
+            "name": "sop-bench__validateInsurance"
+          }
+        ]
+      },
+      "initial_rejection_type": "deterministic_json_schema",
+      "profile": "hybrid-local-verify-low",
+      "repair_proposal": {
+        "content": "The provided patient ID `P100003` doesn't match the required format (P followed by 9 digits). I need to clarify before proceeding.",
+        "tool_calls": [
+          {
+            "arguments": {
+              "options": [
+                "Use P100000003",
+                "Provide a different patient ID"
+              ],
+              "question": "The patient ID \"P100003\" does not match the required format (P followed by exactly 9 digits, e.g., P100000003). Could you provide the correct 9-digit patient ID?"
+            },
+            "id": "call_b0a2eaeaf5f54258b0845506",
+            "name": "request_clarification"
+          }
+        ]
+      },
+      "repair_verification": {
+        "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100003/providers/decisions/decision-db00a65480bb4f6f88a8ac76bd011a7d.json",
+        "input_chars": 19822,
+        "outcome": "skipped",
+        "reason": "input_too_large",
+        "request_sent": false
+      },
+      "task_id": "P100003",
+      "terminal": {
+        "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100003",
+        "completed": false,
+        "correct": false,
+        "domain": "patient_intake",
+        "elapsed_seconds": 3.3748936250049155,
+        "error": null,
+        "field_correct": {
+          "insurance_validation": false,
+          "life_style_risk_level": false,
+          "overall_risk_level": false,
+          "pharmacy_check": false,
+          "prescription_insurance_validation": false,
+          "user_registration": false
+        },
+        "finished_at": "2026-10-04T21:09:33.643226+00:00",
+        "predicted": {},
+        "provider_audit_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low/patient_intake/P100003/providers",
+        "provider_audit_files": [
+          "providers/7aeb2cd52471429d9b428168bc16c2ba-001.json",
+          "providers/cb15b30ceeb549ccb1d17d4bc46e3c25-001.json",
+          "providers/decisions/decision-db00a65480bb4f6f88a8ac76bd011a7d.json"
+        ],
+        "reported_tokens": {
+          "completion_tokens": 215,
+          "prompt_tokens": 7564,
+          "total_tokens": 7779
+        },
+        "session_id": "run_7c57115aa778",
+        "status": "failed",
+        "task_id": "P100003"
+      }
+    },
+    {
+      "app_tool_calls": 0,
+      "decision_model_requests_sent": 0,
+      "events_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100002/events.jsonl",
+      "events_sha256": "70f1c5afd83a8c7998f21dbea1d30d742c08658ffbbec2443e8868d9c78d4c9d",
+      "initial_rejection": {
+        "attempt": 0,
+        "content": null,
+        "reasons": [
+          "sop-bench__validateInsurance: 'P100002' does not match '^P[0-9]{9}$'"
+        ],
+        "step_index": 1,
+        "tool_calls": [
+          {
+            "arguments": {
+              "coverage_start_date": "2023-02-15",
+              "group_number": "GRP345678",
+              "insurance_provider": "Aetna",
+              "insurance_type": "Private",
+              "patient_id": "P100002",
+              "policy_number": "INS789012"
+            },
+            "id": "call_9507987baa1046c0ac9c9661",
+            "name": "sop-bench__validateInsurance"
+          }
+        ]
+      },
+      "initial_rejection_type": "deterministic_json_schema",
+      "profile": "hybrid-local-both-low",
+      "repair_proposal": {
+        "content": "The patient ID must be 9 digits. I'll pad it to P000100002.",
+        "tool_calls": [
+          {
+            "arguments": {
+              "coverage_start_date": "2023-02-15",
+              "group_number": "GRP345678",
+              "insurance_provider": "Aetna",
+              "insurance_type": "Private",
+              "patient_id": "P000100002",
+              "policy_number": "INS789012"
+            },
+            "id": "call_ff5d9b7837a54228ae31c068",
+            "name": "sop-bench__validateInsurance"
+          }
+        ]
+      },
+      "repair_verification": {
+        "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100002/providers/decisions/decision-4b289cbbd65e4162ab9d64169600189d.json",
+        "input_chars": 19660,
+        "outcome": "skipped",
+        "reason": "input_too_large",
+        "request_sent": false
+      },
+      "task_id": "P100002",
+      "terminal": {
+        "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100002",
+        "completed": false,
+        "correct": false,
+        "domain": "patient_intake",
+        "elapsed_seconds": 2.7309041249973234,
+        "error": null,
+        "field_correct": {
+          "insurance_validation": false,
+          "life_style_risk_level": false,
+          "overall_risk_level": false,
+          "pharmacy_check": false,
+          "prescription_insurance_validation": false,
+          "user_registration": false
+        },
+        "finished_at": "2026-10-04T21:09:10.191886+00:00",
+        "predicted": {},
+        "provider_audit_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100002/providers",
+        "provider_audit_files": [
+          "providers/9a1ee108712d411d917ca5df22460a53-001.json",
+          "providers/c90858f144134ae3a2ef55e0f57d9578-001.json",
+          "providers/decisions/decision-4b289cbbd65e4162ab9d64169600189d.json"
+        ],
+        "reported_tokens": {
+          "completion_tokens": 190,
+          "prompt_tokens": 7550,
+          "total_tokens": 7740
+        },
+        "session_id": "run_e7c8a017bb26",
+        "status": "failed",
+        "task_id": "P100002"
+      }
+    },
+    {
+      "app_tool_calls": 0,
+      "decision_model_requests_sent": 0,
+      "events_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100003/events.jsonl",
+      "events_sha256": "7cc7ac0632700f63feae9688cef650f6cb867371d11b573b5f01c8f358656e09",
+      "initial_rejection": {
+        "attempt": 0,
+        "content": null,
+        "reasons": [
+          "sop-bench__validateInsurance: 'P100003' does not match '^P[0-9]{9}$'"
+        ],
+        "step_index": 1,
+        "tool_calls": [
+          {
+            "arguments": {
+              "coverage_start_date": "2022-12-01",
+              "group_number": "GRP901234",
+              "insurance_provider": "United",
+              "insurance_type": "Private",
+              "patient_id": "P100003",
+              "policy_number": "INS345678"
+            },
+            "id": "call_e86ed967a79d4f2c87129c00",
+            "name": "sop-bench__validateInsurance"
+          }
+        ]
+      },
+      "initial_rejection_type": "deterministic_json_schema",
+      "profile": "hybrid-local-both-low",
+      "repair_proposal": {
+        "content": "The patient ID \"P100003\" doesn't match the required format (P followed by exactly 9 digits). I need to confirm the correct patient ID before proceeding.",
+        "tool_calls": [
+          {
+            "arguments": {
+              "options": [
+                "Use P100000003",
+                "I'll provide the correct patient ID"
+              ],
+              "question": "The patient ID \"P100003\" does not match the required format (P followed by exactly 9 digits, e.g., P100000003). Could you provide the correct 9-digit patient ID for this registration?"
+            },
+            "id": "call_8fc159bb761e48ca84a223cb",
+            "name": "request_clarification"
+          }
+        ]
+      },
+      "repair_verification": {
+        "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100003/providers/decisions/decision-0a2bf9572ab24af68357427f9bff2bf5.json",
+        "input_chars": 19873,
+        "outcome": "skipped",
+        "reason": "input_too_large",
+        "request_sent": false
+      },
+      "task_id": "P100003",
+      "terminal": {
+        "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100003",
+        "completed": false,
+        "correct": false,
+        "domain": "patient_intake",
+        "elapsed_seconds": 3.114160166005604,
+        "error": null,
+        "field_correct": {
+          "insurance_validation": false,
+          "life_style_risk_level": false,
+          "overall_risk_level": false,
+          "pharmacy_check": false,
+          "prescription_insurance_validation": false,
+          "user_registration": false
+        },
+        "finished_at": "2026-10-04T21:09:10.580883+00:00",
+        "predicted": {},
+        "provider_audit_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low/patient_intake/P100003/providers",
+        "provider_audit_files": [
+          "providers/94cdaeafa59e46e180ce75d0781e5fac-001.json",
+          "providers/bb209a0fa65d41649a1d33decde3fddc-001.json",
+          "providers/decisions/decision-0a2bf9572ab24af68357427f9bff2bf5.json"
+        ],
+        "reported_tokens": {
+          "completion_tokens": 218,
+          "prompt_tokens": 7563,
+          "total_tokens": 7781
+        },
+        "session_id": "run_d55e858c6511",
+        "status": "failed",
+        "task_id": "P100003"
+      }
+    }
+  ],
+  "gate_rollup": {
+    "baseline-low": {
+      "cases": 6,
+      "completion_accepts": 0,
+      "correct": 6,
+      "llm_requests": 51,
+      "proposal_model_accepts": 0,
+      "proposal_model_rejects": 0,
+      "proposal_model_requests": 0,
+      "proposal_preflight_skips": 0,
+      "schema_rejections": 0
+    },
+    "hybrid-local-both-low": {
+      "cases": 6,
+      "completion_accepts": 3,
+      "correct": 4,
+      "llm_requests": 25,
+      "proposal_model_accepts": 0,
+      "proposal_model_rejects": 0,
+      "proposal_model_requests": 13,
+      "proposal_preflight_skips": 10,
+      "schema_rejections": 2
+    },
+    "hybrid-local-verify-low": {
+      "cases": 6,
+      "completion_accepts": 0,
+      "correct": 4,
+      "llm_requests": 28,
+      "proposal_model_accepts": 0,
+      "proposal_model_rejects": 0,
+      "proposal_model_requests": 15,
+      "proposal_preflight_skips": 11,
+      "schema_rejections": 2
+    }
+  },
+  "generated_at": "2026-10-04T21:12:17.316539+00:00",
+  "initial_conflict": {
+    "actual_inputs": [
+      "P100002",
+      "P100003"
+    ],
+    "implementation_behavior": "Checks nonempty arguments and looks up supplied patient_id without enforcing the schema regex; bridge dispatch also does not validate JSON schema.",
+    "implementation_file": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/patient_intake/tools.py",
+    "schema_file": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/source/SOP-Bench/src/amazon_sop_bench/benchmarks/data/patient_intake/toolspecs.json",
+    "schema_line": 219,
+    "schema_pattern": "^P[0-9]{9}$",
+    "tool": "validateInsurance"
+  },
+  "interpretation": [
+    "All four initial tool proposals carried the exact task patient ID and were rejected by jsonschema before model verification.",
+    "Three repairs requested clarification; one invented a padded ID. None was dispatched.",
+    "All four repairs were schema-valid but exceeded configured 18000-character decision input limit, causing no request and fail-closed ExecutionError after rejection.",
+    "No observed semantic verifier acceptance/rejection or successful repair in this smoke; every sent proposal check abstained.",
+    "Reduced aggregate cost/call count in candidate arms is dominated by early failed patient runs and must not be reported as efficiency gains at retained accuracy.",
+    "Do not normalize or pad benchmark patient IDs to satisfy an inconsistent schema. Correcting metadata would require a separately declared shared-source experiment, not an arm-only fix."
+  ],
+  "run_id": "dev-verification-smoke",
+  "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+  "tool_paths": [
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "baseline-low",
+      "task_id": "ACC100000",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "baseline-low",
+      "task_id": "ACC100001",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "ACC100000",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "ACC100001",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "hybrid-local-both-low",
+      "task_id": "ACC100000",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "profile": "hybrid-local-both-low",
+      "task_id": "ACC100001",
+      "tools": [
+        "sop-bench__investigate_account",
+        "sop-bench__analyze_traffic_patterns",
+        "sop-bench__determine_enforcement_action"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "E1022",
+      "tools": [
+        "sop-bench__get_product_listing_status",
+        "sop-bench__get_inventory_status"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "E1028",
+      "tools": [
+        "sop-bench__get_product_price"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "hybrid-local-both-low",
+      "task_id": "E1022",
+      "tools": [
+        "sop-bench__get_product_listing_status",
+        "sop-bench__get_inventory_status"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "hybrid-local-both-low",
+      "task_id": "E1028",
+      "tools": [
+        "sop-bench__get_product_price"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "baseline-low",
+      "task_id": "E1022",
+      "tools": [
+        "sop-bench__get_product_listing_status",
+        "sop-bench__get_inventory_status"
+      ]
+    },
+    {
+      "domain": "email_intent",
+      "profile": "baseline-low",
+      "task_id": "E1028",
+      "tools": [
+        "sop-bench__get_product_price"
+      ]
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "hybrid-local-both-low",
+      "task_id": "P100002",
+      "tools": []
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "hybrid-local-both-low",
+      "task_id": "P100003",
+      "tools": []
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "baseline-low",
+      "task_id": "P100002",
+      "tools": [
+        "sop-bench__validateInsurance",
+        "sop-bench__validatePrescriptionBenefits",
+        "sop-bench__calculateLifestyleRisk",
+        "sop-bench__calculateOverallRisk",
+        "sop-bench__verifyPharmacy",
+        "sop-bench__registerPatient"
+      ]
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "baseline-low",
+      "task_id": "P100003",
+      "tools": [
+        "sop-bench__validateInsurance",
+        "sop-bench__validatePrescriptionBenefits",
+        "sop-bench__calculateLifestyleRisk",
+        "sop-bench__calculateOverallRisk",
+        "sop-bench__verifyPharmacy",
+        "sop-bench__registerPatient"
+      ]
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "P100002",
+      "tools": []
+    },
+    {
+      "domain": "patient_intake",
+      "profile": "hybrid-local-verify-low",
+      "task_id": "P100003",
+      "tools": []
+    }
+  ]
+}

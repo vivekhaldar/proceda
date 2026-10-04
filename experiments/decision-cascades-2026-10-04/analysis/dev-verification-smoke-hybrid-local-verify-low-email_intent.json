@@ -1,0 +1,1338 @@
+{
+  "baseline": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 8,
+      "cache_usage_errors": [],
+      "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+      "cost_complete": true,
+      "cost_usd": 0.0038521,
+      "cost_usd_lower_bound": 0.0038521,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "hypothetical_cache_price_costs": {
+        "0.0": {
+          "cached_input_rate_fraction": 0.0,
+          "cost_usd": 0.0011256999999999999,
+          "hypothetical_not_actual_invoice": true
+        },
+        "0.2": {
+          "cached_input_rate_fraction": 0.2,
+          "cost_usd": 0.0016709799999999999,
+          "hypothetical_not_actual_invoice": true
+        },
+        "1.0": {
+          "cached_input_rate_fraction": 1.0,
+          "cost_usd": 0.0038521,
+          "hypothetical_not_actual_invoice": true
+        }
+      },
+      "input_tokens_known": 22994,
+      "known_input_usage_requests": 8,
+      "known_output_usage_requests": 8,
+      "known_usage_requests": 8,
+      "llm_cached_input_cost_at_full_rate_usd_known": 0.0027264,
+      "llm_cached_input_tokens": 18176,
+      "llm_cached_input_tokens_known": 18176,
+      "llm_cached_usage_complete": true,
+      "llm_known_cached_usage_requests": 8,
+      "llm_requests": 8,
+      "llm_uncached_input_tokens": 4818,
+      "llm_uncached_input_tokens_known": 4818,
+      "llm_unknown_cached_usage_requests": 0,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
+      "output_tokens_known": 806,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cached_input_cost_at_full_rate_usd_known": 0.0027264,
+          "cached_input_tokens_known": 18176,
+          "cost_usd_lower_bound": 0.0038521,
+          "input_tokens_known": 22994,
+          "known_cached_usage_requests": 8,
+          "known_usage_requests": 8,
+          "output_tokens_known": 806,
+          "requests": 8,
+          "uncached_input_tokens_known": 4818,
+          "unknown_cached_usage_requests": 0,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 5.415312166500371,
+      "n": 2,
+      "p50": 5.415312166500371,
+      "p95": 5.565157816350984
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
+    "terminal_cases": 2
+  },
+  "baseline_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.0019261999999999999,
+        "cost_usd_lower_bound": 0.0019261999999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006205999999999998,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0008817199999999997,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019261999999999999,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 11488,
+        "known_input_usage_requests": 4,
+        "known_output_usage_requests": 4,
+        "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0013056,
+        "llm_cached_input_tokens": 8704,
+        "llm_cached_input_tokens_known": 8704,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
+        "llm_requests": 4,
+        "llm_uncached_input_tokens": 2784,
+        "llm_uncached_input_tokens_known": 2784,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 406,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0013056,
+            "cached_input_tokens_known": 8704,
+            "cost_usd_lower_bound": 0.0019261999999999999,
+            "input_tokens_known": 11488,
+            "known_cached_usage_requests": 4,
+            "known_usage_requests": 4,
+            "output_tokens_known": 406,
+            "requests": 4,
+            "uncached_input_tokens_known": 2784,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 5.24881699999969,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+      "status": "completed",
+      "task_id": "E1022",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 4,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.0019259000000000001,
+        "cost_usd_lower_bound": 0.0019259000000000001,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0005051000000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0007892600000000002,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019259000000000001,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 11506,
+        "known_input_usage_requests": 4,
+        "known_output_usage_requests": 4,
+        "known_usage_requests": 4,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0014207999999999998,
+        "llm_cached_input_tokens": 9472,
+        "llm_cached_input_tokens_known": 9472,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
+        "llm_requests": 4,
+        "llm_uncached_input_tokens": 2034,
+        "llm_uncached_input_tokens_known": 2034,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 400,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0014207999999999998,
+            "cached_input_tokens_known": 9472,
+            "cost_usd_lower_bound": 0.0019259000000000001,
+            "input_tokens_known": 11506,
+            "known_cached_usage_requests": 4,
+            "known_usage_requests": 4,
+            "output_tokens_known": 400,
+            "requests": 4,
+            "uncached_input_tokens_known": 2034,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 5.581807333001052,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+      "status": "completed",
+      "task_id": "E1028",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "baseline_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+  "baseline_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low"
+  ],
+  "by_domain": {
+    "email_intent": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 8,
+          "cache_usage_errors": [],
+          "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+          "cost_complete": true,
+          "cost_usd": 0.0038521,
+          "cost_usd_lower_bound": 0.0038521,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "hypothetical_cache_price_costs": {
+            "0.0": {
+              "cached_input_rate_fraction": 0.0,
+              "cost_usd": 0.0011256999999999999,
+              "hypothetical_not_actual_invoice": true
+            },
+            "0.2": {
+              "cached_input_rate_fraction": 0.2,
+              "cost_usd": 0.0016709799999999999,
+              "hypothetical_not_actual_invoice": true
+            },
+            "1.0": {
+              "cached_input_rate_fraction": 1.0,
+              "cost_usd": 0.0038521,
+              "hypothetical_not_actual_invoice": true
+            }
+          },
+          "input_tokens_known": 22994,
+          "known_input_usage_requests": 8,
+          "known_output_usage_requests": 8,
+          "known_usage_requests": 8,
+          "llm_cached_input_cost_at_full_rate_usd_known": 0.0027264,
+          "llm_cached_input_tokens": 18176,
+          "llm_cached_input_tokens_known": 18176,
+          "llm_cached_usage_complete": true,
+          "llm_known_cached_usage_requests": 8,
+          "llm_requests": 8,
+          "llm_uncached_input_tokens": 4818,
+          "llm_uncached_input_tokens_known": 4818,
+          "llm_unknown_cached_usage_requests": 0,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
+          "output_tokens_known": 806,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cached_input_cost_at_full_rate_usd_known": 0.0027264,
+              "cached_input_tokens_known": 18176,
+              "cost_usd_lower_bound": 0.0038521,
+              "input_tokens_known": 22994,
+              "known_cached_usage_requests": 8,
+              "known_usage_requests": 8,
+              "output_tokens_known": 806,
+              "requests": 8,
+              "uncached_input_tokens_known": 4818,
+              "unknown_cached_usage_requests": 0,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 5.415312166500371,
+          "n": 2,
+          "p50": 5.415312166500371,
+          "p95": 5.565157816350984
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
+        "terminal_cases": 2
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": 4.277801938005723,
+        "n": 2,
+        "p50": 4.277801938005723,
+        "p95": 4.415374606908881
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 16,
+          "cache_usage_errors": [],
+          "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+          "cost_complete": true,
+          "cost_usd": 0.0037967,
+          "cost_usd_lower_bound": 0.0037967,
+          "decision_preflight_records": 5,
+          "decision_requests": 3,
+          "hypothetical_cache_price_costs": {
+            "0.0": {
+              "cached_input_rate_fraction": 0.0,
+              "cost_usd": 0.0010319000000000005,
+              "hypothetical_not_actual_invoice": true
+            },
+            "0.2": {
+              "cached_input_rate_fraction": 0.2,
+              "cost_usd": 0.0015848600000000004,
+              "hypothetical_not_actual_invoice": true
+            },
+            "1.0": {
+              "cached_input_rate_fraction": 1.0,
+              "cost_usd": 0.0037967,
+              "hypothetical_not_actual_invoice": true
+            }
+          },
+          "input_tokens_known": 51753,
+          "known_input_usage_requests": 11,
+          "known_output_usage_requests": 11,
+          "known_usage_requests": 11,
+          "llm_cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+          "llm_cached_input_tokens": 18432,
+          "llm_cached_input_tokens_known": 18432,
+          "llm_cached_usage_complete": true,
+          "llm_known_cached_usage_requests": 8,
+          "llm_requests": 8,
+          "llm_uncached_input_tokens": 4386,
+          "llm_uncached_input_tokens_known": 4386,
+          "llm_unknown_cached_usage_requests": 0,
+          "local_decision_requests": 3,
+          "local_native_eval_known_calls": 3,
+          "local_native_eval_seconds": 8.029523374,
+          "local_native_load_known_calls": 3,
+          "local_native_load_seconds": 0.0,
+          "local_native_total_known_calls": 3,
+          "local_native_total_seconds": 8.030289083,
+          "output_tokens_known": 748,
+          "providers": {
+            "decision:ollaya:winnow:e4b": {
+              "cost_usd_lower_bound": 0.0,
+              "input_tokens_known": 28935,
+              "known_usage_requests": 3,
+              "output_tokens_known": 0,
+              "requests": 3,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+              "cached_input_tokens_known": 18432,
+              "cost_usd_lower_bound": 0.0037967,
+              "input_tokens_known": 22818,
+              "known_cached_usage_requests": 8,
+              "known_usage_requests": 8,
+              "output_tokens_known": 748,
+              "requests": 8,
+              "uncached_input_tokens_known": 4386,
+              "unknown_cached_usage_requests": 0,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 9.693114104506094,
+          "n": 2,
+          "p50": 9.693114104506094,
+          "p95": 9.980532423259865
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.34238022750665303,
+          "n": 2,
+          "successes": 2,
+          "upper": 1.0
+        },
+        "terminal_cases": 2
+      },
+      "cases": [
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -1.9849999999999642e-05,
+          "candidate_minus_baseline_seconds": 4.124943417002214,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1022"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -3.555000000000008e-05,
+          "candidate_minus_baseline_seconds": 4.430660459009232,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+          "candidate_status": "completed",
+          "domain": "email_intent",
+          "outcome": "both_correct",
+          "task_id": "E1028"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 2,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "hypothetical_cache_price_sensitivity": {
+        "assumption": "LLM cached input costs 0%, 20%, or 100% of each model's ordinary input list rate. These are hypothetical rates, not verified Nebius billing. Output and decision prices stay unchanged. Cache aliases are counted once; missing cache usage is unknown, never assumed zero. Full-rate estimates do not require cache detail.",
+        "break_even": {
+          "cached_input_rate_fraction": null,
+          "cached_input_rate_usd_per_million": null,
+          "candidate_minus_baseline_at_free_cache_usd": -9.379999999999957e-05,
+          "candidate_minus_baseline_full_rate_cached_input_usd": 3.839999999999985e-05,
+          "comparison": "candidate cheaper below crossover; baseline cheaper above",
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 2,
+          "ordinary_input_rates_usd_per_million": [
+            0.15
+          ],
+          "scope": "A common fraction of normal input price applies to every LLM model. A single USD-per-million crossover is reported only when ordinary input rates agree. No local compute, idle capacity or TCO is priced by this crossover.",
+          "unconstrained_cached_input_rate_fraction": 2.4427083333333317,
+          "within_zero_to_full_rate": false
+        },
+        "hypothetical_not_actual_invoice": true,
+        "scenarios": {
+          "0.0": {
+            "baseline_cost_usd": 0.0011257,
+            "cached_input_rate_fraction": 0.0,
+            "candidate_cost_usd": 0.0010319000000000005,
+            "candidate_minus_baseline_cost_usd": -9.379999999999957e-05,
+            "candidate_relative_cost_change": -0.08332593053211301,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 2,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -0.00011235,
+              "mean_difference": -4.6899999999999785e-05,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 2,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": 1.8550000000000424e-05
+            }
+          },
+          "0.2": {
+            "baseline_cost_usd": 0.0016709799999999999,
+            "cached_input_rate_fraction": 0.2,
+            "candidate_cost_usd": 0.0015848600000000004,
+            "candidate_minus_baseline_cost_usd": -8.611999999999943e-05,
+            "candidate_relative_cost_change": -0.05153861805646953,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 2,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -9.698999999999992e-05,
+              "mean_difference": -4.305999999999971e-05,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 2,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": 1.0870000000000497e-05
+            }
+          },
+          "1.0": {
+            "baseline_cost_usd": 0.0038521,
+            "cached_input_rate_fraction": 1.0,
+            "candidate_cost_usd": 0.0037967,
+            "candidate_minus_baseline_cost_usd": -5.539999999999972e-05,
+            "candidate_relative_cost_change": -0.01438176579008843,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "included_pairs": 2,
+            "mean_cost_difference_bootstrap95": {
+              "confidence": 0.95,
+              "excluded_pair_count": 0,
+              "excluded_pairs": [],
+              "insufficient_pairs": false,
+              "lower": -3.555000000000008e-05,
+              "mean_difference": -2.769999999999986e-05,
+              "method": "paired percentile bootstrap of candidate minus baseline means",
+              "n": 2,
+              "resamples": 2000,
+              "seed": 20261004,
+              "upper": -1.9849999999999642e-05
+            }
+          }
+        }
+      },
+      "local_active_model_hour_break_even": {
+        "additional_local_native_total_seconds": 8.030289083,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "hosted_api_savings_usd": 5.539999999999972e-05,
+        "included_pairs": 2,
+        "interpretation": "Full-rate input/output price-model savings divided by additional local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair. Cached input is priced at the full input rate; this is not observed invoice savings.",
+        "positive_api_savings": true,
+        "usd_per_additional_active_model_hour": 0.02483596766425389
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -3.555000000000008e-05,
+        "mean_difference": -2.769999999999986e-05,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": -1.9849999999999642e-05
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": 4.124943417002214,
+        "mean_difference": 4.277801938005723,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 2,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 4.430660459009232
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 2,
+      "terminal_pairs": 2,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "candidate": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 16,
+      "cache_usage_errors": [],
+      "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+      "cost_complete": true,
+      "cost_usd": 0.0037967,
+      "cost_usd_lower_bound": 0.0037967,
+      "decision_preflight_records": 5,
+      "decision_requests": 3,
+      "hypothetical_cache_price_costs": {
+        "0.0": {
+          "cached_input_rate_fraction": 0.0,
+          "cost_usd": 0.0010319000000000005,
+          "hypothetical_not_actual_invoice": true
+        },
+        "0.2": {
+          "cached_input_rate_fraction": 0.2,
+          "cost_usd": 0.0015848600000000004,
+          "hypothetical_not_actual_invoice": true
+        },
+        "1.0": {
+          "cached_input_rate_fraction": 1.0,
+          "cost_usd": 0.0037967,
+          "hypothetical_not_actual_invoice": true
+        }
+      },
+      "input_tokens_known": 51753,
+      "known_input_usage_requests": 11,
+      "known_output_usage_requests": 11,
+      "known_usage_requests": 11,
+      "llm_cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+      "llm_cached_input_tokens": 18432,
+      "llm_cached_input_tokens_known": 18432,
+      "llm_cached_usage_complete": true,
+      "llm_known_cached_usage_requests": 8,
+      "llm_requests": 8,
+      "llm_uncached_input_tokens": 4386,
+      "llm_uncached_input_tokens_known": 4386,
+      "llm_unknown_cached_usage_requests": 0,
+      "local_decision_requests": 3,
+      "local_native_eval_known_calls": 3,
+      "local_native_eval_seconds": 8.029523374,
+      "local_native_load_known_calls": 3,
+      "local_native_load_seconds": 0.0,
+      "local_native_total_known_calls": 3,
+      "local_native_total_seconds": 8.030289083,
+      "output_tokens_known": 748,
+      "providers": {
+        "decision:ollaya:winnow:e4b": {
+          "cost_usd_lower_bound": 0.0,
+          "input_tokens_known": 28935,
+          "known_usage_requests": 3,
+          "output_tokens_known": 0,
+          "requests": 3,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+          "cached_input_tokens_known": 18432,
+          "cost_usd_lower_bound": 0.0037967,
+          "input_tokens_known": 22818,
+          "known_cached_usage_requests": 8,
+          "known_usage_requests": 8,
+          "output_tokens_known": 748,
+          "requests": 8,
+          "uncached_input_tokens_known": 4386,
+          "unknown_cached_usage_requests": 0,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 9.693114104506094,
+      "n": 2,
+      "p50": 9.693114104506094,
+      "p95": 9.980532423259865
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.34238022750665303,
+      "n": 2,
+      "successes": 2,
+      "upper": 1.0
+    },
+    "terminal_cases": 2
+  },
+  "candidate_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.0019063500000000002,
+        "cost_usd_lower_bound": 0.0019063500000000002,
+        "decision_preflight_records": 3,
+        "decision_requests": 1,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0006391500000000002,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0008925900000000002,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0019063500000000002,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 20033,
+        "known_input_usage_requests": 5,
+        "known_output_usage_requests": 5,
+        "known_usage_requests": 5,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0012672,
+        "llm_cached_input_tokens": 8448,
+        "llm_cached_input_tokens_known": 8448,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
+        "llm_requests": 4,
+        "llm_uncached_input_tokens": 3031,
+        "llm_uncached_input_tokens_known": 3031,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 1,
+        "local_native_eval_known_calls": 1,
+        "local_native_eval_seconds": 3.317543083,
+        "local_native_load_known_calls": 1,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 1,
+        "local_native_total_seconds": 3.317768541,
+        "output_tokens_known": 369,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 8554,
+            "known_usage_requests": 1,
+            "output_tokens_known": 0,
+            "requests": 1,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0012672,
+            "cached_input_tokens_known": 8448,
+            "cost_usd_lower_bound": 0.0019063500000000002,
+            "input_tokens_known": 11479,
+            "known_cached_usage_requests": 4,
+            "known_usage_requests": 4,
+            "output_tokens_known": 369,
+            "requests": 4,
+            "uncached_input_tokens_known": 3031,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 9.373760417001904,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+      "status": "completed",
+      "task_id": "E1022",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.00189035,
+        "cost_usd_lower_bound": 0.00189035,
+        "decision_preflight_records": 2,
+        "decision_requests": 2,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0003927500000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0006922700000000003,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00189035,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 31720,
+        "known_input_usage_requests": 6,
+        "known_output_usage_requests": 6,
+        "known_usage_requests": 6,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0014975999999999998,
+        "llm_cached_input_tokens": 9984,
+        "llm_cached_input_tokens_known": 9984,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 4,
+        "llm_requests": 4,
+        "llm_uncached_input_tokens": 1355,
+        "llm_uncached_input_tokens_known": 1355,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 2,
+        "local_native_eval_known_calls": 2,
+        "local_native_eval_seconds": 4.711980291,
+        "local_native_load_known_calls": 2,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 2,
+        "local_native_total_seconds": 4.712520542,
+        "output_tokens_known": 379,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 20381,
+            "known_usage_requests": 2,
+            "output_tokens_known": 0,
+            "requests": 2,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0014975999999999998,
+            "cached_input_tokens_known": 9984,
+            "cost_usd_lower_bound": 0.00189035,
+            "input_tokens_known": 11339,
+            "known_cached_usage_requests": 4,
+            "known_usage_requests": 4,
+            "output_tokens_known": 379,
+            "requests": 4,
+            "uncached_input_tokens_known": 1355,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "email_intent",
+      "elapsed_seconds": 10.012467792010284,
+      "field_correct": {
+        "action": true,
+        "seller_intent": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+      "status": "completed",
+      "task_id": "E1028",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "candidate_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+  "candidate_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low"
+  ],
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+  "notes": [
+    "All provider attempts, including failures and retries, come from audits only.",
+    "LLM request means acompletion attempt; decision request means client.post attempted.",
+    "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Known cost means known usage under the stated price assumption, not a verified bill.",
+    "Cached input uses list price; 0%/20%/100% cache-price scenarios are hypothetical.",
+    "Cache aliases must agree and are never summed; absent cache counts remain unknown.",
+    "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
+    "Native total/load/eval known-call counts are separate; components are not summed.",
+    "Output tokens include reasoning; reasoning detail is never added again.",
+    "Latency covers whole-case execution, including failures; percentiles interpolate.",
+    "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+    "Merged runs share a frozen split; duplicate (domain, task_id) keys are rejected.",
+    "Discordance counts are descriptive; no population guarantee or significance claimed.",
+    "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+    "Correlated cases or shared entities can make these intervals too narrow.",
+    "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+    "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+    "Bootstrap captures observed case variation, not repeat-run/provider or order effects."
+  ],
+  "paired": {
+    "accuracy_delta": 0.0,
+    "baseline_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.0038521,
+        "cost_usd_lower_bound": 0.0038521,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0011256999999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0016709799999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0038521,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 22994,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0027264,
+        "llm_cached_input_tokens": 18176,
+        "llm_cached_input_tokens_known": 18176,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 8,
+        "llm_requests": 8,
+        "llm_uncached_input_tokens": 4818,
+        "llm_uncached_input_tokens_known": 4818,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 806,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0027264,
+            "cached_input_tokens_known": 18176,
+            "cost_usd_lower_bound": 0.0038521,
+            "input_tokens_known": 22994,
+            "known_cached_usage_requests": 8,
+            "known_usage_requests": 8,
+            "output_tokens_known": 806,
+            "requests": 8,
+            "uncached_input_tokens_known": 4818,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 5.415312166500371,
+        "n": 2,
+        "p50": 5.415312166500371,
+        "p95": 5.565157816350984
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
+      "terminal_cases": 2
+    },
+    "candidate_minus_baseline_latency_seconds": {
+      "mean": 4.277801938005723,
+      "n": 2,
+      "p50": 4.277801938005723,
+      "p95": 4.415374606908881
+    },
+    "candidate_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 16,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.0037967,
+        "cost_usd_lower_bound": 0.0037967,
+        "decision_preflight_records": 5,
+        "decision_requests": 3,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.0010319000000000005,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.0015848600000000004,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.0037967,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 51753,
+        "known_input_usage_requests": 11,
+        "known_output_usage_requests": 11,
+        "known_usage_requests": 11,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+        "llm_cached_input_tokens": 18432,
+        "llm_cached_input_tokens_known": 18432,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 8,
+        "llm_requests": 8,
+        "llm_uncached_input_tokens": 4386,
+        "llm_uncached_input_tokens_known": 4386,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 3,
+        "local_native_eval_known_calls": 3,
+        "local_native_eval_seconds": 8.029523374,
+        "local_native_load_known_calls": 3,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 3,
+        "local_native_total_seconds": 8.030289083,
+        "output_tokens_known": 748,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 28935,
+            "known_usage_requests": 3,
+            "output_tokens_known": 0,
+            "requests": 3,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0027647999999999995,
+            "cached_input_tokens_known": 18432,
+            "cost_usd_lower_bound": 0.0037967,
+            "input_tokens_known": 22818,
+            "known_cached_usage_requests": 8,
+            "known_usage_requests": 8,
+            "output_tokens_known": 748,
+            "requests": 8,
+            "uncached_input_tokens_known": 4386,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 9.693114104506094,
+        "n": 2,
+        "p50": 9.693114104506094,
+        "p95": 9.980532423259865
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.34238022750665303,
+        "n": 2,
+        "successes": 2,
+        "upper": 1.0
+      },
+      "terminal_cases": 2
+    },
+    "cases": [
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -1.9849999999999642e-05,
+        "candidate_minus_baseline_seconds": 4.124943417002214,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+        "candidate_status": "completed",
+        "domain": "email_intent",
+        "outcome": "both_correct",
+        "task_id": "E1022"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -3.555000000000008e-05,
+        "candidate_minus_baseline_seconds": 4.430660459009232,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+        "candidate_status": "completed",
+        "domain": "email_intent",
+        "outcome": "both_correct",
+        "task_id": "E1028"
+      }
+    ],
+    "discordance_counts": {
+      "both_correct": 2,
+      "both_incorrect": 0,
+      "improved": 0,
+      "regressed": 0
+    },
+    "hypothetical_cache_price_sensitivity": {
+      "assumption": "LLM cached input costs 0%, 20%, or 100% of each model's ordinary input list rate. These are hypothetical rates, not verified Nebius billing. Output and decision prices stay unchanged. Cache aliases are counted once; missing cache usage is unknown, never assumed zero. Full-rate estimates do not require cache detail.",
+      "break_even": {
+        "cached_input_rate_fraction": null,
+        "cached_input_rate_usd_per_million": null,
+        "candidate_minus_baseline_at_free_cache_usd": -9.379999999999957e-05,
+        "candidate_minus_baseline_full_rate_cached_input_usd": 3.839999999999985e-05,
+        "comparison": "candidate cheaper below crossover; baseline cheaper above",
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "included_pairs": 2,
+        "ordinary_input_rates_usd_per_million": [
+          0.15
+        ],
+        "scope": "A common fraction of normal input price applies to every LLM model. A single USD-per-million crossover is reported only when ordinary input rates agree. No local compute, idle capacity or TCO is priced by this crossover.",
+        "unconstrained_cached_input_rate_fraction": 2.4427083333333317,
+        "within_zero_to_full_rate": false
+      },
+      "hypothetical_not_actual_invoice": true,
+      "scenarios": {
+        "0.0": {
+          "baseline_cost_usd": 0.0011257,
+          "cached_input_rate_fraction": 0.0,
+          "candidate_cost_usd": 0.0010319000000000005,
+          "candidate_minus_baseline_cost_usd": -9.379999999999957e-05,
+          "candidate_relative_cost_change": -0.08332593053211301,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 2,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -0.00011235,
+            "mean_difference": -4.6899999999999785e-05,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 2,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": 1.8550000000000424e-05
+          }
+        },
+        "0.2": {
+          "baseline_cost_usd": 0.0016709799999999999,
+          "cached_input_rate_fraction": 0.2,
+          "candidate_cost_usd": 0.0015848600000000004,
+          "candidate_minus_baseline_cost_usd": -8.611999999999943e-05,
+          "candidate_relative_cost_change": -0.05153861805646953,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 2,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -9.698999999999992e-05,
+            "mean_difference": -4.305999999999971e-05,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 2,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": 1.0870000000000497e-05
+          }
+        },
+        "1.0": {
+          "baseline_cost_usd": 0.0038521,
+          "cached_input_rate_fraction": 1.0,
+          "candidate_cost_usd": 0.0037967,
+          "candidate_minus_baseline_cost_usd": -5.539999999999972e-05,
+          "candidate_relative_cost_change": -0.01438176579008843,
+          "excluded_pair_count": 0,
+          "excluded_pairs": [],
+          "included_pairs": 2,
+          "mean_cost_difference_bootstrap95": {
+            "confidence": 0.95,
+            "excluded_pair_count": 0,
+            "excluded_pairs": [],
+            "insufficient_pairs": false,
+            "lower": -3.555000000000008e-05,
+            "mean_difference": -2.769999999999986e-05,
+            "method": "paired percentile bootstrap of candidate minus baseline means",
+            "n": 2,
+            "resamples": 2000,
+            "seed": 20261004,
+            "upper": -1.9849999999999642e-05
+          }
+        }
+      }
+    },
+    "local_active_model_hour_break_even": {
+      "additional_local_native_total_seconds": 8.030289083,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "hosted_api_savings_usd": 5.539999999999972e-05,
+      "included_pairs": 2,
+      "interpretation": "Full-rate input/output price-model savings divided by additional local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair. Cached input is priced at the full input rate; this is not observed invoice savings.",
+      "positive_api_savings": true,
+      "usd_per_additional_active_model_hour": 0.02483596766425389
+    },
+    "mean_cost_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -3.555000000000008e-05,
+      "mean_difference": -2.769999999999986e-05,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": -1.9849999999999642e-05
+    },
+    "mean_latency_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": 4.124943417002214,
+      "mean_difference": 4.277801938005723,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 2,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 4.430660459009232
+    },
+    "paired_accuracy_test": {
+      "discordant_pairs": 0,
+      "method": "exact McNemar",
+      "two_sided_p": 1.0
+    },
+    "pending_pairs": [],
+    "planned_overlap": 2,
+    "terminal_pairs": 2,
+    "unpaired_baseline": [],
+    "unpaired_candidate": []
+  },
+  "prices_usd_per_million_tokens": {
+    "jev_input": 0.042,
+    "llm_input_output": {
+      "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+        0.2,
+        0.6
+      ],
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": [
+        0.1,
+        0.3
+      ],
+      "zai-org/GLM-5.3": [
+        1.4,
+        4.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ]
+    },
+    "local_marginal_api_fee": 0.0
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "split": "dev"
+}

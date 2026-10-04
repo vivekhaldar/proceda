@@ -1,0 +1,215 @@
+{
+  "all_720_terminal_prerequisite_satisfied": true,
+  "canonical_report": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/holdout-final.json",
+  "execution_blocks_in_recorded_order": [
+    {
+      "arm": "baseline",
+      "domain": "referral_abuse_detection_v1",
+      "first_case_started_at_utc": "2026-10-04T21:11:01.209882+00:00",
+      "last_case_finished_at_utc": "2026-10-04T21:29:27.493656+00:00",
+      "recorded_case_wall_span_seconds": 1106.283774,
+      "sum_case_elapsed_seconds": 4404.194119493957,
+      "terminal_cases": 160,
+      "terminal_cases_per_minute_of_block_span": 8.677701170007397
+    },
+    {
+      "arm": "candidate",
+      "domain": "referral_abuse_detection_v1",
+      "first_case_started_at_utc": "2026-10-04T21:29:27.519047+00:00",
+      "last_case_finished_at_utc": "2026-10-04T21:40:14.958142+00:00",
+      "recorded_case_wall_span_seconds": 647.439095,
+      "sum_case_elapsed_seconds": 2571.8452197940205,
+      "terminal_cases": 160,
+      "terminal_cases_per_minute_of_block_span": 14.827649541305504
+    },
+    {
+      "arm": "candidate",
+      "domain": "email_intent",
+      "first_case_started_at_utc": "2026-10-04T21:40:14.987040+00:00",
+      "last_case_finished_at_utc": "2026-10-04T21:44:30.603213+00:00",
+      "recorded_case_wall_span_seconds": 255.616173,
+      "sum_case_elapsed_seconds": 1019.6806215760444,
+      "terminal_cases": 148,
+      "terminal_cases_per_minute_of_block_span": 34.739585902492955
+    },
+    {
+      "arm": "baseline",
+      "domain": "email_intent",
+      "first_case_started_at_utc": "2026-10-04T21:44:30.629106+00:00",
+      "last_case_finished_at_utc": "2026-10-04T21:48:18.157485+00:00",
+      "recorded_case_wall_span_seconds": 227.528379,
+      "sum_case_elapsed_seconds": 905.8030892569805,
+      "terminal_cases": 148,
+      "terminal_cases_per_minute_of_block_span": 39.02809855644425
+    },
+    {
+      "arm": "baseline",
+      "domain": "patient_intake",
+      "first_case_started_at_utc": "2026-10-04T21:48:18.185876+00:00",
+      "last_case_finished_at_utc": "2026-10-04T21:57:01.121948+00:00",
+      "recorded_case_wall_span_seconds": 522.936072,
+      "sum_case_elapsed_seconds": 1844.1148869151366,
+      "terminal_cases": 52,
+      "terminal_cases_per_minute_of_block_span": 5.966312455875104
+    },
+    {
+      "arm": "candidate",
+      "domain": "patient_intake",
+      "first_case_started_at_utc": "2026-10-04T21:57:01.247607+00:00",
+      "last_case_finished_at_utc": "2026-10-04T22:05:04.395715+00:00",
+      "recorded_case_wall_span_seconds": 483.148108,
+      "sum_case_elapsed_seconds": 1879.0226962880552,
+      "terminal_cases": 52,
+      "terminal_cases_per_minute_of_block_span": 6.457647144506669
+    }
+  ],
+  "field_success_counts": {
+    "email_intent": {
+      "baseline": {
+        "action": {
+          "completed_and_field_correct": 138,
+          "field_matches_regardless_of_status": 138,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 148
+        },
+        "seller_intent": {
+          "completed_and_field_correct": 147,
+          "field_matches_regardless_of_status": 147,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 148
+        }
+      },
+      "candidate": {
+        "action": {
+          "completed_and_field_correct": 135,
+          "field_matches_regardless_of_status": 135,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 148
+        },
+        "seller_intent": {
+          "completed_and_field_correct": 145,
+          "field_matches_regardless_of_status": 145,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 148
+        }
+      }
+    },
+    "patient_intake": {
+      "baseline": {
+        "insurance_validation": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "life_style_risk_level": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "overall_risk_level": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "pharmacy_check": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "prescription_insurance_validation": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "user_registration": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        }
+      },
+      "candidate": {
+        "insurance_validation": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "life_style_risk_level": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "overall_risk_level": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "pharmacy_check": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "prescription_insurance_validation": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        },
+        "user_registration": {
+          "completed_and_field_correct": 52,
+          "field_matches_regardless_of_status": 52,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 52
+        }
+      }
+    },
+    "referral_abuse_detection_v1": {
+      "baseline": {
+        "enforcement_action": {
+          "completed_and_field_correct": 160,
+          "field_matches_regardless_of_status": 160,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 160
+        }
+      },
+      "candidate": {
+        "enforcement_action": {
+          "completed_and_field_correct": 160,
+          "field_matches_regardless_of_status": 160,
+          "missing_field_score_cases": 0,
+          "total_terminal_cases": 160
+        }
+      }
+    }
+  },
+  "notes": [
+    "Every terminal case is included, including incorrect and failed cases.",
+    "Field success requires a completed run and a correct field, as in strict task scoring.",
+    "Raw field matches regardless of status are also reported to expose partial-run matches.",
+    "Block wall span is earliest recorded case start to latest recorded case finish.",
+    "Block spans include four-case concurrency and the final tail, not pre-case setup.",
+    "Schedule-created span includes startup and gaps, but excludes unrecorded final cleanup.",
+    "Case latency, block wall time and throughput are different quantities.",
+    "Sequential blocks and provider variation prevent causal throughput attribution."
+  ],
+  "whole_schedule": {
+    "first_case_started_at_utc": "2026-10-04T21:11:01.209882+00:00",
+    "first_start_to_last_finish_seconds": 3243.185833,
+    "interblock_gaps_seconds": 0.23423200000024735,
+    "last_case_finished_at_utc": "2026-10-04T22:05:04.395715+00:00",
+    "schedule_created_at_utc": "2026-10-04T21:11:00.832306+00:00",
+    "schedule_created_to_last_finish_seconds": 3243.563409,
+    "sum_block_case_wall_spans_seconds": 3242.9516009999998,
+    "terminal_runs": 720,
+    "terminal_runs_per_minute_of_recorded_span": 13.3202357880428
+  }
+}

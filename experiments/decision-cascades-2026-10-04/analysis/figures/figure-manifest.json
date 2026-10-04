@@ -1,0 +1,15 @@
+{
+  "report": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/holdout-final.json",
+  "report_sha256": "e938a604da4ffe6fba962447142d233007f4ca70823bc58988cc1098963d6cc1",
+  "script_sha256": "806b833cd143255f09e60453c55efcbdf43d02918566aa8612282d82772d3db8",
+  "matplotlib_version": "3.11.2",
+  "terminal_pairs": 360,
+  "includes_failed_cases": true,
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+  "figures": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/figures/holdout-domain-comparison.svg",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/figures/holdout-domain-comparison.png",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/figures/holdout-latency-timeline.svg",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/analysis/figures/holdout-latency-timeline.png"
+  ]
+}

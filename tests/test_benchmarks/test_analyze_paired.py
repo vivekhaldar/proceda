@@ -369,3 +369,185 @@ def test_merging_distinct_domains_rejects_different_frozen_splits(tmp_path):
     make_arm(second, {}, domain="two", split="holdout")
     with pytest.raises(ValueError, match="Cannot merge runs with different split"):
         analyze([first, second], first)
+
+
+def test_cached_aliases_count_once_and_reasoning_output_is_not_added(tmp_path):
+    write(
+        tmp_path / "providers/request.json",
+        llm(
+            {
+                "prompt_tokens": 100,
+                "completion_tokens": 20,
+                "prompt_tokens_details": {"cached_tokens": 80},
+                "prompt_cache_hit_tokens": 80,
+                "prompt_cache_miss_tokens": 20,
+                "completion_tokens_details": {"reasoning_tokens": 15},
+            }
+        ),
+    )
+    result = account_audits(tmp_path, None)
+    assert result["llm_known_cached_usage_requests"] == 1
+    assert result["llm_cached_input_tokens"] == 80
+    assert result["llm_uncached_input_tokens"] == 20
+    assert result["output_tokens_known"] == 20
+    assert result["cost_usd"] == pytest.approx(0.000025)
+    assert result["hypothetical_cache_price_costs"]["0.0"]["cost_usd"] == pytest.approx(0.000013)
+    assert result["hypothetical_cache_price_costs"]["0.2"]["cost_usd"] == pytest.approx(0.0000154)
+    assert result["hypothetical_cache_price_costs"]["1.0"]["cost_usd"] == result["cost_usd"]
+    provider = result["providers"]["llm:zai-org/GLM-5.3-Flash"]
+    assert provider["cached_input_tokens_known"] == 80
+    combined = sum_accounting([result, result])
+    assert combined["llm_cached_input_tokens"] == 160
+    assert combined["hypothetical_cache_price_costs"]["0.0"]["cost_usd"] == pytest.approx(0.000026)
+    assert "not a lower bound on an actual invoice" in result["cost_basis"]
+
+
+@pytest.mark.parametrize(
+    "cache_fields",
+    [
+        {"prompt_tokens_details": {"cached_tokens": 80}, "prompt_cache_hit_tokens": 70},
+        {"prompt_cache_hit_tokens": 101},
+        {"prompt_cache_hit_tokens": -1},
+        {"prompt_cache_hit_tokens": True},
+        {"prompt_cache_hit_tokens": 80.0},
+        {"prompt_cache_hit_tokens": 80, "prompt_cache_miss_tokens": 21},
+    ],
+)
+def test_inconsistent_cache_usage_does_not_invalidate_full_rate_cost(tmp_path, cache_fields):
+    write(
+        tmp_path / "providers/request.json",
+        llm(
+            {
+                "prompt_tokens": 100,
+                "completion_tokens": 20,
+                **cache_fields,
+            }
+        ),
+    )
+    result = account_audits(tmp_path, None)
+    assert result["cost_complete"]
+    assert result["llm_unknown_cached_usage_requests"] == 1
+    assert result["llm_cached_input_tokens"] is None
+    assert result["cache_usage_errors"]
+    assert result["hypothetical_cache_price_costs"]["0.0"]["cost_usd"] is None
+    assert result["hypothetical_cache_price_costs"]["1.0"]["cost_usd"] == pytest.approx(0.000025)
+
+
+def test_missing_cache_is_unknown_and_explicit_zero_is_known(tmp_path):
+    write(
+        tmp_path / "missing/providers/request.json",
+        llm(
+            {
+                "prompt_tokens": 100,
+                "completion_tokens": 20,
+                "prompt_tokens_details": {"cached_tokens": None},
+                "prompt_cache_miss_tokens": 100,
+            }
+        ),
+    )
+    write(
+        tmp_path / "zero/providers/request.json",
+        llm(
+            {
+                "prompt_tokens": 100,
+                "completion_tokens": 20,
+                "prompt_tokens_details": {"cached_tokens": 0},
+            }
+        ),
+    )
+    missing = account_audits(tmp_path / "missing", None)
+    zero = account_audits(tmp_path / "zero", None)
+    assert missing["llm_cached_input_tokens"] is None
+    assert not missing["cache_usage_errors"]  # Missing is distinct from inconsistent.
+    assert missing["llm_unknown_cached_usage_requests"] == 1
+    assert zero["llm_cached_input_tokens"] == 0
+    assert zero["llm_known_cached_usage_requests"] == 1
+    assert zero["hypothetical_cache_price_costs"]["0.0"]["cost_usd"] == zero["cost_usd"]
+    combined = sum_accounting([missing, zero])
+    assert combined["llm_cached_input_tokens"] is None
+    assert combined["llm_cached_input_tokens_known"] == 0
+    assert combined["llm_known_cached_usage_requests"] == 1
+    assert combined["llm_unknown_cached_usage_requests"] == 1
+
+
+def test_paired_cache_sensitivity_can_reverse_cost_comparison(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    for arm, inputs, cached in ((baseline, 100, 90), (candidate, 80, 60)):
+        make_arm(arm, {"A": ("valid", "completed", 1)})
+        write(
+            arm / "domain/A/providers/request.json",
+            llm(
+                {
+                    "prompt_tokens": inputs,
+                    "completion_tokens": 10,
+                    "prompt_cache_hit_tokens": cached,
+                }
+            ),
+        )
+    report = analyze(baseline, candidate)
+    for comparison in (report["paired"], report["by_domain"]["domain"]):
+        sensitivity = comparison["hypothetical_cache_price_sensitivity"]
+        assert sensitivity["hypothetical_not_actual_invoice"]
+        scenarios = sensitivity["scenarios"]
+        assert scenarios["0.0"]["candidate_minus_baseline_cost_usd"] == pytest.approx(0.0000015)
+        assert scenarios["0.2"]["candidate_minus_baseline_cost_usd"] == pytest.approx(0.0000006)
+        assert scenarios["1.0"]["candidate_minus_baseline_cost_usd"] == pytest.approx(-0.000003)
+        crossover = sensitivity["break_even"]
+        assert crossover["cached_input_rate_fraction"] == pytest.approx(1 / 3)
+        assert crossover["cached_input_rate_usd_per_million"] == pytest.approx(0.05)
+        assert crossover["within_zero_to_full_rate"]
+        assert "candidate cheaper above" in crossover["comparison"]
+
+
+def test_pair_missing_cache_excluded_from_discount_scenarios_but_not_full_rate(tmp_path):
+    baseline, candidate = tmp_path / "baseline", tmp_path / "candidate"
+    make_arm(baseline, {"A": ("valid", "completed", 1), "B": ("valid", "completed", 1)})
+    make_arm(candidate, {"A": ("valid", "completed", 1), "B": ("valid", "completed", 1)})
+    for arm in (baseline, candidate):
+        write(
+            arm / "domain/A/providers/request.json",
+            llm(
+                {
+                    "prompt_tokens": 100,
+                    "completion_tokens": 20,
+                    "prompt_cache_hit_tokens": 0,
+                }
+            ),
+        )
+    report = analyze(baseline, candidate)
+    sensitivity = report["paired"]["hypothetical_cache_price_sensitivity"]
+    assert sensitivity["scenarios"]["0.0"]["included_pairs"] == 1
+    assert sensitivity["scenarios"]["0.2"]["excluded_pairs"] == [["domain", "B"]]
+    assert sensitivity["scenarios"]["1.0"]["included_pairs"] == 2
+    assert sensitivity["break_even"]["included_pairs"] == 1
+    assert sensitivity["break_even"]["cached_input_rate_fraction"] is None
+    assert (
+        sensitivity["break_even"]["comparison"]
+        == "equal estimated cost at every cache-rate fraction"
+    )
+
+
+def test_cache_sensitivity_preserves_decision_fees(tmp_path):
+    write(
+        tmp_path / "providers/llm.json",
+        llm(
+            {
+                "prompt_tokens": 100,
+                "completion_tokens": 20,
+                "prompt_cache_hit_tokens": 100,
+            }
+        ),
+    )
+    write(
+        tmp_path / "providers/jev.json",
+        {
+            "kind": "typesafe",
+            "model": "jev",
+            "request_sent": True,
+            "response": {"usage": {"input_tokens": 100, "output_tokens": 45}},
+        },
+    )
+    result = account_audits(tmp_path, None)
+    assert result["llm_known_cached_usage_requests"] == 1
+    assert result["llm_unknown_cached_usage_requests"] == 0
+    assert result["hypothetical_cache_price_costs"]["0.0"]["cost_usd"] == pytest.approx(0.0000142)

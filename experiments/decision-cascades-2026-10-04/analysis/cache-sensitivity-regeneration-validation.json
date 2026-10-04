@@ -1,0 +1,466 @@
+{
+  "active_holdout_accessed": false,
+  "analyzer_sha256": "5610af5d95cad3345d4bc92fd7897a27f75371924e7074b5f658c9a2b1f7c11a",
+  "compared_metrics": "Scores, statuses, denominators, pairing, request/usage counts, primary full-rate cost totals, local durations, latency summaries, uncertainty, provider breakdowns and all other pre-existing non-description fields.",
+  "completed_at_utc": "2026-10-04T21:23:25.909994+00:00",
+  "created_at_utc": "2026-10-04T21:23:25.898621+00:00",
+  "raw_runs_modified": false,
+  "regeneration_completed": true,
+  "reports": [
+    {
+      "after_sha256": "a11eaceec98cbf0fed5bb2e28d2d54fef06ee6c7d24af9f4509cf084b650e777",
+      "baseline_cost_usd_full_input_list_rate": 0.02055755,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline"
+      ],
+      "before_sha256": "8a936f55d5ade97b83042d0fe15323dc9478cca9c6d50f23346b57ccbdad192e",
+      "candidate_cost_usd_full_input_list_rate": 0.013781999999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-effort-probe.json",
+      "terminal_pairs": 4,
+      "unchanged_legacy_metrics_sha256": "e6fdc5e44e306c5b288b9b9645c90b5da4e8835d6cb31646624d22bf9f383bd4"
+    },
+    {
+      "after_sha256": "3c72598536d6da4268fdfd6bc5592df45f1459653b8e6353d17f69c79b042de9",
+      "baseline_cost_usd_full_input_list_rate": 0.010129599999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/baseline"
+      ],
+      "before_sha256": "950ac658b80cb39e50b0875b9ddb3c538f8c3c46ae868f3a15d12102bffa2021",
+      "candidate_cost_usd_full_input_list_rate": 0.009711069999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-initial-referral-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "d3f18c3cc05400c35de83985b7973c44b33fd8550027f0b7ab5e262e5d7e92ff"
+    },
+    {
+      "after_sha256": "6060b93aeb9abde8943c323eaf64f85d3ea841f637b58ea5dac2999e1ba1c74e",
+      "baseline_cost_usd_full_input_list_rate": 0.010129599999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/baseline"
+      ],
+      "before_sha256": "24af70d9ec8ad1d402abf828747b5822b576fc9fae6f44eaed1b8612520fc0ea",
+      "candidate_cost_usd_full_input_list_rate": 0.010122486,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-local-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-initial-referral-local.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "1ffefc1602bd85e837c7f1b1fd6eeace14153d1ced25bcf9cc111e51a039a719"
+    },
+    {
+      "after_sha256": "2faf314ab34835f5ffff695f29d815e0d764b958318c4172fa1ce8ddf42972f6",
+      "baseline_cost_usd_full_input_list_rate": 0.12048329999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low"
+      ],
+      "before_sha256": "f1c9269d9bf994b7d623e6d88b29864f9f7de87a93157a7b4b2fd9b04cf3e358",
+      "candidate_cost_usd_full_input_list_rate": 0.10792289999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/hybrid-local-12b-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/hybrid-local-12b-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-12b-low-aggregate.json",
+      "terminal_pairs": 24,
+      "unchanged_legacy_metrics_sha256": "b44f1417a456ec620a9e0c914a716deb4e59eca6faed3e3d1be3ee9e81c08c79"
+    },
+    {
+      "after_sha256": "ff505174fabff5c69b3584042f036c05f94578f9a900e4c3e2e046f66cac1a51",
+      "baseline_cost_usd_full_input_list_rate": 0.014349,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/baseline-low"
+      ],
+      "before_sha256": "afa5261e6c3781173dd5986be52d992cafaab4634e1f66302003441efe782ba4",
+      "candidate_cost_usd_full_input_list_rate": 0.014816,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/hybrid-local-12b-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-12b-low-email_intent.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "e8f5858e6a8d7d11ab54add5df8f7cc03e206533e9d1b930d19942276295ac94"
+    },
+    {
+      "after_sha256": "8a0e2d5f04bea326f7178ccca7d332a4a1e3b73b040344c49d67205fa5ccaae2",
+      "baseline_cost_usd_full_input_list_rate": 0.07838239999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low"
+      ],
+      "before_sha256": "48e17568db3d13a92ababdff8be3ff0b595fe3b47565eb372c63df2a2326d2af",
+      "candidate_cost_usd_full_input_list_rate": 0.07486324999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-12b-low-patient_intake.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "36c6763a656eab1fbb0b7d59523429488f6b0291c3e3cb6c6d53c88e7e4650a5"
+    },
+    {
+      "after_sha256": "6efd59fa52e562a9eb7f7a555941ab6b86ec944a29cca6cdf89a6956e2385b95",
+      "baseline_cost_usd_full_input_list_rate": 0.0277519,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/baseline-low"
+      ],
+      "before_sha256": "8b1d9d92583127d472cf2c42b367e14920566f2694ad80c24f4e0d6e24b42e6e",
+      "candidate_cost_usd_full_input_list_rate": 0.01824365,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/hybrid-local-12b-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-12b-low-referral_abuse_detection_v1.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "88303ea181592539a219efae873a96936d0c04dfcc70bc944275653f90994aa9"
+    },
+    {
+      "after_sha256": "e8e568607a8bd23dbd7f2efc36783a1173fbf91bf8764ff6f1ff5b7e6a4349d4",
+      "baseline_cost_usd_full_input_list_rate": 0.12048329999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low"
+      ],
+      "before_sha256": "55a97fbd35359adc76e54e464a2ed9894c38fc8ec8d747a508e4a3b9d5dc5a8f",
+      "candidate_cost_usd_full_input_list_rate": 0.11643524999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/hybrid-local-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/hybrid-local-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-low-aggregate.json",
+      "terminal_pairs": 24,
+      "unchanged_legacy_metrics_sha256": "bf7f814075cbefa0513b5e929994d8441fc9d367a5421289c511c05927033d91"
+    },
+    {
+      "after_sha256": "88543bfa4411e8176d61ed5362570365dd0b508ea3a0956c923a8151b048050d",
+      "baseline_cost_usd_full_input_list_rate": 0.014349,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/baseline-low"
+      ],
+      "before_sha256": "96a9554bf70f467781da415b99e5d0cfb1725fc7aabad0d4ec153e94c1debd1e",
+      "candidate_cost_usd_full_input_list_rate": 0.01433635,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--email_intent/hybrid-local-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-low-email_intent.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "51679ce957ed2ccb2b77b64e4e237f265a9993936f074ba0ddb2781b5d1c53f4"
+    },
+    {
+      "after_sha256": "f29bc014d3ad493690364c1c10b76437aab550465dc0910313199ff909cafd56",
+      "baseline_cost_usd_full_input_list_rate": 0.07838239999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low"
+      ],
+      "before_sha256": "4ad3f046401fe7f7c204a6268ec41e8d441035fcd869de773f0590aa08c79c67",
+      "candidate_cost_usd_full_input_list_rate": 0.0784636,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-low-patient_intake.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "339554b05885b2434e7fe59265a6621ea374488e0513c96981c4d898fe595372"
+    },
+    {
+      "after_sha256": "668678ec707d9ba11b175a51e8e01db35c3e9e24209d4a39dc9d82f2b6569355",
+      "baseline_cost_usd_full_input_list_rate": 0.0277519,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/baseline-low"
+      ],
+      "before_sha256": "27e9a5dd66f600c034319bd4fb4de6a09bbdcfacf044bf6ef925851e1903d659",
+      "candidate_cost_usd_full_input_list_rate": 0.0236353,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--referral_abuse_detection_v1/hybrid-local-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-low-8-hybrid-local-low-referral_abuse_detection_v1.json",
+      "terminal_pairs": 8,
+      "unchanged_legacy_metrics_sha256": "02d9caf827c3223d805c672718c0fd09af2953d8e9f93d5e55513686874b63f7"
+    },
+    {
+      "after_sha256": "22bddab56bd8de23db1fd7747038d1cddbca8ef578ad20827cf446ed12ab1914",
+      "baseline_cost_usd_full_input_list_rate": 0.005424749999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/baseline"
+      ],
+      "before_sha256": "0fc08ca9b6028b691b7684bdd948ef4873c810cb0c28e1b45baf520a70727043",
+      "candidate_cost_usd_full_input_list_rate": 0.005589394,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/hybrid-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-email_intent-hybrid-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "e094eba58d37fb46a7a5715c4c19d2a3f356f6f6d13d793b07c3a62f40aac74d"
+    },
+    {
+      "after_sha256": "398bf21419d09878b6829eb133b5337b55977dc17a6496d54c6cd7059369f0f9",
+      "baseline_cost_usd_full_input_list_rate": 0.005424749999999999,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/baseline"
+      ],
+      "before_sha256": "31174199c87ce57887d940fe1ccc12baa7ee241bd4e358acdbb6db59aa3c1b64",
+      "candidate_cost_usd_full_input_list_rate": 0.005453876,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/hybrid-local-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-email_intent-hybrid-local-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "709e373f28dbe09b18db59d1538c19cbad2833cbfa9d025f58c8c9900d6f1d1d"
+    },
+    {
+      "after_sha256": "0e2253edafd8fe01b1921c46072077a2235938b851714d99d57ac4b51cc10aeb",
+      "baseline_cost_usd_full_input_list_rate": 0.022760600000000002,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/baseline"
+      ],
+      "before_sha256": "6903651c469d3379504c7577cc17b6845ab5f6ba76bed5cd9bac05819d692e9b",
+      "candidate_cost_usd_full_input_list_rate": 0.022829650000000003,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/hybrid-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-patient_intake-hybrid-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "e195a640de8546eb7e2e69dafb218fc090e6878bee17d28e0d80be2d77118d13"
+    },
+    {
+      "after_sha256": "3095ec3b087cd33f00e814d8f727c93dabf703b0e55d61260d758a2cf0a9c686",
+      "baseline_cost_usd_full_input_list_rate": 0.022760600000000002,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/baseline"
+      ],
+      "before_sha256": "6e085b365e869b5d8cf68a2d1bf2ef6286a5dbbe786ee6218a88c427af392c09",
+      "candidate_cost_usd_full_input_list_rate": 0.022616472,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/hybrid-local-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-patient_intake-hybrid-local-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "e3045540cdc9746cc82fcae21ecd702d09e998bc866e070f242f6324389053cc"
+    },
+    {
+      "after_sha256": "fdc3ddb30bfa48bf4a874cfcc01b2dbc67286e1459ed37bd73d5d2259f32dc9f",
+      "baseline_cost_usd_full_input_list_rate": 0.0100819,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/baseline"
+      ],
+      "before_sha256": "454ba9435e421b951a749f87900c0e7af4cc0cc9a5dd19038df9ea8fc87f4bac",
+      "candidate_cost_usd_full_input_list_rate": 0.010597444000000001,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/hybrid-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-referral_abuse_detection_v1-hybrid-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "26312c82fb5f53c17f1601f7d5c6d72c26dcba43ed6278494d177b39e6e47c77"
+    },
+    {
+      "after_sha256": "10d2bb93f3afca490d0559297cb505e8bace08cf1b46cd8a520c5e2b59115f02",
+      "baseline_cost_usd_full_input_list_rate": 0.0100819,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/baseline"
+      ],
+      "before_sha256": "e10e63e3f21f462bb2c00f22f15ec9c8738a9e6e272875ba5544b0923aef3321",
+      "candidate_cost_usd_full_input_list_rate": 0.007572184000000001,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/hybrid-local-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-referral_abuse_detection_v1-hybrid-local-jev.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "81f1126186f48307f42398d4932d5103dccf58de3a5a3f199a99f2eea2f21f7c"
+    },
+    {
+      "after_sha256": "a5bc95f91689539ae6b12d1479466570b849cc348ef84eca5f2dbd53b2ee1582",
+      "baseline_cost_usd_full_input_list_rate": 0.03826725,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/baseline",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/baseline",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/baseline"
+      ],
+      "before_sha256": "b859bc296a90efe13aecd4ced9657f10063c87182c7ac21cd490736badb65ba0",
+      "candidate_cost_usd_full_input_list_rate": 0.035642532,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--email_intent/hybrid-local-jev",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--patient_intake/hybrid-local-jev",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-v2-smoke--referral_abuse_detection_v1/hybrid-local-jev"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-v2-smoke-paired-hybrid-local-jev.json",
+      "terminal_pairs": 6,
+      "unchanged_legacy_metrics_sha256": "5b212ae257c48f6fbf9a44b91e33d266f99fbc842a649e0f88b09b26705593fc"
+    },
+    {
+      "after_sha256": "65e0b2c7b261447065e38fa9551af7adf0748e71ee447724b11890bb01802bf6",
+      "baseline_cost_usd_full_input_list_rate": 0.02979185,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/baseline-low"
+      ],
+      "before_sha256": "93ee9da75bf9ec1bbeb15ca1c9e85196f7b9afb09d4041e4e0ee86c244c559e6",
+      "candidate_cost_usd_full_input_list_rate": 0.011858249999999999,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/hybrid-local-both-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-both-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-both-low-aggregate.json",
+      "terminal_pairs": 6,
+      "unchanged_legacy_metrics_sha256": "c44f2270e7d3a23e18ad62905184d97247112ae78e8d8cc35939da7f894371f1"
+    },
+    {
+      "after_sha256": "f62f51a0df99b019cab0e151e964e0cae1232831efb56ae9d600cc23f21c19b8",
+      "baseline_cost_usd_full_input_list_rate": 0.0038521,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low"
+      ],
+      "before_sha256": "c448048d39a469e00235e1f96c2ab89522f319d85a555cddd5673028d7073817",
+      "candidate_cost_usd_full_input_list_rate": 0.0037922,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-both-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-both-low-email_intent.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "2f578510482bdbdf038b86cf68a708b09f9148fde5bd90831cb9c16988dcb338"
+    },
+    {
+      "after_sha256": "90716afb5a60fd9c286248a236e5a781aa3a5e771259a17578c9eb245ba8c673",
+      "baseline_cost_usd_full_input_list_rate": 0.01901415,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/baseline-low"
+      ],
+      "before_sha256": "22f43f7cf268fb31f0bad25dfcd7a698c560958f7e07e47fa60fafe69be566a4",
+      "candidate_cost_usd_full_input_list_rate": 0.0024709499999999995,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-both-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-both-low-patient_intake.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "a761e2b5d75311c90a5b1cf68e1d3b159e6c68c892363d2773fc8f7c649d496c"
+    },
+    {
+      "after_sha256": "ca848aef7f131b48dd158f55cd41dedfad0b0d725092cc50ea1800786559686f",
+      "baseline_cost_usd_full_input_list_rate": 0.0069256,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/baseline-low"
+      ],
+      "before_sha256": "13b9d76f9dc22324c57931945590e355d8e0a94ee28502eaa48fc6429c4d4956",
+      "candidate_cost_usd_full_input_list_rate": 0.0055950999999999996,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/hybrid-local-both-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-both-low-referral_abuse_detection_v1.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "1352a7e2d97d1f145e923c7112cbe2b529026f7663fab7e58afa8007c9c9d991"
+    },
+    {
+      "after_sha256": "7ef8b1c567c9499c2bcd50dc146a4aa1f39972ec58f2b21bd52657531870e057",
+      "baseline_cost_usd_full_input_list_rate": 0.02979185,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/baseline-low"
+      ],
+      "before_sha256": "a4d58d0a925a66dba0ddfbcc6b38b185caaa72a14be758eb4c71b694c26a0656",
+      "candidate_cost_usd_full_input_list_rate": 0.01318105,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/hybrid-local-verify-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low",
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-verify-low-aggregate.json",
+      "terminal_pairs": 6,
+      "unchanged_legacy_metrics_sha256": "cff05b02247bd79e6803ac1090d024308fdf25e2021f62545d766cb884981dfe"
+    },
+    {
+      "after_sha256": "650b68d3a83b536703d579f4aa4409ef6dcabad9f5c1a27729de97195147a0d5",
+      "baseline_cost_usd_full_input_list_rate": 0.0038521,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/baseline-low"
+      ],
+      "before_sha256": "7f97212d35fda44481e782d5678b9e6d265d6160805ca24213c0c270692e10bf",
+      "candidate_cost_usd_full_input_list_rate": 0.0037967,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--email_intent/hybrid-local-verify-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-verify-low-email_intent.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "ca7477a09fafcb63c4b1c52d770a8790382a53a1513d2def2e2273acba35744f"
+    },
+    {
+      "after_sha256": "d6868f8f62bad2a5cda8dafc40c37ea8a2f5f9acda3cb5ba2963f6065a463a2f",
+      "baseline_cost_usd_full_input_list_rate": 0.01901415,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/baseline-low"
+      ],
+      "before_sha256": "3b20c3c902c2030708f80b0f41ac9487e9203241d101a07c4b529ad5849b5eb7",
+      "candidate_cost_usd_full_input_list_rate": 0.0024786499999999998,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--patient_intake/hybrid-local-verify-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-verify-low-patient_intake.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "c7934436170fc4f1941e111a200e9705c8c2ebe900cab52f05228de3f2e860f3"
+    },
+    {
+      "after_sha256": "6561fff252fffa3559f6845b04cd0e5272c7f432d40d283d722c60a85320e5b8",
+      "baseline_cost_usd_full_input_list_rate": 0.0069256,
+      "baseline_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/baseline-low"
+      ],
+      "before_sha256": "e6ccc693bcd1f6e636e77a933133cd5f27a268f9058f69eef4de8ee41b74d0d3",
+      "candidate_cost_usd_full_input_list_rate": 0.0069057,
+      "candidate_dirs": [
+        "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-verification-smoke--referral_abuse_detection_v1/hybrid-local-verify-low"
+      ],
+      "existing_metrics_exactly_equal": true,
+      "file": "dev-verification-smoke-hybrid-local-verify-low-referral_abuse_detection_v1.json",
+      "terminal_pairs": 2,
+      "unchanged_legacy_metrics_sha256": "0935762ae15124142a4125851c5af409e1aa1819a75bbb093f7cb1a374205caa"
+    }
+  ],
+  "reports_validated": 26,
+  "schema_version": 1,
+  "scope": "Offline refresh of existing development canonical paired analyses only; no model calls.",
+  "skipped": [
+    {
+      "file": "dev-initial-referral-gates.json",
+      "reason": "custom aggregate/gate/diagnostic report"
+    },
+    {
+      "file": "dev-v2-smoke-aggregate.json",
+      "reason": "custom aggregate/gate/diagnostic report"
+    },
+    {
+      "file": "dev-verification-smoke-failure-diagnosis.json",
+      "reason": "custom aggregate/gate/diagnostic report"
+    }
+  ],
+  "validation_method": "Exact recursive equality after JSON normalization of every pre-existing field, including per-case, per-domain and aggregate metrics; only notes and the local-time break-even interpretation text are excluded. Newly added cache/pricing/provenance fields are permitted.",
+  "validation_passed_before_any_report_overwrite": true
+}

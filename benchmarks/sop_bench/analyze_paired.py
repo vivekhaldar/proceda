@@ -26,6 +26,20 @@ JEV_INPUT_PRICE = 0.042
 BOOTSTRAP_SEED = 20261004
 BOOTSTRAP_RESAMPLES = 2000
 NATIVE_DURATION_FIELDS = ("total", "load", "eval")
+CACHE_RATE_FRACTIONS = (0.0, 0.2, 1.0)
+CACHE_METRICS = (
+    "known_cached_usage_requests",
+    "unknown_cached_usage_requests",
+    "cached_input_tokens_known",
+    "uncached_input_tokens_known",
+    "cached_input_cost_at_full_rate_usd_known",
+)
+COST_BASIS = (
+    "Usage-based estimate at documented input/output list rates, pricing cached input at the "
+    "full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage "
+    "subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. "
+    "Local hardware, electricity, idle capacity and hosting overhead are excluded."
+)
 
 
 def read_json(path: Path) -> Any:
@@ -34,6 +48,46 @@ def read_json(path: Path) -> Any:
 
 def count(value: Any) -> int | None:
     return value if type(value) is int and value >= 0 else None
+
+
+def cached_input_usage(usage: dict, input_tokens: int | None) -> tuple[int | None, str | None]:
+    """Read equivalent cache-hit counters once; require an explicit, consistent count."""
+    details = usage.get("prompt_tokens_details")
+    aliases = {
+        "prompt_tokens_details.cached_tokens": details.get("cached_tokens")
+        if isinstance(details, dict)
+        else None,
+        "prompt_cache_hit_tokens": usage.get("prompt_cache_hit_tokens"),
+    }
+    present = {key: value for key, value in aliases.items() if value is not None}
+    if not present:
+        return None, None
+    if any(count(value) is None for value in present.values()):
+        return None, "Invalid cached-input counter"
+    if len(set(present.values())) != 1:
+        return None, "Cached-input aliases disagree"
+    cached = next(iter(present.values()))
+    if input_tokens is None or cached > input_tokens:
+        return None, "Cached-input counter exceeds or lacks a valid prompt-token total"
+    miss = usage.get("prompt_cache_miss_tokens")
+    if miss is not None and (count(miss) is None or cached + miss != input_tokens):
+        return None, "Cache-hit plus cache-miss counters disagree with prompt-token total"
+    return cached, None
+
+
+def cache_price_cost(accounting: dict[str, Any], fraction: float) -> float | None:
+    """Hypothetical LLM cache rate; decision prices and output-token pricing stay unchanged."""
+    if accounting["cost_usd"] is None:
+        return None
+    if fraction == 1.0:
+        # Cache-hit detail is unnecessary when all input has the same price.
+        return accounting["cost_usd"]
+    if accounting["llm_unknown_cached_usage_requests"]:
+        return None
+    return (
+        accounting["cost_usd"]
+        - (1 - fraction) * accounting["llm_cached_input_cost_at_full_rate_usd_known"]
+    )
 
 
 def latency(values: list[float]) -> dict[str, Any]:
@@ -133,6 +187,8 @@ def new_accounting() -> dict[str, Any]:
         "output_tokens_known": 0,
         "cost_usd_lower_bound": 0.0,
         "unknown_cost_requests": 0,
+        **{f"llm_{field}": 0 for field in CACHE_METRICS},
+        "cache_usage_errors": [],
         "audit_errors": [],
         "providers": {},
     }
@@ -207,6 +263,28 @@ def account_audits(case_dir: Path, terminal: dict | None) -> dict[str, Any]:
             },
         )
         values["requests"] += 1
+        if not is_decision:
+            for field in CACHE_METRICS:
+                values.setdefault(field, 0)
+            cached, cache_error = cached_input_usage(usage, input_tokens)
+            if cache_error:
+                result["cache_usage_errors"].append(f"{path}: {cache_error}")
+            cache_metrics: dict[str, int | float] = {
+                "known_cached_usage_requests": int(cached is not None),
+                "unknown_cached_usage_requests": int(cached is None),
+            }
+            if cached is not None:
+                assert input_tokens is not None
+                cache_metrics.update(
+                    cached_input_tokens_known=cached,
+                    uncached_input_tokens_known=input_tokens - cached,
+                    cached_input_cost_at_full_rate_usd_known=cached * rates[0] / 1_000_000
+                    if rates is not None
+                    else 0.0,
+                )
+            for field, value in cache_metrics.items():
+                result[f"llm_{field}"] += value
+                values[field] += value
         known_usage = input_tokens is not None and output_tokens is not None
         usage_key = "known_usage_requests" if known_usage else "unknown_usage_requests"
         result[usage_key] += 1
@@ -249,6 +327,22 @@ def finish_accounting(result: dict[str, Any]) -> None:
         or result["audit_errors"]
     )
     result["cost_usd"] = result["cost_usd_lower_bound"] if result["cost_complete"] else None
+    result["cost_basis"] = COST_BASIS
+    result["llm_cached_usage_complete"] = not (
+        result["llm_unknown_cached_usage_requests"] or result["audit_errors"]
+    )
+    for field in ("cached_input_tokens", "uncached_input_tokens"):
+        result[f"llm_{field}"] = (
+            result[f"llm_{field}_known"] if result["llm_cached_usage_complete"] else None
+        )
+    result["hypothetical_cache_price_costs"] = {
+        str(fraction): {
+            "cached_input_rate_fraction": fraction,
+            "cost_usd": cache_price_cost(result, fraction),
+            "hypothetical_not_actual_invoice": True,
+        }
+        for fraction in CACHE_RATE_FRACTIONS
+    }
 
 
 def sum_accounting(items: list[dict[str, Any]]) -> dict[str, Any]:
@@ -260,7 +354,7 @@ def sum_accounting(items: list[dict[str, Any]]) -> dict[str, Any]:
                     target = result[key].setdefault(provider, {name: 0 for name in metrics})
                     for name, value in metrics.items():
                         target[name] += value
-            elif key == "audit_errors":
+            elif key in ("audit_errors", "cache_usage_errors"):
                 result[key].extend(item[key])
             elif key.startswith("local_native_") and key.endswith("_seconds"):
                 if item[key] is not None:
@@ -398,11 +492,106 @@ def local_break_even(baseline: dict, candidate: dict, paired: list) -> dict[str,
         else None,
         "positive_api_savings": savings > 0 if included else None,
         "interpretation": (
-            "Observed hosted list-price savings divided by additional summed local native total "
+            "Full-rate input/output price-model savings divided by additional local native total "
             "duration. Active time is not provisioned model-hours; idle hardware, electricity, "
             "hosting overhead and TCO are unmeasured. Total includes its components; do not add "
-            "load or eval duration again. Unknown cost or local duration excludes the pair."
+            "load or eval duration again. Unknown cost or local duration excludes the pair. "
+            "Cached input is priced at the full input rate; this is not observed invoice savings."
         ),
+    }
+
+
+def cache_price_sensitivity(baseline: dict, candidate: dict, paired: list) -> dict[str, Any]:
+    """Paired hypothetical cache-price scenarios and a common rate-fraction crossover."""
+    scenarios: dict[str, Any] = {}
+    for fraction in CACHE_RATE_FRACTIONS:
+        left_costs, right_costs, differences, excluded = [], [], [], []
+        for key in paired:
+            left = cache_price_cost(baseline[key]["accounting"], fraction)
+            right = cache_price_cost(candidate[key]["accounting"], fraction)
+            if left is None or right is None:
+                excluded.append(list(key))
+                continue
+            left_costs.append(left)
+            right_costs.append(right)
+            differences.append(right - left)
+        left_sum, right_sum = sum(left_costs), sum(right_costs)
+        scenarios[str(fraction)] = {
+            "cached_input_rate_fraction": fraction,
+            "included_pairs": len(differences),
+            "excluded_pair_count": len(excluded),
+            "excluded_pairs": excluded,
+            "baseline_cost_usd": left_sum if differences else None,
+            "candidate_cost_usd": right_sum if differences else None,
+            "candidate_minus_baseline_cost_usd": sum(differences) if differences else None,
+            "candidate_relative_cost_change": right_sum / left_sum - 1 if left_sum > 0 else None,
+            "mean_cost_difference_bootstrap95": paired_bootstrap(differences, excluded),
+        }
+
+    # The free-cache scenario uses exactly the pairs with known full cost AND cache usage.
+    free = scenarios["0.0"]
+    excluded_keys = {tuple(key) for key in free["excluded_pairs"]}
+    included = [key for key in paired if key not in excluded_keys]
+    cache_delta = 0.0
+    input_rates = set()
+    for key in included:
+        left, right = baseline[key]["accounting"], candidate[key]["accounting"]
+        cache_delta += (
+            right["llm_cached_input_cost_at_full_rate_usd_known"]
+            - left["llm_cached_input_cost_at_full_rate_usd_known"]
+        )
+        for accounting in (left, right):
+            for provider in accounting["providers"]:
+                if provider.startswith("llm:"):
+                    model = provider.removeprefix("llm:").removeprefix("openai/")
+                    if model in LLM_PRICES:
+                        input_rates.add(LLM_PRICES[model][0])
+    delta_free = free["candidate_minus_baseline_cost_usd"]
+    crossover = -delta_free / cache_delta if included and cache_delta else None
+    within_range = 0 <= crossover <= 1 if crossover is not None else None
+    if not included:
+        relation = "unknown: no pairs with complete cost and cache usage"
+    elif cache_delta < 0:
+        relation = "candidate cheaper above crossover; baseline cheaper below"
+    elif cache_delta > 0:
+        relation = "candidate cheaper below crossover; baseline cheaper above"
+    elif delta_free < 0:
+        relation = "candidate cheaper at every cache-rate fraction"
+    elif delta_free > 0:
+        relation = "baseline cheaper at every cache-rate fraction"
+    else:
+        relation = "equal estimated cost at every cache-rate fraction"
+    return {
+        "hypothetical_not_actual_invoice": True,
+        "assumption": (
+            "LLM cached input costs 0%, 20%, or 100% of each model's ordinary input list rate. "
+            "These are hypothetical rates, not verified Nebius billing. Output and decision "
+            "prices stay unchanged. Cache aliases are counted once; missing cache usage is "
+            "unknown, never assumed zero. Full-rate estimates do not require cache detail."
+        ),
+        "scenarios": scenarios,
+        "break_even": {
+            "included_pairs": len(included),
+            "excluded_pair_count": free["excluded_pair_count"],
+            "excluded_pairs": free["excluded_pairs"],
+            "candidate_minus_baseline_at_free_cache_usd": delta_free,
+            "candidate_minus_baseline_full_rate_cached_input_usd": cache_delta
+            if included
+            else None,
+            "unconstrained_cached_input_rate_fraction": crossover,
+            "within_zero_to_full_rate": within_range,
+            "cached_input_rate_fraction": crossover if within_range else None,
+            "ordinary_input_rates_usd_per_million": sorted(input_rates),
+            "cached_input_rate_usd_per_million": crossover * next(iter(input_rates))
+            if within_range and crossover is not None and len(input_rates) == 1
+            else None,
+            "comparison": relation,
+            "scope": (
+                "A common fraction of normal input price applies to every LLM model. A single "
+                "USD-per-million crossover is reported only when ordinary input rates agree. "
+                "No local compute, idle capacity or TCO is priced by this crossover."
+            ),
+        },
     }
 
 
@@ -472,6 +661,9 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
         ),
         "mean_latency_difference_bootstrap95": paired_bootstrap(deltas, excluded_latency),
         "mean_cost_difference_bootstrap95": paired_bootstrap(cost_deltas, excluded_cost),
+        "hypothetical_cache_price_sensitivity": cache_price_sensitivity(
+            baseline, candidate, paired
+        ),
         "local_active_model_hour_break_even": local_break_even(baseline, candidate, paired),
         "baseline_paired": summarize([baseline[key] for key in paired]),
         "candidate_paired": summarize([candidate[key] for key in paired]),
@@ -496,6 +688,7 @@ def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -
         "candidate_dirs": [str(directory.resolve()) for directory in candidate_dirs],
         "split": baseline_manifest["split"],
         "source_manifest_sha256": baseline_manifest["manifest_sha256"],
+        "cost_basis": COST_BASIS,
         "prices_usd_per_million_tokens": {
             "llm_input_output": LLM_PRICES,
             "jev_input": JEV_INPUT_PRICE,
@@ -505,6 +698,9 @@ def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -
             "All provider attempts, including failures and retries, come from audits only.",
             "LLM request means acompletion attempt; decision request means client.post attempted.",
             "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+            "Known cost means known usage under the stated price assumption, not a verified bill.",
+            "Cached input uses list price; 0%/20%/100% cache-price scenarios are hypothetical.",
+            "Cache aliases must agree and are never summed; absent cache counts remain unknown.",
             "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
             "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
             "Native total/load/eval known-call counts are separate; components are not summed.",

@@ -1,0 +1,1021 @@
+{
+  "schema_version": 1,
+  "group": "dev-local-8",
+  "group_status": "aborted_partial_preserved",
+  "created_at": "2026-10-04T21:22:00.247676+00:00",
+  "archiver_git_commit": "00ae813f28f67c00dd9276df5866329567348d66",
+  "archiver_script_sha256": "d49db5f1c210951b25bfa060b079466e5938fbe0e587f19b5abc3dbb57b2eef6",
+  "credential_scan": {
+    "passed": true,
+    "credentials_checked": 2,
+    "files_checked": 200,
+    "values_saved": false
+  },
+  "archive": {
+    "file": "dev-local-8.tar.gz",
+    "sha256": "f312315fa9919f8502cbaa9b0ee40419e73f12eec88703c86f70dbd38bad1c16",
+    "size_bytes": 171219
+  },
+  "members": [
+    {
+      "path": "runs/dev-local-8/aborted.json",
+      "size_bytes": 543,
+      "sha256": "44cb45123a6bd9508023e1aa58058cfe614838932ac7bb190a3d73b917c2f86a"
+    },
+    {
+      "path": "runs/dev-local-8/driver.log",
+      "size_bytes": 14759,
+      "sha256": "04524cc80e558f0daaecc30897bf8311b346386051a474b9e18068e6f9809a54"
+    },
+    {
+      "path": "runs/dev-local-8/schedule.json",
+      "size_bytes": 1152,
+      "sha256": "5508a20e0120cd9a59508e1dd802a13616687338cd33079450bbac15ea4f1958"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/predictions.jsonl",
+      "size_bytes": 10474,
+      "sha256": "38db8e7e4929e7dd0130369898317f26a26b678933249cdb3b824ce22ce14ad6"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/events.jsonl",
+      "size_bytes": 17369,
+      "sha256": "ac3af26d81079c7dc4fc781f94a0c51da56fa4399776e0c01c8ee1b8ef19d1bf"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/expected.json",
+      "size_bytes": 46,
+      "sha256": "3df9f6b5a2976fcb468e5fb9a8c1e0fd98af12e568a5fcb7e2870576b8910f17"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/inputs.json",
+      "size_bytes": 32,
+      "sha256": "27affac9c32b077f324f2d82aa1a0643b0c334b9969df0737efca831df22fe5e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/messages.jsonl",
+      "size_bytes": 9067,
+      "sha256": "c8bd0b1bb11cc5239843d28a12a1427f41ef619ce69fdbe3bde0c62d746346db"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/03b2ed9c198f4c08853e846d4a703567-001.json",
+      "size_bytes": 14739,
+      "sha256": "f8118a94afa6ab6c50a8866713ae2ff6f397d56b33d432e4f469e231d193c653"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/1a78f439dc8446b4ac8b92eee84b54ae-001.json",
+      "size_bytes": 27606,
+      "sha256": "b38002419f9923e5fe4546d7bd5038b102d48fc188a6f843e820e0015bdd2c8d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/5dcfa7304af845338d35d2f06329c969-001.json",
+      "size_bytes": 13316,
+      "sha256": "f16f4ed19ec49c3130beb40b2790e812b88f925198bb14b3791667f016df373d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/6dd1ae8b79304ab0b90a035fbd2ea85d-001.json",
+      "size_bytes": 13706,
+      "sha256": "43de931583608a88da4992d47e4d34015d287fc36bdfb951b39eedc4b2a2b259"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/77598a72e5c349b7a00dc965d4290b08-001.json",
+      "size_bytes": 15785,
+      "sha256": "5ec6d3256663563822b2e16a96277695d8ba48b0de25e5adba85a8b2628bc398"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/7850911bf8584ebe92d0fd2c56533b6a-001.json",
+      "size_bytes": 17247,
+      "sha256": "272e0732ad2adb4fe45721bd8370e1a818d93819f5adec29ea33ccb6cb941717"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/89dc2bf6738a48f0a0053d993cb8e48c-001.json",
+      "size_bytes": 11716,
+      "sha256": "12c338bfad2495d620f8c767e43d6a59682634ef92eea1d1cb6892abec60d071"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/providers/e46b525c3aed4523a8b70d907d605a8a-001.json",
+      "size_bytes": 29858,
+      "sha256": "650c7632f145f7eb7f02b413e5a1c08c4b8014fce40ffa9b919b7bfa57d6083d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/runtime/20261004_204315_run_c78e/events.jsonl",
+      "size_bytes": 17369,
+      "sha256": "ac3af26d81079c7dc4fc781f94a0c51da56fa4399776e0c01c8ee1b8ef19d1bf"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/runtime/20261004_204315_run_c78e/metadata.json",
+      "size_bytes": 281,
+      "sha256": "1179a46cb9a54e3b6e5ffde7398f70c8f1294ea1893bf45ae87cbf4d707faa91"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/runtime/20261004_204315_run_c78e/summary.txt",
+      "size_bytes": 390,
+      "sha256": "3f520d9edb5c0c930c92dd4e537af4cc4e5325a2e4615ea42223944264b4f37f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/started.json",
+      "size_bytes": 124,
+      "sha256": "8108a40d2afdc712eac58848a4e523d7d4712880fdc7ff726d98c136d864f2b8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/terminal.json",
+      "size_bytes": 1413,
+      "sha256": "79ba14bb6c9f2b042eeeb54b59efd409c330c12aab77454fc5d2134202e99122"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100000/tools.jsonl",
+      "size_bytes": 2520,
+      "sha256": "0fa67c8fa3ca16891ce9d933244fa2ad9e1e039495689e19025cba8a8f3d6f43"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/events.jsonl",
+      "size_bytes": 18595,
+      "sha256": "8aae8199adafcb7a3ce3fffd8a92bed5350dd170e6174b8b34524d1f2058094a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/inputs.json",
+      "size_bytes": 32,
+      "sha256": "be485f3a3df5ba6b932520dabbb7a358852dbc5364179e53b917266e981fde89"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/messages.jsonl",
+      "size_bytes": 10282,
+      "sha256": "517c16fff01f3bae96da85a6e56b09624ee1693db07aa63a782b385a25ad7552"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/00c2b81b9f2247e48af98e8006b3c0a3-001.json",
+      "size_bytes": 23024,
+      "sha256": "28574ff2aac9da8b8b49dabdb5697fb29a39bdbc1e7bcecefff055922f57a1ce"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/0d643ff3be8546c3889e256ff75bc0aa-001.json",
+      "size_bytes": 11716,
+      "sha256": "e215b6372f83eab7a48c7b241cbbbe55be55b98bcdc9319d5a3607ec041fb249"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/1afdf7ca53904e3b9d05f15386fc3e40-001.json",
+      "size_bytes": 29392,
+      "sha256": "518fca0fc943d5d39c41274cf7e0e786d0bab16053035b9b1096e119abd499fe"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/421fbc0628b244da917bf72605691619-001.json",
+      "size_bytes": 14292,
+      "sha256": "266a447736fae3ebea9e79fd01fad8ad2d7a82c5b35446f8b397e69114ae07ff"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/461563143bc2401ea05d7fe39b701861-001.json",
+      "size_bytes": 16965,
+      "sha256": "64462c76cfba0744ddd584dbea379c07f5aa50c7a01c2eb22619bbee70820d49"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/4968e03ab3554caa85d390620da68570-001.json",
+      "size_bytes": 18519,
+      "sha256": "19f815e6e919543c042036a06cdc714bc5b95b59fea0915ee8f3a9421eba103d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/83dd206601104fac94e22b7e84d0f43b-001.json",
+      "size_bytes": 13482,
+      "sha256": "b90edd217a2d02a49577fd88addc82b9d9c03b0b11a0fe49f75117f0a4004220"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/providers/96b3eff23a0f4c26afb832443d2de053-001.json",
+      "size_bytes": 33090,
+      "sha256": "b638d03880b81dccbfcc4d3e133bf4e2f7464b3b93ddb36910000309aeed8cbe"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/runtime/20261004_204315_run_4d38/events.jsonl",
+      "size_bytes": 18595,
+      "sha256": "8aae8199adafcb7a3ce3fffd8a92bed5350dd170e6174b8b34524d1f2058094a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/runtime/20261004_204315_run_4d38/metadata.json",
+      "size_bytes": 281,
+      "sha256": "2c4c66bfa24250f17b3c15c774de090f1a1bd66dd6e7330a551973a85a08aa3d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/runtime/20261004_204315_run_4d38/summary.txt",
+      "size_bytes": 390,
+      "sha256": "ddc7e962bfdc8da699288013122ac8f0b9ce19b2791751b9dd08d3c77e696e31"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/started.json",
+      "size_bytes": 124,
+      "sha256": "30406406a0e990d243019bafc45c94d0b8c75f9a006db8ba2ebf8a1bc5b4a4e8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/terminal.json",
+      "size_bytes": 1407,
+      "sha256": "fdf8fee395b925d569ec39ed032b01abe68e4477bcc2e9ac574dbfdb38560419"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100001/tools.jsonl",
+      "size_bytes": 2526,
+      "sha256": "b63f2a152fe1e0c27da5b9dcce74cc6a0a846d86d328e217e278042cd9b12c34"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/events.jsonl",
+      "size_bytes": 15429,
+      "sha256": "667f8d47d46090b57a5544faae836df00b0f107ae88775874ad5fd676f8c5249"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/expected.json",
+      "size_bytes": 46,
+      "sha256": "3df9f6b5a2976fcb468e5fb9a8c1e0fd98af12e568a5fcb7e2870576b8910f17"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/inputs.json",
+      "size_bytes": 32,
+      "sha256": "8f330929af8be2ff15d05e57fb0823531344f5c7f0ae34ef8dc76b419d7a5e59"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/messages.jsonl",
+      "size_bytes": 7124,
+      "sha256": "0a0fa2fefe1dc8b0bafdc1b20f6809dbdcaffd9e5949ed181dc1039142778672"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/132bf79f1ad8480bb1c209e573c54041-001.json",
+      "size_bytes": 15475,
+      "sha256": "f8265a7194150e4a103122e9fb4537526a6e803fefa185694ea1f3e4eb3826da"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/1e4aef2f14a44f8fb5cd8805d46416ed-001.json",
+      "size_bytes": 17138,
+      "sha256": "3a93d8933ab9a059ac0326af87aa625dc13c73cbfefda184b31c12d853234f09"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/2e3d97f7ea584cdbba5e8902c8732702-001.json",
+      "size_bytes": 13515,
+      "sha256": "8a29c9f4e435ef2b1f6b60b010b551094fe4c4ab87376ee6e316c54529876420"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/4b21b9eb19484a4b87417513f3af8c15-001.json",
+      "size_bytes": 25151,
+      "sha256": "f04a8e0684bf0deebc6d4b5a95f33d6e3b6acd118f665a7de071452a3aedcd02"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/4d9f2ddbb517448193c0be4951b71921-001.json",
+      "size_bytes": 11629,
+      "sha256": "f3d58699b82feb2ba54780f4bf2bc4d4dc0ae6e29e9e738b66d13ba84f415055"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/53b64b24a4ad43d2ae76d24deab8d5f7-001.json",
+      "size_bytes": 13314,
+      "sha256": "9eb6b4e53f9a733b361cd11d70210bedb0d26ac404a79fd23126e6aefd07c007"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/9480670157ba4750bb388bbf06d46c5b-001.json",
+      "size_bytes": 14665,
+      "sha256": "f8dc6e315ac7e73de821b1d50dadb195bf551241e1a3bd13b208ea42521ba4df"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/providers/bc89b5cac20946f4ad93f0cf191d0840-001.json",
+      "size_bytes": 28640,
+      "sha256": "a250ad2dddd3ccd35754092cfa05fae15d9759df4c3a5c41d8a5d4ee121f540f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/runtime/20261004_204315_run_fead/events.jsonl",
+      "size_bytes": 15429,
+      "sha256": "667f8d47d46090b57a5544faae836df00b0f107ae88775874ad5fd676f8c5249"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/runtime/20261004_204315_run_fead/metadata.json",
+      "size_bytes": 281,
+      "sha256": "49fc32776eb7d9cfcf00b8c8cb74f6587668146e08d20171956c89c0d3e9630d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/runtime/20261004_204315_run_fead/summary.txt",
+      "size_bytes": 390,
+      "sha256": "5650a426f7ba9367241ea77266d2a63bc05adb0632ae14fdf9468d1df1f31f45"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/started.json",
+      "size_bytes": 124,
+      "sha256": "206f7b19ea63877143a4b97a73ac7b4cdc77a5cf4d118cdfd4854380695e5a23"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/terminal.json",
+      "size_bytes": 1413,
+      "sha256": "df86a0514b5b7f84c73dd627f48c8347922437b67a5ab11d4669e46e84c083fb"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100002/tools.jsonl",
+      "size_bytes": 2523,
+      "sha256": "19a256a3621992e69ed0dbc8fc80695619c8fd750dbe9fbf3234be1df5391eb9"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/events.jsonl",
+      "size_bytes": 15922,
+      "sha256": "406008eb3e9c859915b80e5fe4babcc593943645eec63dadb3d3d6609b27e52c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/inputs.json",
+      "size_bytes": 32,
+      "sha256": "6b99509fc8791a93f88b5b36004bab3dd1f9d8b2cf89f0c85d8d949948c578fe"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/messages.jsonl",
+      "size_bytes": 7613,
+      "sha256": "82eabdce5482baf4774a376390ce3da3767f7f8fbdeef4542503e8c8199523b8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/011481b82a584b2db779f5ed3a181e52-001.json",
+      "size_bytes": 29295,
+      "sha256": "af2ce257691ace099db4dd1e872be0ed95b506fc315ec9e2ee7623f1546ab851"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/6753179bd04b457cafaf159dc129b885-001.json",
+      "size_bytes": 11629,
+      "sha256": "808401fc4a730258e2695566a58ceb56dc3728ad667b4b2e3a875d62c9a3c711"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/9eb6532dcf07406bbacecb034e3a53c6-001.json",
+      "size_bytes": 15850,
+      "sha256": "8eb62fe712d68df2df6f834f232f6cf47112c0af1bee9bf114b8c4b214e604f6"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/a119780925234ce892a44405b8b855e1-001.json",
+      "size_bytes": 17525,
+      "sha256": "f0b02ff9502dba3761503f93aab882f62df28e094f5bbd62fa8efc728bbb2716"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/a6e03aeec7814966adc7cb468dd68432-001.json",
+      "size_bytes": 15891,
+      "sha256": "d12d8dda1598bde85da71bdaf65eb1bc879fd68f9876830b1747d4caa15e49b0"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/d6e785b187a44ffc89f05f8aa584dc3a-001.json",
+      "size_bytes": 13399,
+      "sha256": "5e0d249f9a482eee64d18be214844893d8a45307a0d4175b215ed3493fc739a8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/d859a9cdbd0d46959c86ecc682cce975-001.json",
+      "size_bytes": 25200,
+      "sha256": "7b6a3466d96e39d2f070ffcfaa073e3639dd80fff8377f77a85f11cd8fa8e377"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/providers/e33fc485f61140a0808c89a4650b0ea3-001.json",
+      "size_bytes": 13696,
+      "sha256": "ff815da38c33e51178e894ec4b71a8ed1c4ee6f9817532a47459296b34e66803"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/runtime/20261004_204315_run_fbca/events.jsonl",
+      "size_bytes": 15922,
+      "sha256": "406008eb3e9c859915b80e5fe4babcc593943645eec63dadb3d3d6609b27e52c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/runtime/20261004_204315_run_fbca/metadata.json",
+      "size_bytes": 281,
+      "sha256": "5136dadb6a66446809a175f87230511661cdb2b997a5efba90e4064f8991cf84"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/runtime/20261004_204315_run_fbca/summary.txt",
+      "size_bytes": 390,
+      "sha256": "bdbdfa47dc38a0e2a291fd4be98d26e10fcc3a74f5da2e2ab467b583f24b5c1d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/started.json",
+      "size_bytes": 124,
+      "sha256": "04ca16018babfcb20d0baf7a6b7c5af4d711a80a96e3439f728ff0c3d8d27b96"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/terminal.json",
+      "size_bytes": 1407,
+      "sha256": "b742b9da416bc0b8c1e1a9ab2203dc794e54db9cfc5b7b8151e4b84cce79db94"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100011/tools.jsonl",
+      "size_bytes": 2527,
+      "sha256": "7f48fa5fc69e054e0c883c90eabe47f69164041dcb07900a373a27297b8ec97b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/events.jsonl",
+      "size_bytes": 18465,
+      "sha256": "f57e42b64f4e36d4910dbc4072b5107eff2700ec73bd3b98c2722d50f1ce716c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/inputs.json",
+      "size_bytes": 32,
+      "sha256": "7823e72e631b5d1fb2a457cecd18e5c636a33fbc9567dea8145613fe5997a76e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/messages.jsonl",
+      "size_bytes": 10160,
+      "sha256": "567dc286855e68dcabd98919bfe98714fe274779cb729cd29ff283898442238e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/1262604f810945d3a44a575dd31d3cf6-001.json",
+      "size_bytes": 11721,
+      "sha256": "fc07154b8bf70fdb031a17cd750f4220544e6b69a543357cfe35911ea4e46db5"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/2365ccfab7cc4ab495cbc3e6ad85eda0-001.json",
+      "size_bytes": 33247,
+      "sha256": "c9c1d18509349e54441cf2034b7a7bcb744d6a556bb6e45629a7e0b52dcdb0de"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/403bd56a81cd4232a026638f6238fea5-001.json",
+      "size_bytes": 16636,
+      "sha256": "8f50384e2f62cc57e29c8c6e889ba6bc5bbd52703365ead50fb033b748cc4e7b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/517541be7df84c8fa05ab7a22feb0924-001.json",
+      "size_bytes": 29405,
+      "sha256": "03babcff167157932642d480c4a26bdf65335d8c6fad09c47d114068fb96ae91"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/8141fb855fe743649266ab51ec3019be-001.json",
+      "size_bytes": 14083,
+      "sha256": "5c1da5fdf219db95bcce9390328139ff759dcb6e99443c788f43f55ed1712485"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/a3fe1ee62c624c2d93067559bac5f37e-001.json",
+      "size_bytes": 18703,
+      "sha256": "7ec463b28c5a3a20dc8913d5aef5066a0ca832f280dfe002863bb4d0926801c2"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/a4788d30daca42eca91f99d1789e904b-001.json",
+      "size_bytes": 13476,
+      "sha256": "a78aa16b62e5fc077f00819952b022b90bee686c09060195cc2cc779b3e98255"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/providers/d885642e5b9d48e8a1eb32ec6edebc2c-001.json",
+      "size_bytes": 16733,
+      "sha256": "2b274092eee3185e942a6c2a06088dcfeb7ba4a8e1760dd9666455188d330df4"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/runtime/20261004_204418_run_0841/events.jsonl",
+      "size_bytes": 18465,
+      "sha256": "f57e42b64f4e36d4910dbc4072b5107eff2700ec73bd3b98c2722d50f1ce716c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/runtime/20261004_204418_run_0841/metadata.json",
+      "size_bytes": 281,
+      "sha256": "ee59bd17f900ab7752bc93587c6e17eb01959e2b3a433083bb49b553d5e9bc4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/runtime/20261004_204418_run_0841/summary.txt",
+      "size_bytes": 390,
+      "sha256": "29d4d10782815e4509acb1df216f1933b444ea8b33c0c3a13d21f655cb75ef48"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/started.json",
+      "size_bytes": 124,
+      "sha256": "f7f1971d9f2885b5f3af339833f481f515fff07a51db8546fc81bf4ddf700142"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/terminal.json",
+      "size_bytes": 1407,
+      "sha256": "827e6b4f6fdb94aa60433c8d82d1aafd4b2c6ab3d430cdb77293bc0b6d54925f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100020/tools.jsonl",
+      "size_bytes": 2522,
+      "sha256": "f41fdccdb02d5f5197f577409ebd798ce44a9b50e9d308e9aa7eb00f5546c2ff"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/events.jsonl",
+      "size_bytes": 17018,
+      "sha256": "d0bdcb6721747276450edebc205d0788f7d592e56cb286e215cb2d540c49373e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/inputs.json",
+      "size_bytes": 32,
+      "sha256": "45a62ec49ca2774fba9c411499c59327dbde03e804180d95f28c52c4a5f9156b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/messages.jsonl",
+      "size_bytes": 8712,
+      "sha256": "b994f640de899af8b8f36f7c100c8580f3c11b2805892eb304d6916f681c0e55"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/182401a8ed35451b92870bb2e68391bc-001.json",
+      "size_bytes": 31143,
+      "sha256": "c3be559862c3451a2d3db72b8ff8e99f405f6511fc49f5b279c7df6c6e793809"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/3bece02926fd4a008a51b74b192667c1-001.json",
+      "size_bytes": 17411,
+      "sha256": "4fe8e378b09cd45f29c2a53880cca322654fda38bcd7e0fcf840db3ea7a158ad"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/70551648307d46ef802d80ae9ea60c99-001.json",
+      "size_bytes": 13447,
+      "sha256": "09bfb60f65fe50af19d4a4df23d95cdf26287afe3dd6aa46877914e6e67af23d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/84e517a98f1040149b3231382bb65533-001.json",
+      "size_bytes": 13914,
+      "sha256": "d3ed12015b880c0db4f968043f00dee2b044e339a06590ef90a1daabd1949ebd"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/8b060b4de0ac42ca8b3a9abc193b220d-001.json",
+      "size_bytes": 11720,
+      "sha256": "9b1749632b8d174758a396e70c9f3c47a9a2e415f68d21dcea782d7a64bab869"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/b4e2c6b24db14f81991e6e3c9fb97f78-001.json",
+      "size_bytes": 15586,
+      "sha256": "0b84e5f61c9ba64d32638f3e4f44651fc9f34644952b5cf8ac24a19ce71fa0fa"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/d832f4cf926f4603b573602a1c25d718-001.json",
+      "size_bytes": 15844,
+      "sha256": "6b2cc34bc19856ab3cce126facc49e8e96ca628549d43311944f657fa5e2d71e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/providers/f8c9649163a04e06b5351acd552c789b-001.json",
+      "size_bytes": 26109,
+      "sha256": "32f364de1c616901d534f3ca4f454d680a71299afa91ef5e98905cd98fa65dd7"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/runtime/20261004_204420_run_021a/events.jsonl",
+      "size_bytes": 17018,
+      "sha256": "d0bdcb6721747276450edebc205d0788f7d592e56cb286e215cb2d540c49373e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/runtime/20261004_204420_run_021a/metadata.json",
+      "size_bytes": 281,
+      "sha256": "2c8130196f068c6a313ae124f20c6f40fae63ac28d5b1e7a1cfeca918d27f329"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/runtime/20261004_204420_run_021a/summary.txt",
+      "size_bytes": 390,
+      "sha256": "22beb9e24dda7f828fed44f682fb56370739df3402f7ee512feb237c8fa943c8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/started.json",
+      "size_bytes": 124,
+      "sha256": "50ece64e75f0c7f75ec6b1c8d7627937aad6d508da0461f7b2586989e722e953"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/terminal.json",
+      "size_bytes": 1407,
+      "sha256": "ad372ed95515bf0bd4391f6bbd321c1b69484dd25424d28d44a0e1549e1fc6fe"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100021/tools.jsonl",
+      "size_bytes": 2524,
+      "sha256": "7395e09ee6d7195307246e8e1194308c7e47c5dd05d8643b3e6a8b40db547786"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/events.jsonl",
+      "size_bytes": 18303,
+      "sha256": "5a8f999e6cc5209e341f32764214961348b09704be0970dca19f17c0cbb5339d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/inputs.json",
+      "size_bytes": 32,
+      "sha256": "65dceaf48096f3266be3b951f0e2a5b2187f441f809feb4d68a83bd973498e93"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/messages.jsonl",
+      "size_bytes": 9998,
+      "sha256": "a5b31dff5f633bddaf11949afbdc71434f0a1bfc4a259b8fc365aa2b9d14890f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/12b671163901400baee91d659e555d4e-001.json",
+      "size_bytes": 30008,
+      "sha256": "dc635d7efbb9e586b1b13cf3fb9cfb94ba62f70c77c062490322a6fb91448cac"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/59bc9944159644f9af6425fa042b034a-001.json",
+      "size_bytes": 11720,
+      "sha256": "38374262f5b497c9f6967f595691ad6910700b379ac38b1e39eb11ab64cd9564"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/9a110259dad043b8b6bbc7be640e3af6-001.json",
+      "size_bytes": 16859,
+      "sha256": "093a6768d8b707e38a0fea962d71ade7794388732e89cbfed3d1f19affe152a0"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/b25e544e73064222868e4221b361f0f6-001.json",
+      "size_bytes": 13558,
+      "sha256": "42c358e0e74bdd8889238209606c9e9338b2ec0d80ca706a629b92d884f03dea"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/dbd8b3a984b74351bdb555034f4cb747-001.json",
+      "size_bytes": 16238,
+      "sha256": "23a0c7e82ddba9a7c7cc2156b7b41446063a8332ef0b75c112d054e56601b989"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/dd91f49b00c24414a3cd3a4767bd45ce-001.json",
+      "size_bytes": 14198,
+      "sha256": "ea8bb289a602af31cd9ce955fcf8469c3c191694c322e00b659119f9b4c1234d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/e9f23d08e54649f884a5e9aaada0443c-001.json",
+      "size_bytes": 29235,
+      "sha256": "f28d4c2c8e1b0c8a16760c4141101bad80b6c29f1aadd872fd10334f07987e11"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/providers/fb9035c4d83a403e8427bb3498b3e55f-001.json",
+      "size_bytes": 18852,
+      "sha256": "acde8479b5d9aa8fbf93fadbd8f486bba78679f5d1d7160f70a68f80ac4ee624"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/runtime/20261004_204446_run_a66a/events.jsonl",
+      "size_bytes": 18303,
+      "sha256": "5a8f999e6cc5209e341f32764214961348b09704be0970dca19f17c0cbb5339d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/runtime/20261004_204446_run_a66a/metadata.json",
+      "size_bytes": 281,
+      "sha256": "142a360dddd2285e75ab8596c1ee64dc13e66128312d10177e3265bdb3aba427"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/runtime/20261004_204446_run_a66a/summary.txt",
+      "size_bytes": 390,
+      "sha256": "8168e8a0cffa58964d79e98a10d0c1e87e9fbcc93defa846d8e4adc480bac928"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/started.json",
+      "size_bytes": 124,
+      "sha256": "2754c85707047300fa59e4ce10758095ef4526364fc9744c3731ec0afd688d38"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/terminal.json",
+      "size_bytes": 1407,
+      "sha256": "29ca302a66744125550259fb33416a600dc0dcdd2ea1e2dc0ced9c9fc3e5895d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100023/tools.jsonl",
+      "size_bytes": 2522,
+      "sha256": "a1e5168ce633b94825627d7bd994e3313bdae7f0f5c2cbe36143dcf6d789842f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/events.jsonl",
+      "size_bytes": 16705,
+      "sha256": "28fe6885a2de9d946252d8b5d2940406c98dd0da3e33aa91604ae6eb4528f504"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/expected.json",
+      "size_bytes": 46,
+      "sha256": "3df9f6b5a2976fcb468e5fb9a8c1e0fd98af12e568a5fcb7e2870576b8910f17"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/inputs.json",
+      "size_bytes": 32,
+      "sha256": "015c2574a7573b70e89c4065b27317cfd0349b0f8e7bb6327e73331479047cf3"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/messages.jsonl",
+      "size_bytes": 8396,
+      "sha256": "c9e998ca0eb97a78a127789d23229ddc47721f8ca6cf737d25d9c6e7e0a8103a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/077e0100ae7841d6b9a1d53980e7da6e-001.json",
+      "size_bytes": 17315,
+      "sha256": "2652b6a479f59a064a736026ff5effb80cca66a7807d7fa6d0ed871cb7455abd"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/173da4e0ff474f768210683634925593-001.json",
+      "size_bytes": 13733,
+      "sha256": "8eaddfc914ac21c7ed563708b155c576e697903062320bcfb25157072e4cd322"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/7717e23c381840e1878d3a2eceea64bb-001.json",
+      "size_bytes": 15459,
+      "sha256": "d2818f4b0dc1df85b31a5ca40e0a551476cb792b443835a936ead294ddf4d77d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/87d251548dc74ac4a36b2738562da0ef-001.json",
+      "size_bytes": 11720,
+      "sha256": "0e255b782f4e6412ae59a2e2d86d45efdd5333ede6c02784a15678de83aec3a1"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/8f9d55382e6b4988800fe87ea215f406-001.json",
+      "size_bytes": 13320,
+      "sha256": "09864d458dfe5291e3b50bbe0382f45c687f697e1b99edbb841d63fcbeb3ec0e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/945488dda506477194cf79615b1a14bf-001.json",
+      "size_bytes": 26603,
+      "sha256": "7962c1fe21894a921fc31516826cdfeeb05aa12aa181dd420919da60f677998d"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/bb23d5b34ceb4de98fb555cdc2284486-001.json",
+      "size_bytes": 29888,
+      "sha256": "168974cb927c35b9f80c00614c8a8417bda52725647457c1c5cb1029e23fe807"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/providers/f9d6c260d0c541bd9cdd784c2d988d64-001.json",
+      "size_bytes": 15828,
+      "sha256": "7b6c67563dab72ef648192e22cfe85804bc5d51254d8dcd629182de56df80125"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/runtime/20261004_204449_run_d25f/events.jsonl",
+      "size_bytes": 16705,
+      "sha256": "28fe6885a2de9d946252d8b5d2940406c98dd0da3e33aa91604ae6eb4528f504"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/runtime/20261004_204449_run_d25f/metadata.json",
+      "size_bytes": 281,
+      "sha256": "cdb5fe246f4aecf41688cbbc444a38f1e095d9a0af3111cb0a2209ff025b8f6c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/runtime/20261004_204449_run_d25f/summary.txt",
+      "size_bytes": 390,
+      "sha256": "f52c94b659965e96ed698d7be52c71b69ab56d0e904ab702b02c437ad9a373e2"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/started.json",
+      "size_bytes": 124,
+      "sha256": "28832da120e0fff720333965e55b5417e52465ccfa354562a62869bf568043e8"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/terminal.json",
+      "size_bytes": 1413,
+      "sha256": "dc41191a05b939bf2748d163a72d0b1a1a51f11ad4d4a431e838eef2af84bd23"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100025/tools.jsonl",
+      "size_bytes": 2527,
+      "sha256": "4e326908751744da46e9ccce2ff90a97c2f1ed5294e389c20987d354cb94eac0"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/run.json",
+      "size_bytes": 6831,
+      "sha256": "8e64a0aa84ac82fdee8a308407bc0eea2c06bc36073c3215f023b21e530a8ba6"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/baseline/summary.json",
+      "size_bytes": 340,
+      "sha256": "b3b0c32a5205708f4c1fc3dade022874872482baa5b05a2fb4c2ff006352f749"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/events.jsonl",
+      "size_bytes": 7264,
+      "sha256": "7ea499aa25414117fe026dffce32970b765433f9a01266c3b669a88963b1d603"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/expected.json",
+      "size_bytes": 46,
+      "sha256": "3df9f6b5a2976fcb468e5fb9a8c1e0fd98af12e568a5fcb7e2870576b8910f17"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/inputs.json",
+      "size_bytes": 32,
+      "sha256": "27affac9c32b077f324f2d82aa1a0643b0c334b9969df0737efca831df22fe5e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/messages.jsonl",
+      "size_bytes": 1178,
+      "sha256": "e6ee7beb17641599f5323f3aef6b568d1966d7fec8c320b30f2743b13b9248c5"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/providers/927cce130de04710bb80dcd4e91b488c-001.json",
+      "size_bytes": 13308,
+      "sha256": "b018848dfe8a44363a27634137adaddcb981b0105ecc57c6528f7b3b7ca8e7ad"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-108e05204e294ae7bf7402a3a9f6074f.json",
+      "size_bytes": 6210,
+      "sha256": "90e0e133e48e0ee7c0e968aa3bc0fbbf83f3f989f37006432c77c30cd88c798f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-3a4d85441bd84533a8cd53de9471e463.json",
+      "size_bytes": 5364,
+      "sha256": "bd22ded939fb5c6b97aece27f91da44074d069d4b61426409d5ac980e15b299f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/providers/f60b2123c1dc4f5797ae9af4124ae7de-001.json",
+      "size_bytes": 11709,
+      "sha256": "b39857e5c49469ebdae1c9b4a6dc2017f1246b546a52597b4456e91fc3704890"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/runtime/20261004_204558_run_7a5b/events.jsonl",
+      "size_bytes": 7264,
+      "sha256": "7ea499aa25414117fe026dffce32970b765433f9a01266c3b669a88963b1d603"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/runtime/20261004_204558_run_7a5b/metadata.json",
+      "size_bytes": 281,
+      "sha256": "f26a039153b0603150456fc3cf32fde3de958ab55ead97935438127995641d68"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/started.json",
+      "size_bytes": 124,
+      "sha256": "419749a81c7eec081b6811de1b2d5eecdfc7f66de68612b1306454f8a3cdc992"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100000/tools.jsonl",
+      "size_bytes": 1618,
+      "sha256": "31fb478e40b6c852606af40945f0deca388aeaa0f03d3cf93ad9a358e877ae99"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/events.jsonl",
+      "size_bytes": 9714,
+      "sha256": "984b42bb188190b9fdce1579ee4c49898afa699bb4dbcab36cd9dfcad7c23022"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/inputs.json",
+      "size_bytes": 32,
+      "sha256": "be485f3a3df5ba6b932520dabbb7a358852dbc5364179e53b917266e981fde89"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/messages.jsonl",
+      "size_bytes": 1745,
+      "sha256": "184ae97673c1e8beb4cd0952ce956d5885e37638c41f8cf306ff4f69309acd2b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/providers/02bfefe1f7db498da89b601473f3a86a-001.json",
+      "size_bytes": 13166,
+      "sha256": "d2c19e8ea2d14fd851650e60dd67e9780fdb3f8b341dc069db8937e02f01bc23"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/providers/2ff846a5b1c144d495fe24154be1fe60-001.json",
+      "size_bytes": 11717,
+      "sha256": "56d6f727832d8c13a9983e961d45a9a5336349d40b4e4d34af1643c51cb039bd"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/providers/a25a1043a9144f74b5a7b3720221807f-001.json",
+      "size_bytes": 14399,
+      "sha256": "b595e17a82590a3fbeb9d79f914d00c33b790d9143423f245b1f5b59ca62737a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-43304f9b6130439ea5728f8807e03977.json",
+      "size_bytes": 5364,
+      "sha256": "9323a7755f3f2124adcedf0fa417ea871c666916d27755d09663889320395039"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-a478d015aebd4d9fb5add234248ef4ba.json",
+      "size_bytes": 6214,
+      "sha256": "6739c41ec3fa88e64ed79aba10219e4bc9fd9ef3943c4122cfe53d8f1daa6033"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/runtime/20261004_204558_run_0739/events.jsonl",
+      "size_bytes": 9714,
+      "sha256": "984b42bb188190b9fdce1579ee4c49898afa699bb4dbcab36cd9dfcad7c23022"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/runtime/20261004_204558_run_0739/metadata.json",
+      "size_bytes": 281,
+      "sha256": "9a615252b87c0c4503cc068afaa3bf36424110a4d56b556af88eba628ba1130b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/started.json",
+      "size_bytes": 124,
+      "sha256": "68154b03c352b197abfd41e8a1d469527a0e779e34d1b4f028b58b73efcf2cd5"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100001/tools.jsonl",
+      "size_bytes": 2526,
+      "sha256": "70276cb38133dbb0b13f6c8e780cb297910cb169d484a069e91978a5318c3952"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/events.jsonl",
+      "size_bytes": 6752,
+      "sha256": "e8c1dd80336ecc31686333ace325ebb91942e57f78b39a6a0beff63fb5a0f18a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/expected.json",
+      "size_bytes": 46,
+      "sha256": "3df9f6b5a2976fcb468e5fb9a8c1e0fd98af12e568a5fcb7e2870576b8910f17"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/inputs.json",
+      "size_bytes": 32,
+      "sha256": "8f330929af8be2ff15d05e57fb0823531344f5c7f0ae34ef8dc76b419d7a5e59"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/messages.jsonl",
+      "size_bytes": 665,
+      "sha256": "c4dcb7d07123eca8a6a2f221907a628b2fcf808f08eeb39963bbdbcf4aabf08f"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/providers/1d2159c825b24232a1e7747f78c9f3d5-001.json",
+      "size_bytes": 12799,
+      "sha256": "b31458482944d42ca0dd304e7b9a154475524101a97a3fd8456f5f812b50d3d4"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/providers/c164fb3d52214c6dabd4df91bab5429f-001.json",
+      "size_bytes": 11626,
+      "sha256": "43e30599489ec2f7fb4ffaa7e8447e16d8217a5bbb49e8505aaa7e7e3e46d86c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-3df9ae8f98c04d6393ad2234e0d8e0bb.json",
+      "size_bytes": 6215,
+      "sha256": "02da2685f2546257c615a9e4442a1e03835edcc2cb27d60bf530683d31fcd30e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-505a4807aeef4bff833eea1e0eb2f22e.json",
+      "size_bytes": 5365,
+      "sha256": "eb97439063ddea87c16729b8fd6544c4c5f28ca556ce3a908e9435621a17acab"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/runtime/20261004_204558_run_90da/events.jsonl",
+      "size_bytes": 6752,
+      "sha256": "e8c1dd80336ecc31686333ace325ebb91942e57f78b39a6a0beff63fb5a0f18a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/runtime/20261004_204558_run_90da/metadata.json",
+      "size_bytes": 281,
+      "sha256": "0f140758696d032c77c7367353f32bd160de2e1c394a0864e741bb2333a7b22e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/started.json",
+      "size_bytes": 124,
+      "sha256": "77d84b8f640ca3d7626179a9d0ee4d86bc13d6150b9dfa85b504f7680863d1f4"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100002/tools.jsonl",
+      "size_bytes": 1621,
+      "sha256": "d494b23fc6080437399e7b570657d19bed672f4a959329428525023b40e5bc15"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/events.jsonl",
+      "size_bytes": 7271,
+      "sha256": "71e75ecec90f9664544fd67ec8414ee338ea23a6f857a24f4faf32f5a647567e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/expected.json",
+      "size_bytes": 40,
+      "sha256": "6324628e351dfc46ab6f91d4aea7a27c8d0638be11426c5ddcb2e0bdaf312a4c"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/inputs.json",
+      "size_bytes": 32,
+      "sha256": "6b99509fc8791a93f88b5b36004bab3dd1f9d8b2cf89f0c85d8d949948c578fe"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/messages.jsonl",
+      "size_bytes": 1178,
+      "sha256": "c14ba07ea86e7eee311556f700d2224499fbfab8d3506223c4739825b5d11c0a"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/providers/87333a93c450406191841b65e9e29f1a-001.json",
+      "size_bytes": 13164,
+      "sha256": "af7fa11130f8342f778501ad9cda62eccb57aabe8c661e13531020f7397c3758"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/providers/b2e51040706a40ea8d1f3d0ef7dc5751-001.json",
+      "size_bytes": 11717,
+      "sha256": "466cc6500deb1521f9a9abf61b84e689f1e6c81194284f49f0c013356e67e9c0"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-27dec4f7b01248579ea96a7117587569.json",
+      "size_bytes": 6219,
+      "sha256": "7706d435b7aaa62c13c5123dc67c8334fcc8ba605a5805840527bcafe61aba4e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-e99cdcc5521d4d48a0bb7eb6a4a2264f.json",
+      "size_bytes": 5365,
+      "sha256": "9392f56c0a70fbabf866da49e223caa2d1b554cfb2fbf01094566dca68fad86b"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/runtime/20261004_204558_run_b553/events.jsonl",
+      "size_bytes": 7271,
+      "sha256": "71e75ecec90f9664544fd67ec8414ee338ea23a6f857a24f4faf32f5a647567e"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/runtime/20261004_204558_run_b553/metadata.json",
+      "size_bytes": 281,
+      "sha256": "136474aee171836b2c05697accbf17b93aeb26afea4eb6fa078a774f29970e27"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/started.json",
+      "size_bytes": 124,
+      "sha256": "32c2613fb82141e295dad278208aceb310c4950ae9b22ddc07e6305c65d60791"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/referral_abuse_detection_v1/ACC100011/tools.jsonl",
+      "size_bytes": 1625,
+      "sha256": "fe207bc5fd0cf6d1a645ec3437f09697c9e4c1d10ab2ca1e105c097271010630"
+    },
+    {
+      "path": "runs/dev-local-8--referral_abuse_detection_v1/hybrid-local/run.json",
+      "size_bytes": 7177,
+      "sha256": "e4a94320d88f973402b5b5fe03b224967c8c43fb8bc483898a5aa046a1652092"
+    }
+  ]
+}
