@@ -102,6 +102,16 @@ class DecisionConfig:
 
 
 @dataclass
+class PlanningConfig:
+    """Opt-in source-only compilation; case values never enter the compiler."""
+
+    enabled: bool = False
+    cache_dir: str = ".proceda/plans"
+    cache_epoch: str = "v1"
+    compiler_llm: LLMConfig | None = None
+
+
+@dataclass
 class AppConfig:
     """MCP app (tool server) configuration."""
 
@@ -146,6 +156,7 @@ class ProcedaConfig:
     security: SecurityConfig = field(default_factory=SecurityConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
     decisions: DecisionConfig = field(default_factory=DecisionConfig)
+    planning: PlanningConfig = field(default_factory=PlanningConfig)
 
     @staticmethod
     def from_dict(data: dict[str, Any]) -> ProcedaConfig:
@@ -213,6 +224,29 @@ class ProcedaConfig:
             )
             if config.decisions.enabled and not backends:
                 raise ConfigError("Enabled decisions require at least one configured backend")
+
+        if "planning" in data:
+            planning = data["planning"]
+            if not isinstance(planning, dict):
+                raise ConfigError("planning must be a mapping")
+            if type(planning.get("enabled", False)) is not bool:
+                raise ConfigError("planning.enabled must be a boolean")
+            for name in ("cache_dir", "cache_epoch"):
+                if name in planning and (
+                    not isinstance(planning[name], str) or not planning[name].strip()
+                ):
+                    raise ConfigError(f"planning.{name} must be a nonempty string")
+            compiler = planning.get("compiler_llm")
+            if compiler is not None and not isinstance(compiler, dict):
+                raise ConfigError("planning.compiler_llm must be a mapping")
+            config.planning = PlanningConfig(
+                enabled=planning.get("enabled", False),
+                cache_dir=planning.get("cache_dir", ".proceda/plans"),
+                cache_epoch=planning.get("cache_epoch", "v1"),
+                compiler_llm=(
+                    ProcedaConfig.from_dict({"llm": compiler}).llm if compiler is not None else None
+                ),
+            )
 
         if "apps" in data:
             config.apps = []

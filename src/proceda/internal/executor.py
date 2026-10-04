@@ -23,6 +23,7 @@ from proceda.internal.tool_executor import ToolExecutor
 from proceda.llm.prompts import build_step_prompt, build_system_prompt
 from proceda.llm.runtime import LLMResponse, LLMRuntime
 from proceda.llm.tool_schemas import get_control_tool_schemas, is_control_tool
+from proceda.planning.runner import PlanRunner
 from proceda.session import (
     ApprovalDecision,
     ApprovalRecord,
@@ -69,6 +70,7 @@ class Executor:
         fallback_llm: LLMRuntime | None = None,
         tool_aliases: dict[str, str] | None = None,
         resolve_tool_identity: Callable[[str], tuple[str, str] | None] | None = None,
+        plan_runner: PlanRunner | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -85,6 +87,7 @@ class Executor:
         self._fallback_llm = fallback_llm
         self._tool_aliases = dict(tool_aliases or {})
         self._resolve_tool_identity = resolve_tool_identity
+        self._plan_runner = plan_runner
 
     async def execute(self) -> None:
         """Run the full skill from current step to completion."""
@@ -227,6 +230,9 @@ class Executor:
                 )
             )
             await self._emit_status_change(RunStatus.FAILED)
+        finally:
+            if session.current_step not in session.completed_steps:
+                await self._discard_planned_facts(session.current_step)
 
     async def _execute_step(self, step_index: int) -> str | None:
         """Execute a single step via the LLM loop. Returns 'skip_remaining' to end early."""
@@ -262,7 +268,29 @@ class Executor:
             trimmed = self._context.trim_messages(session.messages)
             formatted = self._llm.format_messages(trimmed)
 
-            response = await self._propose(formatted, all_tools, temp_override, step_index)
+            response = None
+            if self._plan_runner is not None:
+                response = await self._plan_runner.propose(
+                    step_index,
+                    session,
+                    llm=self._llm,
+                    decisions=self._decisions,
+                    emit=self._emit,
+                    track_usage=self._track_usage,
+                )
+            if response is None:
+                response = await self._propose(formatted, all_tools, temp_override, step_index)
+            else:
+                planned_response = response
+                try:
+                    response = await self._verify_response(
+                        response, formatted, all_tools, temp_override, step_index
+                    )
+                except Exception:
+                    await self._discard_planned_facts(step_index)
+                    raise
+                if response is not planned_response:
+                    await self._discard_planned_facts(step_index)
 
             # Handle reasoning
             if response.reasoning:
@@ -425,6 +453,7 @@ class Executor:
             if (
                 self._decisions is not None
                 and self._decision_config.fast_completion
+                and (self._plan_runner is None or self._plan_runner.completion_allowed(step_index))
                 and not is_last_step
                 and response.tool_calls
                 and all(not is_control_tool(tc.name) for tc in response.tool_calls)
@@ -573,6 +602,35 @@ class Executor:
         """Verify proposals before dispatch; discarded attempts still count in usage."""
         response = await self._llm.complete(messages, tools=tools, temperature=temperature)
         await self._track_usage(response, step_index)
+        return await self._verify_response(response, messages, tools, temperature, step_index)
+
+    async def _discard_planned_facts(self, step_index: int) -> None:
+        # A repaired completion may no longer assert the planned decision. Do not
+        # let its provisional facts become authority for a later step.
+        discarded = [
+            fact for fact in self._session.decision_facts if fact.get("step_index") == step_index
+        ]
+        self._session.decision_facts[:] = [
+            fact for fact in self._session.decision_facts if fact.get("step_index") != step_index
+        ]
+        if discarded:
+            await self._emit(
+                RunEvent.create(
+                    self._session.id,
+                    EventType.PLAN_FACT_DISCARDED,
+                    {"step_index": step_index, "facts": discarded},
+                )
+            )
+
+    async def _verify_response(
+        self,
+        response: LLMResponse,
+        messages: list[dict],
+        tools: list[dict],
+        temperature: float | None,
+        step_index: int,
+    ) -> LLMResponse:
+        """Apply configured proposal checks to generated and planned actions alike."""
         if self._decisions is None or not self._decision_config.verify_proposals:
             return response
         step = self._skill.get_step(step_index)

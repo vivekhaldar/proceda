@@ -52,6 +52,12 @@ class EventType(enum.Enum):
     DECISION_EVALUATED = "decision.evaluated"
     PROPOSAL_REJECTED = "decision.proposal_rejected"
     STEP_AUTO_COMPLETED = "decision.step_auto_completed"
+    PLAN_PREPARED = "planning.prepared"
+    PLAN_ATTEMPTED = "planning.attempted"
+    PLAN_FALLBACK = "planning.fallback"
+    PLAN_ACTION = "planning.action"
+    PLAN_FACT_RECORDED = "planning.fact_recorded"
+    PLAN_FACT_DISCARDED = "planning.fact_discarded"
 
     # Runtime state
     STATUS_CHANGED = "status.changed"

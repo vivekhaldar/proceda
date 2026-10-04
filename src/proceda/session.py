@@ -203,6 +203,9 @@ class RunSession:
     executed_tool_receipts: list[ExecutedToolReceipt] = field(default_factory=list)
     clarification_records: list[ClarificationRecord] = field(default_factory=list)
     approval_records: list[ApprovalRecord] = field(default_factory=list)
+    plan_key: str | None = None
+    planned_step_attempts: list[int] = field(default_factory=list)
+    decision_facts: list[dict[str, Any]] = field(default_factory=list)
     completed_steps: list[int] = field(default_factory=list)
     skipped_steps: list[int] = field(default_factory=list)
     total_prompt_tokens: int = 0

@@ -6,8 +6,9 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import time
 from collections.abc import AsyncIterator
-from dataclasses import replace
+from dataclasses import asdict, replace
 from pathlib import Path
 from typing import Any
 
@@ -25,6 +26,8 @@ from proceda.internal.summary import generate_run_summary
 from proceda.internal.tool_executor import ToolExecutor
 from proceda.llm.runtime import LLMRuntime
 from proceda.mcp.orchestrator import MCPOrchestrator
+from proceda.planning.compiler import get_or_compile
+from proceda.planning.runner import PlanRunner
 from proceda.session import RunResult, RunSession, RunStatus
 from proceda.skill import Skill
 from proceda.store.event_log import EventLogWriter, RunDirectoryManager
@@ -212,25 +215,31 @@ class Runtime:
                 return None
             return tool.qualified_name, tool.name
 
-        executor = Executor(
-            skill=skill,
-            session=session,
-            llm=llm,
-            tool_executor=tool_executor,
-            human=self._human,
-            emit=composite.handle,
-            tool_schemas=tool_schemas,
-            decision_service=decision_service,
-            decision_config=self._config.decisions,
-            fallback_llm=fallback_llm,
-            tool_aliases={
-                tool.qualified_name: tool.name for tool in orchestrator.get_available_tools()
-            },
-            resolve_tool_identity=resolve_tool_identity,
-        )
-
         async def _run() -> None:
             try:
+                plan_runner = None
+                if self._config.planning.enabled:
+                    plan_runner = await self._prepare_plan(
+                        skill, session, tool_schemas, audit_dir, composite.handle
+                    )
+                executor = Executor(
+                    skill=skill,
+                    session=session,
+                    llm=llm,
+                    tool_executor=tool_executor,
+                    human=self._human,
+                    emit=composite.handle,
+                    tool_schemas=tool_schemas,
+                    decision_service=decision_service,
+                    decision_config=self._config.decisions,
+                    fallback_llm=fallback_llm,
+                    tool_aliases={
+                        tool.qualified_name: tool.name
+                        for tool in orchestrator.get_available_tools()
+                    },
+                    resolve_tool_identity=resolve_tool_identity,
+                    plan_runner=plan_runner,
+                )
                 await executor.execute()
             finally:
                 try:
@@ -248,3 +257,97 @@ class Runtime:
         asyncio.create_task(_run())
 
         return handle
+
+    async def _prepare_plan(
+        self,
+        skill: Skill,
+        session: RunSession,
+        tool_schemas: list[dict[str, Any]],
+        audit_dir: str,
+        emit: Any,
+    ) -> PlanRunner | None:
+        """Compile reusable instructions without exposing any case values or labels."""
+        started = time.monotonic()
+        configured = self._config.planning.compiler_llm
+        compiler_config = configured or replace(self._config.llm, max_tokens=8192)
+        compiler = LLMRuntime(replace(compiler_config, audit_dir=audit_dir))
+        identity = asdict(compiler_config)
+        identity.pop("audit_dir", None)
+        try:
+            result = await get_or_compile(
+                skill,
+                tool_schemas,
+                sorted(session.variables),
+                compiler=compiler,
+                reviewer=compiler,
+                cache_dir=self._config.planning.cache_dir,
+                compiler_config=identity,
+                reviewer_config=identity,
+                cache_epoch=self._config.planning.cache_epoch,
+            )
+        except Exception as exc:
+            # A compiler or cache failure cannot make the original executor unavailable.
+            await emit(
+                RunEvent.create(
+                    session.id,
+                    EventType.PLAN_PREPARED,
+                    {
+                        "status": "fallback",
+                        "error_type": type(exc).__name__,
+                        "preparation_elapsed_seconds": time.monotonic() - started,
+                    },
+                )
+            )
+            return None
+        session.plan_key = result.cache_key
+        await emit(
+            RunEvent.create(
+                session.id,
+                EventType.PLAN_PREPARED,
+                {
+                    "status": result.status,
+                    "cache_key": result.cache_key,
+                    "artifact_path": str(result.artifact_path),
+                    "artifact_sha256": result.artifact_sha256,
+                    "attempt_path": str(result.attempt_path) if result.attempt_path else None,
+                    "cache_hit": result.cache_hit,
+                    "preparation_elapsed_seconds": time.monotonic() - started,
+                    "errors": result.errors,
+                    "prompt_tokens": result.prompt_tokens,
+                    "completion_tokens": result.completion_tokens,
+                },
+            )
+        )
+        if result.prompt_tokens or result.completion_tokens:
+            session.total_prompt_tokens += result.prompt_tokens
+            session.total_completion_tokens += result.completion_tokens
+            session.total_llm_tokens += result.prompt_tokens + result.completion_tokens
+            await emit(
+                RunEvent.create(
+                    session.id,
+                    EventType.LLM_USAGE,
+                    {
+                        "purpose": "compilation",
+                        "step_index": 0,
+                        "prompt_tokens": result.prompt_tokens,
+                        "completion_tokens": result.completion_tokens,
+                        "total_tokens": result.prompt_tokens + result.completion_tokens,
+                        "cumulative_prompt_tokens": session.total_prompt_tokens,
+                        "cumulative_completion_tokens": session.total_completion_tokens,
+                        "cumulative_total_tokens": session.total_llm_tokens,
+                    },
+                )
+            )
+        if result.plan is None:
+            return None
+        try:
+            return PlanRunner(result.plan, result.cache_key, tool_schemas)
+        except Exception as exc:
+            await emit(
+                RunEvent.create(
+                    session.id,
+                    EventType.PLAN_FALLBACK,
+                    {"reason": "invalid_tool_contract", "error_type": type(exc).__name__},
+                )
+            )
+            return None
