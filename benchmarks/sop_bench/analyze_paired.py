@@ -351,9 +351,11 @@ def local_break_even(baseline: dict, candidate: dict, paired: list) -> dict[str,
     for key in paired:
         left, right = baseline[key]["accounting"], candidate[key]["accounting"]
         left_seconds, right_seconds = local_active_seconds(left), local_active_seconds(right)
-        if any(
-            value is None
-            for value in (left["cost_usd"], right["cost_usd"], left_seconds, right_seconds)
+        if (
+            left["cost_usd"] is None
+            or right["cost_usd"] is None
+            or left_seconds is None
+            or right_seconds is None
         ):
             excluded.append(list(key))
             continue

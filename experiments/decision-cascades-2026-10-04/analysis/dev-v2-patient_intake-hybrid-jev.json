@@ -13,6 +13,13 @@
       "known_output_usage_requests": 27,
       "known_usage_requests": 27,
       "llm_requests": 27,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
       "output_tokens_known": 5221,
       "providers": {
         "llm:zai-org/GLM-5.3-Flash": {
@@ -66,6 +73,13 @@
         "known_output_usage_requests": 13,
         "known_usage_requests": 13,
         "llm_requests": 13,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 2230,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
@@ -113,6 +127,13 @@
         "known_output_usage_requests": 14,
         "known_usage_requests": 14,
         "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 2991,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
@@ -165,6 +186,13 @@
           "known_output_usage_requests": 27,
           "known_usage_requests": 27,
           "llm_requests": 27,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
           "output_tokens_known": 5221,
           "providers": {
             "llm:zai-org/GLM-5.3-Flash": {
@@ -223,6 +251,13 @@
           "known_output_usage_requests": 38,
           "known_usage_requests": 38,
           "llm_requests": 26,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
           "output_tokens_known": 5822,
           "providers": {
             "decision:typesafe:jev-1.13.0": {
@@ -296,6 +331,16 @@
         "improved": 0,
         "regressed": 0
       },
+      "local_active_model_hour_break_even": {
+        "additional_local_native_total_seconds": 0.0,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "hosted_api_savings_usd": -6.905000000000105e-05,
+        "included_pairs": 2,
+        "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+        "positive_api_savings": false,
+        "usd_per_additional_active_model_hour": null
+      },
       "mean_cost_difference_bootstrap95": {
         "confidence": 0.95,
         "excluded_pair_count": 0,
@@ -348,6 +393,13 @@
       "known_output_usage_requests": 38,
       "known_usage_requests": 38,
       "llm_requests": 26,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
       "output_tokens_known": 5822,
       "providers": {
         "decision:typesafe:jev-1.13.0": {
@@ -410,6 +462,13 @@
         "known_output_usage_requests": 19,
         "known_usage_requests": 19,
         "llm_requests": 13,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 2573,
         "providers": {
           "decision:typesafe:jev-1.13.0": {
@@ -466,6 +525,13 @@
         "known_output_usage_requests": 19,
         "known_usage_requests": 19,
         "llm_requests": 13,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 3249,
         "providers": {
           "decision:typesafe:jev-1.13.0": {
@@ -515,6 +581,8 @@
     "LLM request means acompletion attempt; decision request means client.post attempted.",
     "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
     "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
+    "Native total/load/eval known-call counts are separate; components are not summed.",
     "Output tokens include reasoning; reasoning detail is never added again.",
     "Latency covers whole-case execution, including failures; percentiles interpolate.",
     "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
@@ -541,6 +609,13 @@
         "known_output_usage_requests": 27,
         "known_usage_requests": 27,
         "llm_requests": 27,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 5221,
         "providers": {
           "llm:zai-org/GLM-5.3-Flash": {
@@ -599,6 +674,13 @@
         "known_output_usage_requests": 38,
         "known_usage_requests": 38,
         "llm_requests": 26,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
         "output_tokens_known": 5822,
         "providers": {
           "decision:typesafe:jev-1.13.0": {
@@ -671,6 +753,16 @@
       "both_incorrect": 0,
       "improved": 0,
       "regressed": 0
+    },
+    "local_active_model_hour_break_even": {
+      "additional_local_native_total_seconds": 0.0,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "hosted_api_savings_usd": -6.905000000000105e-05,
+      "included_pairs": 2,
+      "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+      "positive_api_savings": false,
+      "usd_per_additional_active_model_hour": null
     },
     "mean_cost_difference_bootstrap95": {
       "confidence": 0.95,

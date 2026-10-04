@@ -5,6 +5,7 @@ ABOUTME: Saves the schedule before inference and tees output to a redacted drive
 from __future__ import annotations
 
 import argparse
+import asyncio
 import contextlib
 import json
 import sys
@@ -21,11 +22,18 @@ from benchmarks.sop_bench.paired_experiment import (
     write_json_exclusive,
 )
 from benchmarks.sop_bench.paired_experiment import (
-    main as run_experiment,
+    main_async as run_experiment,
 )
 
 PROFILES = ("baseline", "hybrid-jev", "hybrid-local-jev")
-PROFILE_CHOICES = (*PROFILES, "hybrid-local")
+PROFILE_CHOICES = (
+    *PROFILES,
+    "hybrid-local",
+    "hybrid-local-12b",
+    "baseline-low",
+    "hybrid-local-low",
+    "hybrid-local-12b-low",
+)
 PASS_ENTRIES = {
     "NEBIUS_API_KEY": "NEBIUS/TOKEN_FACTORY_API_KEY",
     "TYPESAFE_API_KEY": "API_KEYS/TYPESAFE_AI_JEV_API_KEY",
@@ -79,6 +87,7 @@ def build_schedule(
         "limit_per_domain": limit,
         "jobs": jobs,
         "concurrency_between_arms": 0,
+        "concurrency_model": "single_event_loop_semaphore",
         "profiles": list(profiles),
         "domains": list(domains),
         "blocks": blocks,
@@ -86,7 +95,7 @@ def build_schedule(
     }
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+async def main_async(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--split", choices=("dev", "holdout", "all"), default="dev")
@@ -138,7 +147,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 ]
                 if limit is not None:
                     command += ["--limit", str(limit)]
-                status = run_experiment(command, credentials=credentials)
+                status = await run_experiment(command, credentials=credentials)
                 if status:
                     raise RuntimeError(f"Experiment block exited with status {status}")
             write_json_exclusive(
@@ -155,6 +164,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             return 1
     print(json.dumps({"schedule": str(driver_dir / "schedule.json"), "status": "completed"}))
     return 0
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    """Keep all sequential blocks and concurrent cases on the same event loop."""
+    return asyncio.run(main_async(argv))
 
 
 if __name__ == "__main__":

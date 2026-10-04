@@ -1,0 +1,3 @@
+NAME         ID             SIZE     DEVICE   PRECISION   UNTIL
+winnow:12b   8d72fee0e5f9   13 GB    metal    Q8_0        4 minutes from now
+winnow:e4b   dd4bf88aa50b   8.0 GB   metal    Q8_0        2 minutes from now

@@ -72,3 +72,35 @@ on development. Jev support and both earlier profiles remain available. Before
 the larger run, receipt provenance is being hardened against reused provider
 tool-call IDs, with actual human answers retained separately. A four-case
 concurrency development probe will precede any holdout concurrency decision.
+
+## Concurrency probe and lower-effort baseline
+
+`dev-local-8` was aborted after its eight baseline referral cases completed
+correctly and the hybrid arm had started four cases. LiteLLM's process-global
+logging worker repeatedly replaced active task state as the threaded harness
+switched between concurrent event loops. The installed library code confirmed
+that race. All eight baseline cases used exactly eight successful provider calls,
+with no retries; their 62.65–98.26 second case times therefore cannot be explained
+by extra calls. Provider queueing may also have contributed, so the logging issue
+alone is not claimed to explain the slowdown.
+
+The probe and partial hybrid traces remain in place with an `aborted.json` marker.
+Finished requests have audits; requests in flight at termination may have
+unreported usage. This prompted write-ahead audit records so future interrupted
+attempts preserve their sanitized request and explicit unknown-cost status.
+The harness now uses one asyncio loop across its schedule and a semaphore for
+case concurrency. The aborted probe is excluded from comparative conclusions.
+
+The GLM upstream model card documents a default maximum reasoning effort and
+supports `low`, `high`, and `max`; the hosted endpoint's unspecified default was
+not independently established. Nebius documents the explicit `reasoning_effort`
+field. New `*-low.yaml` configurations set `low` identically in both arms to test
+a more efficient baseline. With installed LiteLLM 1.82.0, forwarding this field
+for the OpenAI-compatible GLM model also requires explicitly allowing the
+parameter. Earlier configurations and observations remain unchanged.
+
+A separate replay with the installed larger local model, Winnow 12B, accepted
+6/6 real completed receipt sets and falsely accepted 0/7 incomplete fixtures.
+Its warm calls averaged 1.31 seconds, versus roughly half a second for Winnow 4B;
+that coverage/latency tradeoff needs actual SOP evaluation. Both models can remain
+resident on this 64 GiB machine. This diagnostic result is not task accuracy.

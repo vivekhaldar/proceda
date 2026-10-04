@@ -137,6 +137,11 @@ class LLMRuntime:
 
                 if self._config.thinking:
                     kwargs["thinking"] = {"type": self._config.thinking}
+                if self._config.reasoning_effort is not None:
+                    kwargs["reasoning_effort"] = self._config.reasoning_effort
+                    # Custom OpenAI-compatible models can support this without appearing
+                    # in LiteLLM's model capability registry (for example Nebius GLM).
+                    kwargs["allowed_openai_params"] = ["reasoning_effort"]
 
                 request = copy.deepcopy(
                     {key: value for key, value in kwargs.items() if key != "api_key"}
@@ -145,6 +150,19 @@ class LLMRuntime:
                 started = time.perf_counter()
                 response = None
                 error: BaseException | None = None
+                pending_audit = None
+                if self._config.audit_dir is not None:
+                    # Audit failure stops before creating or awaiting the provider coroutine.
+                    pending_audit = write_attempt(
+                        self._config.audit_dir,
+                        call_id=call_id,
+                        attempt=attempt + 1,
+                        started_at=started_at,
+                        elapsed_ms=0.0,
+                        request=request,
+                        secrets=secrets,
+                        started=True,
+                    )
                 try:
                     response = await asyncio.wait_for(
                         litellm.acompletion(**kwargs), timeout=self._config.timeout
@@ -164,6 +182,7 @@ class LLMRuntime:
                             response=response,
                             error=error,
                             secrets=secrets,
+                            pending=pending_audit,
                         )
                 return self._parse_response(response)
 

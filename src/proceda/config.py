@@ -63,6 +63,7 @@ class LLMConfig:
     max_tokens: int = 4096
     max_retries: int = 3
     thinking: str | None = None
+    reasoning_effort: str | None = None
     api_base: str | None = None
     timeout: float = 60.0
     audit_dir: str | None = None
@@ -160,6 +161,7 @@ class ProcedaConfig:
                 max_tokens=llm.get("max_tokens", config.llm.max_tokens),
                 max_retries=llm.get("max_retries", config.llm.max_retries),
                 thinking=llm.get("thinking", config.llm.thinking),
+                reasoning_effort=llm.get("reasoning_effort"),
                 api_base=llm.get("api_base"),
                 timeout=llm.get("timeout", config.llm.timeout),
                 audit_dir=llm.get("audit_dir"),

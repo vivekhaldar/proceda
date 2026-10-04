@@ -91,6 +91,7 @@ llm:
   api_key_env: NEBIUS_API_KEY
   temperature: 0
   timeout: 90
+  reasoning_effort: low  # Optional, provider/model-specific; forwarded when set
 
 decisions:
   enabled: true

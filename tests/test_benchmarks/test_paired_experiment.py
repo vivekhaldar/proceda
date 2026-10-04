@@ -355,6 +355,60 @@ def test_four_jobs_complete_all_frozen_holdout_cases(experiment, fake_agent):
     assert len({json.loads(p.read_text())["task_id"] for p in terminals}) == 4
 
 
+def test_concurrent_cases_share_one_loop_and_keep_all_results(experiment, monkeypatch):
+    loops = []
+    completion_order = []
+    active = 0
+    peak = 0
+
+    def from_path(path, config):
+        async def create_session(*, variables, event_sinks):
+            task_id = variables["patient_id"]
+
+            async def events():
+                nonlocal active, peak
+                loops.append(asyncio.get_running_loop())
+                active += 1
+                peak = max(peak, active)
+                # Force overlap and completion in a different order from input order.
+                await asyncio.sleep(0.01 * (5 - int(task_id[-1])))
+                for sink in event_sinks:
+                    await sink.handle(
+                        event(EventType.MESSAGE_ASSISTANT, content="<result>done</result>")
+                    )
+                    await sink.handle(event(EventType.TOOL_COMPLETED, task_id=task_id))
+                active -= 1
+                completion_order.append(task_id)
+                yield event(EventType.RUN_COMPLETED)
+
+            return SimpleNamespace(
+                events=events,
+                to_result=lambda: SimpleNamespace(status=RunStatus.COMPLETED, session_id=task_id),
+            )
+
+        return SimpleNamespace(create_session=create_session)
+
+    monkeypatch.setattr(paired.Agent, "from_path", from_path)
+    args = options(experiment)
+    args.update(split="all", jobs=4)
+    result = paired.evaluate(**args)
+    assert peak == 4 and active == 0
+    assert len(loops) == 5 and len(set(loops)) == 1
+    assert result["tasks"] == result["completed"] == 5
+    arm_dir = Path(result["run_dir"])
+    predictions = [
+        json.loads(line) for line in (arm_dir / "predictions.jsonl").read_text().splitlines()
+    ]
+    assert [r["task_id"] for r in predictions] == completion_order
+    assert len({r["task_id"] for r in predictions}) == 5
+    for record in predictions:
+        case = Path(record["case_dir"])
+        assert json.loads((case / "terminal.json").read_text()) == record
+        assert len((case / "events.jsonl").read_text().splitlines()) == 2
+        assert len((case / "messages.jsonl").read_text().splitlines()) == 1
+        assert len((case / "tools.jsonl").read_text().splitlines()) == 1
+
+
 @pytest.mark.parametrize("jobs", [0, 3, 5])
 def test_unsupported_worker_counts_are_rejected(experiment, jobs):
     with pytest.raises(ValueError, match="one, two, or four"):

@@ -1,0 +1,2 @@
+NAME         ID             SIZE     DEVICE   PRECISION   UNTIL
+winnow:e4b   dd4bf88aa50b   8.0 GB   metal    Q8_0        3 minutes from now

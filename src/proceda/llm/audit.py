@@ -1,13 +1,64 @@
 """ABOUTME: Optional per-attempt LLM audit records without credentials or HTTP headers.
-ABOUTME: Uses independent exclusive files so concurrent calls cannot interleave records."""
+ABOUTME: Publishes write-ahead records exclusively and atomically replaces them on completion."""
 
 from __future__ import annotations
 
 import json
+import os
 import re
+import tempfile
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+
+@dataclass(frozen=True)
+class PendingAudit:
+    """Ownership of one exclusively created audit file, used for a single replacement."""
+
+    path: Path
+    device: int
+    inode: int
+
+
+def publish_record(
+    path: Path, record: dict[str, Any], pending: PendingAudit | None = None
+) -> PendingAudit:
+    """Publish a complete JSON record without overwriting another call's audit.
+
+    A temporary file is fully flushed before publication. Replacement requires the
+    exact file created by the caller; a collision or repeated finalization fails.
+    """
+    payload = json.dumps(record, ensure_ascii=False, allow_nan=False) + "\n"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        mode="w", encoding="utf-8", dir=path.parent, prefix=".audit-", suffix=".tmp", delete=False
+    ) as stream:
+        temporary = Path(stream.name)
+        try:
+            stream.write(payload)
+            stream.flush()
+            os.fsync(stream.fileno())
+        except BaseException:
+            temporary.unlink(missing_ok=True)
+            raise
+    try:
+        if pending is None:
+            os.link(temporary, path)  # Atomic publication, with exclusive-create semantics.
+        else:
+            current = path.stat()
+            if pending.path != path or (current.st_dev, current.st_ino) != (
+                pending.device,
+                pending.inode,
+            ):
+                raise FileExistsError("Audit ownership changed; refusing replacement")
+            os.replace(temporary, path)
+        published = path.stat()
+        return PendingAudit(path, published.st_dev, published.st_ino)
+    finally:
+        temporary.unlink(missing_ok=True)
+
 
 _PRIVATE_FIELDS = {
     "api_key",
@@ -107,8 +158,10 @@ def write_attempt(
     response: Any = None,
     error: BaseException | None = None,
     secrets: tuple[str, ...] = (),
-) -> None:
-    """Write one finished attempt; errors writing an enabled audit are not hidden."""
+    started: bool = False,
+    pending: PendingAudit | None = None,
+) -> PendingAudit:
+    """Write an attempt before dispatch, or finalize its one existing record."""
     source = response if response is not None else getattr(error, "response", None)
     raw = response_data(source)
     usage = usage_data(source, raw)
@@ -116,7 +169,7 @@ def write_attempt(
         "call_id": call_id,
         "attempt": attempt,
         "started_at": started_at,
-        "finished_at": datetime.now(UTC).isoformat(),
+        "finished_at": None if started else datetime.now(UTC).isoformat(),
         "elapsed_ms": elapsed_ms,
         "request": request,
         "requested_model": request["model"],
@@ -124,13 +177,15 @@ def write_attempt(
         "response": raw,
         "usage": usage,
         "usage_reported": usage is not None,
-        "status": "error" if error is not None else "success",
+        "status": "started" if started else "error" if error is not None else "success",
+        "cost_known": isinstance(usage, dict)
+        and all(
+            type(usage.get(key)) is int and usage[key] >= 0
+            for key in ("prompt_tokens", "completion_tokens")
+        ),
         "error": {"type": type(error).__name__, "message": str(error)}
         if error is not None
         else None,
     }
-    path = Path(directory)
-    path.mkdir(parents=True, exist_ok=True)
-    payload = json.dumps(sanitize(record, secrets), ensure_ascii=False, allow_nan=False)
-    with (path / f"{call_id}-{attempt:03d}.json").open("x", encoding="utf-8") as stream:
-        stream.write(payload + "\n")
+    path = Path(directory) / f"{call_id}-{attempt:03d}.json"
+    return publish_record(path, sanitize(record, secrets), pending)

@@ -342,6 +342,18 @@ async def test_unset_provider_fields_are_omitted(monkeypatch):
         await runtime.complete([{"role": "user", "content": "hi"}])
     assert "api_key" not in completion.call_args.kwargs
     assert "api_base" not in completion.call_args.kwargs
+    assert "reasoning_effort" not in completion.call_args.kwargs
+    assert "allowed_openai_params" not in completion.call_args.kwargs
+
+
+async def test_reasoning_effort_is_forwarded_with_custom_provider_allowance():
+    runtime = LLMRuntime(LLMConfig(reasoning_effort="low", thinking="enabled"))
+    completion = AsyncMock(return_value=_make_litellm_response())
+    with patch("litellm.acompletion", completion):
+        await runtime.complete([{"role": "user", "content": "hi"}])
+    assert completion.call_args.kwargs["reasoning_effort"] == "low"
+    assert completion.call_args.kwargs["allowed_openai_params"] == ["reasoning_effort"]
+    assert completion.call_args.kwargs["thinking"] == {"type": "enabled"}
 
 
 @pytest.mark.asyncio
@@ -476,3 +488,65 @@ async def test_overall_timeout_bounds_provider_setup_and_is_audited(tmp_path):
     assert len(records) == 1
     assert records[0]["error"]["type"] == "TimeoutError"
     assert records[0]["usage_reported"] is False
+
+
+async def test_write_ahead_audit_visible_in_provider_and_atomically_replaced(tmp_path, monkeypatch):
+    secret = "secret-pending-audit"
+    monkeypatch.setenv("PROCEDA_TEST_KEY", secret)
+    runtime = LLMRuntime(LLMConfig(api_key_env="PROCEDA_TEST_KEY", audit_dir=str(tmp_path)))
+    seen = []
+
+    async def complete(**kwargs):
+        paths = list(tmp_path.glob("*.json"))
+        assert len(paths) == 1
+        path = paths[0]
+        record = json.loads(path.read_text())
+        assert record["status"] == "started"
+        assert record["finished_at"] is None and record["response"] is None
+        assert record["usage"] is None and record["cost_known"] is False
+        assert record["usage_reported"] is False
+        assert record["request"]["messages"][0]["content"] == "hello [REDACTED]"
+        assert secret not in path.read_text()
+        seen.append((path, path.stat().st_ino))
+        return _make_litellm_response(prompt_tokens=3, completion_tokens=1, total_tokens=4)
+
+    with patch("litellm.acompletion", complete):
+        await runtime.complete([{"role": "user", "content": f"hello {secret}"}])
+    path, inode = seen[0]
+    assert list(tmp_path.glob("*.json")) == [path]
+    assert path.stat().st_ino != inode
+    record = json.loads(path.read_text())
+    assert record["status"] == "success" and record["usage"]["total_tokens"] == 4
+    assert not list(tmp_path.glob("*.tmp"))
+
+
+async def test_initial_audit_failure_prevents_llm_dispatch(tmp_path):
+    blocked = tmp_path / "not-a-directory"
+    blocked.write_text("do not overwrite")
+    runtime = LLMRuntime(LLMConfig(audit_dir=str(blocked)))
+    completion = AsyncMock(return_value=_make_litellm_response())
+    with patch("litellm.acompletion", completion), pytest.raises(LLMAPIError):
+        await runtime.complete([{"role": "user", "content": "hi"}])
+    completion.assert_not_called()
+    assert blocked.read_text() == "do not overwrite"
+
+
+def test_audit_collision_and_double_finalization_cannot_overwrite(tmp_path):
+    from proceda.llm.audit import write_attempt
+
+    arguments = dict(
+        directory=str(tmp_path),
+        call_id="same",
+        attempt=1,
+        started_at="now",
+        elapsed_ms=0,
+        request={"model": "toy"},
+    )
+    pending = write_attempt(**arguments, started=True)
+    with pytest.raises(FileExistsError):
+        write_attempt(**arguments, started=True)
+    write_attempt(**arguments, pending=pending)
+    finalized = pending.path.read_text()
+    with pytest.raises(FileExistsError):
+        write_attempt(**arguments, pending=pending, error=RuntimeError("late"))
+    assert pending.path.read_text() == finalized

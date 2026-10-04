@@ -4,6 +4,7 @@ ABOUTME: Stub both password-store access and model-running entrypoints.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import sys
 
@@ -23,21 +24,29 @@ def test_driver_loads_once_and_defaults_to_two_dev_cases(tmp_path, monkeypatch):
     monkeypatch.setattr(driver, "DEFAULT_EXPERIMENT", tmp_path)
     credential_calls = []
     experiment_calls = []
+    loops = []
+    active = []
 
     def credentials(entries):
         credential_calls.append(entries)
         return {"NEBIUS_API_KEY": "private-test-token"}
 
-    def run(arguments, credentials):
+    async def run(arguments, credentials):
         assert (tmp_path / "runs/test/schedule.json").exists()
+        assert not active
+        active.append(arguments)
+        loops.append(asyncio.get_running_loop())
+        await asyncio.sleep(0)
         experiment_calls.append(arguments)
         print(credentials["NEBIUS_API_KEY"], file=sys.stderr)
+        active.pop()
         return 0
 
     monkeypatch.setattr(driver, "load_pass_credentials", credentials)
     monkeypatch.setattr(driver, "run_experiment", run)
     assert driver.main(["--run-id", "test"]) == 0
     assert len(credential_calls) == 1 and len(experiment_calls) == 9
+    assert len(set(loops)) == 1
     assert all(command[-2:] == ["--limit", "2"] for command in experiment_calls)
     log = (tmp_path / "runs/test/driver.log").read_text()
     assert "private-test-token" not in log and "[REDACTED]" in log
@@ -49,7 +58,7 @@ def test_full_holdout_omits_limit_and_failure_is_retained(tmp_path, monkeypatch)
     monkeypatch.setattr(driver, "load_pass_credentials", lambda entries: {})
     calls = []
 
-    def fail(arguments, credentials):
+    async def fail(arguments, credentials):
         calls.append(arguments)
         raise RuntimeError("provider failed")
 
@@ -66,7 +75,12 @@ def test_driver_passes_two_jobs_without_cross_arm_concurrency(tmp_path, monkeypa
     monkeypatch.setattr(driver, "DEFAULT_EXPERIMENT", tmp_path)
     monkeypatch.setattr(driver, "load_pass_credentials", lambda entries: {})
     calls = []
-    monkeypatch.setattr(driver, "run_experiment", lambda args, credentials: calls.append(args) or 0)
+
+    async def run(args, credentials):
+        calls.append(args)
+        return 0
+
+    monkeypatch.setattr(driver, "run_experiment", run)
     assert driver.main(["--run-id", "parallel-cases", "--jobs", "2"]) == 0
     assert all(args[args.index("--jobs") + 1] == "2" for args in calls)
     schedule = json.loads((tmp_path / "runs/parallel-cases/schedule.json").read_text())
@@ -90,7 +104,12 @@ def test_four_job_local_only_development_schedule(tmp_path, monkeypatch):
     monkeypatch.setattr(driver, "DEFAULT_EXPERIMENT", tmp_path)
     monkeypatch.setattr(driver, "load_pass_credentials", lambda entries: {})
     calls = []
-    monkeypatch.setattr(driver, "run_experiment", lambda args, credentials: calls.append(args) or 0)
+
+    async def run(args, credentials):
+        calls.append(args)
+        return 0
+
+    monkeypatch.setattr(driver, "run_experiment", run)
     assert (
         driver.main(
             [
@@ -113,3 +132,17 @@ def test_four_job_local_only_development_schedule(tmp_path, monkeypatch):
     schedule = json.loads((tmp_path / "runs/dev-next/schedule.json").read_text())
     assert schedule["jobs"] == 4 and schedule["concurrency_between_arms"] == 0
     assert schedule["profiles"] == ["baseline", "hybrid-local"]
+
+
+def test_twelve_billion_profile_changes_only_model_and_timeout():
+    from dataclasses import replace
+
+    from proceda.config import ProcedaConfig
+
+    base = driver.DEFAULT_EXPERIMENT / "configs"
+    smaller = ProcedaConfig.load(base / "hybrid-local.yaml")
+    larger = ProcedaConfig.load(base / "hybrid-local-12b.yaml")
+    assert larger.llm == smaller.llm
+    expected_backend = replace(smaller.decisions.backends[0], model="winnow:12b", timeout=90)
+    assert larger.decisions == replace(smaller.decisions, backends=[expected_backend])
+    assert "hybrid-local-12b" in driver.PROFILE_CHOICES

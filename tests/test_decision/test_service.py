@@ -227,6 +227,53 @@ async def test_failed_audit_abstains_instead_of_returning_unaudited_approval():
     assert result.details[0]["reason"] == "audit_failed"
 
 
+async def test_pending_audit_exists_before_http_send_and_final_callback_runs_once(tmp_path):
+    callbacks = []
+    seen = []
+
+    def handler(request):
+        paths = list((tmp_path / "decisions").glob("*.json"))
+        assert len(paths) == 1
+        path = paths[0]
+        record = json.loads(path.read_text())
+        assert record["outcome"] == "started" and record["request_sent"] is True
+        assert record["usage"] is None and record["cost_known"] is False
+        assert record["response"] is None and record["usage_reported"] is False
+        assert record["request"] == json.loads(request.content)
+        assert callbacks == []
+        seen.append((path, path.stat().st_ino))
+        return httpx.Response(200, json=body())
+
+    service = DecisionService(
+        [backend()],
+        audit_dir=tmp_path,
+        audit_callback=callbacks.append,
+        transport=httpx.MockTransport(handler),
+    )
+    result = await service.evaluate({"source": "actual input"}, QUESTIONS)
+    assert result.value is True and len(callbacks) == 1
+    path, inode = seen[0]
+    assert list((tmp_path / "decisions").glob("*.json")) == [path]
+    assert path.stat().st_ino != inode
+    assert json.loads(path.read_text())["outcome"] == "accepted"
+
+
+async def test_initial_audit_failure_prevents_decision_dispatch(tmp_path):
+    blocked = tmp_path / "not-a-directory"
+    blocked.write_text("do not overwrite")
+    requests = []
+    service = DecisionService(
+        [backend()],
+        audit_dir=blocked,
+        transport=httpx.MockTransport(lambda req: requests.append(req)),
+    )
+    result = await service.evaluate({}, QUESTIONS)
+    assert result.value is None and requests == []
+    assert result.details[0]["request_sent"] is False
+    assert result.details[0]["cost_known"] is True
+    assert blocked.read_text() == "do not overwrite"
+
+
 async def test_hosted_missing_key_abstains_without_call(monkeypatch):
     monkeypatch.delenv("TEST_DECISION_KEY", raising=False)
     calls = []

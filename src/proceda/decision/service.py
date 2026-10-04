@@ -19,6 +19,8 @@ from uuid import uuid4
 
 import httpx
 
+from proceda.llm.audit import PendingAudit, publish_record
+
 logger = logging.getLogger(__name__)
 
 
@@ -214,18 +216,29 @@ class DecisionService:
             questions,
         )
 
-    async def _audit(self, record: dict[str, Any]) -> bool:
+    def _sanitized_audit(self, record: dict[str, Any]) -> dict[str, Any]:
         secrets = [
             secret
             for backend in self._backends
             if (secret := os.environ.get(backend.api_key_env, ""))
         ]
-        clean = _sanitize(record, secrets)
+        return _sanitize(record, secrets)
+
+    def _start_audit(self, record: dict[str, Any]) -> PendingAudit | None:
+        """Persist the request before sending; callbacks remain final-record notifications."""
+        if self._audit_dir is None:
+            return None
+        path = self._audit_dir / f"decision-{record['call_id']}.json"
+        pending = publish_record(path, self._sanitized_audit(record))
+        record["audit_path"] = str(path)
+        return pending
+
+    async def _audit(self, record: dict[str, Any], pending: PendingAudit | None = None) -> bool:
+        clean = self._sanitized_audit(record)
         try:
             if self._audit_dir is not None:
-                self._audit_dir.mkdir(parents=True, exist_ok=True)
                 path = self._audit_dir / f"decision-{record['call_id']}.json"
-                path.write_text(json.dumps(clean, ensure_ascii=False, indent=2) + "\n")
+                publish_record(path, clean, pending)
                 record["audit_path"] = str(path)
             if self._audit_callback is not None:
                 result = self._audit_callback(clean)
@@ -271,6 +284,7 @@ class DecisionService:
                 "cost_known": True,  # No provider attempt has started yet.
             }
             value: bool | None = None
+            pending_audit = None
             try:
                 threshold = getattr(backend, "threshold", None)
                 threshold = self._threshold if threshold is None else threshold
@@ -292,7 +306,19 @@ class DecisionService:
                     ) as client:
                         # This means a transport attempt started, not that the server
                         # acknowledged receiving it. A timeout may still incur charges.
-                        record.update(request_sent=True, cost_known=False)
+                        # Write-ahead records indicate a request committed for dispatch;
+                        # termination in this tiny window cannot prove provider receipt.
+                        record.update(
+                            request_sent=True,
+                            cost_known=False,
+                            outcome="started",
+                            elapsed_seconds=0.0,
+                        )
+                        try:
+                            pending_audit = self._start_audit(record)
+                        except Exception:
+                            record.update(request_sent=False, cost_known=True)
+                            raise ValueError("audit_start_failed") from None
                         response = await client.post(
                             record["endpoint"], json=record["request"], headers=headers
                         )
@@ -324,7 +350,7 @@ class DecisionService:
                 reason = type(exc).__name__ if isinstance(exc, httpx.HTTPError) else str(exc)
                 record.update(outcome="error", reason=reason)
             record["elapsed_seconds"] = time.monotonic() - started
-            if not await self._audit(record):
+            if not await self._audit(record, pending_audit):
                 value = None
                 record.update(outcome="error", reason="audit_failed")
             detail = {key: val for key, val in record.items() if key not in {"request", "response"}}

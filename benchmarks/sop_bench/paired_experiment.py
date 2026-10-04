@@ -17,10 +17,8 @@ import os
 import re
 import subprocess
 import sys
-import threading
 import time
 from collections.abc import Mapping, Sequence
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -59,7 +57,6 @@ _SOURCE_FILES = (
     "test_set_with_outputs.csv",
     "test_set_without_outputs.csv",
 )
-_JSONL_LOCK = threading.Lock()
 
 
 def sha256_file(path: Path) -> str:
@@ -309,7 +306,7 @@ async def run_until_closed(agent: Agent, variables: dict[str, str], collector: C
     return handle.to_result()
 
 
-def run_case(
+async def run_case_async(
     *,
     task: dict[str, str],
     domain: str,
@@ -340,7 +337,7 @@ def run_case(
     try:
         case_config = scoped_config(config, case_dir, domain, data_dir)
         agent = Agent.from_path(skill_path, config=case_config)
-        result = asyncio.run(run_until_closed(agent, variables, collector))
+        result = await run_until_closed(agent, variables, collector)
         status = result.status.value
     except Exception as exc:
         status = "failed"
@@ -376,7 +373,12 @@ def run_case(
     return record
 
 
-def evaluate(
+def run_case(**kwargs: Any) -> dict[str, Any]:
+    """Synchronous single-case entrypoint; schedules use the async core instead."""
+    return asyncio.run(run_case_async(**kwargs))
+
+
+async def evaluate_async(
     *,
     config: ProcedaConfig,
     arm: str,
@@ -439,6 +441,7 @@ def evaluate(
         "domains": list(domains),
         "limit_per_domain": limit,
         "jobs": jobs,
+        "concurrency_model": "single_event_loop_semaphore",
         "task_ids": {
             domain: [task[ID_COLUMNS[domain]] for d, task, _ in tasks if d == domain]
             for domain in domains
@@ -493,12 +496,19 @@ def evaluate(
                     secrets=secrets,
                 )
             )
-    with ThreadPoolExecutor(max_workers=jobs) as pool:
-        futures = [pool.submit(run_case, **kwargs) for kwargs in pending]
-        for future in as_completed(futures):
-            record = future.result()
+    semaphore = asyncio.Semaphore(jobs)
+
+    async def bounded_case(kwargs: dict[str, Any]) -> dict[str, Any]:
+        async with semaphore:
+            return await run_case_async(**kwargs)
+
+    case_tasks = [asyncio.create_task(bounded_case(kwargs)) for kwargs in pending]
+    try:
+        for finished in asyncio.as_completed(case_tasks):
+            record = await finished
             records.append(record)
-            with _JSONL_LOCK, (arm_dir / "predictions.jsonl").open("a") as handle:
+            # All writes occur on this loop, with no await between append and flush.
+            with (arm_dir / "predictions.jsonl").open("a") as handle:
                 handle.write(json.dumps(scrub(record, secrets)) + "\n")
                 handle.flush()
             print(
@@ -506,6 +516,11 @@ def evaluate(
                 f"{'PASS' if record['correct'] else 'FAIL'} ({record['elapsed_seconds']:.2f}s)",
                 flush=True,
             )
+    finally:
+        for task in case_tasks:
+            if not task.done():
+                task.cancel()
+        await asyncio.gather(*case_tasks, return_exceptions=True)
     summary = {
         "arm": arm,
         "split": split,
@@ -521,6 +536,11 @@ def evaluate(
     if not summary_path.exists():
         write_json_exclusive(summary_path, summary)
     return summary
+
+
+def evaluate(**kwargs: Any) -> dict[str, Any]:
+    """Synchronous compatibility entrypoint; one loop for the entire arm/domain block."""
+    return asyncio.run(evaluate_async(**kwargs))
 
 
 @contextlib.contextmanager
@@ -539,7 +559,9 @@ def credential_environment(credentials: Mapping[str, str] | None):
                 os.environ[key] = value
 
 
-def main(argv: Sequence[str] | None = None, credentials: Mapping[str, str] | None = None) -> int:
+async def main_async(
+    argv: Sequence[str] | None = None, credentials: Mapping[str, str] | None = None
+) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path)
     parser.add_argument("--arm")
@@ -565,7 +587,7 @@ def main(argv: Sequence[str] | None = None, credentials: Mapping[str, str] | Non
         parser.error("--config, --arm, and --run-id are required for inference")
     with credential_environment(credentials):
         config = ProcedaConfig.load(args.config)
-        summary = evaluate(
+        summary = await evaluate_async(
             config=config,
             arm=args.arm,
             split=args.split,
@@ -580,6 +602,10 @@ def main(argv: Sequence[str] | None = None, credentials: Mapping[str, str] | Non
         )
     print(json.dumps(summary))
     return 0
+
+
+def main(argv: Sequence[str] | None = None, credentials: Mapping[str, str] | None = None) -> int:
+    return asyncio.run(main_async(argv, credentials))
 
 
 if __name__ == "__main__":

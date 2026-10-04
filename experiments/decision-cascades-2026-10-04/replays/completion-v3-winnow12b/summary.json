@@ -1,0 +1,19 @@
+{
+  "positive_accepted": 6,
+  "positive_total": 6,
+  "negative_false_accepted": 0,
+  "negative_rejected": 5,
+  "negative_abstained": 2,
+  "negative_total": 7,
+  "errors": 0,
+  "total_elapsed_seconds": 22.536265457994887,
+  "call_seconds_total": 22.527221832977375,
+  "call_seconds_mean": 1.7328632179213366,
+  "call_seconds_median": 1.3099290839891182,
+  "first_call_seconds": 6.756011417004629,
+  "remaining_call_seconds_mean": 1.3142675346643955,
+  "call_seconds_max": 6.756011417004629,
+  "service_unchanged_during_replay": true,
+  "api_cost_usd": 0,
+  "local_compute_is_not_free": true
+}
