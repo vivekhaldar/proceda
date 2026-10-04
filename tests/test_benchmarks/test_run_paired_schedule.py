@@ -146,3 +146,27 @@ def test_twelve_billion_profile_changes_only_model_and_timeout():
     expected_backend = replace(smaller.decisions.backends[0], model="winnow:12b", timeout=90)
     assert larger.decisions == replace(smaller.decisions, backends=[expected_backend])
     assert "hybrid-local-12b" in driver.PROFILE_CHOICES
+
+
+def test_proposal_ablation_profiles_change_only_gate_enablement():
+    from dataclasses import replace
+
+    from proceda.config import ProcedaConfig
+
+    base = driver.DEFAULT_EXPERIMENT / "configs"
+    completion = ProcedaConfig.load(base / "hybrid-local-low.yaml")
+    for name, fast_completion in (
+        ("hybrid-local-verify-low", False),
+        ("hybrid-local-both-low", True),
+    ):
+        actual = ProcedaConfig.load(base / f"{name}.yaml")
+        expected = replace(
+            completion,
+            decisions=replace(
+                completion.decisions,
+                fast_completion=fast_completion,
+                verify_proposals=True,
+            ),
+        )
+        assert actual == expected
+        assert name in driver.PROFILE_CHOICES

@@ -33,6 +33,8 @@ PROFILE_CHOICES = (
     "baseline-low",
     "hybrid-local-low",
     "hybrid-local-12b-low",
+    "hybrid-local-verify-low",
+    "hybrid-local-both-low",
 )
 PASS_ENTRIES = {
     "NEBIUS_API_KEY": "NEBIUS/TOKEN_FACTORY_API_KEY",

@@ -106,6 +106,24 @@ async def test_fast_path_eliminates_only_nonfinal_continuation():
     assert evidence["inputs"] == {"record_id": "R1"}
 
 
+async def test_auto_completion_keeps_gate_authority_out_of_model_context():
+    ex, session, llm, _, _, sink = setup([response("lookup", {"id": "R1"}), response()])
+    await ex.execute()
+    # Future model turns must not see authority claims/receipt identifiers to imitate.
+    next_messages = llm.complete.await_args_list[1].args[0]
+    assert "Step 1: Read completed." in str(next_messages)
+    assert "decision gate" not in str(next_messages)
+    assert "receipt_" not in str(next_messages)
+    # Authoritative approval and evidence linkage remain available to audit consumers.
+    approval = next(e for e in sink.events if e.type is EventType.DECISION_EVALUATED)
+    assert approval.payload["purpose"] == "completion" and approval.payload["value"] is True
+    completion = next(e for e in sink.events if e.type is EventType.STEP_AUTO_COMPLETED)
+    assert completion.payload["receipt_ids"] == [
+        receipt.receipt_id for receipt in session.executed_tool_receipts
+    ]
+    assert completion.payload["step_index"] == 1
+
+
 @pytest.mark.parametrize("gate", [False, None])
 async def test_unaccepted_completion_uses_original_loop_without_repeating_tool(gate):
     ex, session, llm, tools, decisions, _ = setup(

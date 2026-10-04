@@ -300,6 +300,7 @@ def load_arm(directory: Path) -> tuple[dict[str, Any], dict[tuple[str, str], dic
             cases[key] = {
                 "domain": domain,
                 "task_id": task_id,
+                "source_arm_dir": str(directory.resolve()),
                 "terminal": terminal is not None,
                 "status": terminal["status"]
                 if terminal
@@ -312,6 +313,30 @@ def load_arm(directory: Path) -> tuple[dict[str, Any], dict[tuple[str, str], dic
                 "accounting": account_audits(case_dir, terminal),
             }
     return manifest, cases
+
+
+def load_arms(directories: list[Path]) -> tuple[dict[str, Any], dict[tuple[str, str], dict]]:
+    """Merge disjoint runs with the same frozen split; repeated cases are an error."""
+    if not directories:
+        raise ValueError("At least one arm directory is required")
+    reference = None
+    merged = {}
+    for directory in directories:
+        manifest, cases = load_arm(directory)
+        if reference is None:
+            reference = manifest
+        for name in ("manifest_sha256", "split"):
+            if reference[name] != manifest[name]:
+                raise ValueError(f"Cannot merge runs with different {name}: {directory}")
+        for key, case in cases.items():
+            if key in merged:
+                raise ValueError(
+                    f"Duplicate case across arm directories: {key}; "
+                    f"{merged[key]['source_arm_dir']} and {case['source_arm_dir']}"
+                )
+            merged[key] = case
+    assert reference is not None
+    return reference, merged
 
 
 def summarize(cases: list[dict[str, Any]]) -> dict[str, Any]:
@@ -422,6 +447,8 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
                 "outcome": outcome,
                 "baseline_status": left["status"],
                 "candidate_status": right["status"],
+                "baseline_source_arm_dir": left["source_arm_dir"],
+                "candidate_source_arm_dir": right["source_arm_dir"],
                 "candidate_minus_baseline_seconds": delta,
                 "candidate_minus_baseline_cost_usd": cost_delta,
             }
@@ -452,17 +479,21 @@ def compare(baseline: dict, candidate: dict) -> dict[str, Any]:
     }
 
 
-def analyze(baseline_dir: Path, candidate_dir: Path) -> dict[str, Any]:
-    baseline_manifest, baseline = load_arm(baseline_dir)
-    candidate_manifest, candidate = load_arm(candidate_dir)
+def analyze(baseline_dir: Path | list[Path], candidate_dir: Path | list[Path]) -> dict[str, Any]:
+    baseline_dirs = [baseline_dir] if isinstance(baseline_dir, Path) else baseline_dir
+    candidate_dirs = [candidate_dir] if isinstance(candidate_dir, Path) else candidate_dir
+    baseline_manifest, baseline = load_arms(baseline_dirs)
+    candidate_manifest, candidate = load_arms(candidate_dirs)
     for name in ("manifest_sha256", "split"):
         if baseline_manifest[name] != candidate_manifest[name]:
             raise ValueError(f"Cannot pair runs with different {name}")
     domains = sorted({key[0] for key in baseline} | {key[0] for key in candidate})
     return {
         "schema_version": 1,
-        "baseline_dir": str(baseline_dir.resolve()),
-        "candidate_dir": str(candidate_dir.resolve()),
+        "baseline_dir": str(baseline_dirs[0].resolve()) if len(baseline_dirs) == 1 else None,
+        "candidate_dir": str(candidate_dirs[0].resolve()) if len(candidate_dirs) == 1 else None,
+        "baseline_dirs": [str(directory.resolve()) for directory in baseline_dirs],
+        "candidate_dirs": [str(directory.resolve()) for directory in candidate_dirs],
         "split": baseline_manifest["split"],
         "source_manifest_sha256": baseline_manifest["manifest_sha256"],
         "prices_usd_per_million_tokens": {
@@ -480,6 +511,7 @@ def analyze(baseline_dir: Path, candidate_dir: Path) -> dict[str, Any]:
             "Output tokens include reasoning; reasoning detail is never added again.",
             "Latency covers whole-case execution, including failures; percentiles interpolate.",
             "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+            "Merged runs share a frozen split; duplicate (domain, task_id) keys are rejected.",
             "Discordance counts are descriptive; no population guarantee or significance claimed.",
             "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
             "Correlated cases or shared entities can make these intervals too narrow.",
@@ -504,8 +536,8 @@ def analyze(baseline_dir: Path, candidate_dir: Path) -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--baseline", required=True, type=Path)
-    parser.add_argument("--candidate", required=True, type=Path)
+    parser.add_argument("--baseline", required=True, type=Path, nargs="+")
+    parser.add_argument("--candidate", required=True, type=Path, nargs="+")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     report = analyze(args.baseline, args.candidate)

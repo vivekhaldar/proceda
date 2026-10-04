@@ -14,6 +14,7 @@ from benchmarks.sop_bench.analyze_paired import (
     analyze,
     discordant_test,
     latency,
+    main,
     paired_bootstrap,
     sum_accounting,
     wilson_interval,
@@ -124,22 +125,22 @@ def test_unknown_request_status_and_missing_audit_block_exact_cost(tmp_path):
     assert result["audit_errors"]
 
 
-def make_arm(directory: Path, predictions: dict, split="dev"):
+def make_arm(directory: Path, predictions: dict, split="dev", domain="domain"):
     write(
         directory / "run.json",
         {
             "manifest_sha256": "same-source",
             "split": split,
-            "task_ids": {"domain": ["A", "B", "C"]},
+            "task_ids": {domain: ["A", "B", "C"]},
         },
     )
     for task_id, (prediction, status, elapsed) in predictions.items():
-        case = directory / "domain" / task_id
+        case = directory / domain / task_id
         write(case / "expected.json", {"decision": "valid"})
         write(
             case / "terminal.json",
             {
-                "domain": "domain",
+                "domain": domain,
                 "task_id": task_id,
                 "status": status,
                 "completed": status == "completed",
@@ -311,3 +312,60 @@ def test_active_model_hour_break_even_has_no_rate_without_extra_local_compute(tm
     assert breakeven["included_pairs"] == 1
     assert breakeven["additional_local_native_total_seconds"] == 0
     assert breakeven["usd_per_additional_active_model_hour"] is None
+
+
+def test_cli_merges_three_domains_and_preserves_source_provenance(tmp_path, monkeypatch, capsys):
+    baseline, candidate = [], []
+    for domain in ("email", "patient", "referral"):
+        for arm, directories, seconds in (("baseline", baseline, 1), ("candidate", candidate, 2)):
+            directory = tmp_path / domain / arm
+            make_arm(directory, {"A": ("valid", "completed", seconds)}, domain=domain)
+            directories.append(directory)
+    output = tmp_path / "report.json"
+    monkeypatch.setattr(
+        "sys.argv",
+        [
+            "analyze_paired",
+            "--baseline",
+            *map(str, baseline),
+            "--candidate",
+            *map(str, candidate),
+            "--output",
+            str(output),
+        ],
+    )
+    main()
+    capsys.readouterr()
+    report = json.loads(output.read_text())
+    assert report["paired"]["terminal_pairs"] == 3
+    assert report["baseline"]["planned_cases"] == 9
+    assert report["baseline"]["accounting"]["llm_requests"] == 3
+    assert report["baseline"]["accounting"]["cost_usd"] == pytest.approx(0.000075)
+    assert report["paired"]["mean_latency_difference_bootstrap95"]["mean_difference"] == 1
+    assert set(report["by_domain"]) == {"email", "patient", "referral"}
+    assert all(value["terminal_pairs"] == 1 for value in report["by_domain"].values())
+    for case in report["paired"]["cases"]:
+        assert case["baseline_source_arm_dir"] == str(tmp_path / case["domain"] / "baseline")
+        assert case["candidate_source_arm_dir"] == str(tmp_path / case["domain"] / "candidate")
+    assert report["baseline_cases"][0]["source_arm_dir"] == str(baseline[0])
+    assert report["baseline_dirs"] == list(map(str, baseline))
+    assert report["baseline_dir"] is None
+
+
+def test_merging_overlapping_runs_rejects_repeats_including_pending_cases(tmp_path):
+    first, repeated, candidate = [tmp_path / name for name in ("first", "repeated", "candidate")]
+    make_arm(first, {})
+    make_arm(repeated, {"A": ("valid", "completed", 1)})
+    make_arm(candidate, {})
+    with pytest.raises(ValueError, match="Duplicate case across arm directories"):
+        analyze([first, repeated], candidate)
+    with pytest.raises(ValueError, match="Duplicate case across arm directories"):
+        analyze(candidate, [first, first])
+
+
+def test_merging_distinct_domains_rejects_different_frozen_splits(tmp_path):
+    first, second = tmp_path / "first", tmp_path / "second"
+    make_arm(first, {}, domain="one")
+    make_arm(second, {}, domain="two", split="holdout")
+    with pytest.raises(ValueError, match="Cannot merge runs with different split"):
+        analyze([first, second], first)

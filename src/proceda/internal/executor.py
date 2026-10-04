@@ -442,8 +442,8 @@ class Executor:
                 if gate.value is True:
                     receipt_ids = [r.receipt_id for r in fresh_receipts]
                     summary = (
-                        "Step obligations accepted by the configured decision gate. "
-                        f"Original tool receipts: {', '.join(receipt_ids)}."
+                        f"Step {step.index}: {step.title} completed. "
+                        "Tool results are retained for subsequent steps."
                     )
                     tc = ToolCall(ToolCall.generate_id(), "complete_step", {"summary": summary})
                     session.add_message(RunMessage.create("assistant", "", tool_calls=[tc]))

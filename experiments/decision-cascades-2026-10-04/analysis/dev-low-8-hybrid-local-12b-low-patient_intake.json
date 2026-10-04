@@ -1,0 +1,1694 @@
+{
+  "baseline": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 110,
+      "cost_complete": true,
+      "cost_usd": 0.07838239999999999,
+      "cost_usd_lower_bound": 0.07838239999999999,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "input_tokens_known": 498586,
+      "known_input_usage_requests": 110,
+      "known_output_usage_requests": 110,
+      "known_usage_requests": 110,
+      "llm_requests": 110,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
+      "output_tokens_known": 7189,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.07838239999999999,
+          "input_tokens_known": 498586,
+          "known_usage_requests": 110,
+          "output_tokens_known": 7189,
+          "requests": 110,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 8,
+    "correct_cases": 8,
+    "latency_seconds": {
+      "mean": 20.870243541627133,
+      "n": 8,
+      "p50": 16.27576500050054,
+      "p95": 36.969676801853346
+    },
+    "planned_cases": 8,
+    "status_counts": {
+      "completed": 8
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.6755924351161198,
+      "n": 8,
+      "successes": 8,
+      "upper": 1.0
+    },
+    "terminal_cases": 8
+  },
+  "baseline_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 13,
+        "cost_complete": true,
+        "cost_usd": 0.0090781,
+        "cost_usd_lower_bound": 0.0090781,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 58034,
+        "known_input_usage_requests": 13,
+        "known_output_usage_requests": 13,
+        "known_usage_requests": 13,
+        "llm_requests": 13,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 746,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0090781,
+            "input_tokens_known": 58034,
+            "known_usage_requests": 13,
+            "output_tokens_known": 746,
+            "requests": 13,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 14.82988612500776,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100002",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.00992675,
+        "cost_usd_lower_bound": 0.00992675,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 63215,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 889,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00992675,
+            "input_tokens_known": 63215,
+            "known_usage_requests": 14,
+            "output_tokens_known": 889,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 16.524789415998384,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100003",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.009965749999999999,
+        "cost_usd_lower_bound": 0.009965749999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 63455,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 895,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.009965749999999999,
+            "input_tokens_known": 63455,
+            "known_usage_requests": 14,
+            "output_tokens_known": 895,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 37.6974878750043,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100007",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 13,
+        "cost_complete": true,
+        "cost_usd": 0.009101999999999999,
+        "cost_usd_lower_bound": 0.009101999999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 58100,
+        "known_input_usage_requests": 13,
+        "known_output_usage_requests": 13,
+        "known_usage_requests": 13,
+        "llm_requests": 13,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 774,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.009101999999999999,
+            "input_tokens_known": 58100,
+            "known_usage_requests": 13,
+            "output_tokens_known": 774,
+            "requests": 13,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 14.077279792007175,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100012",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.010080649999999998,
+        "cost_usd_lower_bound": 0.010080649999999998,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 63951,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 976,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.010080649999999998,
+            "input_tokens_known": 63951,
+            "known_usage_requests": 14,
+            "output_tokens_known": 976,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 15.66294745799678,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100015",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.010108649999999999,
+        "cost_usd_lower_bound": 0.010108649999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 64161,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 969,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.010108649999999999,
+            "input_tokens_known": 64161,
+            "known_usage_requests": 14,
+            "output_tokens_known": 969,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 16.126185917004477,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100029",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.01006895,
+        "cost_usd_lower_bound": 0.01006895,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 63863,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 979,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.01006895,
+            "input_tokens_known": 63863,
+            "known_usage_requests": 14,
+            "output_tokens_known": 979,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 16.425344083996606,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100051",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.01005155,
+        "cost_usd_lower_bound": 0.01005155,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 63807,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 14,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 961,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.01005155,
+            "input_tokens_known": 63807,
+            "known_usage_requests": 14,
+            "output_tokens_known": 961,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 35.61802766600158,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+      "status": "completed",
+      "task_id": "P100057",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "baseline_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+  "baseline_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low"
+  ],
+  "by_domain": {
+    "patient_intake": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 110,
+          "cost_complete": true,
+          "cost_usd": 0.07838239999999999,
+          "cost_usd_lower_bound": 0.07838239999999999,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 498586,
+          "known_input_usage_requests": 110,
+          "known_output_usage_requests": 110,
+          "known_usage_requests": 110,
+          "llm_requests": 110,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
+          "output_tokens_known": 7189,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.07838239999999999,
+              "input_tokens_known": 498586,
+              "known_usage_requests": 110,
+              "output_tokens_known": 7189,
+              "requests": 110,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 8,
+        "correct_cases": 8,
+        "latency_seconds": {
+          "mean": 20.870243541627133,
+          "n": 8,
+          "p50": 16.27576500050054,
+          "p95": 36.969676801853346
+        },
+        "planned_cases": 8,
+        "status_counts": {
+          "completed": 8
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6755924351161198,
+          "n": 8,
+          "successes": 8,
+          "upper": 1.0
+        },
+        "terminal_cases": 8
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": 39.37626920312323,
+        "n": 8,
+        "p50": 34.97633839549235,
+        "p95": 63.67475376030706
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 153,
+          "cost_complete": true,
+          "cost_usd": 0.07486324999999999,
+          "cost_usd_lower_bound": 0.07486324999999999,
+          "decision_preflight_records": 0,
+          "decision_requests": 48,
+          "input_tokens_known": 595867,
+          "known_input_usage_requests": 153,
+          "known_output_usage_requests": 153,
+          "known_usage_requests": 153,
+          "llm_requests": 105,
+          "local_decision_requests": 48,
+          "local_native_eval_known_calls": 48,
+          "local_native_eval_seconds": 269.81291670999997,
+          "local_native_load_known_calls": 48,
+          "local_native_load_seconds": 0.0,
+          "local_native_total_known_calls": 48,
+          "local_native_total_seconds": 269.820150501,
+          "output_tokens_known": 7105,
+          "providers": {
+            "decision:ollaya:winnow:12b": {
+              "cost_usd_lower_bound": 0.0,
+              "input_tokens_known": 120462,
+              "known_usage_requests": 48,
+              "output_tokens_known": 0,
+              "requests": 48,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.07486324999999999,
+              "input_tokens_known": 475405,
+              "known_usage_requests": 105,
+              "output_tokens_known": 7105,
+              "requests": 105,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 8,
+        "correct_cases": 8,
+        "latency_seconds": {
+          "mean": 60.24651274475036,
+          "n": 8,
+          "p50": 56.644226832999266,
+          "p95": 79.27827534210736
+        },
+        "planned_cases": 8,
+        "status_counts": {
+          "completed": 8
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.6755924351161198,
+          "n": 8,
+          "successes": 8,
+          "upper": 1.0
+        },
+        "terminal_cases": 8
+      },
+      "cases": [
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.000642450000000001,
+          "candidate_minus_baseline_seconds": 37.058052082997165,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100002"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 3.274999999999979e-05,
+          "candidate_minus_baseline_seconds": 29.648455333997845,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100003"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -8.79999999999978e-06,
+          "candidate_minus_baseline_seconds": 22.891090832999907,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100007"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.002166399999999999,
+          "candidate_minus_baseline_seconds": 60.83022795799479,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100012"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0007715499999999993,
+          "candidate_minus_baseline_seconds": 49.39943391700217,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100015"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 1.7299999999999607e-05,
+          "candidate_minus_baseline_seconds": 32.89462470798753,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100029"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -2.689999999999984e-05,
+          "candidate_minus_baseline_seconds": 65.20642150001368,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100051"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": 4.690000000000076e-05,
+          "candidate_minus_baseline_seconds": 17.081847291992744,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+          "candidate_status": "completed",
+          "domain": "patient_intake",
+          "outcome": "both_correct",
+          "task_id": "P100057"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 8,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "local_active_model_hour_break_even": {
+        "additional_local_native_total_seconds": 269.820150501,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "hosted_api_savings_usd": 0.0035191499999999987,
+        "included_pairs": 8,
+        "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+        "positive_api_savings": true,
+        "usd_per_additional_active_model_hour": 0.04695327601173005
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -0.0009914582812499996,
+        "mean_difference": -0.00043989374999999983,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 8,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 8.068906250000226e-06
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": 27.484216072768458,
+        "mean_difference": 39.37626920312323,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 8,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": 51.12917602035363
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 8,
+      "terminal_pairs": 8,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "candidate": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 153,
+      "cost_complete": true,
+      "cost_usd": 0.07486324999999999,
+      "cost_usd_lower_bound": 0.07486324999999999,
+      "decision_preflight_records": 0,
+      "decision_requests": 48,
+      "input_tokens_known": 595867,
+      "known_input_usage_requests": 153,
+      "known_output_usage_requests": 153,
+      "known_usage_requests": 153,
+      "llm_requests": 105,
+      "local_decision_requests": 48,
+      "local_native_eval_known_calls": 48,
+      "local_native_eval_seconds": 269.81291670999997,
+      "local_native_load_known_calls": 48,
+      "local_native_load_seconds": 0.0,
+      "local_native_total_known_calls": 48,
+      "local_native_total_seconds": 269.820150501,
+      "output_tokens_known": 7105,
+      "providers": {
+        "decision:ollaya:winnow:12b": {
+          "cost_usd_lower_bound": 0.0,
+          "input_tokens_known": 120462,
+          "known_usage_requests": 48,
+          "output_tokens_known": 0,
+          "requests": 48,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.07486324999999999,
+          "input_tokens_known": 475405,
+          "known_usage_requests": 105,
+          "output_tokens_known": 7105,
+          "requests": 105,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 8,
+    "correct_cases": 8,
+    "latency_seconds": {
+      "mean": 60.24651274475036,
+      "n": 8,
+      "p50": 56.644226832999266,
+      "p95": 79.27827534210736
+    },
+    "planned_cases": 8,
+    "status_counts": {
+      "completed": 8
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.6755924351161198,
+      "n": 8,
+      "successes": 8,
+      "upper": 1.0
+    },
+    "terminal_cases": 8
+  },
+  "candidate_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 18,
+        "cost_complete": true,
+        "cost_usd": 0.00843565,
+        "cost_usd_lower_bound": 0.00843565,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 67981,
+        "known_input_usage_requests": 18,
+        "known_output_usage_requests": 18,
+        "known_usage_requests": 18,
+        "llm_requests": 12,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 38.094104001000005,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 38.094740793,
+        "output_tokens_known": 707,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 14100,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00843565,
+            "input_tokens_known": 53881,
+            "known_usage_requests": 12,
+            "output_tokens_known": 707,
+            "requests": 12,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 51.887938208004925,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100002",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 20,
+        "cost_complete": true,
+        "cost_usd": 0.0099595,
+        "cost_usd_lower_bound": 0.0099595,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 78766,
+        "known_input_usage_requests": 20,
+        "known_output_usage_requests": 20,
+        "known_usage_requests": 20,
+        "llm_requests": 14,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 29.13096375,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 29.131829708999994,
+        "output_tokens_known": 926,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15456,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0099595,
+            "input_tokens_known": 63310,
+            "known_usage_requests": 14,
+            "output_tokens_known": 926,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 46.17324474999623,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100003",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 20,
+        "cost_complete": true,
+        "cost_usd": 0.00995695,
+        "cost_usd_lower_bound": 0.00995695,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 78751,
+        "known_input_usage_requests": 20,
+        "known_output_usage_requests": 20,
+        "known_usage_requests": 20,
+        "llm_requests": 14,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 31.491503834,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 31.492189916,
+        "output_tokens_known": 917,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15428,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00995695,
+            "input_tokens_known": 63323,
+            "known_usage_requests": 14,
+            "output_tokens_known": 917,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 60.588578708004206,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100007",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 16,
+        "cost_complete": true,
+        "cost_usd": 0.0069356,
+        "cost_usd_lower_bound": 0.0069356,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 58112,
+        "known_input_usage_requests": 16,
+        "known_output_usage_requests": 16,
+        "known_usage_requests": 16,
+        "llm_requests": 10,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 28.436374293000004,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 28.437861751,
+        "output_tokens_known": 658,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 14068,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0069356,
+            "input_tokens_known": 44044,
+            "known_usage_requests": 10,
+            "output_tokens_known": 658,
+            "requests": 10,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 74.90750775000197,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100012",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 19,
+        "cost_complete": true,
+        "cost_usd": 0.009309099999999999,
+        "cost_usd_lower_bound": 0.009309099999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 74248,
+        "known_input_usage_requests": 19,
+        "known_output_usage_requests": 19,
+        "known_usage_requests": 19,
+        "llm_requests": 13,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 38.989388000000005,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 38.990066708,
+        "output_tokens_known": 950,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15354,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.009309099999999999,
+            "input_tokens_known": 58894,
+            "known_usage_requests": 13,
+            "output_tokens_known": 950,
+            "requests": 13,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 65.06238137499895,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100015",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 20,
+        "cost_complete": true,
+        "cost_usd": 0.010125949999999998,
+        "cost_usd_lower_bound": 0.010125949999999998,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 79669,
+        "known_input_usage_requests": 20,
+        "known_output_usage_requests": 20,
+        "known_usage_requests": 20,
+        "llm_requests": 14,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 33.835841499,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 33.836885333000005,
+        "output_tokens_known": 994,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15476,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.010125949999999998,
+            "input_tokens_known": 64193,
+            "known_usage_requests": 14,
+            "output_tokens_known": 994,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 49.02081062499201,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100029",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 20,
+        "cost_complete": true,
+        "cost_usd": 0.01004205,
+        "cost_usd_lower_bound": 0.01004205,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 78979,
+        "known_input_usage_requests": 20,
+        "known_output_usage_requests": 20,
+        "known_usage_requests": 20,
+        "llm_requests": 14,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 33.057778043,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 33.058663958,
+        "output_tokens_known": 954,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15212,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.01004205,
+            "input_tokens_known": 63767,
+            "known_usage_requests": 14,
+            "output_tokens_known": 954,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 81.63176558401028,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100051",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 20,
+        "cost_complete": true,
+        "cost_usd": 0.01009845,
+        "cost_usd_lower_bound": 0.01009845,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 79361,
+        "known_input_usage_requests": 20,
+        "known_output_usage_requests": 20,
+        "known_usage_requests": 20,
+        "llm_requests": 14,
+        "local_decision_requests": 6,
+        "local_native_eval_known_calls": 6,
+        "local_native_eval_seconds": 36.77696329,
+        "local_native_load_known_calls": 6,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 6,
+        "local_native_total_seconds": 36.777912333,
+        "output_tokens_known": 999,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 15368,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.01009845,
+            "input_tokens_known": 63993,
+            "known_usage_requests": 14,
+            "output_tokens_known": 999,
+            "requests": 14,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "patient_intake",
+      "elapsed_seconds": 52.699874957994325,
+      "field_correct": {
+        "insurance_validation": true,
+        "life_style_risk_level": true,
+        "overall_risk_level": true,
+        "pharmacy_check": true,
+        "prescription_insurance_validation": true,
+        "user_registration": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+      "status": "completed",
+      "task_id": "P100057",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "candidate_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+  "candidate_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low"
+  ],
+  "notes": [
+    "All provider attempts, including failures and retries, come from audits only.",
+    "LLM request means acompletion attempt; decision request means client.post attempted.",
+    "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
+    "Native total/load/eval known-call counts are separate; components are not summed.",
+    "Output tokens include reasoning; reasoning detail is never added again.",
+    "Latency covers whole-case execution, including failures; percentiles interpolate.",
+    "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+    "Merged runs share a frozen split; duplicate (domain, task_id) keys are rejected.",
+    "Discordance counts are descriptive; no population guarantee or significance claimed.",
+    "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+    "Correlated cases or shared entities can make these intervals too narrow.",
+    "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+    "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+    "Bootstrap captures observed case variation, not repeat-run/provider or order effects."
+  ],
+  "paired": {
+    "accuracy_delta": 0.0,
+    "baseline_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 110,
+        "cost_complete": true,
+        "cost_usd": 0.07838239999999999,
+        "cost_usd_lower_bound": 0.07838239999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 498586,
+        "known_input_usage_requests": 110,
+        "known_output_usage_requests": 110,
+        "known_usage_requests": 110,
+        "llm_requests": 110,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 7189,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.07838239999999999,
+            "input_tokens_known": 498586,
+            "known_usage_requests": 110,
+            "output_tokens_known": 7189,
+            "requests": 110,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 8,
+      "correct_cases": 8,
+      "latency_seconds": {
+        "mean": 20.870243541627133,
+        "n": 8,
+        "p50": 16.27576500050054,
+        "p95": 36.969676801853346
+      },
+      "planned_cases": 8,
+      "status_counts": {
+        "completed": 8
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.6755924351161198,
+        "n": 8,
+        "successes": 8,
+        "upper": 1.0
+      },
+      "terminal_cases": 8
+    },
+    "candidate_minus_baseline_latency_seconds": {
+      "mean": 39.37626920312323,
+      "n": 8,
+      "p50": 34.97633839549235,
+      "p95": 63.67475376030706
+    },
+    "candidate_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 153,
+        "cost_complete": true,
+        "cost_usd": 0.07486324999999999,
+        "cost_usd_lower_bound": 0.07486324999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 48,
+        "input_tokens_known": 595867,
+        "known_input_usage_requests": 153,
+        "known_output_usage_requests": 153,
+        "known_usage_requests": 153,
+        "llm_requests": 105,
+        "local_decision_requests": 48,
+        "local_native_eval_known_calls": 48,
+        "local_native_eval_seconds": 269.81291670999997,
+        "local_native_load_known_calls": 48,
+        "local_native_load_seconds": 0.0,
+        "local_native_total_known_calls": 48,
+        "local_native_total_seconds": 269.820150501,
+        "output_tokens_known": 7105,
+        "providers": {
+          "decision:ollaya:winnow:12b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 120462,
+            "known_usage_requests": 48,
+            "output_tokens_known": 0,
+            "requests": 48,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.07486324999999999,
+            "input_tokens_known": 475405,
+            "known_usage_requests": 105,
+            "output_tokens_known": 7105,
+            "requests": 105,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 8,
+      "correct_cases": 8,
+      "latency_seconds": {
+        "mean": 60.24651274475036,
+        "n": 8,
+        "p50": 56.644226832999266,
+        "p95": 79.27827534210736
+      },
+      "planned_cases": 8,
+      "status_counts": {
+        "completed": 8
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.6755924351161198,
+        "n": 8,
+        "successes": 8,
+        "upper": 1.0
+      },
+      "terminal_cases": 8
+    },
+    "cases": [
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.000642450000000001,
+        "candidate_minus_baseline_seconds": 37.058052082997165,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100002"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": 3.274999999999979e-05,
+        "candidate_minus_baseline_seconds": 29.648455333997845,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100003"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -8.79999999999978e-06,
+        "candidate_minus_baseline_seconds": 22.891090832999907,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100007"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.002166399999999999,
+        "candidate_minus_baseline_seconds": 60.83022795799479,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100012"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.0007715499999999993,
+        "candidate_minus_baseline_seconds": 49.39943391700217,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100015"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": 1.7299999999999607e-05,
+        "candidate_minus_baseline_seconds": 32.89462470798753,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100029"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -2.689999999999984e-05,
+        "candidate_minus_baseline_seconds": 65.20642150001368,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100051"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/baseline-low",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": 4.690000000000076e-05,
+        "candidate_minus_baseline_seconds": 17.081847291992744,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-low-8--patient_intake/hybrid-local-12b-low",
+        "candidate_status": "completed",
+        "domain": "patient_intake",
+        "outcome": "both_correct",
+        "task_id": "P100057"
+      }
+    ],
+    "discordance_counts": {
+      "both_correct": 8,
+      "both_incorrect": 0,
+      "improved": 0,
+      "regressed": 0
+    },
+    "local_active_model_hour_break_even": {
+      "additional_local_native_total_seconds": 269.820150501,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "hosted_api_savings_usd": 0.0035191499999999987,
+      "included_pairs": 8,
+      "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+      "positive_api_savings": true,
+      "usd_per_additional_active_model_hour": 0.04695327601173005
+    },
+    "mean_cost_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -0.0009914582812499996,
+      "mean_difference": -0.00043989374999999983,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 8,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 8.068906250000226e-06
+    },
+    "mean_latency_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": 27.484216072768458,
+      "mean_difference": 39.37626920312323,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 8,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": 51.12917602035363
+    },
+    "paired_accuracy_test": {
+      "discordant_pairs": 0,
+      "method": "exact McNemar",
+      "two_sided_p": 1.0
+    },
+    "pending_pairs": [],
+    "planned_overlap": 8,
+    "terminal_pairs": 8,
+    "unpaired_baseline": [],
+    "unpaired_candidate": []
+  },
+  "prices_usd_per_million_tokens": {
+    "jev_input": 0.042,
+    "llm_input_output": {
+      "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+        0.2,
+        0.6
+      ],
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": [
+        0.1,
+        0.3
+      ],
+      "zai-org/GLM-5.3": [
+        1.4,
+        4.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ]
+    },
+    "local_marginal_api_fee": 0.0
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "split": "dev"
+}

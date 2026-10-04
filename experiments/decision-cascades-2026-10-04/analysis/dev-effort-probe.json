@@ -1,0 +1,1027 @@
+{
+  "baseline": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 33,
+      "cost_complete": true,
+      "cost_usd": 0.02055755,
+      "cost_usd_lower_bound": 0.02055755,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "input_tokens_known": 101027,
+      "known_input_usage_requests": 33,
+      "known_output_usage_requests": 33,
+      "known_usage_requests": 33,
+      "llm_requests": 33,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
+      "output_tokens_known": 10807,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.02055755,
+          "input_tokens_known": 101027,
+          "known_usage_requests": 33,
+          "output_tokens_known": 10807,
+          "requests": 33,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 4,
+    "correct_cases": 4,
+    "latency_seconds": {
+      "mean": 47.036792375249206,
+      "n": 4,
+      "p50": 45.123038291996636,
+      "p95": 59.76147108125224
+    },
+    "planned_cases": 4,
+    "status_counts": {
+      "completed": 4
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.5101091635454027,
+      "n": 4,
+      "successes": 4,
+      "upper": 1.0
+    },
+    "terminal_cases": 4
+  },
+  "baseline_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0044282,
+        "cost_usd_lower_bound": 0.0044282,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 22808,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 2014,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0044282,
+            "input_tokens_known": 22808,
+            "known_usage_requests": 8,
+            "output_tokens_known": 2014,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 39.0605390839919,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+      "status": "completed",
+      "task_id": "ACC100000",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 9,
+        "cost_complete": true,
+        "cost_usd": 0.00632005,
+        "cost_usd_lower_bound": 0.00632005,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 30317,
+        "known_input_usage_requests": 9,
+        "known_output_usage_requests": 9,
+        "known_usage_requests": 9,
+        "llm_requests": 9,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 3545,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00632005,
+            "input_tokens_known": 30317,
+            "known_usage_requests": 9,
+            "output_tokens_known": 3545,
+            "requests": 9,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 61.27487112500239,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+      "status": "completed",
+      "task_id": "ACC100001",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.00446625,
+        "cost_usd_lower_bound": 0.00446625,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 22955,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 2046,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00446625,
+            "input_tokens_known": 22955,
+            "known_usage_requests": 8,
+            "output_tokens_known": 2046,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 36.62622179200116,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+      "status": "completed",
+      "task_id": "ACC100002",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.005343050000000001,
+        "cost_usd_lower_bound": 0.005343050000000001,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 24947,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 3202,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.005343050000000001,
+            "input_tokens_known": 24947,
+            "known_usage_requests": 8,
+            "output_tokens_known": 3202,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 51.185537500001374,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+      "status": "completed",
+      "task_id": "ACC100011",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "baseline_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+  "baseline_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline"
+  ],
+  "by_domain": {
+    "referral_abuse_detection_v1": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 33,
+          "cost_complete": true,
+          "cost_usd": 0.02055755,
+          "cost_usd_lower_bound": 0.02055755,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 101027,
+          "known_input_usage_requests": 33,
+          "known_output_usage_requests": 33,
+          "known_usage_requests": 33,
+          "llm_requests": 33,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
+          "output_tokens_known": 10807,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.02055755,
+              "input_tokens_known": 101027,
+              "known_usage_requests": 33,
+              "output_tokens_known": 10807,
+              "requests": 33,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 4,
+        "correct_cases": 4,
+        "latency_seconds": {
+          "mean": 47.036792375249206,
+          "n": 4,
+          "p50": 45.123038291996636,
+          "p95": 59.76147108125224
+        },
+        "planned_cases": 4,
+        "status_counts": {
+          "completed": 4
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.5101091635454027,
+          "n": 4,
+          "successes": 4,
+          "upper": 1.0
+        },
+        "terminal_cases": 4
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": -26.946097771000495,
+        "n": 4,
+        "p50": -24.569112812496314,
+        "p95": -16.7510020669979
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 32,
+          "cost_complete": true,
+          "cost_usd": 0.013781999999999999,
+          "cost_usd_lower_bound": 0.013781999999999999,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 85710,
+          "known_input_usage_requests": 32,
+          "known_output_usage_requests": 32,
+          "known_usage_requests": 32,
+          "llm_requests": 32,
+          "local_decision_requests": 0,
+          "local_native_eval_known_calls": 0,
+          "local_native_eval_seconds": null,
+          "local_native_load_known_calls": 0,
+          "local_native_load_seconds": null,
+          "local_native_total_known_calls": 0,
+          "local_native_total_seconds": null,
+          "output_tokens_known": 1851,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.013781999999999999,
+              "input_tokens_known": 85710,
+              "known_usage_requests": 32,
+              "output_tokens_known": 1851,
+              "requests": 32,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 4,
+        "correct_cases": 4,
+        "latency_seconds": {
+          "mean": 20.09069460424871,
+          "n": 4,
+          "p50": 19.866836396002327,
+          "p95": 21.56850344194827
+        },
+        "planned_cases": 4,
+        "status_counts": {
+          "completed": 4
+        },
+        "strict_accuracy_terminal": 1.0,
+        "strict_accuracy_wilson95": {
+          "lower": 0.5101091635454027,
+          "n": 4,
+          "successes": 4,
+          "upper": 1.0
+        },
+        "terminal_cases": 4
+      },
+      "cases": [
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0009516999999999998,
+          "candidate_minus_baseline_seconds": -19.727318291988922,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100000"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0028876500000000003,
+          "candidate_minus_baseline_seconds": -42.42039566700987,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100001"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0010452,
+          "candidate_minus_baseline_seconds": -16.225769791999483,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100002"
+        },
+        {
+          "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+          "baseline_status": "completed",
+          "candidate_minus_baseline_cost_usd": -0.0018910000000000012,
+          "candidate_minus_baseline_seconds": -29.410907333003706,
+          "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100011"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 4,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "local_active_model_hour_break_even": {
+        "additional_local_native_total_seconds": 0.0,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "hosted_api_savings_usd": 0.006775550000000001,
+        "included_pairs": 4,
+        "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+        "positive_api_savings": true,
+        "usd_per_additional_active_model_hour": null
+      },
+      "mean_cost_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -0.0024270375,
+        "mean_difference": -0.0016938875000000004,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 4,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": -0.00099845
+      },
+      "mean_latency_difference_bootstrap95": {
+        "confidence": 0.95,
+        "excluded_pair_count": 0,
+        "excluded_pairs": [],
+        "insufficient_pairs": false,
+        "lower": -36.74712632325463,
+        "mean_difference": -26.946097771000495,
+        "method": "paired percentile bootstrap of candidate minus baseline means",
+        "n": 4,
+        "resamples": 2000,
+        "seed": 20261004,
+        "upper": -17.976544041994202
+      },
+      "paired_accuracy_test": {
+        "discordant_pairs": 0,
+        "method": "exact McNemar",
+        "two_sided_p": 1.0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 4,
+      "terminal_pairs": 4,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "candidate": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 32,
+      "cost_complete": true,
+      "cost_usd": 0.013781999999999999,
+      "cost_usd_lower_bound": 0.013781999999999999,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "input_tokens_known": 85710,
+      "known_input_usage_requests": 32,
+      "known_output_usage_requests": 32,
+      "known_usage_requests": 32,
+      "llm_requests": 32,
+      "local_decision_requests": 0,
+      "local_native_eval_known_calls": 0,
+      "local_native_eval_seconds": null,
+      "local_native_load_known_calls": 0,
+      "local_native_load_seconds": null,
+      "local_native_total_known_calls": 0,
+      "local_native_total_seconds": null,
+      "output_tokens_known": 1851,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.013781999999999999,
+          "input_tokens_known": 85710,
+          "known_usage_requests": 32,
+          "output_tokens_known": 1851,
+          "requests": 32,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 4,
+    "correct_cases": 4,
+    "latency_seconds": {
+      "mean": 20.09069460424871,
+      "n": 4,
+      "p50": 19.866836396002327,
+      "p95": 21.56850344194827
+    },
+    "planned_cases": 4,
+    "status_counts": {
+      "completed": 4
+    },
+    "strict_accuracy_terminal": 1.0,
+    "strict_accuracy_wilson95": {
+      "lower": 0.5101091635454027,
+      "n": 4,
+      "successes": 4,
+      "upper": 1.0
+    },
+    "terminal_cases": 4
+  },
+  "candidate_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0034765000000000004,
+        "cost_usd_lower_bound": 0.0034765000000000004,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 21510,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 500,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0034765000000000004,
+            "input_tokens_known": 21510,
+            "known_usage_requests": 8,
+            "output_tokens_known": 500,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 19.333220792002976,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+      "status": "completed",
+      "task_id": "ACC100000",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0034323999999999995,
+        "cost_usd_lower_bound": 0.0034323999999999995,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 21406,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 443,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0034323999999999995,
+            "input_tokens_known": 21406,
+            "known_usage_requests": 8,
+            "output_tokens_known": 443,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 18.85447545799252,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+      "status": "completed",
+      "task_id": "ACC100001",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0034210499999999997,
+        "cost_usd_lower_bound": 0.0034210499999999997,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 21347,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 438,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0034210499999999997,
+            "input_tokens_known": 21347,
+            "known_usage_requests": 8,
+            "output_tokens_known": 438,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 20.40045200000168,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+      "status": "completed",
+      "task_id": "ACC100002",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.00345205,
+        "cost_usd_lower_bound": 0.00345205,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 21447,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 470,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.00345205,
+            "input_tokens_known": 21447,
+            "known_usage_requests": 8,
+            "output_tokens_known": 470,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 21.774630166997667,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+      "status": "completed",
+      "task_id": "ACC100011",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "candidate_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+  "candidate_dirs": [
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low"
+  ],
+  "notes": [
+    "All provider attempts, including failures and retries, come from audits only.",
+    "LLM request means acompletion attempt; decision request means client.post attempted.",
+    "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Local native durations convert Ollaya nanoseconds to seconds; missing is null.",
+    "Native total/load/eval known-call counts are separate; components are not summed.",
+    "Output tokens include reasoning; reasoning detail is never added again.",
+    "Latency covers whole-case execution, including failures; percentiles interpolate.",
+    "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+    "Merged runs must share the frozen split; duplicate (domain, task_id) keys are rejected.",
+    "Discordance counts are descriptive; no population guarantee or significance claimed.",
+    "Wilson and paired bootstrap intervals are nominal 95%, with case-level independence.",
+    "Correlated cases or shared entities can make these intervals too narrow.",
+    "Small accuracy differences and nonsignificant tests do not establish equivalence.",
+    "Bootstrap intervals use 2000 seeded matched-pair resamples and exclude unknown costs.",
+    "Bootstrap captures observed case variation, not repeat-run/provider or order effects."
+  ],
+  "paired": {
+    "accuracy_delta": 0.0,
+    "baseline_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 33,
+        "cost_complete": true,
+        "cost_usd": 0.02055755,
+        "cost_usd_lower_bound": 0.02055755,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 101027,
+        "known_input_usage_requests": 33,
+        "known_output_usage_requests": 33,
+        "known_usage_requests": 33,
+        "llm_requests": 33,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 10807,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.02055755,
+            "input_tokens_known": 101027,
+            "known_usage_requests": 33,
+            "output_tokens_known": 10807,
+            "requests": 33,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 4,
+      "correct_cases": 4,
+      "latency_seconds": {
+        "mean": 47.036792375249206,
+        "n": 4,
+        "p50": 45.123038291996636,
+        "p95": 59.76147108125224
+      },
+      "planned_cases": 4,
+      "status_counts": {
+        "completed": 4
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.5101091635454027,
+        "n": 4,
+        "successes": 4,
+        "upper": 1.0
+      },
+      "terminal_cases": 4
+    },
+    "candidate_minus_baseline_latency_seconds": {
+      "mean": -26.946097771000495,
+      "n": 4,
+      "p50": -24.569112812496314,
+      "p95": -16.7510020669979
+    },
+    "candidate_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 32,
+        "cost_complete": true,
+        "cost_usd": 0.013781999999999999,
+        "cost_usd_lower_bound": 0.013781999999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 85710,
+        "known_input_usage_requests": 32,
+        "known_output_usage_requests": 32,
+        "known_usage_requests": 32,
+        "llm_requests": 32,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 1851,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.013781999999999999,
+            "input_tokens_known": 85710,
+            "known_usage_requests": 32,
+            "output_tokens_known": 1851,
+            "requests": 32,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 4,
+      "correct_cases": 4,
+      "latency_seconds": {
+        "mean": 20.09069460424871,
+        "n": 4,
+        "p50": 19.866836396002327,
+        "p95": 21.56850344194827
+      },
+      "planned_cases": 4,
+      "status_counts": {
+        "completed": 4
+      },
+      "strict_accuracy_terminal": 1.0,
+      "strict_accuracy_wilson95": {
+        "lower": 0.5101091635454027,
+        "n": 4,
+        "successes": 4,
+        "upper": 1.0
+      },
+      "terminal_cases": 4
+    },
+    "cases": [
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.0009516999999999998,
+        "candidate_minus_baseline_seconds": -19.727318291988922,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100000"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.0028876500000000003,
+        "candidate_minus_baseline_seconds": -42.42039566700987,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100001"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.0010452,
+        "candidate_minus_baseline_seconds": -16.225769791999483,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100002"
+      },
+      {
+        "baseline_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline",
+        "baseline_status": "completed",
+        "candidate_minus_baseline_cost_usd": -0.0018910000000000012,
+        "candidate_minus_baseline_seconds": -29.410907333003706,
+        "candidate_source_arm_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-effort-probe--referral_abuse_detection_v1/baseline-low",
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100011"
+      }
+    ],
+    "discordance_counts": {
+      "both_correct": 4,
+      "both_incorrect": 0,
+      "improved": 0,
+      "regressed": 0
+    },
+    "local_active_model_hour_break_even": {
+      "additional_local_native_total_seconds": 0.0,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "hosted_api_savings_usd": 0.006775550000000001,
+      "included_pairs": 4,
+      "interpretation": "Observed hosted list-price savings divided by additional summed local native total duration. Active time is not provisioned model-hours; idle hardware, electricity, hosting overhead and TCO are unmeasured. Total includes its components; do not add load or eval duration again. Unknown cost or local duration excludes the pair.",
+      "positive_api_savings": true,
+      "usd_per_additional_active_model_hour": null
+    },
+    "mean_cost_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -0.0024270375,
+      "mean_difference": -0.0016938875000000004,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 4,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": -0.00099845
+    },
+    "mean_latency_difference_bootstrap95": {
+      "confidence": 0.95,
+      "excluded_pair_count": 0,
+      "excluded_pairs": [],
+      "insufficient_pairs": false,
+      "lower": -36.74712632325463,
+      "mean_difference": -26.946097771000495,
+      "method": "paired percentile bootstrap of candidate minus baseline means",
+      "n": 4,
+      "resamples": 2000,
+      "seed": 20261004,
+      "upper": -17.976544041994202
+    },
+    "paired_accuracy_test": {
+      "discordant_pairs": 0,
+      "method": "exact McNemar",
+      "two_sided_p": 1.0
+    },
+    "pending_pairs": [],
+    "planned_overlap": 4,
+    "terminal_pairs": 4,
+    "unpaired_baseline": [],
+    "unpaired_candidate": []
+  },
+  "prices_usd_per_million_tokens": {
+    "jev_input": 0.042,
+    "llm_input_output": {
+      "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+        0.2,
+        0.6
+      ],
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": [
+        0.1,
+        0.3
+      ],
+      "zai-org/GLM-5.3": [
+        1.4,
+        4.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ]
+    },
+    "local_marginal_api_fee": 0.0
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "split": "dev"
+}
