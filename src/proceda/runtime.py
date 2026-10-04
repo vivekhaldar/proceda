@@ -7,10 +7,12 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import AsyncIterator
+from dataclasses import replace
 from pathlib import Path
 from typing import Any
 
 from proceda.config import ProcedaConfig
+from proceda.decision import DecisionService
 from proceda.events import (
     CompositeEventSink,
     EventType,
@@ -186,7 +188,20 @@ class Runtime:
         tool_schemas = orchestrator.get_tool_schemas() if self._config.apps else []
 
         # Create LLM runtime
-        llm = LLMRuntime(self._config.llm)
+        audit_dir = self._config.llm.audit_dir or str(run_dir / "provider_calls")
+        llm = LLMRuntime(replace(self._config.llm, audit_dir=audit_dir))
+        decision_service = None
+        fallback_llm = None
+        if self._config.decisions.enabled:
+            decision_service = DecisionService(
+                self._config.decisions.backends,
+                threshold=self._config.decisions.threshold,
+                audit_dir=Path(audit_dir),
+            )
+            if self._config.decisions.fallback_llm:
+                fallback_llm = LLMRuntime(
+                    replace(self._config.decisions.fallback_llm, audit_dir=audit_dir)
+                )
 
         # Create executor
         executor = Executor(
@@ -197,6 +212,9 @@ class Runtime:
             human=self._human,
             emit=composite.handle,
             tool_schemas=tool_schemas,
+            decision_service=decision_service,
+            decision_config=self._config.decisions,
+            fallback_llm=fallback_llm,
         )
 
         async def _run() -> None:

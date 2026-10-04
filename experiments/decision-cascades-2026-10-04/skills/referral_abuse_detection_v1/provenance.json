@@ -1,0 +1,10 @@
+{
+  "method": "source-only deterministic adaptation; no model calls or benchmark labels",
+  "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+  "source_sop_sha256": "6a74960069a8fbce544fed91c76d9d5c79c1b807738bb8aca5de6655e499cc3b",
+  "tool_schema_sha256": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484",
+  "changes": [
+    "Reused first three tool-gathering steps. Replaced stale highest-score-only decision text with exact current source section5.5.",
+    "Added explicit final reporting step using metadata output column enforcement_action."
+  ]
+}

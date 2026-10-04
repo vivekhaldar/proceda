@@ -8,11 +8,15 @@ import copy
 import json
 import logging
 import re
+import time
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from typing import Any
+from uuid import uuid4
 
 from proceda.config import LLMConfig
 from proceda.exceptions import LLMAPIError, LLMError, LLMRateLimitError, LLMTimeoutError
+from proceda.llm.audit import sanitize, write_attempt
 from proceda.session import RunMessage, ToolCall
 
 logger = logging.getLogger(__name__)
@@ -97,6 +101,9 @@ class LLMRuntime:
 
         max_retries = self._config.max_retries
         last_error: Exception | None = None
+        api_key = self._config.api_key
+        secrets = (api_key,) if api_key else ()
+        call_id = uuid4().hex
 
         effective_tools = tools
         if tools and (self._model.startswith("gemini/") or self._model.startswith("vertex_ai/")):
@@ -111,7 +118,14 @@ class LLMRuntime:
                     if temperature is not None
                     else self._config.temperature,
                     "max_tokens": self._config.max_tokens,
+                    "timeout": self._config.timeout,
+                    # This loop owns retries so each provider attempt can be audited.
+                    "num_retries": 0,
                 }
+                if api_key is not None:
+                    kwargs["api_key"] = api_key
+                if self._config.api_base is not None:
+                    kwargs["api_base"] = self._config.api_base
 
                 # Gemini 2.5 Pro requires thinking mode
                 if "gemini-2.5-pro" in self._model:
@@ -124,7 +138,33 @@ class LLMRuntime:
                 if self._config.thinking:
                     kwargs["thinking"] = {"type": self._config.thinking}
 
-                response = await litellm.acompletion(**kwargs)
+                request = copy.deepcopy(
+                    {key: value for key, value in kwargs.items() if key != "api_key"}
+                )
+                started_at = datetime.now(UTC).isoformat()
+                started = time.perf_counter()
+                response = None
+                error: BaseException | None = None
+                try:
+                    response = await asyncio.wait_for(
+                        litellm.acompletion(**kwargs), timeout=self._config.timeout
+                    )
+                except BaseException as exc:
+                    error = exc
+                    raise
+                finally:
+                    if self._config.audit_dir is not None:
+                        write_attempt(
+                            self._config.audit_dir,
+                            call_id=call_id,
+                            attempt=attempt + 1,
+                            started_at=started_at,
+                            elapsed_ms=(time.perf_counter() - started) * 1000,
+                            request=request,
+                            response=response,
+                            error=error,
+                            secrets=secrets,
+                        )
                 return self._parse_response(response)
 
             except litellm.RateLimitError as e:
@@ -141,7 +181,12 @@ class LLMRuntime:
                     continue
 
             except litellm.Timeout as e:
-                raise LLMTimeoutError(f"LLM call timed out: {e}") from e
+                raise LLMTimeoutError(sanitize(f"LLM call timed out: {e}", secrets)) from None
+
+            except TimeoutError:
+                raise LLMTimeoutError(
+                    f"LLM call exceeded {self._config.timeout:g}s timeout"
+                ) from None
 
             except litellm.APIError as e:
                 last_error = e
@@ -160,15 +205,15 @@ class LLMRuntime:
                 )
 
             except Exception as e:
-                raise LLMAPIError(f"LLM call failed: {e}") from e
+                raise LLMAPIError(sanitize(f"LLM call failed: {e}", secrets)) from None
 
         # All retries exhausted
         attempts = max_retries + 1
         if isinstance(last_error, litellm.RateLimitError):
-            raise LLMRateLimitError(
-                f"Rate limit exceeded after {attempts} attempts"
-            ) from last_error
-        raise LLMAPIError(f"LLM API error after {attempts} attempts: {last_error}") from last_error
+            raise LLMRateLimitError(f"Rate limit exceeded after {attempts} attempts") from None
+        raise LLMAPIError(
+            sanitize(f"LLM API error after {attempts} attempts: {last_error}", secrets)
+        ) from None
 
     def _sanitize_tools_for_gemini(self, tools: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Deep-copy and sanitize tool schemas for Gemini compatibility."""
@@ -182,8 +227,23 @@ class LLMRuntime:
 
     def _parse_response(self, response: Any) -> LLMResponse:
         """Parse a LiteLLM response into our internal model."""
+        raw_response = response.model_dump() if hasattr(response, "model_dump") else None
+        prompt_tokens = 0
+        completion_tokens = 0
+        total_tokens = 0
+        if hasattr(response, "usage") and response.usage:
+            prompt_tokens = getattr(response.usage, "prompt_tokens", 0) or 0
+            completion_tokens = getattr(response.usage, "completion_tokens", 0) or 0
+            total_tokens = getattr(response.usage, "total_tokens", 0) or 0
         if not response.choices:
-            return LLMResponse(content=None, tool_calls=[])
+            return LLMResponse(
+                content=None,
+                tool_calls=[],
+                raw_response=raw_response,
+                prompt_tokens=prompt_tokens,
+                completion_tokens=completion_tokens,
+                total_tokens=total_tokens,
+            )
         choice = response.choices[0]
         message = choice.message
 
@@ -213,20 +273,11 @@ class LLMRuntime:
                     )
                 )
 
-        # Extract token usage
-        prompt_tokens = 0
-        completion_tokens = 0
-        total_tokens = 0
-        if hasattr(response, "usage") and response.usage:
-            prompt_tokens = getattr(response.usage, "prompt_tokens", 0) or 0
-            completion_tokens = getattr(response.usage, "completion_tokens", 0) or 0
-            total_tokens = getattr(response.usage, "total_tokens", 0) or 0
-
         return LLMResponse(
             content=content if content else None,
             tool_calls=tool_calls,
             reasoning=reasoning,
-            raw_response=response.model_dump() if hasattr(response, "model_dump") else None,
+            raw_response=raw_response,
             prompt_tokens=prompt_tokens,
             completion_tokens=completion_tokens,
             total_tokens=total_tokens,

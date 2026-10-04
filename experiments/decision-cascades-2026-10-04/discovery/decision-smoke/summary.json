@@ -1,0 +1,57 @@
+{
+  "scope": "Real provider adapter smoke on public toy text, not SOP quality or calibrated performance evidence.",
+  "runs": [
+    {
+      "label": "local-first",
+      "value": true,
+      "elapsed_seconds": 3.8777346249989932,
+      "input_tokens": 228,
+      "state_truncated": false,
+      "load_duration_ns": 3659809208,
+      "eval_duration_ns": 208968834,
+      "audit_path": "experiments/decision-cascades-2026-10-04/discovery/decision-smoke/local-first/decisions/decision-c05ccf0b462d401c8e8c546114cdb823.json"
+    },
+    {
+      "label": "local-warm",
+      "value": true,
+      "elapsed_seconds": 0.14616716699674726,
+      "input_tokens": 228,
+      "state_truncated": false,
+      "load_duration_ns": 0,
+      "eval_duration_ns": 138902583,
+      "audit_path": "experiments/decision-cascades-2026-10-04/discovery/decision-smoke/local-warm/decisions/decision-10ad7492757140519562cb5df2214bc2.json"
+    },
+    {
+      "label": "hosted",
+      "value": true,
+      "details": [
+        {
+          "call_id": "0d6aa18d9c4e479ea615a97eadd71e9d",
+          "backend": "jev-hosted",
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "input_tokens": 314,
+          "output_tokens": 38,
+          "cost_usd": 1.3188e-05,
+          "threshold": 0.97,
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "input_chars": 365,
+          "http_status": 200,
+          "probabilities": {
+            "refund_requested": 0.99,
+            "duplicate_charge": 0.99
+          },
+          "elapsed_seconds": 0.37684983300277963,
+          "audit_path": "experiments/decision-cascades-2026-10-04/discovery/decision-smoke/hosted/decisions/decision-0d6aa18d9c4e479ea615a97eadd71e9d.json"
+        }
+      ],
+      "probabilities": {
+        "refund_requested": 0.99,
+        "duplicate_charge": 0.99
+      },
+      "reason": "all_obligations_accepted"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "call_id": "0d6aa18d9c4e479ea615a97eadd71e9d",
+  "backend": "jev-hosted",
+  "kind": "typesafe",
+  "model": "jev-1.13.0",
+  "request": {
+    "model": "jev-1.13.0",
+    "state": {
+      "message": "I was charged twice for the same order. Please refund the duplicate charge."
+    },
+    "questions": {
+      "refund_requested": {
+        "type": "noul",
+        "instructions": "Does the customer explicitly request a refund?"
+      },
+      "duplicate_charge": {
+        "type": "noul",
+        "instructions": "Does the customer report being charged twice for the same order?"
+      }
+    }
+  },
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "refund_requested": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "duplicate_charge": {
+        "type": "noul",
+        "noul": 0.99
+      }
+    },
+    "usage": {
+      "input_tokens": 314,
+      "output_tokens": 38
+    }
+  },
+  "outcome": "accepted",
+  "reason": "all_obligations_accepted",
+  "input_tokens": 314,
+  "output_tokens": 38,
+  "cost_usd": 1.3188e-05,
+  "threshold": 0.97,
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "input_chars": 365,
+  "http_status": 200,
+  "probabilities": {
+    "refund_requested": 0.99,
+    "duplicate_charge": 0.99
+  },
+  "elapsed_seconds": 0.37684983300277963
+}

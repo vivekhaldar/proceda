@@ -1,0 +1,60 @@
+{
+  "call_id": "c05ccf0b462d401c8e8c546114cdb823",
+  "backend": "ollaya-winnow-e4b",
+  "kind": "ollaya",
+  "model": "winnow:e4b",
+  "request": {
+    "model": "winnow:e4b",
+    "state": {
+      "message": "I was charged twice for the same order. Please refund the duplicate charge."
+    },
+    "questions": {
+      "refund_requested": {
+        "type": "noul",
+        "instructions": "Does the customer explicitly request a refund?"
+      },
+      "duplicate_charge": {
+        "type": "noul",
+        "instructions": "Does the customer report being charged twice for the same order?"
+      }
+    }
+  },
+  "response": {
+    "model": "winnow:e4b",
+    "answers": {
+      "refund_requested": {
+        "type": "noul",
+        "noul": 0.9915
+      },
+      "duplicate_charge": {
+        "type": "noul",
+        "noul": 0.9907
+      }
+    },
+    "usage": {
+      "input_tokens": 228,
+      "output_tokens": 0
+    },
+    "routing": null,
+    "state_truncated": false,
+    "done_reason": "decide",
+    "created_at": "2026-10-04T20:15:57.762107Z",
+    "total_duration": 3869596084,
+    "load_duration": 3659809208,
+    "eval_duration": 208968834
+  },
+  "outcome": "accepted",
+  "reason": "all_obligations_accepted",
+  "input_tokens": 228,
+  "output_tokens": 0,
+  "cost_usd": 0.0,
+  "threshold": 0.97,
+  "endpoint": "http://127.0.0.1:11435/api/decide",
+  "input_chars": 365,
+  "http_status": 200,
+  "probabilities": {
+    "refund_requested": 0.9915,
+    "duplicate_charge": 0.9907
+  },
+  "elapsed_seconds": 3.8777346249989932
+}

@@ -1,0 +1,10 @@
+{
+  "method": "source-only deterministic adaptation; no model calls or benchmark labels",
+  "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+  "source_sop_sha256": "b5b45e864da06fef5d3fb7d66bced5229c31e0a6e89e7507ac9c04168037b3e5",
+  "tool_schema_sha256": "4593535221fe78159cedd91c01feb0e996cae27e2d4e9b3bc419b01d0bc9c041",
+  "changes": [
+    "Reused existing sequential tool wiring. Corrected two nonexistent prescription input variable names using tool schema and source input columns.",
+    "Declared all six output fields and added explicit reporting step; both insurance checks remain mandatory."
+  ]
+}

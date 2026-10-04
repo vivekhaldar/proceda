@@ -1,0 +1,62 @@
+1. Purpose
+This Standard Operating Procedure establishes the systematic methodology for analyzing and classifying seller appeal emails regarding product listings, determining appropriate response actions, and maintaining compliance with e-commerce operational standards. The procedure encompasses email intent classification, product validation, and response action determination through integration with multiple API endpoints.
+
+2. Scope
+This SOP applies to all selling partner associates responsible for processing seller appeals related to product listings, pricing discrepancies, description modifications, and listing status inquiries. The procedure covers all products identified by the standardized product_id format within the e-commerce platform's catalog management system.
+
+3. Definitions
+3.1 Product Attribution System (PAS): The hierarchical database structure maintaining product metadata, including pricing, description, and listing status.
+3.2 Intent Classification Matrix (ICM): A structured framework for categorizing seller communications into predetermined intent categories.
+3.3 API Integration Points (AIP): Designated endpoints for retrieving product-specific information including get_product_price, get_product_description, get_product_listing_status, and get_inventory_status.
+3.4 Listing Status Verification (LSV): The systematic process of validating and retrieving current product listing status and associated metadata.
+3.5 Response Action Protocol (RAP): The standardized methodology for determining and executing appropriate responses to seller appeals.
+
+4. Input
+4.1 Email Identifier (email_id): A unique alphanumeric string identifying the seller communication.
+4.2 Email Content (email_body): The complete textual content of the seller's appeal.
+4.3 Product Identifier (product_id): A six-digit alphanumeric code beginning with 'P'.
+4.4 Current Product Description (product_description): The existing product description in the catalog.
+4.5 Listed Price (listing_price): The current price point for the product.
+4.6 Product Inventory Level (product_inventory): The current stock quantity.
+
+5. Main Procedure
+5.1 Email Classification and Validation
+  Extract the product_id from the email_body using regular expression pattern matching. 
+  
+5.2 Intent-Based Processing
+  Identify the intent of the seller's email body. It could be one of the following:
+  a. concern about their product not being listed
+  b. concern about incorrect pricing
+  c. concern about incorrect description
+  d. generic question about a listing
+  e. unable to decide
+
+  For pricing concerns: Get the current price from the pricing database using validated product_id only and compare returned price value against seller-specified 
+  price. Calculate price delta and determine if update is warranted. Assign action "update price" if delta exists, otherwise "no action"
+
+  For description concerns: Get the description in the database, using the validated product_id. If it is significantly different from the requested description in 
+  the email, then assign action "update description", otherwise "no action".
+
+  For listing status concerns: Get the current listing status and inventory count from the product database and summarize and assign action "share listing status" 
+  and prepare status communication.
+
+  For generic inquiries: Document inquiry category in system, assign action "no action" and prepare standardized response template
+
+  The action could be one of the following:
+  (a) "no action"
+  (b) "update price"
+  (c) "update description"
+  (d) "share listing status"
+  (e) "further clarification required"
+
+6. Output
+6.1 The output must include both seller_intent and action in JSON format wrapped in <final_output> tags.
+<final_output>
+{"seller_intent": "concern about incorrect description", "action": "update description"}
+</final_output>
+
+6.2 System Updates:
+- Updated product information (if action requires)
+- Modified listing status (if applicable)
+- Communication log entry
+- Compliance documentation

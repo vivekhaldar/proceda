@@ -1,0 +1,10 @@
+{
+  "retrieved_at_utc": "2026-10-04T20:06:43.653626+00:00",
+  "request_method": "GET",
+  "source_url": "https://api.tokenfactory.nebius.com/v1/models",
+  "http_status": 200,
+  "model_count": 25,
+  "credentials_saved": false,
+  "headers_saved": false,
+  "inference_performed": false
+}

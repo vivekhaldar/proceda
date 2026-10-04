@@ -1,0 +1,31 @@
+{
+  "retrieved_at_utc": "2026-10-04T20:08:14.128812+00:00",
+  "server_running": true,
+  "listen_addresses": [
+    "127.0.0.1:11435",
+    "[::1]:11435"
+  ],
+  "loaded_models": [],
+  "version": "0.9.0",
+  "models": [
+    {
+      "model": "laya:en",
+      "filename": "ollaya-show-laya-en.txt",
+      "exit_code": 0,
+      "retrieved_at_utc": "2026-10-04T20:08:14.128812+00:00"
+    },
+    {
+      "model": "winnow:e4b",
+      "filename": "ollaya-show-winnow-e4b.txt",
+      "exit_code": 0,
+      "retrieved_at_utc": "2026-10-04T20:08:14.128812+00:00"
+    },
+    {
+      "model": "winnow:12b",
+      "filename": "ollaya-show-winnow-12b.txt",
+      "exit_code": 0,
+      "retrieved_at_utc": "2026-10-04T20:08:14.128812+00:00"
+    }
+  ],
+  "inference_performed": false
+}

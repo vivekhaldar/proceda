@@ -1,0 +1,155 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "moonshotai/Kimi-K3",
+      "created": 1785110400,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "created": 1791144386,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "google/gemma-3-27b-it",
+      "created": 1791144386,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "Qwen/Qwen3-Embedding-8B",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "openai/gpt-oss-120b",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "NousResearch/Hermes-4-405B",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "zai-org/GLM-5.1",
+      "created": 1791144387,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "nvidia/Nemotron-3_5-Lightning",
+      "created": 1787845486,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "openbmb/MiniCPM-V-4_5",
+      "created": 1780272000,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "Qwen/Qwen3.8-27B",
+      "created": 1788458731,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Flash-0731",
+      "created": 1786581299,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "MiniMaxAI/MiniMax-M3",
+      "created": 1785493267,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "moonshotai/Kimi-K2.7-Code",
+      "created": 1781740800,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "created": 1780531200,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "moonshotai/Kimi-K2.6",
+      "created": 1778544000,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "nvidia/nemotron-3-super-120b-a12b",
+      "created": 1773187200,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "Qwen/Qwen3.5-397B-A17B",
+      "created": 1771286400,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro",
+      "created": 1791144385,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "zai-org/GLM-5.2",
+      "created": 1781481600,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "zai-org/GLM-5.3-Flash",
+      "created": 1789524983,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4.1-Flash",
+      "created": 1789509523,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "zai-org/GLM-5.3",
+      "created": 1789085803,
+      "object": "model",
+      "owned_by": "system"
+    },
+    {
+      "id": "deepseek-ai/DeepSeek-V4-Pro-0813",
+      "created": 1789013558,
+      "object": "model",
+      "owned_by": "system"
+    }
+  ]
+}

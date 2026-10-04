@@ -1,0 +1,10 @@
+{
+  "method": "source-only deterministic adaptation; no model calls or benchmark labels",
+  "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+  "source_sop_sha256": "1b7366a86c31c1254d2a08b8cbff7f6e4d033f30fb972fbbb531cc9c4ff32867",
+  "tool_schema_sha256": "3803116e6b9d7f9802f06f89db69d1f72e128cb4da2169fd3f061cd09f56bf08",
+  "changes": [
+    "Created natural-language three-step skill from source procedure and exact tool parameter names.",
+    "Enumerated source intent/action options and conditional tool requirements; added XML output tags matching metadata."
+  ]
+}

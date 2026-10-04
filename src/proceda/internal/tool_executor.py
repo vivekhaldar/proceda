@@ -63,7 +63,7 @@ class ToolExecutor:
                         {
                             "tool_call_id": tool_call.id,
                             "tool_name": tool_call.name,
-                            "result": result.content[:1000],  # truncate for event log
+                            "result": result.content,
                         },
                     )
                 )

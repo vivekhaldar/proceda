@@ -23,3 +23,6 @@ htmlcov/
 proceda.yaml
 benchmarks/sop_bench/results/
 !benchmarks/sop_bench/results/.gitkeep
+
+# Full experiment traces are retained locally; reports/manifests remain tracked.
+experiments/*/runs/

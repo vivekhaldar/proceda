@@ -1,0 +1,20 @@
+  Model
+    architecture        laya
+    parameters          421M
+    context length      512
+    precision           F16/F32
+    format              onnx
+    engine              onnxruntime
+    languages           en
+
+  Capabilities
+    choice
+    score
+    noul
+    act
+
+  License
+    Laya by Convai Innovations (https://huggingface.co/convaiinnovations/laya)
+    Licensed under the Apache License, Version 2.0.
+    ...
+

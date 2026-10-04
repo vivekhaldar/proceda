@@ -1,0 +1,53 @@
+[
+  {
+    "filename": "nebius-function-calling.md",
+    "url": "https://docs.tokenfactory.nebius.com/ai-models-inference/function-calling.md",
+    "http_status": 200,
+    "retrieved_at_utc": "2026-10-04T20:07:21.983251+00:00"
+  },
+  {
+    "filename": "nebius-json.md",
+    "url": "https://docs.tokenfactory.nebius.com/ai-models-inference/json.md",
+    "http_status": 200,
+    "retrieved_at_utc": "2026-10-04T20:07:22.227053+00:00"
+  },
+  {
+    "filename": "nebius-quickstart.md",
+    "url": "https://docs.tokenfactory.nebius.com/quickstart.md",
+    "http_status": 200,
+    "retrieved_at_utc": "2026-10-04T20:07:22.458230+00:00"
+  },
+  {
+    "filename": "nebius-public-serverless.md",
+    "url": "https://docs.tokenfactory.nebius.com/public-serverless.md",
+    "http_status": 200,
+    "retrieved_at_utc": "2026-10-04T20:07:22.677668+00:00"
+  },
+  {
+    "command": [
+      "ollaya",
+      "list"
+    ],
+    "status": 0,
+    "retrieved_at_utc": "2026-10-04T20:07:22.694296+00:00",
+    "inference_performed": false
+  },
+  {
+    "command": [
+      "ollaya",
+      "ps"
+    ],
+    "status": 0,
+    "retrieved_at_utc": "2026-10-04T20:07:22.702614+00:00",
+    "inference_performed": false
+  },
+  {
+    "command": [
+      "ollaya",
+      "--version"
+    ],
+    "status": 0,
+    "retrieved_at_utc": "2026-10-04T20:07:22.710159+00:00",
+    "inference_performed": false
+  }
+]

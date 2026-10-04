@@ -1,0 +1,48 @@
+{
+  "retrieved_at_utc": "2026-10-04T20:08:14.128812+00:00",
+  "currency": "USD",
+  "unit": "per_1000000_tokens",
+  "live_catalog_verified": true,
+  "inference_access_verified": false,
+  "models": [
+    {
+      "id": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "input": 0.1,
+      "output": 0.3,
+      "tool_calling_documented": true,
+      "source": "https://nebius.com/services/token-factory/models/qwen-models-inference",
+      "role_suggestion": "cheap_generator"
+    },
+    {
+      "id": "zai-org/GLM-5.3-Flash",
+      "input": 0.15,
+      "output": 0.5,
+      "tool_calling_documented": true,
+      "source": "https://nebius.com/services/token-factory/models/glm-models-inference",
+      "role_suggestion": "competitive_cheap_baseline"
+    },
+    {
+      "id": "zai-org/GLM-5.3",
+      "input": 1.4,
+      "output": 4.4,
+      "tool_calling_documented": true,
+      "source": "https://nebius.com/services/token-factory/models/glm-models-inference",
+      "role_suggestion": "strong_generator_and_direct_baseline"
+    },
+    {
+      "id": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+      "input": 0.2,
+      "output": 0.6,
+      "tool_calling_documented": true,
+      "source": "https://dev.nebius.com/cookbook/openhands-agent-canvas",
+      "price_verified_date_in_source": "2026-09-05",
+      "role_suggestion": "same_family_intermediate_optional"
+    }
+  ],
+  "notes": [
+    "Prices are documented list prices rather than an account-specific bill.",
+    "Catalog response verifies listed availability, not a successful inference or specific parameter combination.",
+    "Reasoning tokens when reported inside output usage must not be double-counted.",
+    "Current docs examples include older retired model IDs; prefer the saved live catalog for model names."
+  ]
+}

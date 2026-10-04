@@ -49,6 +49,9 @@ class EventType(enum.Enum):
 
     # LLM usage
     LLM_USAGE = "llm.usage"
+    DECISION_EVALUATED = "decision.evaluated"
+    PROPOSAL_REJECTED = "decision.proposal_rejected"
+    STEP_AUTO_COMPLETED = "decision.step_auto_completed"
 
     # Runtime state
     STATUS_CHANGED = "status.changed"

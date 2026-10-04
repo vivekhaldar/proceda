@@ -1,0 +1,136 @@
+"""ABOUTME: Optional per-attempt LLM audit records without credentials or HTTP headers.
+ABOUTME: Uses independent exclusive files so concurrent calls cannot interleave records."""
+
+from __future__ import annotations
+
+import json
+import re
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
+
+_PRIVATE_FIELDS = {
+    "api_key",
+    "apikey",
+    "x_api_key",
+    "authorization",
+    "proxy_authorization",
+    "cookie",
+    "set_cookie",
+    "headers",
+    "request_headers",
+    "response_headers",
+    "access_token",
+    "api_token",
+    "refresh_token",
+    "id_token",
+    "password",
+    "secret",
+    "client_secret",
+}
+
+
+def sanitize(value: Any, secrets: tuple[str, ...] = ()) -> Any:
+    """Redact known credentials and credential/header fields, preserving other data."""
+    if isinstance(value, str):
+        for secret in secrets:
+            if secret:
+                value = value.replace(secret, "[REDACTED]")
+        return re.sub(
+            r"(?i)(\b(?:authorization|proxy-authorization)\s*[:=]\s*"
+            r"(?:bearer\s+|basic\s+)?)[^\s,;\"']+",
+            r"\1[REDACTED]",
+            value,
+        )
+    if isinstance(value, dict):
+        return {
+            sanitize(str(key), secrets): "[REDACTED]"
+            if (
+                str(key).lower().replace("-", "_") in _PRIVATE_FIELDS
+                or str(key).lower().replace("-", "_").endswith("_headers")
+            )
+            else sanitize(item, secrets)
+            for key, item in value.items()
+        }
+    if isinstance(value, (list, tuple)):
+        return [sanitize(item, secrets) for item in value]
+    if value is None or isinstance(value, (bool, int, float)):
+        return value
+    # Avoid repr(), which can expose transport objects and their headers.
+    return {"unserialized_type": type(value).__name__}
+
+
+def response_data(response: Any) -> dict[str, Any] | None:
+    """Obtain response content, excluding transport object representations."""
+    if response is None:
+        return None
+    if isinstance(response, dict):
+        return response
+    if callable(getattr(response, "model_dump", None)):
+        result = response.model_dump()
+        return result if isinstance(result, dict) else None
+    if callable(getattr(response, "json", None)):
+        try:
+            result = response.json()
+        except (TypeError, ValueError):
+            return None
+        return result if isinstance(result, dict) else None
+    return None
+
+
+def usage_data(response: Any, raw: dict[str, Any] | None) -> dict[str, Any] | None:
+    """Keep reported usage; absence is unknown rather than a zero-token assertion."""
+    usage = raw.get("usage") if raw else None
+    if isinstance(usage, dict):
+        return usage
+    usage = getattr(response, "usage", None)
+    if isinstance(usage, dict):
+        return usage
+    dump = getattr(usage, "model_dump", None)
+    if callable(dump):
+        return dump()
+    if usage is not None:
+        fields = ("prompt_tokens", "completion_tokens", "total_tokens")
+        result = {name: getattr(usage, name) for name in fields if hasattr(usage, name)}
+        return result or None
+    return None
+
+
+def write_attempt(
+    directory: str,
+    *,
+    call_id: str,
+    attempt: int,
+    started_at: str,
+    elapsed_ms: float,
+    request: dict[str, Any],
+    response: Any = None,
+    error: BaseException | None = None,
+    secrets: tuple[str, ...] = (),
+) -> None:
+    """Write one finished attempt; errors writing an enabled audit are not hidden."""
+    source = response if response is not None else getattr(error, "response", None)
+    raw = response_data(source)
+    usage = usage_data(source, raw)
+    record = {
+        "call_id": call_id,
+        "attempt": attempt,
+        "started_at": started_at,
+        "finished_at": datetime.now(UTC).isoformat(),
+        "elapsed_ms": elapsed_ms,
+        "request": request,
+        "requested_model": request["model"],
+        "response_model": raw.get("model") if raw else getattr(source, "model", None),
+        "response": raw,
+        "usage": usage,
+        "usage_reported": usage is not None,
+        "status": "error" if error is not None else "success",
+        "error": {"type": type(error).__name__, "message": str(error)}
+        if error is not None
+        else None,
+    }
+    path = Path(directory)
+    path.mkdir(parents=True, exist_ok=True)
+    payload = json.dumps(sanitize(record, secrets), ensure_ascii=False, allow_nan=False)
+    with (path / f"{call_id}-{attempt:03d}.json").open("x", encoding="utf-8") as stream:
+        stream.write(payload + "\n")

@@ -3,18 +3,24 @@ ABOUTME: Handles LLM loop, approval gates, tool calls, and guard-rail limits."""
 
 from __future__ import annotations
 
+import json
 import logging
 from collections.abc import Callable, Coroutine
+from dataclasses import asdict
 from datetime import UTC, datetime
 from typing import Any
 
+import jsonschema
+
+from proceda.config import DecisionConfig
+from proceda.decision import DecisionService, GateResult
 from proceda.events import EventType, RunEvent
 from proceda.exceptions import ApprovalRejectedError, ExecutionError
 from proceda.human import HumanInterface
 from proceda.internal.context import ContextManager
 from proceda.internal.tool_executor import ToolExecutor
 from proceda.llm.prompts import build_step_prompt, build_system_prompt
-from proceda.llm.runtime import LLMRuntime
+from proceda.llm.runtime import LLMResponse, LLMRuntime
 from proceda.llm.tool_schemas import get_control_tool_schemas, is_control_tool
 from proceda.session import (
     ApprovalDecision,
@@ -55,6 +61,9 @@ class Executor:
         tool_schemas: list[dict[str, Any]] | None = None,
         max_text_responses_before_prompt: int = 3,
         max_tool_calls_per_step: int = 20,
+        decision_service: DecisionService | None = None,
+        decision_config: DecisionConfig | None = None,
+        fallback_llm: LLMRuntime | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -66,6 +75,9 @@ class Executor:
         self._app_tool_schemas = tool_schemas or []
         self._max_text_before_prompt = max_text_responses_before_prompt
         self._max_tool_calls_per_step = max_tool_calls_per_step
+        self._decisions = decision_service
+        self._decision_config = decision_config or DecisionConfig()
+        self._fallback_llm = fallback_llm
 
     async def execute(self) -> None:
         """Run the full skill from current step to completion."""
@@ -220,6 +232,7 @@ class Executor:
             is_last_step=is_last_step,
             output_fields=self._skill.output_fields,
         )
+        step_message_start = len(session.messages)
         session.add_message(RunMessage.create("user", step_prompt, is_critical=True))
 
         text_only_count = 0
@@ -243,30 +256,7 @@ class Executor:
             trimmed = self._context.trim_messages(session.messages)
             formatted = self._llm.format_messages(trimmed)
 
-            response = await self._llm.complete(
-                formatted, tools=all_tools, temperature=temp_override
-            )
-
-            # Track token usage
-            if response.total_tokens > 0:
-                session.total_prompt_tokens += response.prompt_tokens
-                session.total_completion_tokens += response.completion_tokens
-                session.total_llm_tokens += response.total_tokens
-                await self._emit(
-                    RunEvent.create(
-                        session.id,
-                        EventType.LLM_USAGE,
-                        {
-                            "step_index": step_index,
-                            "prompt_tokens": response.prompt_tokens,
-                            "completion_tokens": response.completion_tokens,
-                            "total_tokens": response.total_tokens,
-                            "cumulative_prompt_tokens": session.total_prompt_tokens,
-                            "cumulative_completion_tokens": session.total_completion_tokens,
-                            "cumulative_total_tokens": session.total_llm_tokens,
-                        },
-                    )
-                )
+            response = await self._propose(formatted, all_tools, temp_override, step_index)
 
             # Handle reasoning
             if response.reasoning:
@@ -366,6 +356,7 @@ class Executor:
                 )
 
             # Process tool calls
+            batch_results_start = len(session.step_tool_results)
             for tc in response.tool_calls:
                 if is_control_tool(tc.name):
                     result = await self._handle_control_tool(tc)
@@ -422,10 +413,212 @@ class Executor:
                                 f"Step {step_index} cancelled after exceeding tool call limit"
                             )
 
+            # Check only a fully processed app-tool batch. Control transitions,
+            # failed tools, and final-output steps retain ordinary execution.
+            fresh_results = session.step_tool_results[batch_results_start:]
+            if (
+                self._decisions is not None
+                and self._decision_config.fast_completion
+                and not is_last_step
+                and response.tool_calls
+                and all(not is_control_tool(tc.name) for tc in response.tool_calls)
+                and len(fresh_results) == len(response.tool_calls)
+                and all(not r.get("is_error", True) for r in fresh_results)
+            ):
+                gate = await self._decisions.check_completion(
+                    step=step.content,
+                    evidence={
+                        "inputs": session.variables,
+                        "observed_tool_receipts": self._observed_tool_receipts(),
+                        "step_history": self._llm.format_messages(
+                            session.messages[step_message_start:]
+                        ),
+                    },
+                )
+                await self._record_gate("completion", gate, step_index)
+                if gate.value is True:
+                    receipt_ids = [r["tool_call_id"] for r in fresh_results]
+                    summary = (
+                        "Step obligations accepted by the configured decision gate. "
+                        f"Original tool receipts: {', '.join(receipt_ids)}."
+                    )
+                    tc = ToolCall(ToolCall.generate_id(), "complete_step", {"summary": summary})
+                    session.add_message(RunMessage.create("assistant", "", tool_calls=[tc]))
+                    await self._handle_control_tool(tc)
+                    await self._emit(
+                        RunEvent.create(
+                            session.id,
+                            EventType.STEP_AUTO_COMPLETED,
+                            {"step_index": step_index, "receipt_ids": receipt_ids},
+                        )
+                    )
+                    return None
+
         raise ExecutionError(
             f"Step {step_index} exhausted {MAX_TOOL_CALL_ITERATIONS} iterations "
             "without calling complete_step"
         )
+
+    def _observed_tool_receipts(self) -> list[dict[str, Any]]:
+        """Preserve actual app observations even when the LLM context was trimmed."""
+        calls = {
+            tc.id: tc
+            for message in self._session.messages
+            for tc in (message.tool_calls or [])
+            if not is_control_tool(tc.name)
+        }
+        receipts = []
+        for message in self._session.messages:
+            if message.role != "tool" or not message.app_name:
+                continue
+            call = calls.get(message.tool_call_id or "")
+            if call is not None:
+                receipts.append(
+                    {
+                        "tool_call_id": call.id,
+                        "tool_name": call.name,
+                        "arguments": call.arguments,
+                        "result": message.content,
+                    }
+                )
+        return receipts
+
+    async def _record_gate(self, purpose: str, gate: GateResult, step_index: int) -> None:
+        await self._emit(
+            RunEvent.create(
+                self._session.id,
+                EventType.DECISION_EVALUATED,
+                {
+                    "step_index": step_index,
+                    "purpose": purpose,
+                    "value": gate.value,
+                    "reason": gate.reason,
+                    "probabilities": gate.probabilities,
+                    "stages": gate.details,
+                },
+            )
+        )
+
+    async def _track_usage(self, response: LLMResponse, step_index: int) -> None:
+        session = self._session
+        if response.total_tokens > 0:
+            session.total_prompt_tokens += response.prompt_tokens
+            session.total_completion_tokens += response.completion_tokens
+            session.total_llm_tokens += response.total_tokens
+            await self._emit(
+                RunEvent.create(
+                    session.id,
+                    EventType.LLM_USAGE,
+                    {
+                        "step_index": step_index,
+                        "prompt_tokens": response.prompt_tokens,
+                        "completion_tokens": response.completion_tokens,
+                        "total_tokens": response.total_tokens,
+                        "cumulative_prompt_tokens": session.total_prompt_tokens,
+                        "cumulative_completion_tokens": session.total_completion_tokens,
+                        "cumulative_total_tokens": session.total_llm_tokens,
+                    },
+                )
+            )
+
+    @staticmethod
+    def _proposal_schema_errors(response: LLMResponse, tools: list[dict]) -> list[str]:
+        schemas = {tool["function"]["name"]: tool["function"] for tool in tools}
+        errors = []
+        for tc in response.tool_calls:
+            schema = schemas.get(tc.name)
+            if schema is None:
+                errors.append(f"Unknown tool: {tc.name}")
+                continue
+            try:
+                jsonschema.validate(tc.arguments, schema.get("parameters", {}))
+            except (jsonschema.ValidationError, jsonschema.SchemaError) as exc:
+                errors.append(f"{tc.name}: {exc.message}")
+        return errors
+
+    async def _propose(
+        self,
+        messages: list[dict],
+        tools: list[dict],
+        temperature: float | None,
+        step_index: int,
+    ) -> LLMResponse:
+        """Verify proposals before dispatch; discarded attempts still count in usage."""
+        response = await self._llm.complete(messages, tools=tools, temperature=temperature)
+        await self._track_usage(response, step_index)
+        if self._decisions is None or not self._decision_config.verify_proposals:
+            return response
+        step = self._skill.get_step(step_index)
+        repairs = self._decision_config.max_repairs
+        for attempt in range(repairs + 1):
+            errors = self._proposal_schema_errors(response, tools)
+            gate = None
+            if not errors:
+                gate = await self._decisions.check_proposal(
+                    step=step.content,
+                    evidence={
+                        "messages": messages,
+                        "inputs": self._session.variables,
+                        "observed_tool_receipts": self._observed_tool_receipts(),
+                    },
+                    proposal={
+                        "content": response.content,
+                        "tool_calls": [asdict(tc) for tc in response.tool_calls],
+                    },
+                    tools=tools,
+                    final=step_index == self._skill.step_count,
+                    output_fields=self._skill.output_fields,
+                )
+                await self._record_gate("proposal", gate, step_index)
+                if gate.value is True:
+                    return response
+                # An unavailable/uncertain verifier cannot declare a proposal wrong.
+                # Keep the existing LLM path and make that fallback observable.
+                if gate.value is None:
+                    if attempt == 0:
+                        return response
+                    raise ExecutionError("Repaired proposal could not be verified")
+            rejection = errors or [
+                {
+                    "reason": gate.reason if gate else "rejected",
+                    "probabilities": gate.probabilities if gate else {},
+                }
+            ]
+            await self._emit(
+                RunEvent.create(
+                    self._session.id,
+                    EventType.PROPOSAL_REJECTED,
+                    {
+                        "step_index": step_index,
+                        "attempt": attempt,
+                        "reasons": rejection,
+                        "content": response.content,
+                        "tool_calls": [asdict(tc) for tc in response.tool_calls],
+                    },
+                )
+            )
+            if attempt == repairs:
+                raise ExecutionError("Proposal failed verification after bounded repair")
+            repair_messages = messages + [
+                {
+                    "role": "user",
+                    "content": "A proposed action was rejected before execution. No tools from "
+                    "that proposal have run. Produce a corrected next action grounded in the "
+                    "original observations. Rejected proposal and checks: "
+                    + json.dumps(
+                        {
+                            "content": response.content,
+                            "tool_calls": [asdict(tc) for tc in response.tool_calls],
+                            "checks": rejection,
+                        }
+                    ),
+                }
+            ]
+            response = await (self._fallback_llm or self._llm).complete(
+                repair_messages, tools=tools, temperature=temperature
+            )
+            await self._track_usage(response, step_index)
+        raise AssertionError("Unreachable proposal loop")
 
     async def _handle_control_tool(self, tool_call: ToolCall) -> str | None:
         """Handle a control tool call. Returns 'step_complete' if step is done."""

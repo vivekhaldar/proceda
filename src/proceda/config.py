@@ -63,10 +63,40 @@ class LLMConfig:
     max_tokens: int = 4096
     max_retries: int = 3
     thinking: str | None = None
+    api_base: str | None = None
+    timeout: float = 60.0
+    audit_dir: str | None = None
 
     @property
     def api_key(self) -> str | None:
         return os.environ.get(self.api_key_env)
+
+
+@dataclass
+class DecisionBackendConfig:
+    """One bounded-decision provider; credentials are resolved only at call time."""
+
+    name: str = "jev"
+    kind: str = "typesafe"
+    model: str = "jev-1.13.0"
+    base_url: str = "https://api.typesafe.ai"
+    api_key_env: str = "TYPESAFE_API_KEY"
+    max_input_chars: int = 60000
+    timeout: float = 20.0
+    input_cost_per_million: float = 0.042
+
+
+@dataclass
+class DecisionConfig:
+    """Opt-in internal cascades; natural-language skills need no new annotations."""
+
+    enabled: bool = False
+    backends: list[DecisionBackendConfig] = field(default_factory=list)
+    threshold: float = 0.97
+    fast_completion: bool = True
+    verify_proposals: bool = False
+    max_repairs: int = 1
+    fallback_llm: LLMConfig | None = None
 
 
 @dataclass
@@ -113,6 +143,7 @@ class ProcedaConfig:
     dev: DevConfig = field(default_factory=DevConfig)
     security: SecurityConfig = field(default_factory=SecurityConfig)
     logging: LoggingConfig = field(default_factory=LoggingConfig)
+    decisions: DecisionConfig = field(default_factory=DecisionConfig)
 
     @staticmethod
     def from_dict(data: dict[str, Any]) -> ProcedaConfig:
@@ -128,7 +159,53 @@ class ProcedaConfig:
                 max_tokens=llm.get("max_tokens", config.llm.max_tokens),
                 max_retries=llm.get("max_retries", config.llm.max_retries),
                 thinking=llm.get("thinking", config.llm.thinking),
+                api_base=llm.get("api_base"),
+                timeout=llm.get("timeout", config.llm.timeout),
+                audit_dir=llm.get("audit_dir"),
             )
+
+        if "decisions" in data:
+            dec = data["decisions"]
+            if not isinstance(dec, dict):
+                raise ConfigError("decisions must be a mapping")
+            for flag in ("enabled", "fast_completion", "verify_proposals"):
+                if flag in dec and not isinstance(dec[flag], bool):
+                    raise ConfigError(f"decisions.{flag} must be a boolean")
+            threshold = dec.get("threshold", 0.97)
+            if type(threshold) not in (float, int) or not 0.5 < threshold <= 1:
+                raise ConfigError("decisions.threshold must be in (0.5, 1]")
+            repairs = dec.get("max_repairs", 1)
+            if type(repairs) is not int or repairs < 0 or repairs > 5:
+                raise ConfigError("decisions.max_repairs must be an integer from 0 to 5")
+            backends = []
+            for entry in dec.get("backends", []):
+                try:
+                    backend = DecisionBackendConfig(**entry)
+                except TypeError as exc:
+                    raise ConfigError(f"Invalid decision backend fields: {exc}") from exc
+                if backend.kind not in {"typesafe", "ollaya"}:
+                    raise ConfigError("Decision backend kind must be typesafe or ollaya")
+                if (
+                    type(backend.max_input_chars) is not int
+                    or backend.max_input_chars < 1
+                    or type(backend.timeout) not in (int, float)
+                    or backend.timeout <= 0
+                ):
+                    raise ConfigError("Decision context guard and timeout must be positive")
+                backends.append(backend)
+            fallback = dec.get("fallback_llm")
+            fallback_config = ProcedaConfig.from_dict({"llm": fallback}).llm if fallback else None
+            config.decisions = DecisionConfig(
+                enabled=dec.get("enabled", False),
+                backends=backends,
+                threshold=float(threshold),
+                fast_completion=dec.get("fast_completion", True),
+                verify_proposals=dec.get("verify_proposals", False),
+                max_repairs=repairs,
+                fallback_llm=fallback_config,
+            )
+            if config.decisions.enabled and not backends:
+                raise ConfigError("Enabled decisions require at least one configured backend")
 
         if "apps" in data:
             config.apps = []

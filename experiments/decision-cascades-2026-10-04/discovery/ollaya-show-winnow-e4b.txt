@@ -1,0 +1,19 @@
+  Model
+    architecture        winnow
+    parameters          7.5B
+    context length      8192
+    precision           Q8_0
+    format              gguf
+    engine              llama.cpp
+    languages           multilingual
+
+  Capabilities
+    choice
+    score
+    noul
+
+  License
+    Winnow-E4B
+    Base model: Gemma 4 E4B IT by Google DeepMind
+    ...
+

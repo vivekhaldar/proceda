@@ -145,7 +145,7 @@ class TestFallbackToAssistantMessage:
         output = extract_output(events, expected_cols)
         assert output == {"insurance_validation": "valid", "pharmacy_check": "yes"}
 
-    def test_falls_back_to_llm_extraction_for_prose(self):
+    def test_falls_back_to_llm_extraction_for_prose(self, monkeypatch):
         """LLM extraction handles prose that deterministic strategies miss."""
         events = [
             _make_event(
@@ -158,7 +158,15 @@ class TestFallbackToAssistantMessage:
                 },
             ),
         ]
+        calls = []
+
+        def mock_extract(content, columns):
+            calls.append((content, columns))
+            return {"hazard_class": "Hazard Class C"}
+
+        monkeypatch.setattr("benchmarks.sop_bench.output_extractor._extract_via_llm", mock_extract)
         output = extract_output(events, ["hazard_class"])
+        assert calls and calls[0][1] == ["hazard_class"]
         assert output.get("hazard_class") is not None
         assert "C" in output["hazard_class"] or "c" in output["hazard_class"].lower()
 
