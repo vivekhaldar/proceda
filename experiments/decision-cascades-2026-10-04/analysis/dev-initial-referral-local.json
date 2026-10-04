@@ -1,0 +1,655 @@
+{
+  "baseline": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 16,
+      "cost_complete": true,
+      "cost_usd": 0.010129599999999999,
+      "cost_usd_lower_bound": 0.010129599999999999,
+      "decision_preflight_records": 0,
+      "decision_requests": 0,
+      "input_tokens_known": 49024,
+      "known_input_usage_requests": 16,
+      "known_output_usage_requests": 16,
+      "known_usage_requests": 16,
+      "llm_requests": 16,
+      "output_tokens_known": 5552,
+      "providers": {
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.010129599999999999,
+          "input_tokens_known": 49024,
+          "known_usage_requests": 16,
+          "output_tokens_known": 5552,
+          "requests": 16,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 20.528670229003183,
+      "n": 2,
+      "p50": 20.528670229003183,
+      "p95": 21.577844985103003
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "terminal_cases": 2
+  },
+  "baseline_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0050517,
+        "cost_usd_lower_bound": 0.0050517,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 24518,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "output_tokens_known": 2748,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0050517,
+            "input_tokens_known": 24518,
+            "known_usage_requests": 8,
+            "output_tokens_known": 2748,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 21.69441995800298,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "status": "completed",
+      "task_id": "ACC100000",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cost_complete": true,
+        "cost_usd": 0.0050779,
+        "cost_usd_lower_bound": 0.0050779,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 24506,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_requests": 8,
+        "output_tokens_known": 2804,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0050779,
+            "input_tokens_known": 24506,
+            "known_usage_requests": 8,
+            "output_tokens_known": 2804,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 19.362920500003383,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "status": "completed",
+      "task_id": "ACC100001",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "baseline_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/baseline",
+  "by_domain": {
+    "referral_abuse_detection_v1": {
+      "accuracy_delta": 0.0,
+      "baseline_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 16,
+          "cost_complete": true,
+          "cost_usd": 0.010129599999999999,
+          "cost_usd_lower_bound": 0.010129599999999999,
+          "decision_preflight_records": 0,
+          "decision_requests": 0,
+          "input_tokens_known": 49024,
+          "known_input_usage_requests": 16,
+          "known_output_usage_requests": 16,
+          "known_usage_requests": 16,
+          "llm_requests": 16,
+          "output_tokens_known": 5552,
+          "providers": {
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.010129599999999999,
+              "input_tokens_known": 49024,
+              "known_usage_requests": 16,
+              "output_tokens_known": 5552,
+              "requests": 16,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 20.528670229003183,
+          "n": 2,
+          "p50": 20.528670229003183,
+          "p95": 21.577844985103003
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "terminal_cases": 2
+      },
+      "candidate_minus_baseline_latency_seconds": {
+        "mean": -0.2447480414994061,
+        "n": 2,
+        "p50": -0.2447480414994061,
+        "p95": 0.7679922958486713
+      },
+      "candidate_paired": {
+        "accounting": {
+          "audit_errors": [],
+          "audit_records": 28,
+          "cost_complete": true,
+          "cost_usd": 0.010122486,
+          "cost_usd_lower_bound": 0.010122486,
+          "decision_preflight_records": 0,
+          "decision_requests": 12,
+          "input_tokens_known": 65181,
+          "known_input_usage_requests": 28,
+          "known_output_usage_requests": 28,
+          "known_usage_requests": 28,
+          "llm_requests": 16,
+          "output_tokens_known": 5607,
+          "providers": {
+            "decision:ollaya:winnow:e4b": {
+              "cost_usd_lower_bound": 0.0,
+              "input_tokens_known": 10064,
+              "known_usage_requests": 6,
+              "output_tokens_known": 0,
+              "requests": 6,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "decision:typesafe:jev-1.13.0": {
+              "cost_usd_lower_bound": 0.00031638600000000004,
+              "input_tokens_known": 7533,
+              "known_usage_requests": 6,
+              "output_tokens_known": 270,
+              "requests": 6,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            },
+            "llm:zai-org/GLM-5.3-Flash": {
+              "cost_usd_lower_bound": 0.009806100000000002,
+              "input_tokens_known": 47584,
+              "known_usage_requests": 16,
+              "output_tokens_known": 5337,
+              "requests": 16,
+              "unknown_cost_requests": 0,
+              "unknown_usage_requests": 0
+            }
+          },
+          "unknown_cost_requests": 0,
+          "unknown_request_status": 0,
+          "unknown_usage_requests": 0
+        },
+        "all_planned_terminal": true,
+        "completed_cases": 2,
+        "correct_cases": 2,
+        "latency_seconds": {
+          "mean": 20.283922187503777,
+          "n": 2,
+          "p50": 20.283922187503777,
+          "p95": 22.345837280951674
+        },
+        "planned_cases": 2,
+        "status_counts": {
+          "completed": 2
+        },
+        "strict_accuracy_terminal": 1.0,
+        "terminal_cases": 2
+      },
+      "cases": [
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_seconds": 0.8805189999984577,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100000"
+        },
+        {
+          "baseline_status": "completed",
+          "candidate_minus_baseline_seconds": -1.37001508299727,
+          "candidate_status": "completed",
+          "domain": "referral_abuse_detection_v1",
+          "outcome": "both_correct",
+          "task_id": "ACC100001"
+        }
+      ],
+      "discordance_counts": {
+        "both_correct": 2,
+        "both_incorrect": 0,
+        "improved": 0,
+        "regressed": 0
+      },
+      "pending_pairs": [],
+      "planned_overlap": 2,
+      "terminal_pairs": 2,
+      "unpaired_baseline": [],
+      "unpaired_candidate": []
+    }
+  },
+  "candidate": {
+    "accounting": {
+      "audit_errors": [],
+      "audit_records": 28,
+      "cost_complete": true,
+      "cost_usd": 0.010122486,
+      "cost_usd_lower_bound": 0.010122486,
+      "decision_preflight_records": 0,
+      "decision_requests": 12,
+      "input_tokens_known": 65181,
+      "known_input_usage_requests": 28,
+      "known_output_usage_requests": 28,
+      "known_usage_requests": 28,
+      "llm_requests": 16,
+      "output_tokens_known": 5607,
+      "providers": {
+        "decision:ollaya:winnow:e4b": {
+          "cost_usd_lower_bound": 0.0,
+          "input_tokens_known": 10064,
+          "known_usage_requests": 6,
+          "output_tokens_known": 0,
+          "requests": 6,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "decision:typesafe:jev-1.13.0": {
+          "cost_usd_lower_bound": 0.00031638600000000004,
+          "input_tokens_known": 7533,
+          "known_usage_requests": 6,
+          "output_tokens_known": 270,
+          "requests": 6,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        },
+        "llm:zai-org/GLM-5.3-Flash": {
+          "cost_usd_lower_bound": 0.009806100000000002,
+          "input_tokens_known": 47584,
+          "known_usage_requests": 16,
+          "output_tokens_known": 5337,
+          "requests": 16,
+          "unknown_cost_requests": 0,
+          "unknown_usage_requests": 0
+        }
+      },
+      "unknown_cost_requests": 0,
+      "unknown_request_status": 0,
+      "unknown_usage_requests": 0
+    },
+    "all_planned_terminal": true,
+    "completed_cases": 2,
+    "correct_cases": 2,
+    "latency_seconds": {
+      "mean": 20.283922187503777,
+      "n": 2,
+      "p50": 20.283922187503777,
+      "p95": 22.345837280951674
+    },
+    "planned_cases": 2,
+    "status_counts": {
+      "completed": 2
+    },
+    "strict_accuracy_terminal": 1.0,
+    "terminal_cases": 2
+  },
+  "candidate_cases": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.005384764,
+        "cost_usd_lower_bound": 0.005384764,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 33575,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 8,
+        "output_tokens_known": 3179,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 5093,
+            "known_usage_requests": 3,
+            "output_tokens_known": 0,
+            "requests": 3,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.00015926400000000003,
+            "input_tokens_known": 3792,
+            "known_usage_requests": 3,
+            "output_tokens_known": 135,
+            "requests": 3,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.005225500000000001,
+            "input_tokens_known": 24690,
+            "known_usage_requests": 8,
+            "output_tokens_known": 3044,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 22.57493895800144,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "status": "completed",
+      "task_id": "ACC100000",
+      "terminal": true,
+      "warnings": []
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 14,
+        "cost_complete": true,
+        "cost_usd": 0.004737722000000001,
+        "cost_usd_lower_bound": 0.004737722000000001,
+        "decision_preflight_records": 0,
+        "decision_requests": 6,
+        "input_tokens_known": 31606,
+        "known_input_usage_requests": 14,
+        "known_output_usage_requests": 14,
+        "known_usage_requests": 14,
+        "llm_requests": 8,
+        "output_tokens_known": 2428,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 4971,
+            "known_usage_requests": 3,
+            "output_tokens_known": 0,
+            "requests": 3,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.00015712200000000002,
+            "input_tokens_known": 3741,
+            "known_usage_requests": 3,
+            "output_tokens_known": 135,
+            "requests": 3,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.0045806,
+            "input_tokens_known": 22894,
+            "known_usage_requests": 8,
+            "output_tokens_known": 2293,
+            "requests": 8,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "completed": true,
+      "correct": true,
+      "domain": "referral_abuse_detection_v1",
+      "elapsed_seconds": 17.992905417006114,
+      "field_correct": {
+        "enforcement_action": true
+      },
+      "status": "completed",
+      "task_id": "ACC100001",
+      "terminal": true,
+      "warnings": []
+    }
+  ],
+  "candidate_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/runs/dev-initial-referral/hybrid-local-jev",
+  "notes": [
+    "All provider attempts, including failures and retries, come from audits only.",
+    "LLM request means acompletion attempt; decision request means client.post attempted.",
+    "Unknown usage/cost is not zero: cost_usd is null when accounting is incomplete.",
+    "Local compute, electricity and hosting overhead are excluded from marginal API fees.",
+    "Output tokens include reasoning; reasoning detail is never added again.",
+    "Latency covers whole-case execution, including failures; percentiles interpolate.",
+    "Paired comparisons use terminal records in both arms; pending cases remain explicit.",
+    "Discordance counts are descriptive; no population guarantee or significance claimed."
+  ],
+  "paired": {
+    "accuracy_delta": 0.0,
+    "baseline_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 16,
+        "cost_complete": true,
+        "cost_usd": 0.010129599999999999,
+        "cost_usd_lower_bound": 0.010129599999999999,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "input_tokens_known": 49024,
+        "known_input_usage_requests": 16,
+        "known_output_usage_requests": 16,
+        "known_usage_requests": 16,
+        "llm_requests": 16,
+        "output_tokens_known": 5552,
+        "providers": {
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.010129599999999999,
+            "input_tokens_known": 49024,
+            "known_usage_requests": 16,
+            "output_tokens_known": 5552,
+            "requests": 16,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 20.528670229003183,
+        "n": 2,
+        "p50": 20.528670229003183,
+        "p95": 21.577844985103003
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "terminal_cases": 2
+    },
+    "candidate_minus_baseline_latency_seconds": {
+      "mean": -0.2447480414994061,
+      "n": 2,
+      "p50": -0.2447480414994061,
+      "p95": 0.7679922958486713
+    },
+    "candidate_paired": {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 28,
+        "cost_complete": true,
+        "cost_usd": 0.010122486,
+        "cost_usd_lower_bound": 0.010122486,
+        "decision_preflight_records": 0,
+        "decision_requests": 12,
+        "input_tokens_known": 65181,
+        "known_input_usage_requests": 28,
+        "known_output_usage_requests": 28,
+        "known_usage_requests": 28,
+        "llm_requests": 16,
+        "output_tokens_known": 5607,
+        "providers": {
+          "decision:ollaya:winnow:e4b": {
+            "cost_usd_lower_bound": 0.0,
+            "input_tokens_known": 10064,
+            "known_usage_requests": 6,
+            "output_tokens_known": 0,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "decision:typesafe:jev-1.13.0": {
+            "cost_usd_lower_bound": 0.00031638600000000004,
+            "input_tokens_known": 7533,
+            "known_usage_requests": 6,
+            "output_tokens_known": 270,
+            "requests": 6,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          },
+          "llm:zai-org/GLM-5.3-Flash": {
+            "cost_usd_lower_bound": 0.009806100000000002,
+            "input_tokens_known": 47584,
+            "known_usage_requests": 16,
+            "output_tokens_known": 5337,
+            "requests": 16,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "all_planned_terminal": true,
+      "completed_cases": 2,
+      "correct_cases": 2,
+      "latency_seconds": {
+        "mean": 20.283922187503777,
+        "n": 2,
+        "p50": 20.283922187503777,
+        "p95": 22.345837280951674
+      },
+      "planned_cases": 2,
+      "status_counts": {
+        "completed": 2
+      },
+      "strict_accuracy_terminal": 1.0,
+      "terminal_cases": 2
+    },
+    "cases": [
+      {
+        "baseline_status": "completed",
+        "candidate_minus_baseline_seconds": 0.8805189999984577,
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100000"
+      },
+      {
+        "baseline_status": "completed",
+        "candidate_minus_baseline_seconds": -1.37001508299727,
+        "candidate_status": "completed",
+        "domain": "referral_abuse_detection_v1",
+        "outcome": "both_correct",
+        "task_id": "ACC100001"
+      }
+    ],
+    "discordance_counts": {
+      "both_correct": 2,
+      "both_incorrect": 0,
+      "improved": 0,
+      "regressed": 0
+    },
+    "pending_pairs": [],
+    "planned_overlap": 2,
+    "terminal_pairs": 2,
+    "unpaired_baseline": [],
+    "unpaired_candidate": []
+  },
+  "prices_usd_per_million_tokens": {
+    "jev_input": 0.042,
+    "llm_input_output": {
+      "Qwen/Qwen3-235B-A22B-Instruct-2507": [
+        0.2,
+        0.6
+      ],
+      "Qwen/Qwen3-30B-A3B-Instruct-2507": [
+        0.1,
+        0.3
+      ],
+      "zai-org/GLM-5.3": [
+        1.4,
+        4.4
+      ],
+      "zai-org/GLM-5.3-Flash": [
+        0.15,
+        0.5
+      ]
+    },
+    "local_marginal_api_fee": 0.0
+  },
+  "schema_version": 1,
+  "source_manifest_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "split": "dev"
+}

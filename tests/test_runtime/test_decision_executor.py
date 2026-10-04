@@ -98,7 +98,7 @@ async def test_fast_path_eliminates_only_nonfinal_continuation():
     assert decisions.check_completion.await_count == 1
     assert any(e.type is EventType.STEP_AUTO_COMPLETED for e in sink.events)
     evidence = decisions.check_completion.call_args.kwargs["evidence"]
-    assert '"status":"active"' in str(evidence)
+    assert evidence["receipts"][0]["result"] == {"status": "active"}
     assert evidence["inputs"] == {"record_id": "R1"}
 
 
@@ -259,10 +259,12 @@ async def test_preserved_receipts_include_prior_observations_without_model_summa
     )
     session.add_message(RunMessage.create("assistant", "Unsubstantiated status: denied"))
     await ex.execute()
-    receipts = decisions.check_completion.call_args.kwargs["evidence"]["observed_tool_receipts"]
+    receipts = decisions.check_completion.call_args.kwargs["evidence"]["receipts"]
     assert len(receipts) == 2
     assert receipts[0]["arguments"] == {"id": "dependency"}
-    assert receipts[0]["result"] == '{"dependency_status":"verified"}'
+    assert receipts[0]["result"] == {"dependency_status": "verified"}
+    assert receipts[0]["current_step"] is False
+    assert receipts[1]["current_step"] is True
     assert "Unsubstantiated" not in str(receipts)
 
 
@@ -276,7 +278,7 @@ async def test_multi_tool_batch_is_fully_observed_before_gate():
     assert session.status is RunStatus.COMPLETED
     assert tools.execute.await_count == 2
     decisions.check_completion.assert_awaited_once()
-    receipts = decisions.check_completion.call_args.kwargs["evidence"]["observed_tool_receipts"]
+    receipts = decisions.check_completion.call_args.kwargs["evidence"]["receipts"]
     assert [r["tool_call_id"] for r in receipts] == ["first", "second"]
 
 

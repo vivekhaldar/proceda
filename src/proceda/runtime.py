@@ -215,6 +215,9 @@ class Runtime:
             decision_service=decision_service,
             decision_config=self._config.decisions,
             fallback_llm=fallback_llm,
+            tool_aliases={
+                tool.qualified_name: tool.name for tool in orchestrator.get_available_tools()
+            },
         )
 
         async def _run() -> None:

@@ -1,0 +1,58 @@
+{
+  "run_id": "dev-initial-referral",
+  "arms": [
+    {
+      "arm": "baseline",
+      "cases": 2,
+      "correct": 2,
+      "llm_usage_events": 16,
+      "tool_calls": 6,
+      "gates_evaluated": 0,
+      "gates_accepted": 0,
+      "gates_rejected": 0,
+      "gates_abstained": 0,
+      "decision_stage_outcomes": {},
+      "decision_stage_seconds": {},
+      "llm_attempt_seconds": 38.140772750921315
+    },
+    {
+      "arm": "hybrid-jev",
+      "cases": 2,
+      "correct": 2,
+      "llm_usage_events": 16,
+      "tool_calls": 6,
+      "gates_evaluated": 6,
+      "gates_accepted": 0,
+      "gates_rejected": 0,
+      "gates_abstained": 6,
+      "decision_stage_outcomes": {
+        "typesafe:uncertain": 6
+      },
+      "decision_stage_seconds": {
+        "typesafe": 1.6756791249936214
+      },
+      "llm_attempt_seconds": 33.05220137401193
+    },
+    {
+      "arm": "hybrid-local-jev",
+      "cases": 2,
+      "correct": 2,
+      "llm_usage_events": 16,
+      "tool_calls": 6,
+      "gates_evaluated": 6,
+      "gates_accepted": 0,
+      "gates_rejected": 0,
+      "gates_abstained": 6,
+      "decision_stage_outcomes": {
+        "ollaya:uncertain": 6,
+        "typesafe:uncertain": 6
+      },
+      "decision_stage_seconds": {
+        "ollaya": 5.569403958987095,
+        "typesafe": 1.578342249020352
+      },
+      "llm_attempt_seconds": 32.25538679295278
+    }
+  ],
+  "interpretation": "All six executions passed. Both hybrid arms used the same 16 LLM attempts as baseline and accepted no completion gates. Observed speed/cost variation cannot be attributed to avoided LLM calls; generation/provider variation and gate overhead remain. Two cases per arm are not an accuracy or tail-latency estimate."
+}

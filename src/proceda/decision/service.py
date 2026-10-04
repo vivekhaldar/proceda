@@ -142,16 +142,30 @@ class DecisionService:
 
     async def check_completion(self, *, step: str, evidence: Any) -> GateResult:
         """Check receipt-based normal advancement; executor enforces non-final eligibility."""
+        receipt_contract = (
+            "observed_evidence.receipts are actual executed tool calls. "
+            "qualified_tool_name is the runtime name; sop_tool_name is its verified SOP alias. "
+            "persisted=true means the exact result is already recorded, so retaining these "
+            "fields fulfills record/capture/read instructions unless a separate artifact or "
+            "write is explicitly required. is_error=false denotes a successful call. "
+            "current_step=true identifies calls made in this step; earlier receipts can supply "
+            "inputs but do not prove a newly required call happened. "
+        )
         questions = {
             "obligations_satisfied": _question(
-                "Have ALL mandatory actions, tool calls, information requirements and "
-                "documentation obligations of the current step been fulfilled? A tool returning "
-                "does not suffice if its result requires further work."
+                receipt_contract
+                + "Have the tool calls and observations explicitly required by step_instructions "
+                "been completed and recorded with the required arguments and result fields? "
+                "Check inputs and prior receipts for argument provenance. Missing results, "
+                "wrong arguments, failed calls, or further required actions mean no."
             ),
             "normal_advance_permitted": _question(
-                "Is advancing normally to the next procedure step correct, with no unresolved "
-                "error, required clarification, early-exit requirement, unhandled conditional "
-                "branch or remaining action in this step?"
+                receipt_contract
+                + "May the runtime now acknowledge this step and begin its next step, without "
+                "further action, user clarification, or stop/branch handling explicitly required "
+                "by THIS step? Do not require complete_step to have already been called: the "
+                "runtime sends that acknowledgment only after this check. Do not invent "
+                "requirements from unknown later steps."
             ),
         }
         return await self.evaluate(

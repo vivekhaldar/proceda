@@ -5,6 +5,7 @@ ABOUTME: Keeps reference labels outside inference and preserves every case's aud
 from __future__ import annotations
 
 import argparse
+import asyncio
 import contextlib
 import copy
 import csv
@@ -300,6 +301,14 @@ def scoped_config(
     return result
 
 
+async def run_until_closed(agent: Agent, variables: dict[str, str], collector: CaseSink) -> Any:
+    """Wait for the public event stream to finish, including runtime/MCP cleanup."""
+    handle = await agent.create_session(variables=variables, event_sinks=[collector])
+    async for _event in handle.events():
+        pass
+    return handle.to_result()
+
+
 def run_case(
     *,
     task: dict[str, str],
@@ -331,7 +340,7 @@ def run_case(
     try:
         case_config = scoped_config(config, case_dir, domain, data_dir)
         agent = Agent.from_path(skill_path, config=case_config)
-        result = agent.run(variables=variables, event_sinks=[collector])
+        result = asyncio.run(run_until_closed(agent, variables, collector))
         status = result.status.value
     except Exception as exc:
         status = "failed"

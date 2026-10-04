@@ -114,6 +114,13 @@ def experiment(tmp_path, monkeypatch):
     return data, exp
 
 
+def handle_for_result(result):
+    async def events():
+        yield event(EventType.RUN_COMPLETED)
+
+    return SimpleNamespace(events=events, to_result=lambda: result)
+
+
 @pytest.fixture
 def fake_agent(monkeypatch):
     calls = []
@@ -121,29 +128,27 @@ def fake_agent(monkeypatch):
     def from_path(path, config):
         calls.append({"path": str(path), "config": copy.deepcopy(config)})
 
-        def run(*, variables, event_sinks):
+        async def create_session(*, variables, event_sinks):
             calls[-1]["variables"] = variables
             assert "result" not in variables
-
-            async def emit():
-                for sink in event_sinks:
-                    await sink.handle(
-                        event(EventType.MESSAGE_ASSISTANT, content="<result>done</result>")
-                    )
-                    await sink.handle(
-                        event(EventType.TOOL_CALLED, tool_name="read", arguments=variables)
-                    )
-
-            asyncio.run(emit())
-            return SimpleNamespace(
-                status=RunStatus.COMPLETED,
-                session_id="fake-session",
-                prompt_tokens=3,
-                completion_tokens=2,
-                total_tokens=5,
+            for sink in event_sinks:
+                await sink.handle(
+                    event(EventType.MESSAGE_ASSISTANT, content="<result>done</result>")
+                )
+                await sink.handle(
+                    event(EventType.TOOL_CALLED, tool_name="read", arguments=variables)
+                )
+            return handle_for_result(
+                SimpleNamespace(
+                    status=RunStatus.COMPLETED,
+                    session_id="fake-session",
+                    prompt_tokens=3,
+                    completion_tokens=2,
+                    total_tokens=5,
+                )
             )
 
-        return SimpleNamespace(run=run)
+        return SimpleNamespace(create_session=create_session)
 
     monkeypatch.setattr(paired.Agent, "from_path", from_path)
     return calls
@@ -222,12 +227,15 @@ def test_partial_case_is_preserved_and_not_retried(experiment, fake_agent):
 
 
 def test_noncompleted_result_cannot_score_success(experiment, monkeypatch):
+    async def create_session(**kwargs):
+        return handle_for_result(
+            SimpleNamespace(status=RunStatus.CANCELLED, session_id="cancelled")
+        )
+
     monkeypatch.setattr(
         paired.Agent,
         "from_path",
-        lambda *a, **k: SimpleNamespace(
-            run=lambda **kwargs: SimpleNamespace(status=RunStatus.CANCELLED, session_id="cancelled")
-        ),
+        lambda *a, **k: SimpleNamespace(create_session=create_session),
     )
     result = paired.evaluate(**options(experiment))
     assert result["completed"] == 0 and result["correct"] == 0
@@ -305,3 +313,31 @@ def test_email_bridge_imports_from_preserved_source(monkeypatch):
     manager, specs = load_domain("email_intent", str(paired.DEFAULT_DATA))
     assert type(manager).__name__ == "ProductListingManager"
     assert len(specs) == 5
+
+
+def test_public_event_stream_cleanup_finishes_before_return():
+    order = []
+
+    async def events():
+        order.append("terminal_event")
+        yield event(EventType.RUN_COMPLETED)
+        await asyncio.sleep(0)
+        order.append("transport_closed")
+        await asyncio.sleep(0)
+        order.append("log_closed")
+
+    def to_result():
+        assert order == ["terminal_event", "transport_closed", "log_closed"]
+        return "result"
+
+    async def create_session(**kwargs):
+        return SimpleNamespace(events=events, to_result=to_result)
+
+    result = asyncio.run(
+        paired.run_until_closed(
+            SimpleNamespace(create_session=create_session),
+            {},
+            SimpleNamespace(),
+        )
+    )
+    assert result == "result"

@@ -64,6 +64,7 @@ class Executor:
         decision_service: DecisionService | None = None,
         decision_config: DecisionConfig | None = None,
         fallback_llm: LLMRuntime | None = None,
+        tool_aliases: dict[str, str] | None = None,
     ) -> None:
         self._skill = skill
         self._session = session
@@ -78,6 +79,8 @@ class Executor:
         self._decisions = decision_service
         self._decision_config = decision_config or DecisionConfig()
         self._fallback_llm = fallback_llm
+        self._tool_aliases = tool_aliases or {}
+        self._receipt_errors: dict[str, bool] = {}
 
     async def execute(self) -> None:
         """Run the full skill from current step to completion."""
@@ -427,13 +430,7 @@ class Executor:
             ):
                 gate = await self._decisions.check_completion(
                     step=step.content,
-                    evidence={
-                        "inputs": session.variables,
-                        "observed_tool_receipts": self._observed_tool_receipts(),
-                        "step_history": self._llm.format_messages(
-                            session.messages[step_message_start:]
-                        ),
-                    },
+                    evidence=self._completion_evidence(step_message_start),
                 )
                 await self._record_gate("completion", gate, step_index)
                 if gate.value is True:
@@ -458,6 +455,36 @@ class Executor:
             f"Step {step_index} exhausted {MAX_TOOL_CALL_ITERATIONS} iterations "
             "without calling complete_step"
         )
+
+    def _completion_evidence(self, step_message_start: int) -> dict[str, Any]:
+        """Separate recorded business observations from pending runtime bookkeeping."""
+        current_ids = {
+            tc.id
+            for message in self._session.messages[step_message_start:]
+            for tc in (message.tool_calls or [])
+            if not is_control_tool(tc.name)
+        }
+        receipts = []
+        for receipt in self._observed_tool_receipts():
+            result = receipt["result"]
+            try:
+                result = json.loads(result)
+            except (json.JSONDecodeError, TypeError):
+                pass
+            name = receipt["tool_name"]
+            receipts.append(
+                {
+                    "tool_call_id": receipt["tool_call_id"],
+                    "qualified_tool_name": name,
+                    "sop_tool_name": self._tool_aliases.get(name, name),
+                    "arguments": receipt["arguments"],
+                    "result": result,
+                    "persisted": True,
+                    "current_step": receipt["tool_call_id"] in current_ids,
+                    "is_error": self._receipt_errors.get(receipt["tool_call_id"]),
+                }
+            )
+        return {"inputs": self._session.variables, "receipts": receipts}
 
     def _observed_tool_receipts(self) -> list[dict[str, Any]]:
         """Preserve actual app observations even when the LLM context was trimmed."""
@@ -693,6 +720,7 @@ class Executor:
 
         if self._tool_executor:
             result = await self._tool_executor.execute(tool_call, self._emit)
+            self._receipt_errors[tool_call.id] = bool(result.get("is_error", True))
             content = result.get("content", "")
             session.add_message(
                 RunMessage.create(
