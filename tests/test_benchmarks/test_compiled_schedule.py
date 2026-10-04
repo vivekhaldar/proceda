@@ -73,16 +73,20 @@ def environment(tmp_path, monkeypatch):
 def cases(monkeypatch):
     calls = []
     active = 0
+    active_cases = set()
 
     async def run_case(**kwargs):
         nonlocal active
+        identity = (kwargs["domain"], kwargs["task"]["email_id"])
+        assert identity not in active_cases
+        active_cases.add(identity)
         active += 1
-        assert active == 1  # Neither cases nor arms may overlap.
-        await asyncio.sleep(0)
         case = kwargs["case_dir"]
         arm = case.parts[-3]
         root = case.parents[2]
         schedule = json.loads((root / "schedule.json").read_text())
+        assert active <= schedule["jobs"]
+        await asyncio.sleep(0)
         assert (root / arm / "run.json").is_file()
         assert "EXPECTED_ONLY" not in json.dumps(schedule)
         calls.append((arm, kwargs["task"]["email_id"], id(asyncio.get_running_loop())))
@@ -145,6 +149,7 @@ def cases(monkeypatch):
         }
         driver.paired.write_json_exclusive(case / "terminal.json", record)
         active -= 1
+        active_cases.remove(identity)
         return record
 
     monkeypatch.setattr(driver.paired, "run_case_async", run_case)
@@ -425,3 +430,130 @@ def test_arm_parser_and_single_arm_order_are_supported():
         "only",
         "only",
     ]
+
+
+@pytest.mark.parametrize("jobs", [2, 3, 4])
+async def test_parallel_groups_are_bounded_and_keep_rotated_arm_order(
+    environment,
+    cases,
+    monkeypatch,
+    jobs,
+):
+    original = driver.paired.run_case_async
+    active = peak = 0
+    ready = asyncio.Event()
+
+    async def overlap(**kwargs):
+        nonlocal active, peak
+        active += 1
+        peak = max(peak, active)
+        if active == min(jobs, 3):
+            ready.set()
+        await ready.wait()
+        await asyncio.sleep({"E1": 0.003, "E2": 0.001, "E3": 0.002}[kwargs["task"]["email_id"]])
+        try:
+            return await original(**kwargs)
+        finally:
+            active -= 1
+
+    monkeypatch.setattr(driver.paired, "run_case_async", overlap)
+    summary = await driver.run_schedule_async(**environment, jobs=jobs)
+    assert peak == min(jobs, 3) and active == 0
+    assert len(cases) == 9 and len({(a, c) for a, c, _ in cases}) == 9
+    expected = {
+        "E1": ["baseline", "compiled-llm", "compiled-dm"],
+        "E2": ["compiled-llm", "compiled-dm", "baseline"],
+        "E3": ["compiled-dm", "baseline", "compiled-llm"],
+    }
+    for case, order in expected.items():
+        assert [arm for arm, key, _ in cases if key == case] == order
+    root = Path(summary["run_dir"])
+    frozen = json.loads((root / "schedule.json").read_text())
+    assert frozen["entries"] == driver.build_order(
+        environment["case_ids"], list(environment["arms"])
+    )
+    assert frozen["concurrency_between_arms"] == jobs
+    assert frozen["cross_case_arm_overlap"] is True
+    assert frozen["within_case_arm_concurrency"] == 1
+    assert frozen["compilation"]["cache_hit_preparation_includes_singleflight_wait"] is True
+    order = [json.loads(line) for line in (root / "execution-order.jsonl").read_text().splitlines()]
+    starts = [event for event in order if event["event"] == "entry.started"]
+    finishes = [event for event in order if event["event"] == "entry.finished"]
+    assert [event["actual_start_sequence"] for event in starts] == list(range(9))
+    assert len(finishes) == 9
+    for case in expected:
+        selected = [event for event in order if event["task_id"] == case]
+        assert [event["event"] for event in selected] == ["entry.started", "entry.finished"] * 3
+    predictions = [
+        json.loads(line) for line in (root / "predictions.jsonl").read_text().splitlines()
+    ]
+    assert len(predictions) == 9
+    assert all(
+        record["actual_finished_at"] >= record["actual_started_at"] for record in predictions
+    )
+    assert summary["accounting"]["llm_requests"] == 11
+    assert summary["shared_compilation_once"]["requests"] == 2
+    assert summary["terminal_entries"] == summary["actual_started_entries"] == 9
+
+
+async def test_source_failure_cancels_other_groups_before_provisional_cost_snapshot(
+    environment,
+    cases,
+    monkeypatch,
+):
+    original = driver.paired.run_case_async
+    started = set()
+    all_started = asyncio.Event()
+    cancelled = []
+
+    async def pending(**kwargs):
+        case_id = kwargs["task"]["email_id"]
+        started.add(case_id)
+        if len(started) == 3:
+            all_started.set()
+        if case_id == "E1":
+            await all_started.wait()
+            result = await original(**kwargs)
+            kwargs["skill_path"].write_text("Changed original source")
+            return result
+        case = kwargs["case_dir"]
+        case.mkdir(parents=True)
+        path = case / "providers/pending.json"
+        audit = {
+            "attempt": 1,
+            "status": "started",
+            "usage": None,
+            "requested_model": "openai/zai-org/GLM-5.3-Flash",
+            "request": {"messages": []},
+        }
+        driver.paired.write_json_exclusive(path, audit)
+        try:
+            await asyncio.Event().wait()
+        finally:
+            await asyncio.sleep(0)  # Simulate awaited case-worker cleanup.
+            audit["status"] = "error"
+            path.write_text(json.dumps(audit))
+            cancelled.append(case_id)
+
+    monkeypatch.setattr(driver.paired, "run_case_async", pending)
+    with pytest.raises(ValueError, match="Frozen source"):
+        await driver.run_schedule_async(**environment, jobs=3)
+    assert sorted(cancelled) == ["E2", "E3"]
+    root = environment["experiment_dir"] / "phase2/runs/test"
+    failed = json.loads((root / "failed.json").read_text())
+    assert failed["finished_entries"] == 1 and failed["actual_started_entries"] == 3
+    assert failed["retained_prefix"]["accounting"]["llm_requests"] == 3
+    assert failed["retained_prefix"]["accounting"]["unknown_usage_requests"] == 2
+    assert failed["retained_prefix"]["accounting"]["cost_usd"] is None
+    assert failed["final_cost_complete"] is False
+    assert failed["offline_rescan_after_process_exit_required"] is True
+    assert not (root / "completed.json").exists()
+    order = [json.loads(line) for line in (root / "execution-order.jsonl").read_text().splitlines()]
+    assert sum(event["event"] == "entry.interrupted" for event in order) == 2
+
+
+@pytest.mark.parametrize("jobs", [0, 5, True, 1.5])
+async def test_invalid_concurrency_rejected_before_any_case(environment, cases, jobs):
+    with pytest.raises(ValueError, match="jobs"):
+        await driver.run_schedule_async(**environment, jobs=jobs)
+    assert not cases

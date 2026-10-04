@@ -1,0 +1,692 @@
+{
+  "accounting_note": "Source preparation is reported separately from choice and smoke inference; do not add duplicate cache copies or amortize preparation twice. Configured provider cost excludes local compute. No compiler dollar price is inferred by this archiver.",
+  "archive": {
+    "file": "completed-source-choice-v1.tar.gz",
+    "sha256": "b0f15bb1449e19a084b09019b9ad77c100d2df5a1e1215e16aba88499ea90628",
+    "size_bytes": 85326
+  },
+  "archiver_git_commit": "de37ae4378efae95d2157153703ec3797e0e0f9d",
+  "archiver_script_sha256": "7b82405cf3d5eaf07a5ee6223199ff9d5868bfbd63b1a32b1889ebd86d130bb5",
+  "created_at": "2026-10-04T23:22:51.015595+00:00",
+  "credential_scan": {
+    "credentials_checked": 2,
+    "files_checked": 104,
+    "passed": true,
+    "values_saved": false
+  },
+  "groups": [
+    {
+      "cache_key": "ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f",
+      "completion_marker": "phase2/plans/email-choice-v1/compilation-result.json",
+      "completion_tokens": 3464,
+      "cost_note": "Raw preparation usage preserved; rejected attempts are included, not free.",
+      "dollar_cost_estimated": false,
+      "group": "source:email-choice-v1",
+      "models": [
+        "zai-org/GLM-5.3-Flash"
+      ],
+      "prompt_tokens": 2806,
+      "provider_elapsed_seconds": 69.46793858299498,
+      "provider_errors": 0,
+      "provider_requests": 1,
+      "status": "invalid",
+      "unknown_usage_requests": 0
+    },
+    {
+      "cache_key": "31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07",
+      "completion_marker": "phase2/plans/email-choice-v2/compilation-result.json",
+      "completion_tokens": 2855,
+      "cost_note": "Raw preparation usage preserved; rejected attempts are included, not free.",
+      "dollar_cost_estimated": false,
+      "group": "source:email-choice-v2",
+      "models": [
+        "zai-org/GLM-5.3-Flash"
+      ],
+      "prompt_tokens": 3070,
+      "provider_elapsed_seconds": 66.75145824998617,
+      "provider_errors": 0,
+      "provider_requests": 1,
+      "status": "invalid",
+      "unknown_usage_requests": 0
+    },
+    {
+      "cache_key": "15fe58453b558c7240a967c0eea558502f2ef80524f3b52fe8a399a2cd33317c",
+      "completion_marker": "phase2/plans/email-choice-v3/compilation-result.json",
+      "completion_tokens": 3018,
+      "cost_note": "Raw preparation usage preserved; rejected attempts are included, not free.",
+      "dollar_cost_estimated": false,
+      "group": "source:email-choice-v3",
+      "models": [
+        "zai-org/GLM-5.3-Flash"
+      ],
+      "prompt_tokens": 6921,
+      "provider_elapsed_seconds": 101.90120837499853,
+      "provider_errors": 0,
+      "provider_requests": 2,
+      "status": "accepted",
+      "unknown_usage_requests": 0
+    },
+    {
+      "completion_marker": "phase2/runs/email-choice-local-v3/summary.json",
+      "group": "choice:email-choice-local-v3",
+      "status": "completed",
+      "summary": {
+        "abstained": 4,
+        "accepted": 1,
+        "accepted_accuracy": 1.0,
+        "by_backend": {
+          "winnow-local": {
+            "accepted": 1,
+            "attempts": 5,
+            "requests": 5
+          }
+        },
+        "case_errors": 0,
+        "cases": 5,
+        "compiler_cost_included": false,
+        "completed_at": "2026-10-04T23:00:04.043303+00:00",
+        "configured_thresholds": [
+          0.97
+        ],
+        "correct_accepted": 1,
+        "correct_over_all_cases": 0.2,
+        "coverage": 0.2,
+        "decision_elapsed_seconds": 1.8235819999972591,
+        "incomplete_provider_attempts": 0,
+        "input_tokens": 1474,
+        "known_provider_cost_usd": 0.0,
+        "local_compute_cost_included": false,
+        "local_native_duration_unknown": 0,
+        "local_native_seconds": 1.783576499,
+        "local_requests": 5,
+        "output_tokens": 0,
+        "provider_audit_files": 5,
+        "provider_errors": 0,
+        "provider_requests": 5,
+        "result_attempts_missing_audit": 0,
+        "scope": "finite_choice_diagnostic_not_end_to_end_SOP_success",
+        "unknown_provider_cost_requests": 0,
+        "unknown_usage_requests": 0,
+        "unreadable_provider_audits": []
+      }
+    },
+    {
+      "completion_marker": "phase2/runs/email-choice-jev-v3/summary.json",
+      "group": "choice:email-choice-jev-v3",
+      "status": "completed",
+      "summary": {
+        "abstained": 2,
+        "accepted": 3,
+        "accepted_accuracy": 1.0,
+        "by_backend": {
+          "jev": {
+            "accepted": 3,
+            "attempts": 5,
+            "requests": 5
+          }
+        },
+        "case_errors": 0,
+        "cases": 5,
+        "compiler_cost_included": false,
+        "completed_at": "2026-10-04T23:00:05.578009+00:00",
+        "configured_thresholds": [
+          0.97
+        ],
+        "correct_accepted": 3,
+        "correct_over_all_cases": 0.6,
+        "coverage": 0.6,
+        "decision_elapsed_seconds": 1.3324429169879295,
+        "incomplete_provider_attempts": 0,
+        "input_tokens": 2638,
+        "known_provider_cost_usd": 0.000110796,
+        "local_compute_cost_included": false,
+        "local_native_duration_unknown": 0,
+        "local_native_seconds": 0,
+        "local_requests": 0,
+        "output_tokens": 402,
+        "provider_audit_files": 5,
+        "provider_errors": 1,
+        "provider_requests": 5,
+        "result_attempts_missing_audit": 0,
+        "scope": "finite_choice_diagnostic_not_end_to_end_SOP_success",
+        "unknown_provider_cost_requests": 0,
+        "unknown_usage_requests": 0,
+        "unreadable_provider_audits": []
+      }
+    }
+  ],
+  "inference_performed": false,
+  "inspection_status": "Explicitly selected recorded snapshots; no live analysis directories",
+  "inspections": [
+    "email-choice-v1-inspection",
+    "email-choice-v2-inspection",
+    "email-choice-v3-inspection",
+    "email-choice-v3-comparison"
+  ],
+  "members": [
+    {
+      "path": "phase2/analysis/email-choice-v1-inspection.json",
+      "sha256": "41160989e83e65e1a1f8260d6e559f0cf3254970e5b9585e377031628bd54101",
+      "size_bytes": 2058
+    },
+    {
+      "path": "phase2/analysis/email-choice-v2-inspection.json",
+      "sha256": "d3e787ac09627331a4e97698c1f2b4dbb5356d983c2fcf5897f01d7eaa4651f3",
+      "size_bytes": 2300
+    },
+    {
+      "path": "phase2/analysis/email-choice-v3-comparison.json",
+      "sha256": "668ae3003f3e1b5b46248349355adc0acf01114e777c75d0af80311df9b018ef",
+      "size_bytes": 11577
+    },
+    {
+      "path": "phase2/analysis/email-choice-v3-inspection.json",
+      "sha256": "44d42b351f8fed8baee67e1da948b8c1fa7b0cfa42c745670d66019fba4f5e39",
+      "size_bytes": 2612
+    },
+    {
+      "path": "phase2/cache/15fe58453b558c7240a967c0eea558502f2ef80524f3b52fe8a399a2cd33317c.json",
+      "sha256": "f5984269bc8215604a76f45148e780959201f22f49f81e38244d3d1303b339f3",
+      "size_bytes": 61078
+    },
+    {
+      "path": "phase2/cache/31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07.json",
+      "sha256": "9a9e670c25d3ab1310b9996bbfae8482ad49ef4233b7eb446085d10be6ec7437",
+      "size_bytes": 41015
+    },
+    {
+      "path": "phase2/cache/attempts/15fe58453b558c7240a967c0eea558502f2ef80524f3b52fe8a399a2cd33317c/cf88179e6ea041e9b679a281ab6e4f1e.json",
+      "sha256": "f5984269bc8215604a76f45148e780959201f22f49f81e38244d3d1303b339f3",
+      "size_bytes": 61078
+    },
+    {
+      "path": "phase2/cache/attempts/31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07/a71dbce7f5954fcc9ec4035091b7177e.json",
+      "sha256": "9a9e670c25d3ab1310b9996bbfae8482ad49ef4233b7eb446085d10be6ec7437",
+      "size_bytes": 41015
+    },
+    {
+      "path": "phase2/cache/attempts/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f/48f1b15fc94a4fb3aee4d777095f65d7.json",
+      "sha256": "4724492e06059173a0315bf1821362627a3d7619b176bd1b0218889509d27d13",
+      "size_bytes": 47000
+    },
+    {
+      "path": "phase2/cache/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f.json",
+      "sha256": "4724492e06059173a0315bf1821362627a3d7619b176bd1b0218889509d27d13",
+      "size_bytes": 47000
+    },
+    {
+      "path": "phase2/plans/email-choice-v1/compilation-result.json",
+      "sha256": "bfe21c71e3b81a33b05395f90ed2fb925d3fed40d2a9bc233e95950b32bfa999",
+      "size_bytes": 804
+    },
+    {
+      "path": "phase2/plans/email-choice-v1/compile.json",
+      "sha256": "77dd1603ba5f5224c502af25817647750cfdc28c000b844a9d2c773829cbc8b3",
+      "size_bytes": 8194
+    },
+    {
+      "path": "phase2/plans/email-choice-v1/compiler-input.json",
+      "sha256": "7b67e3b74053d1fa10551cff12c0be311afc982f22fae0a604449d58ea3a616b",
+      "size_bytes": 7199
+    },
+    {
+      "path": "phase2/plans/email-choice-v1/plan.json",
+      "sha256": "e0143b6c2ebe2b0ef62d9d1b847e34abea64bb9de37bd49cef2b0d56bcfc939a",
+      "size_bytes": 1734
+    },
+    {
+      "path": "phase2/plans/email-choice-v1/providers/compiler/ed8bf6c4ed6a46f7adbfcc27dcb036cb-001.json",
+      "sha256": "abed33c4bb257a309ab74c2a6491e1def3e5dc0d7208019d3488bf9081b2fc32",
+      "size_bytes": 40769
+    },
+    {
+      "path": "phase2/plans/email-choice-v2/compilation-result.json",
+      "sha256": "2862f63cc67dcb677bd6a3c76499bbed5a2b473df5e855f5262f379acc54483c",
+      "size_bytes": 764
+    },
+    {
+      "path": "phase2/plans/email-choice-v2/compile.json",
+      "sha256": "fa5400c74c4dffd2b0396f1c20ab83fddb796a973ab61a73c4a923e43c6f0e82",
+      "size_bytes": 8194
+    },
+    {
+      "path": "phase2/plans/email-choice-v2/compiler-input.json",
+      "sha256": "7b67e3b74053d1fa10551cff12c0be311afc982f22fae0a604449d58ea3a616b",
+      "size_bytes": 7199
+    },
+    {
+      "path": "phase2/plans/email-choice-v2/plan.json",
+      "sha256": "2207d7071a61f73640e716e22545e969171d58d1ce5c0f32de97639e5329fd42",
+      "size_bytes": 1734
+    },
+    {
+      "path": "phase2/plans/email-choice-v2/providers/compiler/3816392b8b48444f8c730f710220f79f-001.json",
+      "sha256": "fd19c01ea802410658ad25789da2109c55442efe273794dc8db36744643e0790",
+      "size_bytes": 36695
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/compilation-result.json",
+      "sha256": "61e11aff95784581a3fb8a1f3bc3fd6772a96b0307d1414192c9ef4b181a9bbc",
+      "size_bytes": 9391
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/compile.json",
+      "sha256": "ca74722c583187117630bf4747ed771b13f8dbed6ff2350358d5c0ee9d6fe929",
+      "size_bytes": 8194
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/compiler-input.json",
+      "sha256": "7b67e3b74053d1fa10551cff12c0be311afc982f22fae0a604449d58ea3a616b",
+      "size_bytes": 7199
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/plan.json",
+      "sha256": "15f02e81aea75dd0bedef1e1ef94fb2e7549120d7349eea230b65cb548fd498b",
+      "size_bytes": 10417
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/providers/compiler/376238b75c904e4a84c09b5885fac7a4-001.json",
+      "sha256": "478700185467b341a11ef50efae390d0668abb2445bcc30092acf1a7b522f184",
+      "size_bytes": 36364
+    },
+    {
+      "path": "phase2/plans/email-choice-v3/providers/reviewer/addfef380e7342fd8160d86f75f25e68-001.json",
+      "sha256": "5668ae888b2cd66f8d09c63f91e50b824a1fa9888c09ffa7efd9af65175e0d3c",
+      "size_bytes": 23159
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/choice-binding.json",
+      "sha256": "c0f8139c649d3e8268716f81cdeb79adcb79dc8f3d0d648cf89c6c6082896604",
+      "size_bytes": 591
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/choice-state.json",
+      "sha256": "b145b5281a9f40c8c2ceb05a05e7c9fa9d52d64271b4e13cb891f2b7f28e22fc",
+      "size_bytes": 52
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/inputs.json",
+      "sha256": "b75889d4fbd71919f9fc079c16554a262c0938f8749a5a9333deb9a5d854dd5c",
+      "size_bytes": 127
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/prediction.json",
+      "sha256": "0f7fc1741dfc28ae1bd0072dcd59e512cf003e87555854c43d96ea4bb61f1a35",
+      "size_bytes": 1800
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/providers/decisions/decision-cd1f1a74926c44b7b7bc96337586deed.json",
+      "sha256": "1db787ecd20a8117230cd7bcbbf105b519b2a37360f7779e352704b681757598",
+      "size_bytes": 2731
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1093/score.json",
+      "sha256": "43fc0a98833ae39129b09923d17daafda63f56cd63a3709a40cba191b4bc713c",
+      "size_bytes": 28
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/choice-binding.json",
+      "sha256": "938421d77a222bb4d0b5efbceaf015eab68c5f1326871b9fea5a5972fee9fa50",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/choice-state.json",
+      "sha256": "86933a4e7b586a5938b0c285a8b74a270ce316af65671fb763d0b18f9064dabd",
+      "size_bytes": 55
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/inputs.json",
+      "sha256": "24286794747738ab4805e725fb5180df02d06df336af2e0d43175545bf67b247",
+      "size_bytes": 130
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/prediction.json",
+      "sha256": "07dd9ee6a1ff7f1295c9ca32367e7fad066096d355b0234ae47dd0dc71ee223e",
+      "size_bytes": 1814
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/providers/decisions/decision-c74de654fbed402e87bc64180b3e4d51.json",
+      "sha256": "22b4a64001d53121c07bfa1797c9c222ebd6db8e386a7460acb313925f857972",
+      "size_bytes": 2748
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1105/score.json",
+      "sha256": "43fc0a98833ae39129b09923d17daafda63f56cd63a3709a40cba191b4bc713c",
+      "size_bytes": 28
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/choice-binding.json",
+      "sha256": "ec83093dbf95871c5ce7ab3d3d6bb87d81fc5605157f7dd1caf2f5bbf967b5d2",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/choice-state.json",
+      "sha256": "bd2041bfce3e5e2a0954e6624505dec82041ed7c7670773cfe4c8d3a5e85539b",
+      "size_bytes": 64
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/expected.json",
+      "sha256": "866a5f455315bdcc42da04f7e1416d3bd6dee125f7494d650af6aa8e38dac567",
+      "size_bytes": 58
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/inputs.json",
+      "sha256": "2db30f46de5d596e43fc6e4bbcc3652ae50362300cf5a7aa822ef43013d9d858",
+      "size_bytes": 139
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/prediction.json",
+      "sha256": "80ccbf6de60d6a81227976960fc55554faa18d0af40540f4da6ec30de64be08e",
+      "size_bytes": 1768
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/providers/decisions/decision-899c1d15a0054ac18e525a7ec768461f.json",
+      "sha256": "55059375ca03763ff8a56fb0347b2b157f30c160fe3d9592808fd87991b32daf",
+      "size_bytes": 2731
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1110/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/choice-binding.json",
+      "sha256": "f22190cc8ced7995c594ab943faf021a6cefd9b34eed30967ad622ee35b2db16",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/choice-state.json",
+      "sha256": "6e2d3a32e3eec4827346420227dd3c2a6e377a756c62041f2b4cbf7dadf20766",
+      "size_bytes": 65
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/expected.json",
+      "sha256": "866a5f455315bdcc42da04f7e1416d3bd6dee125f7494d650af6aa8e38dac567",
+      "size_bytes": 58
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/inputs.json",
+      "sha256": "d5356a047efbf224bf0f69af4c1c922fd0f4a52114c7a72dc6329ca1d15c445c",
+      "size_bytes": 140
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/prediction.json",
+      "sha256": "01bfd74758b8b80c30415cd68fc9403c74aa106161f87e0de6b173fa61c1df80",
+      "size_bytes": 1103
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/providers/decisions/decision-bc11897fd00747d68b77bdb36d03bba3.json",
+      "sha256": "128437eb27ead91adfee4855a99e002597e09b97f5f2335e359f5ef7ed40b7fd",
+      "size_bytes": 2357
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1114/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/choice-binding.json",
+      "sha256": "f39c62820405b5735f671ea26e6997a2b26bd718237cf94fe919033a04204b25",
+      "size_bytes": 591
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/choice-state.json",
+      "sha256": "6ad97a5f60183e9afd59d57a3ecf40da909959b058be23a7f3b0dd29653b22e7",
+      "size_bytes": 64
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/inputs.json",
+      "sha256": "4f1eee27d0264b7e83cfd092fd8083b8a86770746d4eb887e3851c09ff5ab0ef",
+      "size_bytes": 139
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/prediction.json",
+      "sha256": "9aa013fb304ea4fcf530b75bc1495ced8a1c06d39caffa5b90fe761e9e93059b",
+      "size_bytes": 1812
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/providers/decisions/decision-b23261c295034dae928bc14f210a9523.json",
+      "sha256": "7965b1c425ee84b4c5d0882836273abcd28ce9d5fb45c6fce9049f3b52c0625c",
+      "size_bytes": 2756
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/E1121/score.json",
+      "sha256": "43fc0a98833ae39129b09923d17daafda63f56cd63a3709a40cba191b4bc713c",
+      "size_bytes": 28
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/plan.json",
+      "sha256": "15f02e81aea75dd0bedef1e1ef94fb2e7549120d7349eea230b65cb548fd498b",
+      "size_bytes": 10417
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/predictions.jsonl",
+      "sha256": "54fdcfe284e1e3012fe2ca8535f86a793e506c20e93799758821123491d00346",
+      "size_bytes": 7029
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/run.json",
+      "sha256": "68fc9da350774ba1e9f28e05489895f8916b5d097890a29062c5a634b1b93cf9",
+      "size_bytes": 9044
+    },
+    {
+      "path": "phase2/runs/email-choice-jev-v3/summary.json",
+      "sha256": "75769483d6e4cc4343f1135334603526f33c14f4bfcfff21466179da02656261",
+      "size_bytes": 1009
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/choice-binding.json",
+      "sha256": "c0f8139c649d3e8268716f81cdeb79adcb79dc8f3d0d648cf89c6c6082896604",
+      "size_bytes": 591
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/choice-state.json",
+      "sha256": "b145b5281a9f40c8c2ceb05a05e7c9fa9d52d64271b4e13cb891f2b7f28e22fc",
+      "size_bytes": 52
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/inputs.json",
+      "sha256": "b75889d4fbd71919f9fc079c16554a262c0938f8749a5a9333deb9a5d854dd5c",
+      "size_bytes": 127
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/prediction.json",
+      "sha256": "2e95a901f85ed150732ad3b3c757f46ddeed599191a708e90438b5c6dfadca45",
+      "size_bytes": 1807
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/providers/decisions/decision-7dc80229d1994d76a11d59554175f1d3.json",
+      "sha256": "c801ddbf64afa7dd8bd892e5dc6b903a09307eab472b0c4ff7d1cc1b7080a736",
+      "size_bytes": 2968
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1093/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/choice-binding.json",
+      "sha256": "938421d77a222bb4d0b5efbceaf015eab68c5f1326871b9fea5a5972fee9fa50",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/choice-state.json",
+      "sha256": "86933a4e7b586a5938b0c285a8b74a270ce316af65671fb763d0b18f9064dabd",
+      "size_bytes": 55
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/inputs.json",
+      "sha256": "24286794747738ab4805e725fb5180df02d06df336af2e0d43175545bf67b247",
+      "size_bytes": 130
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/prediction.json",
+      "sha256": "b0bf084c05345d4d3ed3a70fe9ec5d1bbb5c5d01e364657f3f7b2215ff4574ca",
+      "size_bytes": 1805
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/providers/decisions/decision-2b60d5773c644c51abc2e68713c064bc.json",
+      "sha256": "292a6197f564541a59e4559d57e93219e9ac87034edba14ccd8946a30f7922f7",
+      "size_bytes": 2959
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1105/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/choice-binding.json",
+      "sha256": "ec83093dbf95871c5ce7ab3d3d6bb87d81fc5605157f7dd1caf2f5bbf967b5d2",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/choice-state.json",
+      "sha256": "bd2041bfce3e5e2a0954e6624505dec82041ed7c7670773cfe4c8d3a5e85539b",
+      "size_bytes": 64
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/expected.json",
+      "sha256": "866a5f455315bdcc42da04f7e1416d3bd6dee125f7494d650af6aa8e38dac567",
+      "size_bytes": 58
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/inputs.json",
+      "sha256": "2db30f46de5d596e43fc6e4bbcc3652ae50362300cf5a7aa822ef43013d9d858",
+      "size_bytes": 139
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/prediction.json",
+      "sha256": "77d95d73d688de81c740c9f47bed377c7a2d19e15828390c7df1d5552e2323c9",
+      "size_bytes": 1793
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/providers/decisions/decision-2645132be3be4546a0ed1785c0b175ae.json",
+      "sha256": "1951106c33a4bdfdb4a1d1c1567af124249ff7df52edc120d417a33e54c9d550",
+      "size_bytes": 2945
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1110/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/choice-binding.json",
+      "sha256": "f22190cc8ced7995c594ab943faf021a6cefd9b34eed30967ad622ee35b2db16",
+      "size_bytes": 592
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/choice-state.json",
+      "sha256": "6e2d3a32e3eec4827346420227dd3c2a6e377a756c62041f2b4cbf7dadf20766",
+      "size_bytes": 65
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/expected.json",
+      "sha256": "866a5f455315bdcc42da04f7e1416d3bd6dee125f7494d650af6aa8e38dac567",
+      "size_bytes": 58
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/inputs.json",
+      "sha256": "d5356a047efbf224bf0f69af4c1c922fd0f4a52114c7a72dc6329ca1d15c445c",
+      "size_bytes": 140
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/prediction.json",
+      "sha256": "238ebdbd60311691a2f7a80c7e9c888306c9192242acddd93d0178aa6dbabcfc",
+      "size_bytes": 1781
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/providers/decisions/decision-a6cfee2dba6043339fac3adc4838aa65.json",
+      "sha256": "5ca5f9634c222bccfd1ab360ba4cc99354c0b4aba6611db3e0536787ecbede32",
+      "size_bytes": 2917
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1114/score.json",
+      "sha256": "30ca01ccb98e672e3a9f7b93c5378e4383a78ea8df2da4b7efe7ef8f9d46617a",
+      "size_bytes": 29
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/choice-binding.json",
+      "sha256": "f39c62820405b5735f671ea26e6997a2b26bd718237cf94fe919033a04204b25",
+      "size_bytes": 591
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/choice-state.json",
+      "sha256": "6ad97a5f60183e9afd59d57a3ecf40da909959b058be23a7f3b0dd29653b22e7",
+      "size_bytes": 64
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/expected.json",
+      "sha256": "f7a9edf533c0f1d5148177b8f51687f56b3ac3cc87ad67546b3cb855afcdbdbc",
+      "size_bytes": 70
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/inputs.json",
+      "sha256": "4f1eee27d0264b7e83cfd092fd8083b8a86770746d4eb887e3851c09ff5ab0ef",
+      "size_bytes": 139
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/prediction.json",
+      "sha256": "b352d3eb21489ef263b1ac09060ed39126ffdf22a7db2a7047cdebc27116a053",
+      "size_bytes": 1835
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/providers/decisions/decision-c3f12323585641589307a91912c1e6ab.json",
+      "sha256": "1fa5f1f8f06b86b8251804ba0859e0a822254b82a3ae9153c15ca31a7e36978d",
+      "size_bytes": 2969
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/E1121/score.json",
+      "sha256": "43fc0a98833ae39129b09923d17daafda63f56cd63a3709a40cba191b4bc713c",
+      "size_bytes": 28
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/plan.json",
+      "sha256": "15f02e81aea75dd0bedef1e1ef94fb2e7549120d7349eea230b65cb548fd498b",
+      "size_bytes": 10417
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/predictions.jsonl",
+      "sha256": "1ba553513a6b849b75c304cd126fd4cb830d9ab992bd90ea50b31602efbfa863",
+      "size_bytes": 7651
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/run.json",
+      "sha256": "ce16783b6c5ee3f32ead4f39dd37d602c9d58fc5cc966aef7da34690bee1fa92",
+      "size_bytes": 9046
+    },
+    {
+      "path": "phase2/runs/email-choice-local-v3/summary.json",
+      "sha256": "e24ace36954bd2b6d86a594dfbbea1ed67760c29155edb57dd4daab6c86cb4e0",
+      "size_bytes": 1018
+    }
+  ],
+  "name": "completed-source-choice-v1",
+  "raw_files_removed": false,
+  "raw_size_bytes": 634577,
+  "schema_version": 1
+}

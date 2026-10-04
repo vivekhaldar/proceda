@@ -1,0 +1,45 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07.json",
+  "artifact_sha256": "9a9e670c25d3ab1310b9996bbfae8482ad49ef4233b7eb446085d10be6ec7437",
+  "compilation_result": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/plans/email-choice-v2/compilation-result.json",
+  "completion_tokens": 2855,
+  "cost_note": "Token usage retained; compiler cost must be added separately to choice/whole-workflow estimates.",
+  "findings": [
+    {
+      "finding": "All four equality guard constants are absent from their selected source quotes, although each canonical label exists elsewhere in the same source step.",
+      "kind": "source_provenance"
+    },
+    {
+      "finding": "Three marketplace_id ValueRef quotes still come from Step 1 rather than current Step 2.",
+      "kind": "source_provenance"
+    },
+    {
+      "finding": "Step 3 render references action as a Step 2 fact, but Step 2 is a tool plan and produces no accepted decision/extractor fact named action.",
+      "kind": "missing_evidence"
+    },
+    {
+      "finding": "Decision payload is nested correctly; all three full-step quotes match the original source exactly.",
+      "kind": "improvement"
+    },
+    {
+      "finding": "The bounded product regex matches P12345 in an isolated synthetic string and rejects P123456. No real task cases were used for this check.",
+      "kind": "extraction_semantics"
+    }
+  ],
+  "manual_repairs_applied": false,
+  "possible_generic_followup": "Consider conservative per-step validation with invalid/dependent steps downgraded to llm and their complete source retained, followed by independent review. No business question would be manually rewritten.",
+  "prompt_tokens": 3070,
+  "provider_elapsed_seconds": 66.75145824998617,
+  "provider_finished_successfully": true,
+  "provider_requests": 1,
+  "reasoning_tokens": 917,
+  "recorded_at": "2026-10-04T22:49:14.594452+00:00",
+  "reviewer_requests": 0,
+  "scope": "source-only compiler candidate inspection; no task-case inference",
+  "status": "invalid",
+  "task_case_requests": 0,
+  "usable_plan": false,
+  "validator_error": [
+    "Literal must appear exactly in its source quote"
+  ]
+}

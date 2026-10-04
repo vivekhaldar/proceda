@@ -201,3 +201,22 @@ candidate and a separate review of that candidate against the full original SOP.
 The independent reviewer must approve even a partially compiled plan. This is
 graceful loss of optimization, not a relaxation of execution validation. Report
 the two failed attempts and their costs; do not overwrite or relabel their results.
+
+## Execution protocol amendment before smoke v2
+
+The sequential smoke v1 was interrupted after 9 of 36 executions completed,
+with the tenth execution retained as incomplete. It is not a completed comparison.
+Hosted calls were much slower than during phase 1. To make the same four-arm
+comparison practical, smoke v2 uses three concurrent case groups on one event
+loop. Each case still runs its four arms sequentially in the frozen cyclic order.
+No model, threshold, compiler prompt, SOP, or scoring change accompanies this
+protocol amendment. A new run-local shared plan cache is used, so a fresh source
+compilation may differ from v1; never attribute between-run differences to
+concurrency alone.
+
+The driver records both planned order and actual start/finish timestamps. Case
+latencies include shared-provider contention; they are not isolated service
+latencies. The first actual caller pays the compiler and reviewer cost. Waiting
+cache hits include single-flight waiting in preparation time. All arms in this
+run share the same admitted source plan. Interrupted schedules keep provisional
+cost accounting and require an offline audit rescan after process exit.

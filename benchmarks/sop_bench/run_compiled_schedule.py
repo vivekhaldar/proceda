@@ -1,4 +1,4 @@
-"""ABOUTME: Runs frozen phase-2 cases with sequential, rotated arms on one event loop.
+"""ABOUTME: Runs bounded frozen case groups with sequential, rotated arms on one event loop.
 ABOUTME: Preserves cold compilation, provider audits, plan links and strict benchmark scoring.
 """
 
@@ -316,11 +316,14 @@ async def run_schedule_async(
     split: str = "dev",
     case_ids: Mapping[str, Sequence[str]] | None = None,
     limit: int | None = None,
+    jobs: int = 1,
     data_dir: Path = paired.DEFAULT_DATA,
     experiment_dir: Path = paired.DEFAULT_EXPERIMENT,
     secrets: Sequence[str] = (),
 ) -> dict[str, Any]:
-    """Run one immutable schedule; never resume, rerun partial cases or overlap arms."""
+    """Run immutable case groups; never resume or overlap arms within the same case."""
+    if type(jobs) is not int or not 1 <= jobs <= 4:
+        raise ValueError("jobs must be an integer from one through four")
     if (
         not re.fullmatch(r"[A-Za-z0-9_-]+", run_id)
         or not arms
@@ -361,7 +364,7 @@ async def run_schedule_async(
             "effective": execution,
             "effective_sha256": paired.canonical_hash(execution),
         }
-    schedule = {
+    schedule: dict[str, Any] = {
         "schema_version": 1,
         "phase": 2,
         "run_id": run_id,
@@ -373,9 +376,15 @@ async def run_schedule_async(
         "domains": list(domains),
         "arms": list(arms),
         "task_ids": task_ids,
-        "jobs": 1,
-        "concurrency_between_arms": 0,
-        "concurrency_model": "one_event_loop_case_major_sequential_rotated_arms",
+        "jobs": jobs,
+        "concurrency_between_arms": 0 if jobs == 1 else jobs,
+        "within_case_arm_concurrency": 1,
+        "cross_case_arm_overlap": jobs > 1,
+        "concurrency_model": "one_event_loop_bounded_case_groups_sequential_rotated_arms",
+        "latency_interpretation": (
+            "Case latency includes shared-provider contention and waits for shared compilation. "
+            "Different cases can overlap arms with jobs>1; within-case arms never overlap."
+        ),
         "arm_order": "cyclic Latin rotation by global case ordinal",
         "entries": build_order(task_ids, list(arms)),
         "configurations": config_snapshots,
@@ -391,6 +400,7 @@ async def run_schedule_async(
             "cache_policy": "new_empty_schedule_local_shared_cache",
             "cache_dir": str(cache_dir),
             "prepared_cache": False,
+            "cache_hit_preparation_includes_singleflight_wait": True,
             "cost_accounting": (
                 "Compiler/reviewer attempts are charged to their actual first caller. "
                 "Shared one-time compilation is separately reported; no implicit arm amortization."
@@ -423,7 +433,8 @@ async def run_schedule_async(
                 "untouched_confirmation": False,
                 "domains": list(domains),
                 "task_ids": task_ids,
-                "jobs": 1,
+                "jobs": jobs,
+                "cross_case_arm_overlap": jobs > 1,
                 "manifest_sha256": schedule["manifest_sha256"],
                 "configuration": config_snapshots[arm]["effective"],
                 "source": schedule["source"],
@@ -432,7 +443,9 @@ async def run_schedule_async(
         )
         (arm_dir / "predictions.jsonl").touch(exist_ok=False)
     (driver_dir / "predictions.jsonl").touch(exist_ok=False)
+    (driver_dir / "execution-order.jsonl").touch(exist_ok=False)
     records: list[dict[str, Any]] = []
+    actual_starts = 0
     lock = threading.Lock()
 
     def verify_frozen_identity() -> None:
@@ -447,77 +460,153 @@ async def run_schedule_async(
         if paired.canonical_hash(current_manifest) != schedule["manifest_sha256"]:
             raise ValueError("Benchmark source or skill changed after schedule freeze")
 
+    async def run_entry(entry: dict[str, Any]) -> None:
+        nonlocal actual_starts
+        # Abort before further inference if a running schedule's inputs/code change.
+        verify_frozen_identity()
+        arm, domain, task_id = entry["arm"], entry["domain"], entry["task_id"]
+        by_id, metadata = rows[domain]
+        case_dir = driver_dir / arm / domain / task_id
+        print(
+            f"Starting {entry['ordinal'] + 1}/{len(schedule['entries'])} {arm} {domain}/{task_id}",
+            flush=True,
+        )
+        start_sequence = actual_starts
+        actual_starts += 1
+        started_at = datetime.now(UTC).isoformat()
+        _append(
+            driver_dir / "execution-order.jsonl",
+            {
+                **entry,
+                "event": "entry.started",
+                "actual_start_sequence": start_sequence,
+                "started_at": started_at,
+            },
+            known_secrets,
+        )
+        try:
+            record = await paired.run_case_async(
+                task=by_id[task_id],
+                domain=domain,
+                metadata=metadata,
+                config=effective[arm],
+                skill_path=experiment_dir / "skills" / domain / "SKILL.md",
+                case_dir=case_dir,
+                data_dir=data_dir,
+                secrets=known_secrets,
+            )
+        except BaseException as exc:
+            _append(
+                driver_dir / "execution-order.jsonl",
+                {
+                    **entry,
+                    "event": "entry.interrupted",
+                    "actual_start_sequence": start_sequence,
+                    "started_at": started_at,
+                    "finished_at": datetime.now(UTC).isoformat(),
+                    "error_type": type(exc).__name__,
+                    "runtime_cleanup_confirmed": False,
+                },
+                known_secrets,
+            )
+            raise
+        finished_at = datetime.now(UTC).isoformat()
+        _append(
+            driver_dir / "execution-order.jsonl",
+            {
+                **entry,
+                "event": "entry.finished",
+                "actual_start_sequence": start_sequence,
+                "started_at": started_at,
+                "finished_at": finished_at,
+                "status": record["status"],
+                "runtime_cleanup_confirmed": True,
+            },
+            known_secrets,
+        )
+        accounting = account_audits(case_dir, record)
+        attempts, compiler_errors = _compiler_attempts(case_dir)
+        links, link_errors = _plan_links(case_dir)
+        observation: dict[str, Any] = {
+            **record,
+            "arm": arm,
+            "schedule_ordinal": entry["ordinal"],
+            "arm_position": entry["arm_position"],
+            "actual_start_sequence": start_sequence,
+            "actual_started_at": started_at,
+            "actual_finished_at": finished_at,
+            "accounting": accounting,
+            "compiler_attempts": attempts,
+            "compilation": _compilation_summary(
+                attempts, accounting["audit_errors"] + compiler_errors + link_errors
+            ),
+            "plan_links": links,
+            "preparation": _preparation_summary(links),
+            "trace_errors": compiler_errors + link_errors,
+            "trace_integrity_valid": not (
+                accounting["audit_errors"] or compiler_errors or link_errors
+            ),
+        }
+        observation = paired.scrub(observation, known_secrets)
+        paired.write_json_exclusive(case_dir / "phase2-observation.json", observation)
+        records.append(observation)
+        _append(driver_dir / arm / "predictions.jsonl", observation, known_secrets)
+        _append(driver_dir / "predictions.jsonl", observation, known_secrets)
+        audit_error_count = len(accounting["audit_errors"]) + len(observation["trace_errors"])
+        print(
+            f"{arm} {domain}/{task_id}: {record['status']} "
+            f"{'PASS' if record['correct'] else 'FAIL'} "
+            f"({record['elapsed_seconds']:.2f}s), compiler attempts={len(attempts)}, "
+            f"audit errors={audit_error_count}",
+            flush=True,
+        )
+
+    groups: dict[int, list[dict[str, Any]]] = {}
+    for entry in schedule["entries"]:
+        groups.setdefault(entry["case_ordinal"], []).append(entry)
+    semaphore = asyncio.Semaphore(jobs)
+    stopping = asyncio.Event()
+
+    async def run_group(entries: list[dict[str, Any]]) -> None:
+        async with semaphore:
+            try:
+                for entry in entries:
+                    if stopping.is_set():
+                        return
+                    await run_entry(entry)
+            except BaseException:
+                stopping.set()
+                raise
+
     with (
         (driver_dir / "driver.log").open("x") as log,
         contextlib.redirect_stdout(Tee(sys.stdout, log, list(known_secrets), lock)),
         contextlib.redirect_stderr(Tee(sys.stderr, log, list(known_secrets), lock)),
     ):
+        workers: list[asyncio.Task[None]] = []
         try:
-            for entry in schedule["entries"]:
-                # Abort before further inference if a running schedule's inputs/code change.
-                verify_frozen_identity()
-                arm, domain, task_id = entry["arm"], entry["domain"], entry["task_id"]
-                by_id, metadata = rows[domain]
-                case_dir = driver_dir / arm / domain / task_id
-                print(
-                    f"Starting {entry['ordinal'] + 1}/{len(schedule['entries'])} "
-                    f"{arm} {domain}/{task_id}",
-                    flush=True,
-                )
-                record = await paired.run_case_async(
-                    task=by_id[task_id],
-                    domain=domain,
-                    metadata=metadata,
-                    config=effective[arm],
-                    skill_path=experiment_dir / "skills" / domain / "SKILL.md",
-                    case_dir=case_dir,
-                    data_dir=data_dir,
-                    secrets=known_secrets,
-                )
-                accounting = account_audits(case_dir, record)
-                attempts, compiler_errors = _compiler_attempts(case_dir)
-                links, link_errors = _plan_links(case_dir)
-                observation: dict[str, Any] = {
-                    **record,
-                    "arm": arm,
-                    "schedule_ordinal": entry["ordinal"],
-                    "arm_position": entry["arm_position"],
-                    "accounting": accounting,
-                    "compiler_attempts": attempts,
-                    "compilation": _compilation_summary(
-                        attempts, accounting["audit_errors"] + compiler_errors + link_errors
-                    ),
-                    "plan_links": links,
-                    "preparation": _preparation_summary(links),
-                    "trace_errors": compiler_errors + link_errors,
-                    "trace_integrity_valid": not (
-                        accounting["audit_errors"] or compiler_errors or link_errors
-                    ),
-                }
-                observation = paired.scrub(observation, known_secrets)
-                paired.write_json_exclusive(case_dir / "phase2-observation.json", observation)
-                records.append(observation)
-                _append(driver_dir / arm / "predictions.jsonl", observation, known_secrets)
-                _append(driver_dir / "predictions.jsonl", observation, known_secrets)
-                audit_error_count = len(accounting["audit_errors"]) + len(
-                    observation["trace_errors"]
-                )
-                print(
-                    f"{arm} {domain}/{task_id}: {record['status']} "
-                    f"{'PASS' if record['correct'] else 'FAIL'} "
-                    f"({record['elapsed_seconds']:.2f}s), compiler attempts={len(attempts)}, "
-                    f"audit errors={audit_error_count}",
-                    flush=True,
-                )
+            workers = [asyncio.create_task(run_group(group)) for group in groups.values()]
+            await asyncio.gather(*workers)
             # Also catch changes during the final case, before publishing completion.
             verify_frozen_identity()
         except BaseException as exc:
+            stopping.set()
+            for worker in workers:
+                if not worker.done():
+                    worker.cancel()
+            # Await case-worker cleanup. Runtime-owned background tasks can still settle
+            # during asyncio.run shutdown, so this snapshot is explicitly provisional.
+            await asyncio.gather(*workers, return_exceptions=True)
             failure = {
                 "error_type": type(exc).__name__,
                 "error": paired.scrub(str(exc), known_secrets),
                 "finished_entries": len(records),
+                "actual_started_entries": actual_starts,
                 "planned_entries": len(schedule["entries"]),
                 "partial_cases_preserved": True,
+                "final_cost_complete": False,
+                "offline_rescan_after_process_exit_required": True,
+                "runtime_background_cleanup_may_continue": True,
                 "at": datetime.now(UTC).isoformat(),
                 "retained_prefix": _retained_prefix(driver_dir, schedule),
             }
@@ -533,6 +622,10 @@ async def run_schedule_async(
             "run_dir": str(driver_dir),
             "planned_entries": len(schedule["entries"]),
             "terminal_entries": len(records),
+            "actual_started_entries": actual_starts,
+            "jobs": jobs,
+            "cross_case_arm_overlap": jobs > 1,
+            "execution_order_path": str(driver_dir / "execution-order.jsonl"),
             "validation_status": schedule["validation_status"],
             "untouched_confirmation": False,
             "comparison_interpretable": all(r["trace_integrity_valid"] for r in records),
@@ -604,6 +697,7 @@ async def main_async(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--split", choices=("dev", "holdout", "all"), default="dev")
     parser.add_argument("--case-ids", type=Path, help="JSON domain -> ordered frozen case-ID list")
     parser.add_argument("--limit", type=int)
+    parser.add_argument("--jobs", type=int, choices=(1, 2, 3, 4), default=1)
     parser.add_argument("--data-dir", type=Path, default=paired.DEFAULT_DATA)
     parser.add_argument("--experiment-dir", type=Path, default=paired.DEFAULT_EXPERIMENT)
     parser.add_argument(
@@ -637,6 +731,7 @@ async def main_async(argv: Sequence[str] | None = None) -> int:
                 split=args.split,
                 case_ids=identifiers,
                 limit=args.limit,
+                jobs=args.jobs,
                 data_dir=args.data_dir,
                 experiment_dir=args.experiment_dir,
                 secrets=all_secrets,

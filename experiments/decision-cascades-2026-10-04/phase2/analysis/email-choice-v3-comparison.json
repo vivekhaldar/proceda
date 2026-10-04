@@ -1,0 +1,293 @@
+{
+  "arms": {
+    "jev": {
+      "accepted_errors": 0,
+      "cases": [
+        {
+          "accepted": true,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/E1093/providers/decisions/decision-cd1f1a74926c44b7b7bc96337586deed.json",
+          "case_id": "E1093",
+          "correct": {
+            "seller_intent": true
+          },
+          "elapsed_seconds": 0.274021208009799,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": "concern about their product not being listed",
+          "reason": "choice_accepted",
+          "selected_probability": 1.0
+        },
+        {
+          "accepted": true,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/E1105/providers/decisions/decision-c74de654fbed402e87bc64180b3e4d51.json",
+          "case_id": "E1105",
+          "correct": {
+            "seller_intent": true
+          },
+          "elapsed_seconds": 0.28718445799313486,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": "concern about their product not being listed",
+          "reason": "choice_accepted",
+          "selected_probability": 1.0
+        },
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/E1110/providers/decisions/decision-899c1d15a0054ac18e525a7ec768461f.json",
+          "case_id": "E1110",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 0.2441032089991495,
+          "expected": {
+            "seller_intent": "generic question about a listing"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "uncertain_choice",
+          "selected_probability": 0.79
+        },
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/E1114/providers/decisions/decision-bc11897fd00747d68b77bdb36d03bba3.json",
+          "case_id": "E1114",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 0.2598859579884447,
+          "expected": {
+            "seller_intent": "generic question about a listing"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "choice_not_unique_maximum",
+          "selected_probability": null
+        },
+        {
+          "accepted": true,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/E1121/providers/decisions/decision-b23261c295034dae928bc14f210a9523.json",
+          "case_id": "E1121",
+          "correct": {
+            "seller_intent": true
+          },
+          "elapsed_seconds": 0.2672480839974014,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": "concern about their product not being listed",
+          "reason": "choice_accepted",
+          "selected_probability": 1.0
+        }
+      ],
+      "mean_decision_seconds": 0.2664885833975859,
+      "median_decision_seconds": 0.2672480839974014,
+      "summary": {
+        "abstained": 2,
+        "accepted": 3,
+        "accepted_accuracy": 1.0,
+        "by_backend": {
+          "jev": {
+            "accepted": 3,
+            "attempts": 5,
+            "requests": 5
+          }
+        },
+        "case_errors": 0,
+        "cases": 5,
+        "compiler_cost_included": false,
+        "completed_at": "2026-10-04T23:00:05.578009+00:00",
+        "configured_thresholds": [
+          0.97
+        ],
+        "correct_accepted": 3,
+        "correct_over_all_cases": 0.6,
+        "coverage": 0.6,
+        "decision_elapsed_seconds": 1.3324429169879295,
+        "incomplete_provider_attempts": 0,
+        "input_tokens": 2638,
+        "known_provider_cost_usd": 0.000110796,
+        "local_compute_cost_included": false,
+        "local_native_duration_unknown": 0,
+        "local_native_seconds": 0,
+        "local_requests": 0,
+        "output_tokens": 402,
+        "provider_audit_files": 5,
+        "provider_errors": 1,
+        "provider_requests": 5,
+        "result_attempts_missing_audit": 0,
+        "scope": "finite_choice_diagnostic_not_end_to_end_SOP_success",
+        "unknown_provider_cost_requests": 0,
+        "unknown_usage_requests": 0,
+        "unreadable_provider_audits": []
+      },
+      "summary_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-jev-v3/summary.json"
+    },
+    "local": {
+      "accepted_errors": 0,
+      "cases": [
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/E1093/providers/decisions/decision-7dc80229d1994d76a11d59554175f1d3.json",
+          "case_id": "E1093",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 1.0719673749990761,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "uncertain_choice",
+          "selected_probability": 0.9635
+        },
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/E1105/providers/decisions/decision-2b60d5773c644c51abc2e68713c064bc.json",
+          "case_id": "E1105",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 0.18738733300415333,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "uncertain_choice",
+          "selected_probability": 0.9213
+        },
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/E1110/providers/decisions/decision-2645132be3be4546a0ed1785c0b175ae.json",
+          "case_id": "E1110",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 0.18860466699698009,
+          "expected": {
+            "seller_intent": "generic question about a listing"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "uncertain_choice",
+          "selected_probability": 0.549
+        },
+        {
+          "accepted": false,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/E1114/providers/decisions/decision-a6cfee2dba6043339fac3adc4838aa65.json",
+          "case_id": "E1114",
+          "correct": {
+            "seller_intent": false
+          },
+          "elapsed_seconds": 0.18784149999555666,
+          "expected": {
+            "seller_intent": "generic question about a listing"
+          },
+          "http_status": 200,
+          "prediction": null,
+          "reason": "uncertain_choice",
+          "selected_probability": 0.5235
+        },
+        {
+          "accepted": true,
+          "audit_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/E1121/providers/decisions/decision-c3f12323585641589307a91912c1e6ab.json",
+          "case_id": "E1121",
+          "correct": {
+            "seller_intent": true
+          },
+          "elapsed_seconds": 0.1877811250014929,
+          "expected": {
+            "seller_intent": "concern about their product not being listed"
+          },
+          "http_status": 200,
+          "prediction": "concern about their product not being listed",
+          "reason": "choice_accepted",
+          "selected_probability": 0.9749
+        }
+      ],
+      "mean_decision_seconds": 0.3647163999994518,
+      "median_decision_seconds": 0.18784149999555666,
+      "summary": {
+        "abstained": 4,
+        "accepted": 1,
+        "accepted_accuracy": 1.0,
+        "by_backend": {
+          "winnow-local": {
+            "accepted": 1,
+            "attempts": 5,
+            "requests": 5
+          }
+        },
+        "case_errors": 0,
+        "cases": 5,
+        "compiler_cost_included": false,
+        "completed_at": "2026-10-04T23:00:04.043303+00:00",
+        "configured_thresholds": [
+          0.97
+        ],
+        "correct_accepted": 1,
+        "correct_over_all_cases": 0.2,
+        "coverage": 0.2,
+        "decision_elapsed_seconds": 1.8235819999972591,
+        "incomplete_provider_attempts": 0,
+        "input_tokens": 1474,
+        "known_provider_cost_usd": 0.0,
+        "local_compute_cost_included": false,
+        "local_native_duration_unknown": 0,
+        "local_native_seconds": 1.783576499,
+        "local_requests": 5,
+        "output_tokens": 0,
+        "provider_audit_files": 5,
+        "provider_errors": 0,
+        "provider_requests": 5,
+        "result_attempts_missing_audit": 0,
+        "scope": "finite_choice_diagnostic_not_end_to_end_SOP_success",
+        "unknown_provider_cost_requests": 0,
+        "unknown_usage_requests": 0,
+        "unreadable_provider_audits": []
+      },
+      "summary_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/email-choice-local-v3/summary.json"
+    }
+  },
+  "case_ids": [
+    "E1093",
+    "E1105",
+    "E1110",
+    "E1114",
+    "E1121"
+  ],
+  "limits": [
+    "Only five email cases, covering three listing concerns and two generic inquiries; no accuracy claim for the other three intent categories.",
+    "No app tools or LLM fallback ran. Abstention is not a business label or an incorrect accepted answer.",
+    "There is no primary-LLM comparison in this diagnostic; these measurements do not establish whole-workflow savings.",
+    "Configured provider token-charge estimates exclude local hardware cost and all source compilation/review calls; they are not invoices.",
+    "The first local call was slower than the remaining four. Raw native timing, including load duration where reported, remains in provider audits."
+  ],
+  "plan": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/plans/email-choice-v3/plan.json",
+  "provider_contract_issue": {
+    "arm": "jev",
+    "behavior": "Conservative abstention; reported usage and configured charges retained. No retry or response repair.",
+    "case_id": "E1114",
+    "highest_probability": 0.49,
+    "highest_probability_choice": "generic question about a listing",
+    "http_status": 200,
+    "reason": "choice_not_unique_maximum",
+    "selected_choice": "unable to decide",
+    "selected_choice_probability": 0.48
+  },
+  "recorded_at": "2026-10-04T23:02:17.033849+00:00",
+  "scope": "Five development email-intent choices per arm; not end-to-end SOP success",
+  "source_compilation_cost_scope": {
+    "calls": 4,
+    "input_tokens": 12797,
+    "monetary_estimate_included": false,
+    "output_tokens": 9337
+  },
+  "threshold": 0.97
+}

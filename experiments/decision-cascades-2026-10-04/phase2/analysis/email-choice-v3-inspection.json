@@ -1,0 +1,62 @@
+{
+  "all_three_source_attempts": {
+    "completion_tokens": 9337,
+    "elapsed_seconds": 238.12060520796874,
+    "prompt_tokens": 12797,
+    "provider_requests": 4
+  },
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/15fe58453b558c7240a967c0eea558502f2ef80524f3b52fe8a399a2cd33317c.json",
+  "artifact_sha256": "f5984269bc8215604a76f45148e780959201f22f49f81e38244d3d1303b339f3",
+  "compilation_result": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/plans/email-choice-v3/compilation-result.json",
+  "compiler_elapsed_seconds": 64.55077429099765,
+  "completion_tokens": 3018,
+  "cost_note": "All four source-only provider requests and their reported usage are retained; include them separately when estimating development or amortized compilation cost.",
+  "downgraded_steps": [
+    2
+  ],
+  "findings": [
+    "The five intent labels are copied from the source. The choice binds only email_body; no task labels were available to compiler or reviewer.",
+    "Product-ID extraction uses explicit alphanumeric boundaries, retains evidence spans, and rejects ambiguous or conflicting observations.",
+    "Step 2 was replaced with its entire original source after a truncated source quote failed validation. The original candidate and downgrade reason remain in the cache artifact.",
+    "Step 3 remains llm; neither the action value nor any required prose artifact is inferred as complete by this plan.",
+    "Review and source provenance are evidence of scrutiny, not a proof of semantic equivalence or case-level accuracy."
+  ],
+  "plan_sha256": "3664ee780be1efad6a8cfa76258767f8abbbb088adda8c348aac06053f1a4403",
+  "prompt_tokens": 6921,
+  "provider_requests": 2,
+  "recorded_at": "2026-10-04T22:59:37.447405+00:00",
+  "review": {
+    "approved": true,
+    "issues": []
+  },
+  "reviewer_elapsed_seconds": 37.35043408400088,
+  "reviewer_requests": 1,
+  "scope": "source-only plan inspection with synthetic binder checks; no real task-case inference",
+  "status": "accepted",
+  "step_kinds": [
+    "decision",
+    "llm",
+    "llm"
+  ],
+  "synthetic_binding_checks": {
+    "conflicting_metadata": {
+      "bound": false,
+      "reason": "extraction_conflicts_with_input"
+    },
+    "multiple_identifiers": {
+      "bound": false,
+      "reason": "missing_or_ambiguous_regex_match"
+    },
+    "overlong": {
+      "bound": false,
+      "reason": "missing_or_ambiguous_regex_match"
+    },
+    "valid": {
+      "bound": true,
+      "extracted": {
+        "product_id": "P12345"
+      }
+    }
+  },
+  "task_case_requests": 0
+}

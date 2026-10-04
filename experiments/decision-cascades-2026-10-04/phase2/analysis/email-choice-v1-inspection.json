@@ -1,0 +1,44 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f.json",
+  "artifact_sha256": "4724492e06059173a0315bf1821362627a3d7619b176bd1b0218889509d27d13",
+  "compilation_result": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/plans/email-choice-v1/compilation-result.json",
+  "completion_tokens": 3464,
+  "cost_note": "Token usage retained; compiler cost must be added separately to choice/whole-workflow estimates.",
+  "findings": [
+    {
+      "finding": "Step 1 flattened field/instructions/criteria/inputs onto StepPlan rather than nesting them under decision.",
+      "kind": "structural"
+    },
+    {
+      "finding": "Step 2 source_quote is only 664 characters of 2,021, violating the full-step quote requirement.",
+      "kind": "source_provenance"
+    },
+    {
+      "finding": "Eleven Step 2 ValueRef quotes come from Step 1 rather than current Step 2. All 20 residual obligation strings are valid Step 2 substrings.",
+      "kind": "source_provenance"
+    },
+    {
+      "finding": "Proposed pattern P[A-Z0-9]{5} has no identifier boundaries and can match inside longer alphanumeric identifiers.",
+      "kind": "extraction_semantics"
+    },
+    {
+      "finding": "The five intent labels match source text. Step 3 is llm, so the candidate does not claim an ungrounded action/render result.",
+      "kind": "bounded_scope"
+    }
+  ],
+  "manual_repairs_applied": false,
+  "prompt_tokens": 2806,
+  "provider_elapsed_seconds": 69.46793858299498,
+  "provider_finished_successfully": true,
+  "provider_requests": 1,
+  "reasoning_tokens": 1381,
+  "recorded_at": "2026-10-04T22:46:32.158856+00:00",
+  "reviewer_requests": 0,
+  "scope": "source-only compiler candidate inspection; no task-case inference",
+  "status": "invalid",
+  "task_case_requests": 0,
+  "usable_plan": false,
+  "validator_error": [
+    "Invalid object keys; expected ['index', 'kind', 'residual_obligations', 'source_quote']"
+  ]
+}
