@@ -104,3 +104,44 @@ A separate replay with the installed larger local model, Winnow 12B, accepted
 Its warm calls averaged 1.31 seconds, versus roughly half a second for Winnow 4B;
 that coverage/latency tradeoff needs actual SOP evaluation. Both models can remain
 resident on this 64 GiB machine. This diagnostic result is not task accuracy.
+
+## Single-loop and explicit-low-effort comparisons — 85ba6a0
+
+The four-referral-case effort probe completed without logging-worker warnings.
+Unspecified effort and explicit low effort both passed 4/4. Mean case time was
+47.04 versus 20.09 seconds; estimated hosted charges were $0.02055755 versus
+$0.013782. Completion-token counts were 10,807 versus 1,851. These are small,
+sequential live measurements, not a causal attribution of every time difference
+to reasoning effort. Subsequent comparisons set low effort in both arms.
+
+`dev-low-8` ran eight development cases in each of three domains in three arms,
+with four concurrent cases per arm and sequential, rotating arm blocks. All
+72 cases completed, without provider errors/retries or logging-worker warnings.
+Baseline and local 4B each passed 24/24; local 12B passed 23/24. Estimated hosted
+charges were $0.12048330, $0.11643525, and $0.10792290, respectively. Hosted calls
+were 204, 193, and 176. Mean whole-case times were 15.78, 22.26, and 31.60 seconds.
+Neither hybrid demonstrated a general latency win. Local native inference time
+was 105.16 seconds for 4B and 394.08 seconds for 12B, excluding idle capacity.
+
+The 4B gate accepted 11/78 checks, all referral read steps; independent receipt
+review found the expected tools, arguments, result fields, and successful
+execution in all 11. Email and patient gates all abstained. The 12B gate accepted
+29/79 checks: 24 referral and five patient. Two patient pharmacy steps lacked
+the separately requested special-handling documentation despite acceptance.
+Scalar benchmark passes do not establish completion of that prose obligation.
+Email E1086's 12B-arm error occurred in the primary LLM before a gate could
+intervene; its only completion gate abstained. It remains an end-to-end failure.
+
+Inspection also found that primary LLMs copied synthetic gate-approval claims
+and sometimes invented receipt identifiers in later completion summaries.
+Actual structured receipts and gate events were correct. Commit 161742d replaces
+the model-visible synthetic summary with a plain acknowledgment; authority and
+receipt links stay in structured events. A regression test checks the next LLM
+context as well as the authoritative events. Full checks pass: 494 tests, Ruff,
+and type checking. These changes precede held-out inference.
+
+The remaining development ablation, `dev-verification-smoke`, compares a fresh
+baseline with proposal-verification-only and completion-plus-verification using
+two cases per domain. Both candidates retain the same 4B model, threshold,
+primary LLM, reasoning effort, and repair limit. This tests the optional feature
+before final profile selection; no holdout case has been used for tuning.
