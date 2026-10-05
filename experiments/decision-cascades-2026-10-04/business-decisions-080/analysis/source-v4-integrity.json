@@ -1,0 +1,338 @@
+{
+  "recorded_at": "2026-10-05T06:25:40.943018+00:00",
+  "preparation": "preparation/source-v4",
+  "frozen_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0",
+  "created_at": "2026-10-05T06:18:06.435088+00:00",
+  "completed_at": "2026-10-05T06:18:33.720769+00:00",
+  "manifest_sha256": "3c845c70d4036d4eaffbc92fad7092d4c4da61742c4b4943dbb0309c2ac1a93c",
+  "checks": {
+    "completion_marker": true,
+    "frozen_file_hashes": true,
+    "frozen_source_hashes": true,
+    "source_config_cache_review_revalidation_both_business_arms": true,
+    "email_intent_accounting_matches": true,
+    "patient_intake_accounting_matches": true,
+    "referral_abuse_detection_v1_accounting_matches": true,
+    "aggregate_accounting_matches_with_1e12_float_tolerance": true,
+    "source_only_requests": true,
+    "raw_requests_and_tool_schemas_match_records": true,
+    "all_provider_model_settings_match": true,
+    "exact_credential_scan_passed": true
+  },
+  "compiler_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "reviewer_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "provider_call_counts": {
+    "compiler": 15,
+    "reviewer": 10
+  },
+  "finish_reasons": {
+    "length": 1,
+    "tool_calls": 14,
+    "stop": 10
+  },
+  "elapsed_seconds": 27.285619874994154,
+  "input_tokens": 150199,
+  "output_tokens": 20036,
+  "cost_usd": 0.12769755000000002,
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+  "unknown_cost_requests": 0,
+  "unknown_usage_requests": 0,
+  "audit_errors": [],
+  "admitted_business_decisions": 1,
+  "admitted_observation_contracts": 9,
+  "domains": {
+    "email_intent": {
+      "status": "accepted",
+      "calls": {
+        "compiler": 3,
+        "reviewer": 1
+      },
+      "input_tokens": 20078,
+      "output_tokens": 5752,
+      "cost_usd": 0.026291099999999998,
+      "elapsed_seconds": 14.47806891601067,
+      "cache_key": "9a933e1805eb8d4ae81fce9a3411409d29de820a1f0b70a551461f5cedc4a763",
+      "artifact": "cache/9a933e1805eb8d4ae81fce9a3411409d29de820a1f0b70a551461f5cedc4a763.json",
+      "artifact_sha256": "a08c5a50571db8f44dab0a7f96df94753c42748b9413711be75bd7ddcb9b4dc0",
+      "source": {
+        "domain": "email_intent",
+        "input_fields_sha256": "10a7510420e2bb902dd4fcfb8c04921acd3b75a90f5edbe44a483c3f4580fc9b",
+        "manifest_sha256": "3923032dae254ef11ebe43cf618208f14b4d0a040acecc903160c05ece19ed69",
+        "skill_sha256": "11734c69d76ded193e218e6d78fb306ef2ff3f8390a3b6a2a1a64f001331252b",
+        "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+        "source_files": {
+          "metadata.json": "020d01c981f10f683c7a6ddb30a8575a59ff01c6862895dc6d06fdd5df0b7a9e",
+          "sop.txt": "1b7366a86c31c1254d2a08b8cbff7f6e4d033f30fb972fbbb531cc9c4ff32867",
+          "test_set_with_outputs.csv": "982b2d241a7e1ed6b32bf344fb4d584538f2e1868aeb9765cfc4de15da065eaf",
+          "test_set_without_outputs.csv": "13d79606cc7c36c884ac04457dcfd7d7a6064bd083b2ed1cd8c6b0abe55585cd",
+          "tools.py": "a328c9f25e2fc2e5bbdf3a23e46a714b7607d7f54126d48e08190de4288a80fb",
+          "toolspecs.json": "3803116e6b9d7f9802f06f89db69d1f72e128cb4da2169fd3f061cd09f56bf08"
+        },
+        "tool_schemas_sha256": "0c7c6d6051e860b4ea1109691c4c8d5ee60ab12046182a3179e9886f05c19634"
+      },
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "decision"
+        },
+        {
+          "index": 2,
+          "status": "invalid",
+          "admitted_kind": "llm"
+        },
+        {
+          "index": 3,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    },
+    "patient_intake": {
+      "status": "unsupported",
+      "calls": {
+        "reviewer": 6,
+        "compiler": 7
+      },
+      "input_tokens": 88420,
+      "output_tokens": 9391,
+      "cost_usd": 0.06796200000000001,
+      "elapsed_seconds": 26.571323416996165,
+      "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+      "artifact": "cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+      "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+      "source": {
+        "domain": "patient_intake",
+        "input_fields_sha256": "0b6d8a637f9ac9331dcedbeaed9d651b0ef82c6b8163119795fd44af231ba5a1",
+        "manifest_sha256": "3923032dae254ef11ebe43cf618208f14b4d0a040acecc903160c05ece19ed69",
+        "skill_sha256": "1f57f9e13350941c6af7591c11c0a4690eecf12fc8a398074ec82b3fd6559480",
+        "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+        "source_files": {
+          "metadata.json": "72cddd80ed754b50cf059f2028e32dc97d4a8f4ae8de1f21c33044dc72628298",
+          "sop.txt": "b5b45e864da06fef5d3fb7d66bced5229c31e0a6e89e7507ac9c04168037b3e5",
+          "test_set_with_outputs.csv": "07588389201e02a4f19a6bacf62b400951b01910f498892293b3f53a8b43bfca",
+          "test_set_without_outputs.csv": "bf274028d4b6f43ce2e1fa7a55b3bb82cbd7b83dcfbd8b41fe0298f646dcaa4c",
+          "tools.py": "1d7e651ea049e969ee6e1ba64d83de3f29e6ae3c9191f4ff52fd71f13350936a",
+          "toolspecs.json": "4593535221fe78159cedd91c01feb0e996cae27e2d4e9b3bc419b01d0bc9c041"
+        },
+        "tool_schemas_sha256": "d84cbfcd51133da3e265ba08b558942fa78ea72432b1172a7d2d2a63c74e9709"
+      },
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 2,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 4,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 5,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 6,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 7,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    },
+    "referral_abuse_detection_v1": {
+      "status": "unsupported",
+      "calls": {
+        "compiler": 5,
+        "reviewer": 3
+      },
+      "input_tokens": 41701,
+      "output_tokens": 4893,
+      "cost_usd": 0.03344445000000001,
+      "elapsed_seconds": 18.028950709005585,
+      "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+      "artifact": "cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+      "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+      "source": {
+        "domain": "referral_abuse_detection_v1",
+        "input_fields_sha256": "dbbff0268a6e7adfea02dabbed38ab870a991de1fa7d57955700d2c0565dc9e0",
+        "manifest_sha256": "3923032dae254ef11ebe43cf618208f14b4d0a040acecc903160c05ece19ed69",
+        "skill_sha256": "44a3c0797f1a73ead8b446bc9de92f974a60a98e0ad0f1d50ef5ad05b013ccaa",
+        "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+        "source_files": {
+          "metadata.json": "ddf39c5a4a4867b170a5c473272eddb7539af0ef166470a97e880d44d0d0a068",
+          "sop.txt": "6a74960069a8fbce544fed91c76d9d5c79c1b807738bb8aca5de6655e499cc3b",
+          "test_set_with_outputs.csv": "ff70ec7de0188a0777a9b42a51a59ac69b15027617cce311378613a5b9368ded",
+          "test_set_without_outputs.csv": "eaa86f4e55f3117673e9e191a22003437f254d2c11e08828d3b9a3e326ef9d23",
+          "tools.py": "c3f19b2f957b3dd4a1b01c18e02c1d16c471117fad7c404a8525c5d425e5adef",
+          "toolspecs.json": "4249a2300e19b17a48f578c3ae7e29ebc3d6bc065826014ec3954576de55b484"
+        },
+        "tool_schemas_sha256": "be6768694d38e3d77453a7b24c8c0a4f0fe27ed443865b13dbb0b5d7bb8014d2"
+      },
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 2,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 4,
+          "status": "invalid",
+          "admitted_kind": "llm"
+        },
+        {
+          "index": 5,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    }
+  },
+  "nonadmitted_audit_evidence": [
+    {
+      "domain": "email_intent",
+      "step_index": 2,
+      "purpose": "compiler",
+      "finish_reasons": [
+        "length"
+      ],
+      "audit": "email_intent/providers/1878a77cd0774ecc8f62e89afaf014fc-001.json"
+    },
+    {
+      "domain": "referral_abuse_detection_v1",
+      "step_index": 4,
+      "purpose": "compiler",
+      "finish_reasons": [
+        "tool_calls"
+      ],
+      "audit": "referral_abuse_detection_v1/providers/330b03dd111d4fa5a6f73dcf37feef63-001.json"
+    }
+  ],
+  "reasons": {
+    "email_intent": "Step1 accepted: five seller-intent labels, source-backed email_body input and bounded six-character product_id regex. Step2 compiler response truncated and remains original-source LLM fallback. Step3 is LLM output.",
+    "referral_abuse_detection_v1": "Step4 record_source_step arguments supplied decision as a string instead of an object and were rejected. Three observation contracts admitted but aggregate unsupported because no business decision survives.",
+    "patient_intake": "Six observation contracts admitted, final output step LLM; no business decision proposed, aggregate unsupported."
+  },
+  "preparation_history": [
+    {
+      "source_version": "source-v1",
+      "frozen_commit": "130edb37657d056278aa0188f9a5457e87dc538a",
+      "manifest_sha256": "965fe5483c7b69f0a6e5ac7711256409d294da9898a34a270e1b59df31b6b657",
+      "requests": 3,
+      "calls": {
+        "compiler": 3
+      },
+      "input_tokens": 9679,
+      "output_tokens": 6144,
+      "cost_usd": 0.02278755,
+      "elapsed_seconds": 5.7437821670027915
+    },
+    {
+      "source_version": "source-v2",
+      "frozen_commit": "abc6f4dfe860a1b50abe99b382ec41b389f88ad7",
+      "manifest_sha256": "3cbcbe9199d30c3e683065fd22555198f36f05ee0da69971dc572cd4d9cd5be9",
+      "requests": 22,
+      "calls": {
+        "compiler": 15,
+        "reviewer": 7
+      },
+      "input_tokens": 102265,
+      "output_tokens": 11742,
+      "cost_usd": 0.08124525,
+      "elapsed_seconds": 22.345489541999996
+    },
+    {
+      "source_version": "source-v3",
+      "frozen_commit": "2ac3663351d7ce1847198fad63a75f0de1ff1c45",
+      "manifest_sha256": "636f4c8ab029b3234ec2c1699c9ebf0b377114fae7adc4f30de776089924bc33",
+      "requests": 24,
+      "calls": {
+        "compiler": 15,
+        "reviewer": 9
+      },
+      "input_tokens": 117609,
+      "output_tokens": 16986,
+      "cost_usd": 0.10388205,
+      "elapsed_seconds": 26.64355950000754
+    },
+    {
+      "source_version": "source-v4",
+      "frozen_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0",
+      "manifest_sha256": "3c845c70d4036d4eaffbc92fad7092d4c4da61742c4b4943dbb0309c2ac1a93c",
+      "requests": 25,
+      "calls": {
+        "compiler": 15,
+        "reviewer": 10
+      },
+      "input_tokens": 150199,
+      "output_tokens": 20036,
+      "cost_usd": 0.12769755000000002,
+      "elapsed_seconds": 27.285619874994154
+    }
+  ],
+  "cumulative_all_four_preparation_cost_usd": 0.33561240000000003,
+  "credential_scan": {
+    "credential_entries_checked": [
+      "NEBIUS_API_KEY",
+      "TYPESAFE_API_KEY"
+    ],
+    "scope": "All regular files in immutable source-v1 through source-v4 preparation directories",
+    "files_checked": 134,
+    "total_bytes": 8916309,
+    "exact_secret_matches": 0,
+    "matched_paths": [],
+    "secrets_written_or_printed": false
+  },
+  "limits": [
+    "Source preparation integrity is not task accuracy or full SOP compliance.",
+    "One truncated compiler response is retained and fully included in accounting.",
+    "Prior preparation costs remain experiment development spend; source-v4 preparation is the shared active deployment cost, charged in full to either independent business deployment.",
+    "Resummed accounting differs only in three floating-point cost subtotals by at most 1.4e-17; token and request counts match exactly.",
+    "This audit made no provider calls and changed no raw preparation, source, config, or frozen run files."
+  ]
+}

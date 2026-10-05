@@ -1,0 +1,160 @@
+{
+  "recorded_at": "2026-10-05T06:45:20.012490+00:00",
+  "integrity_report_sha256": "e2db07d693c8518753fea8d626c5e1fefed9e564fb82c209e5ca1e9b8f06239b",
+  "integrity_passed": true,
+  "full": {
+    "groups": [
+      "business-decisions-080-holdout--email_intent",
+      "business-decisions-080-holdout--patient_intake",
+      "business-decisions-080-holdout--referral_abuse_detection_v1"
+    ],
+    "counts": {
+      "completed_cases": 1440,
+      "correct_cases": 1434,
+      "events": 58595,
+      "finished_steps": 6432,
+      "terminal_cases": 1440,
+      "terminal_status:completed": 1440,
+      "tool_calls": 3749,
+      "tool_failures": 0
+    },
+    "llm_models": {
+      "Qwen/Qwen3.8-27B": 8181
+    },
+    "decision_models": {
+      "jev-1.13.0": 2861
+    },
+    "provider_issues": [],
+    "accounting": {
+      "audit_records": 11042,
+      "llm_requests": 8181,
+      "decision_requests": 2861,
+      "decision_preflight_records": 0,
+      "input_tokens_known": 37855242,
+      "output_tokens_known": 2070603,
+      "cost_usd": 21.083566308000005,
+      "unknown_cost_requests": 0,
+      "unknown_usage_requests": 0,
+      "unknown_request_status": 0,
+      "audit_errors": []
+    },
+    "earliest_actual_start": "2026-10-05T06:23:11.292377+00:00",
+    "last_schedule_completed_at": "2026-10-05T06:43:44.862195+00:00",
+    "wall_seconds_earliest_actual_start_to_last_schedule_completion": 1233.569818
+  },
+  "pilot": {
+    "groups": [
+      "business-decisions-080-pilot"
+    ],
+    "counts": {
+      "completed_cases": 48,
+      "correct_cases": 48,
+      "events": 2293,
+      "finished_steps": 240,
+      "terminal_cases": 48,
+      "terminal_status:completed": 48,
+      "tool_calls": 168,
+      "tool_failures": 0
+    },
+    "llm_models": {
+      "Qwen/Qwen3.8-27B": 337
+    },
+    "decision_models": {
+      "jev-1.13.0": 124
+    },
+    "provider_issues": [],
+    "accounting": {
+      "audit_records": 461,
+      "llm_requests": 337,
+      "decision_requests": 124,
+      "decision_preflight_records": 0,
+      "input_tokens_known": 1766560,
+      "output_tokens_known": 73769,
+      "cost_usd": 0.914305704,
+      "unknown_cost_requests": 0,
+      "unknown_usage_requests": 0,
+      "unknown_request_status": 0,
+      "audit_errors": []
+    },
+    "earliest_actual_start": "2026-10-05T06:19:50.111489+00:00",
+    "last_schedule_completed_at": "2026-10-05T06:21:26.866877+00:00",
+    "wall_seconds_earliest_actual_start_to_last_schedule_completion": 96.755388
+  },
+  "preparation": {
+    "source_v4_manifest_sha256": "3c845c70d4036d4eaffbc92fad7092d4c4da61742c4b4943dbb0309c2ac1a93c",
+    "same_manifest_all_schedules": true,
+    "source_v4_calls": {
+      "compiler": 15,
+      "reviewer": 10
+    },
+    "source_v4_cost_usd_once": 0.12769755000000002,
+    "earlier_source_v1_v2_v3_cost_usd_once": 0.20791485,
+    "all_preparation_cost_usd_once": 0.33561240000000003,
+    "all_four_preparations_separate": [
+      {
+        "source_version": "source-v1",
+        "frozen_commit": "130edb37657d056278aa0188f9a5457e87dc538a",
+        "manifest_sha256": "965fe5483c7b69f0a6e5ac7711256409d294da9898a34a270e1b59df31b6b657",
+        "requests": 3,
+        "calls": {
+          "compiler": 3
+        },
+        "input_tokens": 9679,
+        "output_tokens": 6144,
+        "cost_usd": 0.02278755,
+        "elapsed_seconds": 5.7437821670027915
+      },
+      {
+        "source_version": "source-v2",
+        "frozen_commit": "abc6f4dfe860a1b50abe99b382ec41b389f88ad7",
+        "manifest_sha256": "3cbcbe9199d30c3e683065fd22555198f36f05ee0da69971dc572cd4d9cd5be9",
+        "requests": 22,
+        "calls": {
+          "compiler": 15,
+          "reviewer": 7
+        },
+        "input_tokens": 102265,
+        "output_tokens": 11742,
+        "cost_usd": 0.08124525,
+        "elapsed_seconds": 22.345489541999996
+      },
+      {
+        "source_version": "source-v3",
+        "frozen_commit": "2ac3663351d7ce1847198fad63a75f0de1ff1c45",
+        "manifest_sha256": "636f4c8ab029b3234ec2c1699c9ebf0b377114fae7adc4f30de776089924bc33",
+        "requests": 24,
+        "calls": {
+          "compiler": 15,
+          "reviewer": 9
+        },
+        "input_tokens": 117609,
+        "output_tokens": 16986,
+        "cost_usd": 0.10388205,
+        "elapsed_seconds": 26.64355950000754
+      },
+      {
+        "source_version": "source-v4",
+        "frozen_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0",
+        "manifest_sha256": "3c845c70d4036d4eaffbc92fad7092d4c4da61742c4b4943dbb0309c2ac1a93c",
+        "requests": 25,
+        "calls": {
+          "compiler": 15,
+          "reviewer": 10
+        },
+        "input_tokens": 150199,
+        "output_tokens": 20036,
+        "cost_usd": 0.12769755000000002,
+        "elapsed_seconds": 27.285619874994154
+      }
+    ],
+    "accounting_policy": "Task accounting excludes external preparation. Add each physical preparation once across pilot/full groups. Independent compiled deployment arms each receive the same full relevant preparation cost, never half."
+  },
+  "physical_costs_usd": {
+    "all_task_runs": 21.997872012000006,
+    "all_task_runs_plus_source_v4_once": 22.125569562000006,
+    "all_task_runs_plus_all_four_preparations_once": 22.333484412000004
+  },
+  "cost_basis": "Documented usage list-price estimate, cached input priced at full input rate; actual cache billing unverified.",
+  "inference_performed": false,
+  "raw_files_changed": false
+}

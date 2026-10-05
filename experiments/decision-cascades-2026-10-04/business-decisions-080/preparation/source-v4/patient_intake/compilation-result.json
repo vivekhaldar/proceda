@@ -1,0 +1,12 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v4/cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+  "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+  "attempt_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v4/cache/attempts/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2/de15cb88f7b3408e947b647ab2318b5c.json",
+  "cache_hit": false,
+  "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+  "completion_tokens": 9391,
+  "errors": [],
+  "plan": null,
+  "prompt_tokens": 88420,
+  "status": "unsupported"
+}

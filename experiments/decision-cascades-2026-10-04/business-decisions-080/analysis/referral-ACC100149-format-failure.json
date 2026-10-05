@@ -1,0 +1,573 @@
+{
+  "arms": {
+    "baseline": {
+      "audit": {
+        "accepted_gate_evidence": [],
+        "accepted_steps": [],
+        "arm": "baseline",
+        "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100149",
+        "completion_bypasses": 0,
+        "correct": true,
+        "direct_bypasses_verified": 0,
+        "domain": "referral_abuse_detection_v1",
+        "events_sha256": "b4da4ea72cc2a55d45749b75376f63125b8153eee74dcf06f618fee8591d354b",
+        "gate_outcomes_by_step": {},
+        "issues": [],
+        "patient_input_review": null,
+        "plans": [],
+        "provider_roles": {
+          "ordinary_llm": 8
+        },
+        "successful_tool_order": [
+          "investigate_account",
+          "analyze_traffic_patterns",
+          "determine_enforcement_action"
+        ],
+        "task_id": "ACC100149"
+      },
+      "correct": true,
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "scoring_and_final_provider_evidence": [
+        {
+          "complete_step_arguments": {
+            "summary": "Calculated violation scores for ACC100149: Abusive Account Creation = 4 (meets threshold \u22653), Misleading Ad Copy = 2 (below threshold), Personal Orders = 4 (meets threshold \u22653), No Violation = 0 (below threshold). Per severity-first priority, Abusive Account Creation (closure category, score 4) is selected. Enforcement action: Account Closure."
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100149/providers/3d524ad508bc4d6da4c451c2dedd2d42-001.json",
+          "sha256": "5ccb4060b1b82c957cc7cb109eb544eb3c37df5e8f4becf38f67050bfee926a6",
+          "status": "success"
+        },
+        {
+          "complete_step_arguments": {
+            "summary": "Reported enforcement action for account ACC100149. Violation type: Abusive Account Creation (score 4/5 indicators met). The enforcement action is: <enforcement_action>Account Closure</enforcement_action>"
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/baseline/referral_abuse_detection_v1/ACC100149/providers/e7566acca91546fe928a43750eb918f7-001.json",
+          "sha256": "d7e37145736f744fe7ef39521fe6cd7c06539dbb6fb933bb32d6262dee8f84dc",
+          "status": "success"
+        }
+      ],
+      "scoring_and_final_summaries": [
+        {
+          "event_line": 35,
+          "step_index": 4,
+          "summary": "Calculated violation scores for ACC100149: Abusive Account Creation = 4 (meets threshold \u22653), Misleading Ad Copy = 2 (below threshold), Personal Orders = 4 (meets threshold \u22653), No Violation = 0 (below threshold). Per severity-first priority, Abusive Account Creation (closure category, score 4) is selected. Enforcement action: Account Closure."
+        },
+        {
+          "event_line": 40,
+          "step_index": 5,
+          "summary": "Reported enforcement action for account ACC100149. Violation type: Abusive Account Creation (score 4/5 indicators met). The enforcement action is: <enforcement_action>Account Closure</enforcement_action>"
+        }
+      ]
+    },
+    "business-jev": {
+      "audit": {
+        "accepted_gate_evidence": [
+          {
+            "event_line": 11,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_50a4a722611a44c58d49843f90747a3e",
+                "tool_event_lines": [
+                  9
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-3c89f854a1fd478895f5fa44add10160.json"
+            ],
+            "step_index": 1
+          },
+          {
+            "event_line": 20,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_50a4a722611a44c58d49843f90747a3e",
+                "tool_event_lines": [
+                  9
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_991e9d0190d343adb42c5d7c2f48dfdc",
+                "tool_event_lines": [
+                  18
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-22c4b3b7669847279d2c8531489e33ee.json"
+            ],
+            "step_index": 2
+          },
+          {
+            "event_line": 29,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_50a4a722611a44c58d49843f90747a3e",
+                "tool_event_lines": [
+                  9
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_991e9d0190d343adb42c5d7c2f48dfdc",
+                "tool_event_lines": [
+                  18
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_90905970509146c5b79bd798998d591f",
+                "tool_event_lines": [
+                  27
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-5a44dd44f34945448faf2ff6e32d0c08.json"
+            ],
+            "step_index": 3
+          }
+        ],
+        "accepted_steps": [
+          1,
+          2,
+          3
+        ],
+        "arm": "business-jev",
+        "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149",
+        "completion_bypasses": 3,
+        "correct": true,
+        "direct_bypasses_verified": 3,
+        "domain": "referral_abuse_detection_v1",
+        "events_sha256": "b5eafae39d55de11474679bc240888c5d99835084ce5de130fea334a3a47020c",
+        "gate_outcomes_by_step": {
+          "1": {
+            "accepted": 1
+          },
+          "2": {
+            "accepted": 1
+          },
+          "3": {
+            "accepted": 1
+          }
+        },
+        "issues": [],
+        "patient_input_review": null,
+        "plans": [
+          {
+            "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+            "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+            "attempt_path": null,
+            "cache_hit": true,
+            "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+            "completion_tokens": 0,
+            "errors": [],
+            "preparation_elapsed_seconds": 0.0315368340088753,
+            "prompt_tokens": 0,
+            "status": "unsupported"
+          }
+        ],
+        "provider_roles": {
+          "completion_native": 3,
+          "ordinary_llm": 5
+        },
+        "successful_tool_order": [
+          "investigate_account",
+          "analyze_traffic_patterns",
+          "determine_enforcement_action"
+        ],
+        "task_id": "ACC100149"
+      },
+      "correct": true,
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "scoring_and_final_provider_evidence": [
+        {
+          "complete_step_arguments": {
+            "summary": "Step 4: Calculated violation scores. Abusive Account Creation scored 4 (meets threshold \u22653), Misleading Ad Copy scored 2 (below threshold), Personal Orders scored 4 (meets threshold), No Violation scored 0. Per severity-first priority, Abusive Account Creation (closure category) is selected. Enforcement action: Account Closure."
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149/providers/137f0c2baf194bb9af2666ea436a8761-001.json",
+          "sha256": "95c7878425a0eca407447298ce5a1e808f1e9c760347e2e6dd1eeaee41859999",
+          "status": "success"
+        },
+        {
+          "complete_step_arguments": {
+            "summary": "Step 5: Reported enforcement action. The violation type determined was Abusive Account Creation (score 4, threshold \u22653), which maps to Account Closure per the enforcement guidelines.\n\n<enforcement_action>Account Closure</enforcement_action>"
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-jev/referral_abuse_detection_v1/ACC100149/providers/61aa9a6d16ff449fa8bd33a8a82d0498-001.json",
+          "sha256": "08cef32ab3a9f970ebdf55e26c000cb4a163be6724656b8d1b4e76bbff7de100",
+          "status": "success"
+        }
+      ],
+      "scoring_and_final_summaries": [
+        {
+          "event_line": 36,
+          "step_index": 4,
+          "summary": "Step 4: Calculated violation scores. Abusive Account Creation scored 4 (meets threshold \u22653), Misleading Ad Copy scored 2 (below threshold), Personal Orders scored 4 (meets threshold), No Violation scored 0. Per severity-first priority, Abusive Account Creation (closure category) is selected. Enforcement action: Account Closure."
+        },
+        {
+          "event_line": 41,
+          "step_index": 5,
+          "summary": "Step 5: Reported enforcement action. The violation type determined was Abusive Account Creation (score 4, threshold \u22653), which maps to Account Closure per the enforcement guidelines.\n\n<enforcement_action>Account Closure</enforcement_action>"
+        }
+      ]
+    },
+    "business-qwen": {
+      "audit": {
+        "accepted_gate_evidence": [
+          {
+            "event_line": 11,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_e80fd47214c646ec8e697c81625746d6",
+                "tool_event_lines": [
+                  9
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-ba957e0581c64bc98c99af99ce9ba023.json"
+            ],
+            "step_index": 1
+          },
+          {
+            "event_line": 20,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_e80fd47214c646ec8e697c81625746d6",
+                "tool_event_lines": [
+                  9
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_ceb8e856750b4064b8a6432a2c057c28",
+                "tool_event_lines": [
+                  18
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-537948798a554a67b8827d8a0bfab12f.json"
+            ],
+            "step_index": 2
+          },
+          {
+            "event_line": 29,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_e80fd47214c646ec8e697c81625746d6",
+                "tool_event_lines": [
+                  9
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_ceb8e856750b4064b8a6432a2c057c28",
+                "tool_event_lines": [
+                  18
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_fcca6eb2d0ba4a36b7e59af39cda3d0f",
+                "tool_event_lines": [
+                  27
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-51bc32d514624a619da6f848e478c30b.json"
+            ],
+            "step_index": 3
+          }
+        ],
+        "accepted_steps": [
+          1,
+          2,
+          3
+        ],
+        "arm": "business-qwen",
+        "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149",
+        "completion_bypasses": 3,
+        "correct": true,
+        "direct_bypasses_verified": 3,
+        "domain": "referral_abuse_detection_v1",
+        "events_sha256": "c29ac4c61fcbc04c88d028771b7a3a63a06798f187635bb29e628e7b1aac1f4c",
+        "gate_outcomes_by_step": {
+          "1": {
+            "accepted": 1
+          },
+          "2": {
+            "accepted": 1
+          },
+          "3": {
+            "accepted": 1
+          }
+        },
+        "issues": [],
+        "patient_input_review": null,
+        "plans": [
+          {
+            "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+            "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+            "attempt_path": null,
+            "cache_hit": true,
+            "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+            "completion_tokens": 0,
+            "errors": [],
+            "preparation_elapsed_seconds": 0.03309404099127278,
+            "prompt_tokens": 0,
+            "status": "unsupported"
+          }
+        ],
+        "provider_roles": {
+          "completion_native": 3,
+          "ordinary_llm": 5
+        },
+        "successful_tool_order": [
+          "investigate_account",
+          "analyze_traffic_patterns",
+          "determine_enforcement_action"
+        ],
+        "task_id": "ACC100149"
+      },
+      "correct": true,
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "scoring_and_final_provider_evidence": [
+        {
+          "complete_step_arguments": {
+            "summary": "Step 4: Violation scores calculated. Abusive Account Creation score = 4 (meets threshold \u2265 3). Misleading Ad Copy score = 2 (below threshold). Personal Orders score = 4 (meets threshold). No Violation score = 0 (below threshold). Per severity-first priority, Abusive Account Creation (closure category) is selected. Enforcement action: Account Closure."
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149/providers/4ef7e8cf59674cfdae847117adc26a5b-001.json",
+          "sha256": "51d951cd451c04710c20842017bbefa5cef644b1041fd5783429ff264f9fc426",
+          "status": "success"
+        },
+        {
+          "complete_step_arguments": {
+            "summary": "Step 5: Enforcement action reported. The violation type determined was Abusive Account Creation (score 4, threshold \u2265 3), which maps to Account Closure per enforcement guidelines. <enforcement_action>Account Closure</enforcement_action>"
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/business-qwen/referral_abuse_detection_v1/ACC100149/providers/ac6b930dfec04f63a2ff61fe78ff7838-001.json",
+          "sha256": "84ebb4b2e85836ea0c44016fef8ac7a7ce479b9965e2e6e8aca83b0f833c1ff7",
+          "status": "success"
+        }
+      ],
+      "scoring_and_final_summaries": [
+        {
+          "event_line": 36,
+          "step_index": 4,
+          "summary": "Step 4: Violation scores calculated. Abusive Account Creation score = 4 (meets threshold \u2265 3). Misleading Ad Copy score = 2 (below threshold). Personal Orders score = 4 (meets threshold). No Violation score = 0 (below threshold). Per severity-first priority, Abusive Account Creation (closure category) is selected. Enforcement action: Account Closure."
+        },
+        {
+          "event_line": 41,
+          "step_index": 5,
+          "summary": "Step 5: Enforcement action reported. The violation type determined was Abusive Account Creation (score 4, threshold \u2265 3), which maps to Account Closure per enforcement guidelines. <enforcement_action>Account Closure</enforcement_action>"
+        }
+      ]
+    },
+    "completion": {
+      "audit": {
+        "accepted_gate_evidence": [
+          {
+            "event_line": 10,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_8df17340e1f44c45a248a8f9e76de795",
+                "tool_event_lines": [
+                  8
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-1513a33306e8467688069a9242b615a9.json"
+            ],
+            "step_index": 1
+          },
+          {
+            "event_line": 19,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_8df17340e1f44c45a248a8f9e76de795",
+                "tool_event_lines": [
+                  8
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_27a79317c03448eb83cd6411f65c1fbd",
+                "tool_event_lines": [
+                  17
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-b8cf9cdd132146b1bea3414f0bd53fe0.json"
+            ],
+            "step_index": 2
+          },
+          {
+            "event_line": 28,
+            "issues": [],
+            "receipt_checks": [
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_8df17340e1f44c45a248a8f9e76de795",
+                "tool_event_lines": [
+                  8
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_27a79317c03448eb83cd6411f65c1fbd",
+                "tool_event_lines": [
+                  17
+                ]
+              },
+              {
+                "backed_by_prior_tool_event": true,
+                "receipt_id": "receipt_024bfafbbae54a4492a112983ecb8a38",
+                "tool_event_lines": [
+                  26
+                ]
+              }
+            ],
+            "stage_audits": [
+              "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149/providers/decisions/decision-b3dec3764ef0487f900a755c858437d6.json"
+            ],
+            "step_index": 3
+          }
+        ],
+        "accepted_steps": [
+          1,
+          2,
+          3
+        ],
+        "arm": "completion",
+        "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149",
+        "completion_bypasses": 3,
+        "correct": false,
+        "direct_bypasses_verified": 3,
+        "domain": "referral_abuse_detection_v1",
+        "events_sha256": "4683dfd5513d30bda23cf2aed231b88ca158a955fe55a8569b1380f92a88a175",
+        "gate_outcomes_by_step": {
+          "1": {
+            "accepted": 1
+          },
+          "2": {
+            "accepted": 1
+          },
+          "3": {
+            "accepted": 1
+          }
+        },
+        "issues": [],
+        "patient_input_review": null,
+        "plans": [],
+        "provider_roles": {
+          "completion_native": 3,
+          "ordinary_llm": 5
+        },
+        "successful_tool_order": [
+          "investigate_account",
+          "analyze_traffic_patterns",
+          "determine_enforcement_action"
+        ],
+        "task_id": "ACC100149"
+      },
+      "correct": false,
+      "expected": {
+        "enforcement_action": "Account Closure"
+      },
+      "predicted": {},
+      "scoring_and_final_provider_evidence": [
+        {
+          "complete_step_arguments": {
+            "summary": "Step 5: Final enforcement action reported. The violation type determined was Abusive Account Creation (score 4, threshold \u22653), which maps to Account Closure per enforcement guidelines. &lt;enforcement_action&gt;Account Closure&lt;/enforcement_action&gt;"
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149/providers/2caeb9019d6741eda390abbe6dec60cf-001.json",
+          "sha256": "d47825e11ac17c44cb2b6124f39ee6e0eb55cd7f6247a1b89066156cb1aa9e1b",
+          "status": "success"
+        },
+        {
+          "complete_step_arguments": {
+            "summary": "Step 4: Calculated violation scores. Abusive Account Creation score = 4 (meets threshold \u22653). Misleading Ad Copy score = 2 (below threshold). Personal Orders score = 4 (meets threshold). No Violation score = 0 (below threshold). Per severity-first priority, Abusive Account Creation is selected as the violation type. Enforcement action: Account Closure."
+          },
+          "error": null,
+          "finish_reason": "tool_calls",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-holdout--referral_abuse_detection_v1/completion/referral_abuse_detection_v1/ACC100149/providers/cb0080c52c84480dafc6d4746e836d72-001.json",
+          "sha256": "0cf7a7271654a6b185d84af5e0f728782dabca992af8d733eb884bbbfb13100e",
+          "status": "success"
+        }
+      ],
+      "scoring_and_final_summaries": [
+        {
+          "event_line": 35,
+          "step_index": 4,
+          "summary": "Step 4: Calculated violation scores. Abusive Account Creation score = 4 (meets threshold \u22653). Misleading Ad Copy score = 2 (below threshold). Personal Orders score = 4 (meets threshold). No Violation score = 0 (below threshold). Per severity-first priority, Abusive Account Creation is selected as the violation type. Enforcement action: Account Closure."
+        },
+        {
+          "event_line": 40,
+          "step_index": 5,
+          "summary": "Step 5: Final enforcement action reported. The violation type determined was Abusive Account Creation (score 4, threshold \u22653), which maps to Account Closure per enforcement guidelines. &lt;enforcement_action&gt;Account Closure&lt;/enforcement_action&gt;"
+        }
+      ]
+    }
+  },
+  "created_at": "2026-10-05T06:40:47.670801+00:00",
+  "finding": "Completion arm final-output format failure with correct ordinary-Qwen policy decision.",
+  "observations": [
+    "Completion Step 4 computes scores 4/2/4/0 and selects Account Closure, matching expected policy output.",
+    "Completion Step 5 raw provider complete_step arguments contain HTML-escaped XML delimiters; unchanged extractor returns an empty prediction.",
+    "All five completion-arm Qwen requests succeeded; scoring/final responses finish with tool_calls rather than length.",
+    "A/C/D paired cases emit literal enforcement_action XML and pass.",
+    "All arms execute original three application tools with correct account_id. B/C/D only bypass continuation of Steps 1-3 after valid receipts; scoring Step 4 and report Step 5 run ordinary Qwen.",
+    "No business decision is executed in any arm; C/D load same unsupported cached plan.",
+    "This identifies the proximate observed failure. A single trace does not isolate the causal effect of earlier completion bypasses on later generation."
+  ],
+  "strict_scoring_unchanged": true,
+  "task_id": "ACC100149"
+}

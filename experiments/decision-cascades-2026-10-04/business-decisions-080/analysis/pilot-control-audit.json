@@ -1,0 +1,5208 @@
+{
+  "cases": [
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100002",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "patient_intake",
+      "events_sha256": "890ede2e39f418fd1bb9d4b6a55e0b8106e354dc8b8b3fcfd87f2fa0ea8a6a37",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100002",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Asthma']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "Asthma"
+            ],
+            "tool_event_line": 35
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100002",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 13
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100002"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100003",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "patient_intake",
+      "events_sha256": "79e0c51ae1a51b0f37784007d95f93dc3b1ef56a69944059f2c5ce37785dedaf",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100003",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "1-2 times",
+              "3-4 times",
+              "5+ times"
+            ],
+            "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+            "requested_event_line": 27,
+            "responded_event_line": 28,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "12/1/22",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2022-12-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "exercise_frequency",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "requested_event_line": 27,
+                "responded_event_line": 28,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": false,
+            "supplied": "None",
+            "tool_event_line": 32
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Knee Surgery 2020']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "Knee Surgery 2020"
+            ],
+            "tool_event_line": 41
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Diabetes Type 2', 'Obesity']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "Diabetes Type 2",
+              "Obesity"
+            ],
+            "tool_event_line": 41
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100003",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 14
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100003"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100007",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "patient_intake",
+      "events_sha256": "03ccad75edf08d09bd6568baa31825981a5ae34d01eb8a09a001298eed8147fc",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100007",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "Occasional",
+              "Moderate",
+              "Heavy"
+            ],
+            "question": "The alcohol consumption value for patient P100007 is missing. What is the patient's alcohol consumption level?",
+            "requested_event_line": 27,
+            "responded_event_line": 28,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "2/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-02-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "alcohol_consumption",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "Occasional",
+                  "Moderate",
+                  "Heavy"
+                ],
+                "question": "The alcohol consumption value for patient P100007 is missing. What is the patient's alcohol consumption level?",
+                "requested_event_line": 27,
+                "responded_event_line": 28,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": false,
+            "supplied": "None",
+            "tool_event_line": 32
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Bypass Surgery 2015', 'Knee Replacement 2020']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "Bypass Surgery 2015",
+              "Knee Replacement 2020"
+            ],
+            "tool_event_line": 41
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Heart Disease', 'Hypertension']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "Heart Disease",
+              "Hypertension"
+            ],
+            "tool_event_line": 41
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100007",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 14
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100007"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100012",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "patient_intake",
+      "events_sha256": "48ce6e08c97adda72a5c34feef2f636b6dcceb5703c2fd9b6c75fbec8ebb940e",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/patient_intake/P100012",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "6/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-06-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": false,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 35
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100012",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 13
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100012"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/referral_abuse_detection_v1/ACC100000",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "f3a01309e62d6902d5974d27f94f5e85879db73264219827b1a0f75936787299",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 8
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100000"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/referral_abuse_detection_v1/ACC100001",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "3a06080bb8764a30ea62d4dad88f5c72069ad6727d14054b9e50d0820b67db82",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 8
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100001"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/referral_abuse_detection_v1/ACC100002",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "a41e3e57ff1a0d8d8e7643dfc4b968c60facc298cde596ed336724bc47d5b67c",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 8
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100002"
+    },
+    {
+      "accepted_gate_evidence": [],
+      "accepted_steps": [],
+      "arm": "baseline",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/referral_abuse_detection_v1/ACC100011",
+      "completion_bypasses": 0,
+      "correct": true,
+      "direct_bypasses_verified": 0,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "ec9a8f8f594adfd55dd583223a4ecc9de55ef2666b66dbe2c59224fda6d5c573",
+      "gate_outcomes_by_step": {},
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "ordinary_llm": 8
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100011"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 30,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f2a44f89abfe46168d102f784fcc0087",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0597efca9eeb4037990dd17a40c9f0a5",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8ac9aafc971a44578020016951980fe6",
+              "tool_event_lines": [
+                28
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100002/providers/decisions/decision-24ef5f36559549f5b03ccd7c0f66c86c.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 39,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f2a44f89abfe46168d102f784fcc0087",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0597efca9eeb4037990dd17a40c9f0a5",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8ac9aafc971a44578020016951980fe6",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5d2c7843ce2e493299a81cb8ade0a980",
+              "tool_event_lines": [
+                37
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100002/providers/decisions/decision-d71ef227ff384674bc113eb68fa24304.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 58,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f2a44f89abfe46168d102f784fcc0087",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0597efca9eeb4037990dd17a40c9f0a5",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8ac9aafc971a44578020016951980fe6",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5d2c7843ce2e493299a81cb8ade0a980",
+              "tool_event_lines": [
+                37
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_78f3afb14331469a9573763ed3441787",
+              "tool_event_lines": [
+                46
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_3a8e94e9c09842fea96de6323fe7766c",
+              "tool_event_lines": [
+                56
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100002/providers/decisions/decision-7ab877b0c7c24d2994a529f0b748dbe0.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "1a233eeea1fe94bcdc7a7baa8671446faf76923ff60b8227c571c1c2bc0a0af3",
+      "gate_outcomes_by_step": {
+        "1": {
+          "rejected": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100002",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 37
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Asthma']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Asthma"
+            ],
+            "tool_event_line": 37
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100002",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 36,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_37997c921c05418c84b9a83fb1606ba0",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_773eb5b6704748ad9a4cab70ae4d7091",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_28a9d1b0290544ca89ccdd8d52bcfa24",
+              "tool_event_lines": [
+                34
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100003/providers/decisions/decision-0d293f82cf324113a7b2f0e5a52100fc.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 45,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_37997c921c05418c84b9a83fb1606ba0",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_773eb5b6704748ad9a4cab70ae4d7091",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_28a9d1b0290544ca89ccdd8d52bcfa24",
+              "tool_event_lines": [
+                34
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a4d2c35f13f5468f9f1f292c283236a1",
+              "tool_event_lines": [
+                43
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100003/providers/decisions/decision-0202c766eaf54a1e863bd22a394c0330.json"
+          ],
+          "step_index": 4
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100003",
+      "completion_bypasses": 2,
+      "correct": true,
+      "direct_bypasses_verified": 2,
+      "domain": "patient_intake",
+      "events_sha256": "52fb681194512e54fb9b9921406aa52026fbd3031569a96c4621136e8ec801fd",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "rejected": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100003",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "1-2 times",
+              "3-4 times",
+              "5+ times"
+            ],
+            "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+            "requested_event_line": 29,
+            "responded_event_line": 30,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "12/1/22",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2022-12-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [
+              {
+                "accepted_step": 3,
+                "answer": "None",
+                "audit": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100003/providers/decisions/decision-0d293f82cf324113a7b2f0e5a52100fc.json",
+                "current_step": true,
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "receipt_id": "clarification_5a44fe3acc9d477280e4fcbc7adb548a",
+                "step_index": 3,
+                "tool_call_id": "call_3345257a3887438a80a6c91a"
+              }
+            ],
+            "argument": "exercise_frequency",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "requested_event_line": 29,
+                "responded_event_line": 30,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": true,
+            "supplied": "None",
+            "tool_event_line": 34
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Knee Surgery 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Knee Surgery 2020"
+            ],
+            "tool_event_line": 43
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Diabetes Type 2', 'Obesity']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Diabetes Type 2",
+              "Obesity"
+            ],
+            "tool_event_line": 43
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100003",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 12
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100003"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 46,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bdea033329574713bb1acaeab55d8b0f",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b43e223bdf21416ba03d59549d4a9ddc",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_6634ff976d974a3e87227989e6554069",
+              "tool_event_lines": [
+                34
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c75118c8bb94460eb1f63bc9fb6f448d",
+              "tool_event_lines": [
+                44
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100007/providers/decisions/decision-c32a6e31a65f411c94eddf1de32ae365.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 65,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bdea033329574713bb1acaeab55d8b0f",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b43e223bdf21416ba03d59549d4a9ddc",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_6634ff976d974a3e87227989e6554069",
+              "tool_event_lines": [
+                34
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c75118c8bb94460eb1f63bc9fb6f448d",
+              "tool_event_lines": [
+                44
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_dd955b871f9d41248381cedea49e6b00",
+              "tool_event_lines": [
+                53
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ea0b1dd9062a4234811bd603c0eeb859",
+              "tool_event_lines": [
+                63
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100007/providers/decisions/decision-96490a1c92ed4e508c1d2e8fe466600a.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        4,
+        6
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100007",
+      "completion_bypasses": 2,
+      "correct": true,
+      "direct_bypasses_verified": 2,
+      "domain": "patient_intake",
+      "events_sha256": "6d513961eba482798ee343fbb14dfa7b59c1361f66cacde0f7806276f94a17fe",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "uncertain": 1
+        },
+        "3": {
+          "uncertain": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100007",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "Occasional",
+              "Moderate",
+              "Heavy"
+            ],
+            "question": "The alcohol_consumption field is empty for patient P100007. What is the patient's alcohol consumption level?",
+            "requested_event_line": 29,
+            "responded_event_line": 30,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "2/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-02-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "alcohol_consumption",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "Occasional",
+                  "Moderate",
+                  "Heavy"
+                ],
+                "question": "The alcohol_consumption field is empty for patient P100007. What is the patient's alcohol consumption level?",
+                "requested_event_line": 29,
+                "responded_event_line": 30,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": false,
+            "supplied": "None",
+            "tool_event_line": 34
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Bypass Surgery 2015', 'Knee Replacement 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Bypass Surgery 2015",
+              "Knee Replacement 2020"
+            ],
+            "tool_event_line": 44
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Heart Disease', 'Hypertension']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Heart Disease",
+              "Hypertension"
+            ],
+            "tool_event_line": 44
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100007",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 12
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100007"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 30,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_08c47d1078294351911a8b576028fb17",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_db4ec3c131de4e5092ee6ef7ba317725",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_745eaa3afe014fbdbc74b7c50c2d73d1",
+              "tool_event_lines": [
+                28
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100012/providers/decisions/decision-1a1adc95a07948c1a40bab1b360a2446.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 39,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_08c47d1078294351911a8b576028fb17",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_db4ec3c131de4e5092ee6ef7ba317725",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_745eaa3afe014fbdbc74b7c50c2d73d1",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_1d8ff75004204fdc918a834aef5c5e98",
+              "tool_event_lines": [
+                37
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100012/providers/decisions/decision-b870b58d4fce47a9a32c520979ae66d3.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 58,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_08c47d1078294351911a8b576028fb17",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_db4ec3c131de4e5092ee6ef7ba317725",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_745eaa3afe014fbdbc74b7c50c2d73d1",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_1d8ff75004204fdc918a834aef5c5e98",
+              "tool_event_lines": [
+                37
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_72ca510c92d5454bb794a75bc2190523",
+              "tool_event_lines": [
+                46
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ab83e4a5a23440d4aab4fd1d769cdb01",
+              "tool_event_lines": [
+                56
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100012/providers/decisions/decision-f1099971ccf64ddf9d805ed815b2aab1.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100012",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "cf14264c2da1ef5bf5eaaafd2046bd678db9857e6306b4d2b8e345e09b2f11f8",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/patient_intake/P100012",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "6/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-06-01",
+            "tool_event_line": 8
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 37
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 37
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100012",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100012"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 10,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a3eda1e55df44ea3a794535fe1e639e4",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-bc0012e80a30471a9724919dd965feb4.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 19,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a3eda1e55df44ea3a794535fe1e639e4",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b63fbc49deeb491ab87aebd387b5b144",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-a9639517e248471885765b8c0ef8ebc7.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 28,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a3eda1e55df44ea3a794535fe1e639e4",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b63fbc49deeb491ab87aebd387b5b144",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bdb7357b176f4a3d94dc0ec8997b13d1",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-032be03458244fbbb462a00ae73ba09e.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100000",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "6935b4e7f73844d16eeb027f56f7a7ec2c8c9941d97dd26568982ce7bec6f883",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100000"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 10,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b47733d65915443795cbbbcc7077f608",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-23213db4c48a4bc3a3b5dcb5388de212.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 19,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b47733d65915443795cbbbcc7077f608",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0cba2f157c00485f918412102c3cc5ae",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-2957d6feb266429c9ce1100647e0d104.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 28,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b47733d65915443795cbbbcc7077f608",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0cba2f157c00485f918412102c3cc5ae",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a19aa8b187564e9aa1ad0d31f1e214f2",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-0a478358a446455b9ec159ab0beb8f4c.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100001",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "834d743e789f37d183ab5e901c6ab5d2b84b76051b5d9837f8d6324eb6f8cc03",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100001"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 10,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b71ce254773846b1a58f44d75b532aa7",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-f80b22be386841b9a7e2018237181dbf.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 19,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b71ce254773846b1a58f44d75b532aa7",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_cdcaa50c491241d191c14da1d17bf47b",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-f50b7cf018754963819424eec2d7a9a7.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 28,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b71ce254773846b1a58f44d75b532aa7",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_cdcaa50c491241d191c14da1d17bf47b",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5b46d87c36624bfabf5def068b203eb0",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-2110c1dac8b04da2961901623d493081.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "5e4ca0ba7bbbd4e2f685c5f3fe7d99bb821c19f540f5b820c3b40c64677a9c88",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 10,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b03e4ec4ea9f4cbb9ba62c1f7f00fcb5",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-18de09d1ed6141c987f9716a25e50d1b.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 19,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b03e4ec4ea9f4cbb9ba62c1f7f00fcb5",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9491119052bf44be9ac3db8c50e382f1",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-52ea6c05589245fd991fc350ec4abd12.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 28,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b03e4ec4ea9f4cbb9ba62c1f7f00fcb5",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9491119052bf44be9ac3db8c50e382f1",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_04ed63dff2fe4c268780fe67c0e21228",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-19907ef93d894c85ba4eb777b9c76fd6.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "completion",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/referral_abuse_detection_v1/ACC100011",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "c2172f2654a4f0f4215ae6ab4a206423486f048d382a98466019e5aabe9930c0",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100011"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 31,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9caff1c0c6cc49888c6d84c162318018",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c58a3f76a25b46e6bcfb43a07725c20d",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e5846b4827754cb1b770234186543560",
+              "tool_event_lines": [
+                29
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100002/providers/decisions/decision-c3a72a0c3b034bf0af7293b4f3eded24.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 40,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9caff1c0c6cc49888c6d84c162318018",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c58a3f76a25b46e6bcfb43a07725c20d",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e5846b4827754cb1b770234186543560",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_4f8331bcb026456e97384ac8c3e2333f",
+              "tool_event_lines": [
+                38
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100002/providers/decisions/decision-d8d730b3240b4bcf84071ad029b773ac.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 59,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9caff1c0c6cc49888c6d84c162318018",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c58a3f76a25b46e6bcfb43a07725c20d",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e5846b4827754cb1b770234186543560",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_4f8331bcb026456e97384ac8c3e2333f",
+              "tool_event_lines": [
+                38
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7af3715e42cd4f5d8ccc29aebe3c51de",
+              "tool_event_lines": [
+                47
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_317a3b4b0db242a1bb4e2d32a4d0eeec",
+              "tool_event_lines": [
+                57
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100002/providers/decisions/decision-7b3c5a90a7d94c7b94256456d51a9229.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "99564236afffc05dfab423e95fd4df48b32628d8857931fe76cc347afc4e08dd",
+      "gate_outcomes_by_step": {
+        "1": {
+          "rejected": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100002",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Asthma']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Asthma"
+            ],
+            "tool_event_line": 38
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100002",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.04918654200446326,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 37,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9bb8f83f268f464bafd665f05d6a5d09",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c69324545805457486ec1f971d78e11f",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e37fc2545ee34633b655fe9321a89dbb",
+              "tool_event_lines": [
+                35
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100003/providers/decisions/decision-87fb52c0f91c4604b7711367041a8221.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 46,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9bb8f83f268f464bafd665f05d6a5d09",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c69324545805457486ec1f971d78e11f",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e37fc2545ee34633b655fe9321a89dbb",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c2189a4cf95a4883b416e4af91093b2f",
+              "tool_event_lines": [
+                44
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100003/providers/decisions/decision-e9c9bcffaaaf494a96dc2e3ab2de1a32.json"
+          ],
+          "step_index": 4
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100003",
+      "completion_bypasses": 2,
+      "correct": true,
+      "direct_bypasses_verified": 2,
+      "domain": "patient_intake",
+      "events_sha256": "588791c4c0c9a0fe608750b2098b8a0a2919abddbc62be6e0c67d49ce0ff9be0",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "rejected": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100003",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "1-2 times",
+              "3-4 times",
+              "5+ times"
+            ],
+            "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+            "requested_event_line": 30,
+            "responded_event_line": 31,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "12/1/22",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2022-12-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [
+              {
+                "accepted_step": 3,
+                "answer": "None",
+                "audit": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100003/providers/decisions/decision-87fb52c0f91c4604b7711367041a8221.json",
+                "current_step": true,
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "receipt_id": "clarification_c1afcf27f2d84211a08f87536d500212",
+                "step_index": 3,
+                "tool_call_id": "call_0f2fcac0c01247dd8948d20f"
+              }
+            ],
+            "argument": "exercise_frequency",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "requested_event_line": 30,
+                "responded_event_line": 31,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": true,
+            "supplied": "None",
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Knee Surgery 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Knee Surgery 2020"
+            ],
+            "tool_event_line": 44
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Diabetes Type 2', 'Obesity']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Diabetes Type 2",
+              "Obesity"
+            ],
+            "tool_event_line": 44
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100003",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.049730541999451816,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 12
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100003"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 47,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_4dcb6897dca94beeb8f92d5b0ed6285c",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_61cb939e00224cf5917c3eeb14c1afad",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f9da6c1e444040c6ad365a0691ebc665",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5fee6816c313407f904cd3928ffa2ca6",
+              "tool_event_lines": [
+                45
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100007/providers/decisions/decision-c8b75574858b491f8ad46a9acd09c2b0.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 66,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_4dcb6897dca94beeb8f92d5b0ed6285c",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_61cb939e00224cf5917c3eeb14c1afad",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f9da6c1e444040c6ad365a0691ebc665",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5fee6816c313407f904cd3928ffa2ca6",
+              "tool_event_lines": [
+                45
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e513f1023aa04053a64790104b817de8",
+              "tool_event_lines": [
+                54
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9e3c594e08014a3d9e14e4c77e8cd760",
+              "tool_event_lines": [
+                64
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100007/providers/decisions/decision-0622b8373c014846990f35b9fa7f2a77.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        4,
+        6
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100007",
+      "completion_bypasses": 2,
+      "correct": true,
+      "direct_bypasses_verified": 2,
+      "domain": "patient_intake",
+      "events_sha256": "50fc91f52e81871f0de9aa632b791fe71a8d6efc0a181c5769620a29974344d7",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "uncertain": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100007",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "Occasional",
+              "Moderate",
+              "Heavy"
+            ],
+            "question": "The alcohol consumption value for patient P100007 is missing. What is the patient's alcohol consumption level?",
+            "requested_event_line": 30,
+            "responded_event_line": 31,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "2/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-02-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "alcohol_consumption",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "Occasional",
+                  "Moderate",
+                  "Heavy"
+                ],
+                "question": "The alcohol consumption value for patient P100007 is missing. What is the patient's alcohol consumption level?",
+                "requested_event_line": 30,
+                "responded_event_line": 31,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": false,
+            "supplied": "None",
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Bypass Surgery 2015', 'Knee Replacement 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Bypass Surgery 2015",
+              "Knee Replacement 2020"
+            ],
+            "tool_event_line": 45
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Heart Disease', 'Hypertension']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Heart Disease",
+              "Hypertension"
+            ],
+            "tool_event_line": 45
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100007",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.04807604200323112,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 12
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100007"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 31,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bbd37a8603f4458d8a1eeb7ae2986436",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d6ebffced85d4dd28395355594496b0b",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_733ffedb421f4952ac7529d79cc507d0",
+              "tool_event_lines": [
+                29
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100012/providers/decisions/decision-7e13a38a0cf14d60a86cfc29475c04f3.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 40,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bbd37a8603f4458d8a1eeb7ae2986436",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d6ebffced85d4dd28395355594496b0b",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_733ffedb421f4952ac7529d79cc507d0",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_952e631b01384da5910114e0a463393b",
+              "tool_event_lines": [
+                38
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100012/providers/decisions/decision-cb7a5938a30049dca0ea50300e29400d.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 59,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bbd37a8603f4458d8a1eeb7ae2986436",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d6ebffced85d4dd28395355594496b0b",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_733ffedb421f4952ac7529d79cc507d0",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_952e631b01384da5910114e0a463393b",
+              "tool_event_lines": [
+                38
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_860aa110dc7d425aa68659da29778b78",
+              "tool_event_lines": [
+                47
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f75d577cbae04e138ab91b6f8ce7030c",
+              "tool_event_lines": [
+                57
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100012/providers/decisions/decision-2eada47bfa4743239084232f13eac4a9.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100012",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "b1472c7df1cb0c470934a47ce16fee844ccc64fa66d116fd92a6bb366c82644b",
+      "gate_outcomes_by_step": {
+        "1": {
+          "rejected": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/patient_intake/P100012",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "6/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-06-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100012",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.05000770799233578,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100012"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_24f03cd2f00d49d6862004887c38566c",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-807a8780c7c34de9966ccf774102e8f3.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_24f03cd2f00d49d6862004887c38566c",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7641fec702034e21ad460a26f1326b28",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-abf461ad6a7841aba6f67d7f6e0f0ddf.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_24f03cd2f00d49d6862004887c38566c",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7641fec702034e21ad460a26f1326b28",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b95c28cc67a140df85b28de66e59337b",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-9d5e948a70114eaeb55129dde881e232.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100000",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "7763fe755cd4a6cd96f3f65b1b72d519901c6dfef1bddbb76a80c4cb40399fbe",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.0336609999940265,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100000"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8e22cd9c1c49433896fda5b5207462db",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-a7eddc14654a40ec9b02b01392899814.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8e22cd9c1c49433896fda5b5207462db",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5ae8c0c14ba0458db33c0e2f01b96718",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-7aae3a80872d45a488086b02a6669ea0.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_8e22cd9c1c49433896fda5b5207462db",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5ae8c0c14ba0458db33c0e2f01b96718",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d350fc5cc1804e058999553da3b9a50a",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-caa69f5c9b714c37b36579bf4af20699.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100001",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "79b9a75e6abc0b2873298fd3d81db6628d345fa755771114d1b7f5bbe0c5098b",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.033800707999034785,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100001"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a6cb8705c100417b8df2056c70f15b84",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-e17805d3a3a54332a5210de719bd3e0b.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a6cb8705c100417b8df2056c70f15b84",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c12289d638354ec8b7231751b0150fb6",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-2dbc6e7517404f50b7f38c5a77553981.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a6cb8705c100417b8df2056c70f15b84",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c12289d638354ec8b7231751b0150fb6",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e4f033bfd9c84d3d80d04ba41d253a6a",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-c3b6908e627f4b17a8a840e29aed68d4.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "b194d8665ed97989e599a7212e699431e286f783fd1a9a9bf7e43e8383f2b634",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.032930957997450605,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d35160d8f30d44588babbcc923f6ae4f",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-4f20611bd82544258024a9904f2f9457.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d35160d8f30d44588babbcc923f6ae4f",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ce278841fa174ff29b72b9dbeeb091ba",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-526c6aee9a6747098d7c05a501dfb048.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d35160d8f30d44588babbcc923f6ae4f",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ce278841fa174ff29b72b9dbeeb091ba",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e10721814fa94403b71d3c6ad72acc9b",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-cf26e0606cfd4fde877b034f345c0685.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-qwen",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/referral_abuse_detection_v1/ACC100011",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "fb4b6b21e9cda0c70f3e124fb3e31bc0d10c6da2932e20836c3203184fd02efe",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.0330322499939939,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100011"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 31,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_70e17262398a476490aedb7e20130a92",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5cdcdbcf79654c08a0fa9c95eccb5133",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7d32932c9c4a434bb8fa86b062ce26a4",
+              "tool_event_lines": [
+                29
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100002/providers/decisions/decision-5bb8eea1099542aeac995c51c6b0a23f.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 40,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_70e17262398a476490aedb7e20130a92",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5cdcdbcf79654c08a0fa9c95eccb5133",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7d32932c9c4a434bb8fa86b062ce26a4",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9822ad4568c7414c91a3d85988ac4c15",
+              "tool_event_lines": [
+                38
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100002/providers/decisions/decision-f89bfb1a5d834605af127657cb7526ef.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 59,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_70e17262398a476490aedb7e20130a92",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5cdcdbcf79654c08a0fa9c95eccb5133",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7d32932c9c4a434bb8fa86b062ce26a4",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9822ad4568c7414c91a3d85988ac4c15",
+              "tool_event_lines": [
+                38
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_e015ea99cdeb4ee7ba4aa4c5c730bf9c",
+              "tool_event_lines": [
+                47
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f4f993c9f069479dbc91d9b05bd33505",
+              "tool_event_lines": [
+                57
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100002/providers/decisions/decision-bab5a56ae44a4787a1c674d9cbc927ca.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "5674eb2516ec408b6b7a2e252e1a35657bfd8c651b89e8f0eed492f51a7cbbfd",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100002",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Asthma']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Asthma"
+            ],
+            "tool_event_line": 38
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100002",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.04890249999880325,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 37,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_daeef5a3612b440dbd9155dd8f616d87",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_05058a50e55147959ee784e213e5e4b7",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_08de46973e6e40c28ada1f458705cf66",
+              "tool_event_lines": [
+                35
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100003/providers/decisions/decision-7b2ddeb9b764462f8552a9d7cf79c8c1.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 46,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_daeef5a3612b440dbd9155dd8f616d87",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_05058a50e55147959ee784e213e5e4b7",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_08de46973e6e40c28ada1f458705cf66",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_2e1f80d9f3a745ddb78dee4d110837ff",
+              "tool_event_lines": [
+                44
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100003/providers/decisions/decision-d89540b7785b467995bb4863184e8541.json"
+          ],
+          "step_index": 4
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100003",
+      "completion_bypasses": 2,
+      "correct": true,
+      "direct_bypasses_verified": 2,
+      "domain": "patient_intake",
+      "events_sha256": "04590fd881faa2eac500a29f0a0e110f4e01d92c9a94ef46223d4d2fa154df0f",
+      "gate_outcomes_by_step": {
+        "1": {
+          "rejected": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "rejected": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100003",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "1-2 times",
+              "3-4 times",
+              "5+ times"
+            ],
+            "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+            "requested_event_line": 30,
+            "responded_event_line": 31,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "12/1/22",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2022-12-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [
+              {
+                "accepted_step": 3,
+                "answer": "None",
+                "audit": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100003/providers/decisions/decision-7b2ddeb9b764462f8552a9d7cf79c8c1.json",
+                "current_step": true,
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "receipt_id": "clarification_c1ab2ba00bf14dbeaf5b5ef9b8001c1c",
+                "step_index": 3,
+                "tool_call_id": "call_f647ee96672a4afeb4c2e387"
+              }
+            ],
+            "argument": "exercise_frequency",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "1-2 times",
+                  "3-4 times",
+                  "5+ times"
+                ],
+                "question": "The exercise frequency for patient P100003 was not provided. What is the patient's weekly exercise frequency?",
+                "requested_event_line": 30,
+                "responded_event_line": 31,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": true,
+            "supplied": "None",
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Knee Surgery 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Knee Surgery 2020"
+            ],
+            "tool_event_line": 44
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Diabetes Type 2', 'Obesity']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Diabetes Type 2",
+              "Obesity"
+            ],
+            "tool_event_line": 44
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100003",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.04886466699826997,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 12
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100003"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 37,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_df45c398773f41c3a9a4956fbf8f8542",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a5029399051644079056c64a29c5e6e1",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_207a87892d2241419554193cb018d25a",
+              "tool_event_lines": [
+                35
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007/providers/decisions/decision-c5bdbce99d944a659c9ba5209f7a6512.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 46,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_df45c398773f41c3a9a4956fbf8f8542",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a5029399051644079056c64a29c5e6e1",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_207a87892d2241419554193cb018d25a",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bc444c8053414adcaaba0dd98c343b2e",
+              "tool_event_lines": [
+                44
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007/providers/decisions/decision-79b8d0cad46a4eaeb91f1e6389604a36.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 65,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_df45c398773f41c3a9a4956fbf8f8542",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_a5029399051644079056c64a29c5e6e1",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_207a87892d2241419554193cb018d25a",
+              "tool_event_lines": [
+                35
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_bc444c8053414adcaaba0dd98c343b2e",
+              "tool_event_lines": [
+                44
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_260daa7198884c63a7ff24ea356098d0",
+              "tool_event_lines": [
+                53
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_3d2ffa5f120e433e8f376a3b30cd997b",
+              "tool_event_lines": [
+                63
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007/providers/decisions/decision-02609a7a594e4dcca5789118f19e51b5.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "b44b61c0912a48ec714714bdbdfef4351e18546518c0b3f2c5292a645999a681",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "uncertain": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007",
+        "clarifications": [
+          {
+            "answer": "None",
+            "options": [
+              "None",
+              "Occasional",
+              "Moderate",
+              "Heavy"
+            ],
+            "question": "What is the patient's alcohol consumption frequency? Please select one of the following options:",
+            "requested_event_line": 30,
+            "responded_event_line": 31,
+            "step": 3
+          }
+        ],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "2/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-02-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [
+              {
+                "accepted_step": 3,
+                "answer": "None",
+                "audit": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100007/providers/decisions/decision-c5bdbce99d944a659c9ba5209f7a6512.json",
+                "current_step": true,
+                "options": [
+                  "None",
+                  "Occasional",
+                  "Moderate",
+                  "Heavy"
+                ],
+                "question": "What is the patient's alcohol consumption frequency? Please select one of the following options:",
+                "receipt_id": "clarification_9dc30edb5af74d64b4b7dd19b6053dc2",
+                "step_index": 3,
+                "tool_call_id": "call_8398335d20654f169c39523b"
+              }
+            ],
+            "argument": "alcohol_consumption",
+            "clarification_evidence": [
+              {
+                "answer": "None",
+                "options": [
+                  "None",
+                  "Occasional",
+                  "Moderate",
+                  "Heavy"
+                ],
+                "question": "What is the patient's alcohol consumption frequency? Please select one of the following options:",
+                "requested_event_line": 30,
+                "responded_event_line": 31,
+                "step": 3
+              }
+            ],
+            "classification": "clarification_grounded_blank_source",
+            "source": "",
+            "step": 3,
+            "step_auto_completed": true,
+            "supplied": "None",
+            "tool_event_line": 35
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Bypass Surgery 2015', 'Knee Replacement 2020']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Bypass Surgery 2015",
+              "Knee Replacement 2020"
+            ],
+            "tool_event_line": 44
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['Heart Disease', 'Hypertension']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "Heart Disease",
+              "Hypertension"
+            ],
+            "tool_event_line": 44
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100007",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.049737291992641985,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 11
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100007"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 31,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_477c83634ba7414db40b896c1f796804",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9fde6cb4d05c423ebd7389e049ffa05e",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_97f102820dce4360b920c68d97b2d551",
+              "tool_event_lines": [
+                29
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100012/providers/decisions/decision-1abb4ee379e949138718fc5b094623fd.json"
+          ],
+          "step_index": 3
+        },
+        {
+          "event_line": 40,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_477c83634ba7414db40b896c1f796804",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9fde6cb4d05c423ebd7389e049ffa05e",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_97f102820dce4360b920c68d97b2d551",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_00a4a67fc9f348a9967af3c0bb3ff3cd",
+              "tool_event_lines": [
+                38
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100012/providers/decisions/decision-2edf8b9ca5a04f3e8578734055c47423.json"
+          ],
+          "step_index": 4
+        },
+        {
+          "event_line": 59,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_477c83634ba7414db40b896c1f796804",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9fde6cb4d05c423ebd7389e049ffa05e",
+              "tool_event_lines": [
+                19
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_97f102820dce4360b920c68d97b2d551",
+              "tool_event_lines": [
+                29
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_00a4a67fc9f348a9967af3c0bb3ff3cd",
+              "tool_event_lines": [
+                38
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_2a1547d596a74345a487172cbbd96ffc",
+              "tool_event_lines": [
+                47
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_01f11f989d5d4592b778265750e43ec1",
+              "tool_event_lines": [
+                57
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100012/providers/decisions/decision-02c0978f76844883846881a3cc42efd8.json"
+          ],
+          "step_index": 6
+        }
+      ],
+      "accepted_steps": [
+        3,
+        4,
+        6
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100012",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "patient_intake",
+      "events_sha256": "74172c9bc4852e3787b44b8e2465a6f9284302a292c32f6d5b3f2a0a4272e103",
+      "gate_outcomes_by_step": {
+        "1": {
+          "uncertain": 1
+        },
+        "2": {
+          "rejected": 1
+        },
+        "3": {
+          "accepted": 1
+        },
+        "4": {
+          "accepted": 1
+        },
+        "5": {
+          "uncertain": 1
+        },
+        "6": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": {
+        "accepted_steps": [
+          3,
+          4,
+          6
+        ],
+        "case": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/patient_intake/P100012",
+        "clarifications": [],
+        "final_result_propagation_flags": {},
+        "input_transformations": [
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "coverage_start_date",
+            "clarification_evidence": [],
+            "classification": "matching_iso_date",
+            "source": "6/1/23",
+            "step": 1,
+            "step_auto_completed": false,
+            "supplied": "2023-06-01",
+            "tool_event_line": 9
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "previous_surgeries",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          },
+          {
+            "accepted_gate_clarification_evidence": [],
+            "argument": "chronic_conditions",
+            "clarification_evidence": [],
+            "classification": "matching_list_parse",
+            "source": "['None']",
+            "step": 4,
+            "step_auto_completed": true,
+            "supplied": [
+              "None"
+            ],
+            "tool_event_line": 38
+          }
+        ],
+        "prior_result_propagation_flags": [],
+        "task_id": "P100012",
+        "tool_order": [
+          "validateInsurance",
+          "validatePrescriptionBenefits",
+          "calculateLifestyleRisk",
+          "calculateOverallRisk",
+          "verifyPharmacy",
+          "registerPatient"
+        ],
+        "tool_order_matches": true
+      },
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2.json",
+          "artifact_sha256": "894f4c9c0582c7eaaa68347c366202bd99c14d179f05e36be5bcf91935f5bfda",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.04911179200280458,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 6,
+        "ordinary_llm": 10
+      },
+      "successful_tool_order": [
+        "validateInsurance",
+        "validatePrescriptionBenefits",
+        "calculateLifestyleRisk",
+        "calculateOverallRisk",
+        "verifyPharmacy",
+        "registerPatient"
+      ],
+      "task_id": "P100012"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_374339c2441442eeb3b16e0585ea1f81",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-1b574aaa5a1c49cf8d7386d5ab0045e4.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_374339c2441442eeb3b16e0585ea1f81",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_32c46cd4458d42788b9abc739f311794",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-2d6ac47347294f4d9804c50b87c30edf.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_374339c2441442eeb3b16e0585ea1f81",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_32c46cd4458d42788b9abc739f311794",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_7c1850252a834d178306d3d2a62b6d44",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-519dcbc3416241ff8b44d66b22bd7658.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100000",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "201740be9dd39b142aaaa7cc9e0729af8fff4b5fa2d37d9642f6d056a72f94cf",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.03327516700665001,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100000"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_89759cd5ab8848d2879656db725bf295",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-1791d420d74d4bacbc21d4bf0b9e313a.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_89759cd5ab8848d2879656db725bf295",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5747c3d402d44a268e0c126f3726ef96",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-09121b04eeb24e59b19ce1c16b667529.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_89759cd5ab8848d2879656db725bf295",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5747c3d402d44a268e0c126f3726ef96",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c777fcdd4c7c41bf88d764d6be54adc8",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-198893ce5d134dd5bf6020c18e48a01a.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100001",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "c0f51f38d7d1528239d79c415506e76885e5e9d1bd5dc0fb0b65ec0740579b55",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.032632041999022476,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100001"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c40736fd387d4765afefeec47f719184",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-ba0b569cb7f94b9ea26c98f41978a13b.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c40736fd387d4765afefeec47f719184",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_81bbd14df6a5488c898f0f6e7283bc74",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-9d20754434c340f18c539faad65d3167.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c40736fd387d4765afefeec47f719184",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_81bbd14df6a5488c898f0f6e7283bc74",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0f9a3b44b7ee44148054c601d9bd1a2a",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100002/providers/decisions/decision-752a48e6e4c043bfa607c5583777b32a.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100002",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "5d403335535b27549ff900b9e96eb743e02d7833e12d89f04751beacefe5da00",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.03331499999330845,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100002"
+    },
+    {
+      "accepted_gate_evidence": [
+        {
+          "event_line": 11,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_72333f52bf964029be767fc5a6c2d596",
+              "tool_event_lines": [
+                9
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-086f1d051c914386ab5939d20617e039.json"
+          ],
+          "step_index": 1
+        },
+        {
+          "event_line": 20,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_72333f52bf964029be767fc5a6c2d596",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ebe36c733ca4495c86efa4d42db8c24a",
+              "tool_event_lines": [
+                18
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-ae1069c24af34593a84a801ad54a9c14.json"
+          ],
+          "step_index": 2
+        },
+        {
+          "event_line": 29,
+          "issues": [],
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_72333f52bf964029be767fc5a6c2d596",
+              "tool_event_lines": [
+                9
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_ebe36c733ca4495c86efa4d42db8c24a",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f398d2a1a0774dc99dbf57f276597064",
+              "tool_event_lines": [
+                27
+              ]
+            }
+          ],
+          "stage_audits": [
+            "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100011/providers/decisions/decision-0c8eeca14ea6498abe3545b3e1067fe9.json"
+          ],
+          "step_index": 3
+        }
+      ],
+      "accepted_steps": [
+        1,
+        2,
+        3
+      ],
+      "arm": "business-jev",
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/referral_abuse_detection_v1/ACC100011",
+      "completion_bypasses": 3,
+      "correct": true,
+      "direct_bypasses_verified": 3,
+      "domain": "referral_abuse_detection_v1",
+      "events_sha256": "d93b6210b0162ce1d830cdda39b90d4e485d2f6aa4af8b7d0f04f12e3f5df1d8",
+      "gate_outcomes_by_step": {
+        "1": {
+          "accepted": 1
+        },
+        "2": {
+          "accepted": 1
+        },
+        "3": {
+          "accepted": 1
+        }
+      },
+      "issues": [],
+      "patient_input_review": null,
+      "plans": [
+        {
+          "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache/cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef.json",
+          "artifact_sha256": "2ed675a52cf1d0d064260896ba99e75aefb6b93355e2dd419ca20c6447831389",
+          "attempt_path": null,
+          "cache_hit": true,
+          "cache_key": "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef",
+          "completion_tokens": 0,
+          "errors": [],
+          "preparation_elapsed_seconds": 0.03341424999234732,
+          "prompt_tokens": 0,
+          "status": "unsupported"
+        }
+      ],
+      "provider_roles": {
+        "completion_native": 3,
+        "ordinary_llm": 5
+      },
+      "successful_tool_order": [
+        "investigate_account",
+        "analyze_traffic_patterns",
+        "determine_enforcement_action"
+      ],
+      "task_id": "ACC100011"
+    }
+  ],
+  "created_at": "2026-10-05T06:26:14.859252+00:00",
+  "interpretation": [
+    "Unsupported prepared plans execute no business decisions. B/C/D differences here are control variation, not evidence of native business benefit.",
+    "Receipt checks validate actual calls, argument/result retention, original instructions and direct continuation bypass linkage; they do not certify every prose obligation.",
+    "Patient blank replacements require preceding recorded clarification answers. This benchmark automatically chooses the first offered option; these are not real patient interviews.",
+    "Simulator tools use identifier lookups. Correct final fields do not independently validate argument semantics in a real service.",
+    "Patient overall-risk computation is delegated to its required tool. Unreturned internal weights alone do not show premature completion.",
+    "One accepted completion bypasses one continuation; net arm LLM counts may also change through different generation trajectories."
+  ],
+  "issues": [],
+  "run_metadata": [
+    {
+      "llm": {
+        "api_base": "https://api.tokenfactory.nebius.com/v1",
+        "api_key_env": "NEBIUS_API_KEY",
+        "audit_dir": null,
+        "max_retries": 2,
+        "max_tokens": 2048,
+        "model": "openai/Qwen/Qwen3.8-27B",
+        "reasoning_effort": "low",
+        "temperature": 0.0,
+        "thinking": null,
+        "timeout": 90
+      },
+      "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/baseline/run.json",
+      "planning": {
+        "cache_dir": ".proceda/plans",
+        "cache_epoch": "v1",
+        "compiler_llm": null,
+        "enabled": false,
+        "mode": "full",
+        "native_decisions": false,
+        "require_cached": false
+      },
+      "sha256": "3a4baeab1b8f57ef6426662cd5f6f93aad4e9d860f605a7c05a8d15229164ac1",
+      "source_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0"
+    },
+    {
+      "llm": {
+        "api_base": "https://api.tokenfactory.nebius.com/v1",
+        "api_key_env": "NEBIUS_API_KEY",
+        "audit_dir": null,
+        "max_retries": 2,
+        "max_tokens": 2048,
+        "model": "openai/Qwen/Qwen3.8-27B",
+        "reasoning_effort": "low",
+        "temperature": 0.0,
+        "thinking": null,
+        "timeout": 90
+      },
+      "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/completion/run.json",
+      "planning": {
+        "cache_dir": ".proceda/plans",
+        "cache_epoch": "v1",
+        "compiler_llm": null,
+        "enabled": false,
+        "mode": "full",
+        "native_decisions": false,
+        "require_cached": false
+      },
+      "sha256": "74575cc47697282be2f86412285d3a13b156f6f1013e0f16bca7b1ece898fa27",
+      "source_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0"
+    },
+    {
+      "llm": {
+        "api_base": "https://api.tokenfactory.nebius.com/v1",
+        "api_key_env": "NEBIUS_API_KEY",
+        "audit_dir": null,
+        "max_retries": 2,
+        "max_tokens": 2048,
+        "model": "openai/Qwen/Qwen3.8-27B",
+        "reasoning_effort": "low",
+        "temperature": 0.0,
+        "thinking": null,
+        "timeout": 90
+      },
+      "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/run.json",
+      "planning": {
+        "cache_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache",
+        "cache_epoch": "business-decisions-080-v1",
+        "compiler_llm": {
+          "api_base": "https://api.tokenfactory.nebius.com/v1",
+          "api_key_env": "NEBIUS_API_KEY",
+          "audit_dir": null,
+          "max_retries": 2,
+          "max_tokens": 2048,
+          "model": "openai/Qwen/Qwen3.8-27B",
+          "reasoning_effort": "low",
+          "temperature": 0.0,
+          "thinking": null,
+          "timeout": 90
+        },
+        "enabled": true,
+        "mode": "business_decisions",
+        "native_decisions": false,
+        "require_cached": true
+      },
+      "sha256": "0bc692839b717c7ce2c6dbb921c1612a81dd2ee78d5601aad28cea85bebc6a53",
+      "source_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0"
+    },
+    {
+      "llm": {
+        "api_base": "https://api.tokenfactory.nebius.com/v1",
+        "api_key_env": "NEBIUS_API_KEY",
+        "audit_dir": null,
+        "max_retries": 2,
+        "max_tokens": 2048,
+        "model": "openai/Qwen/Qwen3.8-27B",
+        "reasoning_effort": "low",
+        "temperature": 0.0,
+        "thinking": null,
+        "timeout": 90
+      },
+      "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/run.json",
+      "planning": {
+        "cache_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/plan-cache",
+        "cache_epoch": "business-decisions-080-v1",
+        "compiler_llm": {
+          "api_base": "https://api.tokenfactory.nebius.com/v1",
+          "api_key_env": "NEBIUS_API_KEY",
+          "audit_dir": null,
+          "max_retries": 2,
+          "max_tokens": 2048,
+          "model": "openai/Qwen/Qwen3.8-27B",
+          "reasoning_effort": "low",
+          "temperature": 0.0,
+          "thinking": null,
+          "timeout": 90
+        },
+        "enabled": true,
+        "mode": "business_decisions",
+        "native_decisions": true,
+        "require_cached": true
+      },
+      "sha256": "8210516b8ac5acd193b03faf21a27ce2170909ea56f78ab6c1b5f950237d2520",
+      "source_commit": "7400fc79f55c8f19dfcdd4d56957dddca25154f0"
+    }
+  ],
+  "scope": "Patient and referral controls only; email business decisions excluded.",
+  "status": "complete",
+  "summary": {
+    "baseline": {
+      "patient_intake": {
+        "accepted_blank_replacements_with_gate_clarifications": 0,
+        "accepted_gates_by_step": {},
+        "blank_replacements_in_accepted_steps": 0,
+        "correct": 4,
+        "direct_bypasses_verified": 0,
+        "flagged_cases": 0,
+        "input_transformation_counts": {
+          "clarification_grounded_blank_source": 2,
+          "matching_iso_date": 3,
+          "matching_list_parse": 8
+        },
+        "plan_cache_keys": {},
+        "planned": 4,
+        "provider_roles": {
+          "ordinary_llm": 54
+        },
+        "terminal": 4
+      },
+      "referral_abuse_detection_v1": {
+        "accepted_blank_replacements_with_gate_clarifications": 0,
+        "accepted_gates_by_step": {},
+        "blank_replacements_in_accepted_steps": 0,
+        "correct": 4,
+        "direct_bypasses_verified": 0,
+        "flagged_cases": 0,
+        "input_transformation_counts": {},
+        "plan_cache_keys": {},
+        "planned": 4,
+        "provider_roles": {
+          "ordinary_llm": 32
+        },
+        "terminal": 4
+      }
+    },
+    "business-jev": {
+      "patient_intake": {
+        "accepted_blank_replacements_with_gate_clarifications": 2,
+        "accepted_gates_by_step": {
+          "3": 4,
+          "4": 4,
+          "6": 3
+        },
+        "blank_replacements_in_accepted_steps": 2,
+        "correct": 4,
+        "direct_bypasses_verified": 11,
+        "flagged_cases": 0,
+        "input_transformation_counts": {
+          "clarification_grounded_blank_source": 2,
+          "matching_iso_date": 3,
+          "matching_list_parse": 8
+        },
+        "plan_cache_keys": {
+          "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2": 4
+        },
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 24,
+          "ordinary_llm": 43
+        },
+        "terminal": 4
+      },
+      "referral_abuse_detection_v1": {
+        "accepted_blank_replacements_with_gate_clarifications": 0,
+        "accepted_gates_by_step": {
+          "1": 4,
+          "2": 4,
+          "3": 4
+        },
+        "blank_replacements_in_accepted_steps": 0,
+        "correct": 4,
+        "direct_bypasses_verified": 12,
+        "flagged_cases": 0,
+        "input_transformation_counts": {},
+        "plan_cache_keys": {
+          "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef": 4
+        },
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 12,
+          "ordinary_llm": 20
+        },
+        "terminal": 4
+      }
+    },
+    "business-qwen": {
+      "patient_intake": {
+        "accepted_blank_replacements_with_gate_clarifications": 1,
+        "accepted_gates_by_step": {
+          "3": 3,
+          "4": 4,
+          "6": 3
+        },
+        "blank_replacements_in_accepted_steps": 1,
+        "correct": 4,
+        "direct_bypasses_verified": 10,
+        "flagged_cases": 0,
+        "input_transformation_counts": {
+          "clarification_grounded_blank_source": 2,
+          "matching_iso_date": 3,
+          "matching_list_parse": 8
+        },
+        "plan_cache_keys": {
+          "0571edcb78dc32f821195f9be0470a3a3cad8f0e1fc8bd5f7a41f8617da05cc2": 4
+        },
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 24,
+          "ordinary_llm": 44
+        },
+        "terminal": 4
+      },
+      "referral_abuse_detection_v1": {
+        "accepted_blank_replacements_with_gate_clarifications": 0,
+        "accepted_gates_by_step": {
+          "1": 4,
+          "2": 4,
+          "3": 4
+        },
+        "blank_replacements_in_accepted_steps": 0,
+        "correct": 4,
+        "direct_bypasses_verified": 12,
+        "flagged_cases": 0,
+        "input_transformation_counts": {},
+        "plan_cache_keys": {
+          "cbfa8db893b56bc1301a88f6a4f43aa228786841f36109fed7853834308c81ef": 4
+        },
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 12,
+          "ordinary_llm": 20
+        },
+        "terminal": 4
+      }
+    },
+    "completion": {
+      "patient_intake": {
+        "accepted_blank_replacements_with_gate_clarifications": 1,
+        "accepted_gates_by_step": {
+          "3": 3,
+          "4": 4,
+          "6": 3
+        },
+        "blank_replacements_in_accepted_steps": 1,
+        "correct": 4,
+        "direct_bypasses_verified": 10,
+        "flagged_cases": 0,
+        "input_transformation_counts": {
+          "clarification_grounded_blank_source": 2,
+          "matching_iso_date": 3,
+          "matching_list_parse": 8
+        },
+        "plan_cache_keys": {},
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 24,
+          "ordinary_llm": 44
+        },
+        "terminal": 4
+      },
+      "referral_abuse_detection_v1": {
+        "accepted_blank_replacements_with_gate_clarifications": 0,
+        "accepted_gates_by_step": {
+          "1": 4,
+          "2": 4,
+          "3": 4
+        },
+        "blank_replacements_in_accepted_steps": 0,
+        "correct": 4,
+        "direct_bypasses_verified": 12,
+        "flagged_cases": 0,
+        "input_transformation_counts": {},
+        "plan_cache_keys": {},
+        "planned": 4,
+        "provider_roles": {
+          "completion_native": 12,
+          "ordinary_llm": 20
+        },
+        "terminal": 4
+      }
+    }
+  }
+}

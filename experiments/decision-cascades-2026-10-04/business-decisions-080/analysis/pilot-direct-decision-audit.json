@@ -1,0 +1,338 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-05T06:25:19.199283+00:00",
+  "review_scope": "Deep audit of four paired C/D email pilot traces; counts of all completed pilot runs. No inference or frozen-file changes.",
+  "pilot_run": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot",
+  "summary_evidence": {
+    "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/summary.json",
+    "sha256": "04e07579f3e05adea6dcd12a033cd7f4aa0e339a480f84d21f8dca03e7854d49"
+  },
+  "pilot_completed": 48,
+  "pilot_correct": 48,
+  "audit_issues": [],
+  "email_result": {
+    "paired_cases": 4,
+    "C_Qwen_requests": 16,
+    "D_Qwen_requests": 12,
+    "Qwen_requests_saved": 4,
+    "native_business_facts": 4,
+    "settled_native_business_actions": 4,
+    "native_business_fallbacks": 0,
+    "completion_bypasses_in_either_email_arm": 0,
+    "conclusion": "Direct native intent classification replaced exactly one constrained Qwen business-choice call in every reviewed pair. The four saved calls are not completion-check savings."
+  },
+  "by_domain": {
+    "email_intent": {
+      "business-qwen": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 16,
+        "native_business_facts": 0
+      },
+      "business-jev": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 12,
+        "native_business_facts": 4
+      },
+      "C_minus_D_Qwen_requests": 4
+    },
+    "referral_abuse_detection_v1": {
+      "business-qwen": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 20,
+        "native_business_facts": 0
+      },
+      "business-jev": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 20,
+        "native_business_facts": 0
+      },
+      "C_minus_D_Qwen_requests": 0
+    },
+    "patient_intake": {
+      "business-qwen": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 44,
+        "native_business_facts": 0
+      },
+      "business-jev": {
+        "runs": 4,
+        "correct": 4,
+        "Qwen_requests": 43,
+        "native_business_facts": 0
+      },
+      "C_minus_D_Qwen_requests": 1
+    }
+  },
+  "cases": [
+    {
+      "case_id": "E1022",
+      "checks": {
+        "same_frozen_plan": true,
+        "cached_preparation_zero_calls": true,
+        "C_one_constrained_choice_no_native": true,
+        "D_one_native_choice_no_constrained_fallback": true,
+        "same_policy_criteria_evidence": true,
+        "threshold_and_model_exact": true,
+        "settled_label_matches_native_response": true,
+        "Qwen_configuration_preserved": true,
+        "same_selected_intent": true,
+        "regex_input_span_evidence": true,
+        "facts_settled_without_discard": true,
+        "mandatory_tools_and_exact_paired_receipts": true,
+        "tool_arguments_use_extracted_product_and_input_marketplace": true,
+        "no_completion_bypasses": true,
+        "both_final_pass": true,
+        "one_fewer_Qwen_request": true,
+        "audit_and_trace_checks_clean": true
+      },
+      "seller_intent": "concern about their product not being listed",
+      "product_id": "P91S2T",
+      "native_selected_probability": 1.0,
+      "threshold": 0.8,
+      "C_Qwen_requests": 4,
+      "D_Qwen_requests": 3,
+      "C_business_Qwen_requests": 1,
+      "D_business_Qwen_requests": 0,
+      "D_native_business_requests": 1,
+      "C_decision_requests": 1,
+      "D_decision_requests": 2,
+      "C_runtime_cost_usd": 0.007804164000000001,
+      "D_runtime_cost_usd": 0.006593742,
+      "tool_calls": [
+        {
+          "tool_name": "sop-bench__get_product_listing_status",
+          "arguments": {
+            "product_id": "P91S2T",
+            "marketplace_id": "US",
+            "include_history": false
+          }
+        },
+        {
+          "tool_name": "sop-bench__get_inventory_status",
+          "arguments": {
+            "product_id": "P91S2T",
+            "marketplace_id": "US",
+            "include_forecasts": false
+          }
+        }
+      ],
+      "native_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1022/providers/decisions/decision-6a83a22b3a804052a69363164ea8d04f.json",
+        "sha256": "305cfffaa6ddc4cc6761e7fb45c01bd02e2ef7ada7cf712ffb4331c09ae001a6"
+      },
+      "C_constrained_choice_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1022/providers/64050cec4b1f4eaa971f59b3e04a3475-001.json",
+        "sha256": "3ed9077d04fe0fac52ba2d7e7dd2767ebccef1c67e9b7e4fb9f00a3c0020ddae"
+      },
+      "C_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1022/events.jsonl",
+        "sha256": "a4141b2ec8e8c732e057889bcd25d8cabb04b62b745a3d04f71457fc906a0b00"
+      },
+      "D_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1022/events.jsonl",
+        "sha256": "1ca049d4217959d1ee0f662d45f6bb33de8e511fb48349379a318efcb93fafb6"
+      }
+    },
+    {
+      "case_id": "E1028",
+      "checks": {
+        "same_frozen_plan": true,
+        "cached_preparation_zero_calls": true,
+        "C_one_constrained_choice_no_native": true,
+        "D_one_native_choice_no_constrained_fallback": true,
+        "same_policy_criteria_evidence": true,
+        "threshold_and_model_exact": true,
+        "settled_label_matches_native_response": true,
+        "Qwen_configuration_preserved": true,
+        "same_selected_intent": true,
+        "regex_input_span_evidence": true,
+        "facts_settled_without_discard": true,
+        "mandatory_tools_and_exact_paired_receipts": true,
+        "tool_arguments_use_extracted_product_and_input_marketplace": true,
+        "no_completion_bypasses": true,
+        "both_final_pass": true,
+        "one_fewer_Qwen_request": true,
+        "audit_and_trace_checks_clean": true
+      },
+      "seller_intent": "concern about incorrect pricing",
+      "product_id": "P34E5F",
+      "native_selected_probability": 1.0,
+      "threshold": 0.8,
+      "C_Qwen_requests": 4,
+      "D_Qwen_requests": 3,
+      "C_business_Qwen_requests": 1,
+      "D_business_Qwen_requests": 0,
+      "D_native_business_requests": 1,
+      "C_decision_requests": 1,
+      "D_decision_requests": 2,
+      "C_runtime_cost_usd": 0.007184598,
+      "D_runtime_cost_usd": 0.006374604000000001,
+      "tool_calls": [
+        {
+          "tool_name": "sop-bench__get_product_price",
+          "arguments": {
+            "product_id": "P34E5F",
+            "marketplace_id": "US"
+          }
+        }
+      ],
+      "native_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1028/providers/decisions/decision-d4bdaef9447e431b980943e1383d03e4.json",
+        "sha256": "74954dc760b9c882a4e05876f223160a2d947575299fb3dcdddc5f3d56b12365"
+      },
+      "C_constrained_choice_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1028/providers/19e34ca6174d48fe8e0300611e575066-001.json",
+        "sha256": "b908f2085ad0b542faeea49f68c63297dd196e12c141009311ae825a9733ac3d"
+      },
+      "C_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1028/events.jsonl",
+        "sha256": "b8a2ffb6debf279faff2105647598a619a57fcb0392b3ef38ae033a7c4927efa"
+      },
+      "D_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1028/events.jsonl",
+        "sha256": "c5196119067ff3d9e1558410b8fbe5e5eb67959676d447ccbfcc583d9addd3f2"
+      }
+    },
+    {
+      "case_id": "E1041",
+      "checks": {
+        "same_frozen_plan": true,
+        "cached_preparation_zero_calls": true,
+        "C_one_constrained_choice_no_native": true,
+        "D_one_native_choice_no_constrained_fallback": true,
+        "same_policy_criteria_evidence": true,
+        "threshold_and_model_exact": true,
+        "settled_label_matches_native_response": true,
+        "Qwen_configuration_preserved": true,
+        "same_selected_intent": true,
+        "regex_input_span_evidence": true,
+        "facts_settled_without_discard": true,
+        "mandatory_tools_and_exact_paired_receipts": true,
+        "tool_arguments_use_extracted_product_and_input_marketplace": true,
+        "no_completion_bypasses": true,
+        "both_final_pass": true,
+        "one_fewer_Qwen_request": true,
+        "audit_and_trace_checks_clean": true
+      },
+      "seller_intent": "concern about their product not being listed",
+      "product_id": "P23F4G",
+      "native_selected_probability": 1.0,
+      "threshold": 0.8,
+      "C_Qwen_requests": 4,
+      "D_Qwen_requests": 3,
+      "C_business_Qwen_requests": 1,
+      "D_business_Qwen_requests": 0,
+      "D_native_business_requests": 1,
+      "C_decision_requests": 1,
+      "D_decision_requests": 2,
+      "C_runtime_cost_usd": 0.0074080380000000005,
+      "D_runtime_cost_usd": 0.007084476,
+      "tool_calls": [
+        {
+          "tool_name": "sop-bench__get_product_listing_status",
+          "arguments": {
+            "product_id": "P23F4G",
+            "marketplace_id": "US",
+            "include_history": false
+          }
+        },
+        {
+          "tool_name": "sop-bench__get_inventory_status",
+          "arguments": {
+            "product_id": "P23F4G",
+            "marketplace_id": "US",
+            "include_forecasts": false
+          }
+        }
+      ],
+      "native_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1041/providers/decisions/decision-1077a48781fa437c80ad78b8877b42a6.json",
+        "sha256": "52afcb08f68327fe593e77aef70e90de03f24a307502416121ad9ea2b7d55b83"
+      },
+      "C_constrained_choice_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1041/providers/82ea52c5c75641e2956db8441378bffd-001.json",
+        "sha256": "5177234fd8edf0861a46a59ac0a70e1b123da16b77bbbe51fba474a29d94db77"
+      },
+      "C_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1041/events.jsonl",
+        "sha256": "7602de06642f2f9e5755b7d789932e4c2468ee629db293aaefe36ccb0555b7ad"
+      },
+      "D_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1041/events.jsonl",
+        "sha256": "6b368e89633c47edfd60ea6aecb873b482c670b1116df6aa7fa91a6b47c137af"
+      }
+    },
+    {
+      "case_id": "E1067",
+      "checks": {
+        "same_frozen_plan": true,
+        "cached_preparation_zero_calls": true,
+        "C_one_constrained_choice_no_native": true,
+        "D_one_native_choice_no_constrained_fallback": true,
+        "same_policy_criteria_evidence": true,
+        "threshold_and_model_exact": true,
+        "settled_label_matches_native_response": true,
+        "Qwen_configuration_preserved": true,
+        "same_selected_intent": true,
+        "regex_input_span_evidence": true,
+        "facts_settled_without_discard": true,
+        "mandatory_tools_and_exact_paired_receipts": true,
+        "tool_arguments_use_extracted_product_and_input_marketplace": true,
+        "no_completion_bypasses": true,
+        "both_final_pass": true,
+        "one_fewer_Qwen_request": true,
+        "audit_and_trace_checks_clean": true
+      },
+      "seller_intent": "concern about incorrect pricing",
+      "product_id": "P91H2I",
+      "native_selected_probability": 1.0,
+      "threshold": 0.8,
+      "C_Qwen_requests": 4,
+      "D_Qwen_requests": 3,
+      "C_business_Qwen_requests": 1,
+      "D_business_Qwen_requests": 0,
+      "D_native_business_requests": 1,
+      "C_decision_requests": 1,
+      "D_decision_requests": 2,
+      "C_runtime_cost_usd": 0.006884208000000001,
+      "D_runtime_cost_usd": 0.0061937879999999996,
+      "tool_calls": [
+        {
+          "tool_name": "sop-bench__get_product_price",
+          "arguments": {
+            "product_id": "P91H2I",
+            "marketplace_id": "US"
+          }
+        }
+      ],
+      "native_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1067/providers/decisions/decision-67b1d2c7de9d4f5bb9afd1e9e701ea9b.json",
+        "sha256": "cbc84c3e29c0fc4bce03b4e9d095ec4c6938c5b8e47aca0897877d27b8fece87"
+      },
+      "C_constrained_choice_audit": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1067/providers/65986f2631864119af30dde6cd360198-001.json",
+        "sha256": "bdb768b52a780d769e06476cbcf71535f7f9484af56e68a461a31ff97a9b3ee1"
+      },
+      "C_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-qwen/email_intent/E1067/events.jsonl",
+        "sha256": "266a416acae7a56f42ba002ad1551aa65d078770250c72e2e9fe6779d3840582"
+      },
+      "D_events": {
+        "path": "experiments/decision-cascades-2026-10-04/phase2/runs/business-decisions-080-pilot/business-jev/email_intent/E1067/events.jsonl",
+        "sha256": "efe7d22538cff4ff40e41233ca160dd3eaedff5de509c7e373720def1eab698d"
+      }
+    }
+  ],
+  "limits": [
+    "Pilot has four email cases, two listing and two pricing; no conclusion about description, generic, ambiguous or uncertain native decisions follows.",
+    "Jev probabilities of 1.0 are provider statistics, not calibrated accuracy guarantees.",
+    "Final PASS plus receipt fidelity does not independently prove every natural-language communication obligation; this review attributes the admitted Step 1 classification only.",
+    "Differences outside email cannot be attributed to native business decisions because those domains have no native business facts.",
+    "Runtime costs exclude preparation and use the existing documented list-rate estimate; report full preparation separately."
+  ]
+}

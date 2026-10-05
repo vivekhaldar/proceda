@@ -1,0 +1,10 @@
+{
+  "recorded_at": "2026-10-05T06:48:49.142553+00:00",
+  "known_credential_scan_passed": true,
+  "credentials_checked": 2,
+  "files_checked": 169,
+  "values_saved": false,
+  "report_local_links_checked": 21,
+  "missing_local_links": [],
+  "report_sha256": "f3aeae0e25be1f38400770585efb7f39e88cad2470e8eb06dae7a63cac725b8b"
+}

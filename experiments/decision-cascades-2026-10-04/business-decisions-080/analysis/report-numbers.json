@@ -1,0 +1,99 @@
+{
+  "final_preparation_cost": 0.12769755,
+  "email_preparation_cost": 0.0262911,
+  "full_task_cost": 21.083566308,
+  "arms": {
+    "baseline": {
+      "correct": 357,
+      "llm": 2537,
+      "jev": 0,
+      "hosted": 2537,
+      "cost": 6.409988399999999,
+      "cost_with_final_preparation": 6.409988399999999,
+      "latency": 8.642482561319735
+    },
+    "completion": {
+      "correct": 357,
+      "llm": 1929,
+      "jev": 905,
+      "hosted": 2834,
+      "cost": 5.142587748000003,
+      "cost_with_final_preparation": 5.142587748000003,
+      "latency": 7.758328553336388
+    },
+    "business-qwen": {
+      "correct": 360,
+      "llm": 1930,
+      "jev": 904,
+      "hosted": 2834,
+      "cost": 4.827737028000001,
+      "cost_with_final_preparation": 4.955434578000001,
+      "latency": 7.264506042600179
+    },
+    "business-jev": {
+      "correct": 360,
+      "llm": 1785,
+      "jev": 1052,
+      "hosted": 2837,
+      "cost": 4.703253131999998,
+      "cost_with_final_preparation": 4.830950681999997,
+      "latency": 6.93817686379698
+    }
+  },
+  "contrasts": {
+    "combined": {
+      "llm": {
+        "absolute_change": -752,
+        "relative_change": -0.296413086322428
+      },
+      "cost": {
+        "absolute_change": -1.706735268000001,
+        "relative_change": -0.26626183410877957
+      },
+      "cost_with_final_preparation": {
+        "absolute_change": -1.5790377180000013,
+        "relative_change": -0.24634018339253183
+      },
+      "latency": {
+        "absolute_change": -1.7043056975227548,
+        "relative_change": -0.19720094144598443
+      }
+    },
+    "native_business": {
+      "llm": {
+        "absolute_change": -145,
+        "relative_change": -0.07512953367875652
+      },
+      "cost": {
+        "absolute_change": -0.12448389600000365,
+        "relative_change": -0.025785144318760445
+      },
+      "cost_with_final_preparation": {
+        "absolute_change": -0.12448389600000365,
+        "relative_change": -0.02512068195848227
+      },
+      "latency": {
+        "absolute_change": -0.3263291788031992,
+        "relative_change": -0.04492104169086719
+      }
+    },
+    "completion": {
+      "llm": {
+        "absolute_change": -608,
+        "relative_change": -0.2396531336223886
+      },
+      "cost": {
+        "absolute_change": -1.2674006519999956,
+        "relative_change": -0.197722768421858
+      },
+      "cost_with_final_preparation": {
+        "absolute_change": -1.2674006519999956,
+        "relative_change": -0.197722768421858
+      },
+      "latency": {
+        "absolute_change": -0.884154007983347,
+        "relative_change": -0.10230324466496044
+      }
+    }
+  }
+}

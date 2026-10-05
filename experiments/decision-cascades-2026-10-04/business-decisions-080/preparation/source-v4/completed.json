@@ -1,0 +1,9 @@
+{
+  "completed_at": "2026-10-05T06:18:33.720769+00:00",
+  "domains": [
+    "referral_abuse_detection_v1",
+    "email_intent",
+    "patient_intake"
+  ],
+  "manifest_sha256": "3c845c70d4036d4eaffbc92fad7092d4c4da61742c4b4943dbb0309c2ac1a93c"
+}
