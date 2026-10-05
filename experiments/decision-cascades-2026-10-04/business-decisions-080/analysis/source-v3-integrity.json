@@ -1,0 +1,175 @@
+{
+  "recorded_at": "2026-10-05T06:13:55.801849+00:00",
+  "preparation": "preparation/source-v3",
+  "frozen_commit": "2ac3663351d7ce1847198fad63a75f0de1ff1c45",
+  "manifest_sha256": "636f4c8ab029b3234ec2c1699c9ebf0b377114fae7adc4f30de776089924bc33",
+  "checks": {
+    "frozen_file_hashes": true,
+    "all_request_model_settings_match": true,
+    "all_requests_source_only_scope": true,
+    "all_provider_messages_recorded_in_step_preparations": true
+  },
+  "compiler_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "reviewer_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "provider_call_counts": {
+    "compiler": 15,
+    "reviewer": 9
+  },
+  "finish_reasons": {
+    "stop": 24
+  },
+  "elapsed_seconds": 26.64355950000754,
+  "input_tokens": 117609,
+  "output_tokens": 16986,
+  "cost_usd": 0.10388205,
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+  "unknown_cost_requests": 0,
+  "admitted_business_decisions": 0,
+  "admitted_observation_contracts": 9,
+  "domains": {
+    "email_intent": {
+      "status": "unsupported",
+      "calls": {
+        "compiler": 3
+      },
+      "cost_usd": 0.011325,
+      "elapsed_seconds": 7.474225166995893,
+      "artifact": "cache/65d3b351cb13d4410207062149a585d1d160c7071088ee634ccddc265b941949.json",
+      "artifact_sha256": "50e5d1bba6048f8ee78069df857eb980884d3b9b0bfc2831d88cbeb50be26f09",
+      "steps": [
+        {
+          "index": 1,
+          "status": "invalid",
+          "admitted_kind": "llm"
+        },
+        {
+          "index": 2,
+          "status": "llm",
+          "admitted_kind": "llm"
+        },
+        {
+          "index": 3,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    },
+    "patient_intake": {
+      "status": "unsupported",
+      "calls": {
+        "compiler": 7,
+        "reviewer": 6
+      },
+      "cost_usd": 0.062296199999999996,
+      "elapsed_seconds": 25.89752783399308,
+      "artifact": "cache/7276d91d90bfed15528aa6c1d25bc46fcec55941ccd8d812e006c7238804f0d6.json",
+      "artifact_sha256": "f541532da5d6f82a7b05e652694c29f37031dfa1267c391be56fad8e532b7da7",
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 2,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 4,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 5,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 6,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 7,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    },
+    "referral_abuse_detection_v1": {
+      "status": "unsupported",
+      "calls": {
+        "reviewer": 3,
+        "compiler": 5
+      },
+      "cost_usd": 0.03026085,
+      "elapsed_seconds": 16.121872791991336,
+      "artifact": "cache/2be086bbdae943fa675d1115a89740ecc468844ece70d718a2cfb65b89545966.json",
+      "artifact_sha256": "cb52204969b916f553634be02b744715b9bc6e6f7ba67ad4fb25e1e175cdfc80",
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 2,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool"
+        },
+        {
+          "index": 4,
+          "status": "invalid",
+          "admitted_kind": "llm"
+        },
+        {
+          "index": 5,
+          "status": "llm",
+          "admitted_kind": "llm"
+        }
+      ]
+    }
+  },
+  "reasons": {
+    "email_intent": "Step1 candidate omits required decision.source_quote; the decision is structurally invalid. Steps2 and3 select LLM fallback. No reviewer request for email.",
+    "referral_abuse_detection_v1": "Step4 candidate places inputs at the step root rather than within decision and omits decision.source_quote. This is structurally invalid. Steps1\u20133 observation contracts admitted; step5 selects LLM fallback.",
+    "patient_intake": "Six observation contracts admitted; final output step selects LLM fallback. No business decision proposed."
+  },
+  "cumulative_v1_v2_v3_preparation_cost_usd": 0.20791485,
+  "limits": [
+    "No task inference occurred. This is a preparation integrity audit, not task accuracy.",
+    "Raw artifacts preserved; no current-v4 cache-loader replay attempted against frozen v3 identity.",
+    "Structural findings read directly from retained compact candidates; no repair or forced admission."
+  ]
+}

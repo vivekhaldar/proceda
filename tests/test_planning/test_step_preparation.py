@@ -7,7 +7,7 @@ from copy import deepcopy
 
 import pytest
 
-from proceda.planning.compiler import _hash, get_or_compile, load_cached_plan
+from proceda.planning.compiler import BUSINESS_STEP_TOOL, _hash, get_or_compile, load_cached_plan
 from proceda.skills.parser import parse_skill
 from tests.test_planning.test_compiler import SOURCE, answer, compact_candidate, setup
 
@@ -197,7 +197,10 @@ async def test_truncated_step_does_not_retry_or_prevent_independent_later_admiss
     assert payload["step_preparations"][0]["status"] == "invalid"
     for runtime in (compiler, reviewer):
         for call in runtime.complete.call_args_list:
-            assert call.kwargs == {"tools": None, "temperature": 0.0}
+            assert call.kwargs == {
+                "tools": [BUSINESS_STEP_TOOL] if runtime is compiler else None,
+                "temperature": 0.0,
+            }
             source = json.loads(call.args[0][1]["content"])["source"]
             assert source["input_fields"] == ["text"]
             assert source["raw_skill"] == skill.raw_content

@@ -66,13 +66,13 @@
     "failures": "Retain rejected/unsupported/error plans and every provider attempt; ordinary execution fallback without task-time recompilation",
     "cost": "Preparation paid once physically, same full relevant cost for either compiled deployment. Deduplicate by manifest identity and domain when combining pilot/full schedules. Never split P between C/D.",
     "latency": "Separate source preparation wall time from warm case execution; runtime cache loading remains in case latency",
-    "source_version": "source-v3",
+    "source_version": "source-v4",
     "compiler_strategy": "Sequential single-step compact compilation in original source order within each domain. Domains compile concurrently.",
     "compiler_calls_per_domain": "N, one call per original SOP step",
     "review_calls_per_domain": "At most N, one independent review per structurally admitted non-LLM step",
     "failure_policy": "Malformed or rejected current step becomes original-source LLM fallback. Keep earlier admitted steps; final loader replays all admissions. Unsupported means zero admitted business decisions.",
     "call_budget": "Every compiler and reviewer request explicitly uses low reasoning, temperature0,max_tokens2048; no automatic increase.",
-    "frozen_manifest": "preparation/source-v3/manifest.json",
+    "frozen_manifest": "preparation/source-v4/manifest.json",
     "previous_preparation_spend": [
       {
         "source_version": "source-v1",
@@ -100,10 +100,27 @@
         ],
         "included_in_total_experiment_spend": true,
         "included_in_active_warm_case_cost": false
+      },
+      {
+        "source_version": "source-v3",
+        "status": "24 complete nontruncated calls; zero admitted business decisions; nine admitted observation contracts",
+        "compiler_requests": 15,
+        "reviewer_requests": 9,
+        "cost_usd": 0.10388205,
+        "analysis": "analysis/source-v3-integrity.json",
+        "raw_evidence": "preparation/source-v3",
+        "failure_causes": [
+          "Step1 candidate omits required decision.source_quote; the decision is structurally invalid. Steps2 and3 select LLM fallback. No reviewer request for email.",
+          "Step4 candidate places inputs at the step root rather than within decision and omits decision.source_quote. This is structurally invalid. Steps1\u20133 observation contracts admitted; step5 selects LLM fallback.",
+          "Six observation contracts admitted; final output step selects LLM fallback. No business decision proposed."
+        ],
+        "included_in_total_experiment_spend": true,
+        "included_in_active_warm_case_cost": false
       }
     ],
-    "previous_preparation_cost_usd": 0.1040328,
-    "source_v3_change": "Generic prompt clarification of mapping wire shape and model-applied arithmetic; unchanged schema, per-step strategy, source scope, and model parameters."
+    "previous_preparation_cost_usd": 0.20791485,
+    "source_v3_change": "Generic prompt clarification of mapping wire shape and model-applied arithmetic; unchanged schema, per-step strategy, source scope, and model parameters.",
+    "source_v4_change": "Compiler emits record_source_step typed tool arguments using the complete wire schema; reviewer unchanged. Plain JSON compatibility retained. Source scope, per-step strategy, schema semantics, and all model parameters unchanged."
   },
   "routing": {
     "business_qwen_native_decisions": false,

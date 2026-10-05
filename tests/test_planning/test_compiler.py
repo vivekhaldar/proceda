@@ -446,12 +446,9 @@ async def test_compact_source_identity_and_policy_cannot_be_overridden(tmp_path,
     result = await compile_plan(kwargs | {"mode": "business_decisions"})
     assert result.status == "unsupported" and result.plan is None
     reviewer.complete.assert_not_called()
-    assert (
-        json.loads(result.artifact_path.read_text())["payload"]["step_preparations"][0][
-            "compiler_compact_candidate"
-        ]
-        == raw
-    )
+    record = json.loads(result.artifact_path.read_text())["payload"]["step_preparations"][0]
+    assert json.loads(record["compiler_response"]["content"]) == raw
+    assert record["status"] == "invalid"
 
 
 async def test_business_observation_contracts_support_whole_receipts_without_executing_tools(

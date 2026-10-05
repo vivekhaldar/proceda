@@ -138,6 +138,18 @@ classification from emitting executable code. It also reiterates both identifier
 boundaries for regex extraction. No schema, acceptance rule, source SOP, model,
 threshold or token budget changes, and no benchmark labels inform this correction.
 
+Source-v3 at 2ac3663 produced candidate email/referral decisions but still misplaced
+or omitted required contract fields. Strict validation admitted neither; all 24
+requests and $0.10388205 are retained. Before any task cases, version 4 supplies
+the complete compact-step JSON schema through the existing compiler tool-call API
+(record_source_step). Runtime inference and model parameters remain unchanged.
+The compiler returns data through that tool; the harness does not execute it as an
+application action. Exactly one named call, raw argument integrity, truncation,
+source validation and independent review remain mandatory. Strict plain JSON may
+still be parsed for compatibility, without repairing its structure. Persist the
+schema with each compiler request, include its hash in cache identity, and replay
+raw calls on cache load. This adds an explicit output contract to preparation.
+
 ## Domain expectations to test rather than assume
 
 Email Step 1 is a five-way intent decision plus explicitly prescribed product-ID
