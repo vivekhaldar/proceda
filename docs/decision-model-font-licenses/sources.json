@@ -1,0 +1,26 @@
+{
+  "style_reference": "https://enchiridionlabs.online/",
+  "fonts": [
+    {
+      "family": "Crimson Pro",
+      "subset": "latin",
+      "source": "https://fonts.gstatic.com/s/crimsonpro/v28/q5uDsoa5M_tv7IihmnkabARboYF6CsKj.woff2",
+      "sha256": "89374859da8085dbce486eed120a12abcab5a90e725f8b9c41a3e2b32bd010f6",
+      "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/crimsonpro/OFL.txt"
+    },
+    {
+      "family": "Fraunces",
+      "subset": "latin",
+      "source": "https://fonts.gstatic.com/s/fraunces/v38/6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2",
+      "sha256": "48282a415ec22e31beaf0a0666e6fae0c8cbddcd0b1f6e729f27c3ade8a64e43",
+      "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/OFL.txt"
+    },
+    {
+      "family": "JetBrains Mono",
+      "subset": "latin",
+      "source": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+      "sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+      "license_source": "https://raw.githubusercontent.com/google/fonts/main/ofl/jetbrainsmono/OFL.txt"
+    }
+  ]
+}
