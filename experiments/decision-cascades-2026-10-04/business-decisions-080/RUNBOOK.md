@@ -4,15 +4,23 @@ Run from the repository root after code/config freeze and explicit inference aut
 These commands use the existing credential helper: secrets remain in process memory and are
 not written to a shell script, environment file, or experiment artifact.
 
-Prepare all three source plans concurrently, with one compiler/reviewer pair per domain.
-The compiler receives only SOP text, tool schemas, and input field names. Every attempt,
-including rejected/unsupported outcomes, remains in the preparation directory.
+Prepare all three source plans concurrently. Within a domain, compile each of its N original
+steps sequentially and independently review each structurally admitted non-LLM step: N compiler
+calls and at most N review calls. Every call uses low reasoning, temperature 0, and max 2,048
+tokens. Requests contain the full original source, tool schemas, input field names, current
+step index, and admitted prefix; no task values or labels. Malformed/rejected steps become
+ordinary LLM fallbacks. Every attempt remains in the preparation directory.
 
 ```sh
 .venv/bin/python -m benchmarks.sop_bench.prepare_business_plans \
   --config experiments/decision-cascades-2026-10-04/business-decisions-080/configs/business-qwen.yaml \
-  --output-dir experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1
+  --output-dir experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2
 ```
+
+The earlier source-v1 preparation remains preserved: three truncated compiler requests, zero
+reviewer calls, zero admitted business decisions, and $0.02278755 estimated cost. Include this
+failed preparation in cumulative experiment spend, separately from v2 deployment and warm-case
+costs; see `analysis/source-v1-failure.json`. Do not overwrite or retry that directory.
 
 Inspect the source plans and review results before starting task cases. Do not adjust plans
 against validation labels. The same frozen preparation is used by both business arms. Missing,
@@ -29,7 +37,7 @@ business_arms=(
   --arm "business-qwen=$business_exp/configs/business-qwen.yaml"
   --arm "business-jev=$business_exp/configs/business-jev.yaml"
 )
-business_prepared="$business_exp/preparation/source-v1/manifest.json"
+business_prepared="$business_exp/preparation/source-v2/manifest.json"
 
 # Four frozen development cases per domain, 48 total executions, balanced arm positions.
 .venv/bin/python -m benchmarks.sop_bench.run_compiled_schedule \

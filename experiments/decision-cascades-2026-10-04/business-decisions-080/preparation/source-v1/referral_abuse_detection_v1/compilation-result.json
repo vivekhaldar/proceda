@@ -1,0 +1,14 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/cache/af342b4c60de1783b0eb84676d6694e0d454ca1fed5fea39d71ec63549887f22.json",
+  "artifact_sha256": "429a3a74b4530995b938f35a22981482dd9750ca9aa962b43e518d83bc223516",
+  "attempt_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/cache/attempts/af342b4c60de1783b0eb84676d6694e0d454ca1fed5fea39d71ec63549887f22/02fdc5ad526443d399b9c74760c925a9.json",
+  "cache_hit": false,
+  "cache_key": "af342b4c60de1783b0eb84676d6694e0d454ca1fed5fea39d71ec63549887f22",
+  "completion_tokens": 2048,
+  "errors": [
+    "ValueError: compilation or validation failed"
+  ],
+  "plan": null,
+  "prompt_tokens": 2889,
+  "status": "invalid"
+}

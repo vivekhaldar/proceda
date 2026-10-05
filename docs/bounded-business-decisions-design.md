@@ -103,6 +103,31 @@ The canonical internal plan remains explicit and inspectable. Deterministic sour
 attachment does not prove semantic coverage: the separate review sees the expanded
 plan and the complete SOP, and runtime bindings still enforce evidence constraints.
 
+### Source-only preparation revision before any task inference
+
+At implementation commit 130edb3, all three initial whole-plan compiler responses
+hit the requested 2048-token output limit, including reasoning. No reviewer ran and
+no plan was admitted. Preserve source-v1 and its three paid attempts ($0.02278755
+at the stated list rates). No task case or reference outcome informed this revision.
+
+Version 2 compiles one compact step at a time in source order, with the same model,
+temperature, low reasoning and 2048-token limit on EVERY compiler/reviewer call.
+Scope each request to its exact current step and previously admitted source
+contracts. Expand against immutable original instructions into a candidate with
+the admitted prefix and ordinary LLM placeholders elsewhere. Strictly validate,
+then independently review each proposed non-LLM step in original source context.
+Malformed, truncated, failed, or rejected steps become ordinary LLM steps before
+compiling successors; downstream references to lost contracts cannot be admitted.
+There is no automatic retry at a larger budget and no task-driven source repair.
+
+Criteria identify source-named outcomes concisely; the full original policy is
+always attached, so criteria need not duplicate every arithmetic rule. Preserve
+all per-step raw responses, expanded candidates, reviews and downgrade reasons.
+The frozen loader replays the complete admission sequence, requiring successful
+review for every surviving optimized step. Zero admitted decisions is unsupported.
+Cost includes every step compiler call and every non-LLM step review. The original
+full planning mode retains its existing whole-plan preparation path.
+
 ## Domain expectations to test rather than assume
 
 Email Step 1 is a five-way intent decision plus explicitly prescribed product-ID

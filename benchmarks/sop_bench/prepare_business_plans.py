@@ -143,7 +143,7 @@ async def prepare(
             raise ValueError("Source changed during compilation")
 
     try:
-        # Independent source plans share no cases or facts; one cold pair per domain.
+        # Domains compile concurrently; each compiler implementation preserves source-step order.
         async with asyncio.TaskGroup() as group:
             for domain, source in sources.items():
                 group.create_task(prepare_domain(domain, source))

@@ -101,6 +101,14 @@ def inspect_case(directory):
         provider_roles[role] += 1
     native_facts = [f for f in facts if f["origin"] in {"native_choice", "native_predicate"}]
     business_actions = [a for a in actions if a["kind"] == "decision"]
+    discarded_steps = {
+        e["payload"]["step_index"] for e in events if e["type"] == "planning.fact_discarded"
+    }
+    completed_steps = {e["payload"]["step_index"] for e in events if e["type"] == "step.completed"}
+    for action in business_actions:
+        action["settled"] = (
+            action["step_index"] in completed_steps and action["step_index"] not in discarded_steps
+        )
     for fact in native_facts:
         if not any(
             a["step_index"] == fact["step_index"] and a.get("origin") == fact["origin"]
@@ -126,6 +134,7 @@ def inspect_case(directory):
         "llm_usage_events_by_step": dict(llm_steps),
         "tool_calls": dict(tools),
         "provider_roles": dict(provider_roles),
+        "discarded_fact_steps": sorted(discarded_steps),
         "issues": issues,
     }
 
@@ -149,6 +158,8 @@ def attribution(cases):
             label = f"action:{action['kind']}:{action.get('origin', '')}"
             counts[label] += 1
             by_step[str(action["step_index"])][label] += 1
+            if action.get("settled"):
+                counts[f"settled:{action.get('origin', '')}"] += 1
         for decision in case["business_decisions"]:
             label = f"business_result:{decision['purpose']}:{decision.get('reason', '')}"
             counts[label] += 1

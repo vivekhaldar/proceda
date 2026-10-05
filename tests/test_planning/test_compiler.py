@@ -390,7 +390,7 @@ def compact_candidate(skill=None):
         del step["source_quote"]
         del step["residual_obligations"]
         del step["decision"]["instructions"]
-    return raw
+    return raw["steps"][0]
 
 
 async def test_business_compact_policy_attaches_full_source_and_preserves_raw_evidence(tmp_path):
@@ -415,8 +415,9 @@ async def test_business_compact_policy_attaches_full_source_and_preserves_raw_ev
     payload = json.loads(result.artifact_path.read_text())["payload"]
     assert payload["identity"]["compiler_config"]["max_tokens"] == 2048
     assert payload["identity"]["reviewer_config"]["max_tokens"] == 2048
-    assert payload["compiler_compact_candidate"] == original
-    assert payload["compiler_response"]["content"] == json.dumps(original)
+    prepared = payload["step_preparations"][0]
+    assert prepared["compiler_compact_candidate"] == original
+    assert prepared["compiler_response"]["content"] == json.dumps(original)
     assert payload["compiler_candidate"]["steps"][0]["source_quote"] == skill.steps[0].content
     loaded = load_cached_plan(
         result.artifact_path, result.cache_key, skill, [], ["text"], mode="business_decisions"
@@ -429,13 +430,13 @@ async def test_business_compact_policy_attaches_full_source_and_preserves_raw_ev
 @pytest.mark.parametrize(
     "mutation",
     [
-        lambda raw: raw["steps"][0].update(index=2),
-        lambda raw: raw["steps"][0].update(index=True),
-        lambda raw: raw["steps"][0].update(source_quote="Replacement source"),
-        lambda raw: raw["steps"][0].update(residual_obligations=[]),
-        lambda raw: raw["steps"][0]["decision"].update(instructions="Override original policy"),
-        lambda raw: raw["steps"].append(deepcopy(raw["steps"][0])),
-        lambda raw: raw["steps"][0].update(kind="render"),
+        lambda raw: raw.update(index=2),
+        lambda raw: raw.update(index=True),
+        lambda raw: raw.update(source_quote="Replacement source"),
+        lambda raw: raw.update(residual_obligations=[]),
+        lambda raw: raw["decision"].update(instructions="Override original policy"),
+        lambda raw: raw.update(steps=[deepcopy(raw)]),
+        lambda raw: raw.update(kind="render"),
     ],
 )
 async def test_compact_source_identity_and_policy_cannot_be_overridden(tmp_path, mutation):
@@ -443,10 +444,13 @@ async def test_compact_source_identity_and_policy_cannot_be_overridden(tmp_path,
     mutation(raw)
     compiler, reviewer, kwargs = setup(tmp_path, raw)
     result = await compile_plan(kwargs | {"mode": "business_decisions"})
-    assert result.status == "invalid" and result.plan is None
+    assert result.status == "unsupported" and result.plan is None
     reviewer.complete.assert_not_called()
     assert (
-        json.loads(result.artifact_path.read_text())["payload"]["compiler_compact_candidate"] == raw
+        json.loads(result.artifact_path.read_text())["payload"]["step_preparations"][0][
+            "compiler_compact_candidate"
+        ]
+        == raw
     )
 
 
@@ -523,6 +527,7 @@ Report the selected outcome.
         ],
     }
     compiler, reviewer, kwargs = setup(tmp_path, raw)
+    compiler.complete.side_effect = [answer(step) for step in raw["steps"]]
     result = await compile_plan(kwargs | {"mode": "business_decisions"}, skill, tools, ["bin_id"])
     assert result.status == "accepted"
     first, second, third = result.plan.steps
@@ -531,7 +536,7 @@ Report the selected outcome.
     assert second.decision.instructions == skill.steps[1].content
     assert third.residual_obligations == (skill.steps[2].content,)
     raw["steps"][1] = {"index": 2, "kind": "llm"}
-    compiler.complete.return_value = answer(raw)
+    compiler.complete.side_effect = [answer(step) for step in raw["steps"]]
     unsupported = await compile_plan(
         kwargs | {"mode": "business_decisions", "cache_epoch": "observation-only"},
         skill,
@@ -549,8 +554,10 @@ async def test_business_review_rejects_mixed_obligations_despite_source_attachme
         {"approved": False, "issues": ["Decision omits required delivery and documentation"]},
     )
     result = await compile_plan(kwargs | {"mode": "business_decisions"}, skill)
-    assert result.status == "rejected" and result.plan is None
-    assert "omits required" in result.errors[0]
+    assert result.status == "unsupported" and result.plan is None
+    record = json.loads(result.artifact_path.read_text())["payload"]["step_preparations"][0]
+    assert record["status"] == "rejected"
+    assert "omits required" in record["review"]["issues"][0]
 
 
 async def test_compact_predicate_preserves_source_condition_and_full_policy(tmp_path):
@@ -580,7 +587,7 @@ Determine whether pending_count is below 20 and paused is false.
             }
         ],
     }
-    compiler, reviewer, kwargs = setup(tmp_path, raw)
+    compiler, reviewer, kwargs = setup(tmp_path, raw["steps"][0])
     result = await compile_plan(
         kwargs | {"mode": "business_decisions"}, skill, fields=["pending_count", "paused"]
     )
@@ -627,9 +634,9 @@ async def test_cached_business_expansion_and_version_are_revalidated(tmp_path, m
     compiler, reviewer, kwargs = setup(tmp_path, compact_candidate())
     result = await compile_plan(kwargs | {"mode": "business_decisions"})
     document = json.loads(result.artifact_path.read_text())
-    document["payload"]["compiler_compact_candidate"]["steps"][0]["decision"]["field"] = (
-        "replacement"
-    )
+    document["payload"]["step_preparations"][0]["compiler_compact_candidate"]["decision"][
+        "field"
+    ] = "replacement"
     document["sha256"] = module._hash(document["payload"])
     result.artifact_path.write_text(json.dumps(document))
     corrupt = load_cached_plan(
@@ -655,7 +662,9 @@ async def test_truncated_response_is_rejected_even_if_content_is_valid_json(
     target = compiler if stage == "compiler" else reviewer
     target.complete.return_value.raw_response = {"choices": [{"finish_reason": finish_reason}]}
     result = await compile_plan(kwargs | {"mode": "business_decisions"})
-    assert result.status == "invalid" and result.plan is None
+    assert result.status == "unsupported" and result.plan is None
+    record = json.loads(result.artifact_path.read_text())["payload"]["step_preparations"][0]
+    assert record["status"] == "invalid"
     if stage == "compiler":
         reviewer.complete.assert_not_called()
     assert compiler.complete.call_count == 1

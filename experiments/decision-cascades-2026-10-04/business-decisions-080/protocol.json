@@ -50,7 +50,7 @@
     "arm_order": "cyclic Latin rotation; equal positions within each domain"
   },
   "preparation": {
-    "input": "Only SOP text, tool schemas and input field names; no task values or labels",
+    "input": "Full original SOP, tool schemas, input field names, current source-step index, and admitted prefix. No task values or labels.",
     "domain_concurrency": 3,
     "compiler_and_reviewer": {
       "model": "openai/Qwen/Qwen3.8-27B",
@@ -65,7 +65,25 @@
     "cache": "Source-only frozen manifest; same source artifacts C/D; runtime require_cached enabled by driver",
     "failures": "Retain rejected/unsupported/error plans and every provider attempt; ordinary execution fallback without task-time recompilation",
     "cost": "Preparation paid once physically, same full relevant cost for either compiled deployment. Deduplicate by manifest identity and domain when combining pilot/full schedules. Never split P between C/D.",
-    "latency": "Separate source preparation wall time from warm case execution; runtime cache loading remains in case latency"
+    "latency": "Separate source preparation wall time from warm case execution; runtime cache loading remains in case latency",
+    "source_version": "source-v2",
+    "compiler_strategy": "Sequential single-step compact compilation in original source order within each domain. Domains compile concurrently.",
+    "compiler_calls_per_domain": "N, one call per original SOP step",
+    "review_calls_per_domain": "At most N, one independent review per structurally admitted non-LLM step",
+    "failure_policy": "Malformed or rejected current step becomes original-source LLM fallback. Keep earlier admitted steps; final loader replays all admissions. Unsupported means zero admitted business decisions.",
+    "call_budget": "Every compiler and reviewer request explicitly uses low reasoning, temperature0,max_tokens2048; no automatic increase.",
+    "frozen_manifest": "preparation/source-v2/manifest.json",
+    "previous_preparation_spend": {
+      "source_version": "source-v1",
+      "status": "All3 whole-source responses truncated; zero admitted business decisions",
+      "compiler_requests": 3,
+      "reviewer_requests": 0,
+      "cost_usd": 0.02278755,
+      "analysis": "analysis/source-v1-failure.json",
+      "raw_evidence": "preparation/source-v1",
+      "included_in_total_experiment_spend": true,
+      "included_in_v2_warm_case_cost": false
+    }
   },
   "routing": {
     "business_qwen_native_decisions": false,

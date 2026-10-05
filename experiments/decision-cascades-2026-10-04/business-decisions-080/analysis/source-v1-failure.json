@@ -1,0 +1,500 @@
+{
+  "accepted_plans": 0,
+  "admitted_business_decisions": 0,
+  "aggregate_accounting": {
+    "audit_errors": [],
+    "audit_records": 3,
+    "cache_usage_errors": [],
+    "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+    "cost_complete": true,
+    "cost_usd": 0.02278755,
+    "cost_usd_lower_bound": 0.02278755,
+    "decision_preflight_records": 0,
+    "decision_requests": 0,
+    "hypothetical_cache_price_costs": {
+      "0.0": {
+        "cached_input_rate_fraction": 0.0,
+        "cost_usd": 0.02278755,
+        "hypothetical_not_actual_invoice": true
+      },
+      "0.2": {
+        "cached_input_rate_fraction": 0.2,
+        "cost_usd": 0.02278755,
+        "hypothetical_not_actual_invoice": true
+      },
+      "1.0": {
+        "cached_input_rate_fraction": 1.0,
+        "cost_usd": 0.02278755,
+        "hypothetical_not_actual_invoice": true
+      }
+    },
+    "input_tokens_known": 9679,
+    "known_input_usage_requests": 3,
+    "known_output_usage_requests": 3,
+    "known_usage_requests": 3,
+    "llm_cached_input_cost_at_full_rate_usd_known": 0.0,
+    "llm_cached_input_tokens": 0,
+    "llm_cached_input_tokens_known": 0,
+    "llm_cached_usage_complete": true,
+    "llm_known_cached_usage_requests": 3,
+    "llm_requests": 3,
+    "llm_uncached_input_tokens": 9679,
+    "llm_uncached_input_tokens_known": 9679,
+    "llm_unknown_cached_usage_requests": 0,
+    "local_decision_requests": 0,
+    "local_native_eval_known_calls": 0,
+    "local_native_eval_seconds": null,
+    "local_native_load_known_calls": 0,
+    "local_native_load_seconds": null,
+    "local_native_total_known_calls": 0,
+    "local_native_total_seconds": null,
+    "output_tokens_known": 6144,
+    "providers": {
+      "llm:Qwen/Qwen3.8-27B": {
+        "cached_input_cost_at_full_rate_usd_known": 0.0,
+        "cached_input_tokens_known": 0,
+        "cost_usd_lower_bound": 0.02278755,
+        "input_tokens_known": 9679,
+        "known_cached_usage_requests": 3,
+        "known_usage_requests": 3,
+        "output_tokens_known": 6144,
+        "requests": 3,
+        "uncached_input_tokens_known": 9679,
+        "unknown_cached_usage_requests": 0,
+        "unknown_cost_requests": 0,
+        "unknown_usage_requests": 0
+      }
+    },
+    "unknown_cost_requests": 0,
+    "unknown_request_status": 0,
+    "unknown_usage_requests": 0
+  },
+  "aggregate_matches_recorded": true,
+  "compiler_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "compiler_requests": 3,
+  "completion_manifest_hash_matches": true,
+  "completion_marker_sha256": "451df175efc6f931d220df402ade952c7af4b31d8825ca71487a12f21e8ece64",
+  "conclusion": "All three whole-source compact-plan responses terminated at the configured 2048 completion-token limit. All artifacts are invalid and have no reviewer approval or executable business plan. They can support conservative fallback but cannot test native business-decision value.",
+  "cost_basis": "Qwen list-price usage estimate: $0.45/M input, $3.00/M output, cached inputs priced at full rate. Actual cache billing unverified. All three unsuccessful preparation calls are charged.",
+  "domains": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 1,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.00737655,
+        "cost_usd_lower_bound": 0.00737655,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.00737655,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00737655,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00737655,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 2739,
+        "known_input_usage_requests": 1,
+        "known_output_usage_requests": 1,
+        "known_usage_requests": 1,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0,
+        "llm_cached_input_tokens": 0,
+        "llm_cached_input_tokens_known": 0,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 1,
+        "llm_requests": 1,
+        "llm_uncached_input_tokens": 2739,
+        "llm_uncached_input_tokens_known": 2739,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 2048,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0,
+            "cached_input_tokens_known": 0,
+            "cost_usd_lower_bound": 0.00737655,
+            "input_tokens_known": 2739,
+            "known_cached_usage_requests": 1,
+            "known_usage_requests": 1,
+            "output_tokens_known": 2048,
+            "requests": 1,
+            "uncached_input_tokens_known": 2739,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "admitted_step_kinds": [],
+      "audits": [
+        {
+          "elapsed_seconds": 4.889471082991804,
+          "finish_reason": "length",
+          "finished_at": "2026-10-05T05:55:02.408954+00:00",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/email_intent/providers/35646b3c048047dd9b571f8ffcc08cd7-001.json",
+          "reasoning_detail_exceeds_completion_total": true,
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "requested_model": "openai/Qwen/Qwen3.8-27B",
+          "response_model": "Qwen/Qwen3.8-27B",
+          "sha256": "1f9a616daee8041abf485db47781c41fbca88a16bf7457897b9325aaa273c435",
+          "source_payload_keys": [
+            "input_fields",
+            "output_fields",
+            "raw_skill",
+            "steps",
+            "tools"
+          ],
+          "source_payload_matches_compiler_identity": true,
+          "source_payload_sha256": "e5b0359b6dd4cdf8bc4dad608407a063c74c7b3d7de894d26be52e7910c74a3c",
+          "started_at": "2026-10-05T05:54:57.519389+00:00",
+          "status": "success",
+          "text_content_characters": 0,
+          "usage": {
+            "completion_tokens": 2048,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2052,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2739,
+            "prompt_tokens": 2739,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4787
+          }
+        }
+      ],
+      "cache_artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/cache/171514e7f45a70d8f3391cf1fe10e80bbf4d238f105a6d255efd2face8112e91.json",
+      "cache_artifact_sha256": "cdbc2baab32cd8e32500a0cd76e17d364a62dea963c98eb3119f585bee58c491",
+      "cache_key": "171514e7f45a70d8f3391cf1fe10e80bbf4d238f105a6d255efd2face8112e91",
+      "domain": "email_intent",
+      "errors": [
+        "ValueError: compilation or validation failed"
+      ],
+      "review": null,
+      "status": "invalid"
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 1,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.00796695,
+        "cost_usd_lower_bound": 0.00796695,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.00796695,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00796695,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00796695,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 4051,
+        "known_input_usage_requests": 1,
+        "known_output_usage_requests": 1,
+        "known_usage_requests": 1,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0,
+        "llm_cached_input_tokens": 0,
+        "llm_cached_input_tokens_known": 0,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 1,
+        "llm_requests": 1,
+        "llm_uncached_input_tokens": 4051,
+        "llm_uncached_input_tokens_known": 4051,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 2048,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0,
+            "cached_input_tokens_known": 0,
+            "cost_usd_lower_bound": 0.00796695,
+            "input_tokens_known": 4051,
+            "known_cached_usage_requests": 1,
+            "known_usage_requests": 1,
+            "output_tokens_known": 2048,
+            "requests": 1,
+            "uncached_input_tokens_known": 4051,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "admitted_step_kinds": [],
+      "audits": [
+        {
+          "elapsed_seconds": 4.586376999999629,
+          "finish_reason": "length",
+          "finished_at": "2026-10-05T05:55:02.107944+00:00",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/patient_intake/providers/082ffca877ff470288c1546f18384b20-001.json",
+          "reasoning_detail_exceeds_completion_total": false,
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "requested_model": "openai/Qwen/Qwen3.8-27B",
+          "response_model": "Qwen/Qwen3.8-27B",
+          "sha256": "9f043794d3d354d143a189f03f111775e1592537de3e5c0a93e5fedde28b1cf7",
+          "source_payload_keys": [
+            "input_fields",
+            "output_fields",
+            "raw_skill",
+            "steps",
+            "tools"
+          ],
+          "source_payload_matches_compiler_identity": true,
+          "source_payload_sha256": "15c1e5b8a4a13a5abc8372c5f4e4906f0205b3e91f5c522dc577c113b4e27e17",
+          "started_at": "2026-10-05T05:54:57.521474+00:00",
+          "status": "success",
+          "text_content_characters": 1153,
+          "usage": {
+            "completion_tokens": 2048,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1729,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 319
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 4051,
+            "prompt_tokens": 4051,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 6099
+          }
+        }
+      ],
+      "cache_artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/cache/07cfab911be29565eb15c2696b80af7afca6fb66c10d6852c5d490a391c3d622.json",
+      "cache_artifact_sha256": "c0a2c93c06f529271d78dac9438495d7a5fb3045f85267c8017f7e43d587f3f3",
+      "cache_key": "07cfab911be29565eb15c2696b80af7afca6fb66c10d6852c5d490a391c3d622",
+      "domain": "patient_intake",
+      "errors": [
+        "ValueError: compilation or validation failed"
+      ],
+      "review": null,
+      "status": "invalid"
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 1,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.00744405,
+        "cost_usd_lower_bound": 0.00744405,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.00744405,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00744405,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.00744405,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 2889,
+        "known_input_usage_requests": 1,
+        "known_output_usage_requests": 1,
+        "known_usage_requests": 1,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0,
+        "llm_cached_input_tokens": 0,
+        "llm_cached_input_tokens_known": 0,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 1,
+        "llm_requests": 1,
+        "llm_uncached_input_tokens": 2889,
+        "llm_uncached_input_tokens_known": 2889,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 2048,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0,
+            "cached_input_tokens_known": 0,
+            "cost_usd_lower_bound": 0.00744405,
+            "input_tokens_known": 2889,
+            "known_cached_usage_requests": 1,
+            "known_usage_requests": 1,
+            "output_tokens_known": 2048,
+            "requests": 1,
+            "uncached_input_tokens_known": 2889,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "admitted_step_kinds": [],
+      "audits": [
+        {
+          "elapsed_seconds": 4.937054459005594,
+          "finish_reason": "length",
+          "finished_at": "2026-10-05T05:55:02.450812+00:00",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/referral_abuse_detection_v1/providers/f08e3c73e00148c5aa38ddb7ab3aca71-001.json",
+          "reasoning_detail_exceeds_completion_total": true,
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "requested_model": "openai/Qwen/Qwen3.8-27B",
+          "response_model": "Qwen/Qwen3.8-27B",
+          "sha256": "d9b997c44030a6966e9397428d64c7a01b58ac72d5869a6d4447253d7f282368",
+          "source_payload_keys": [
+            "input_fields",
+            "output_fields",
+            "raw_skill",
+            "steps",
+            "tools"
+          ],
+          "source_payload_matches_compiler_identity": true,
+          "source_payload_sha256": "352f4cd913707c0b4a92650be974a63a3501dca9708ab142a04b890ba5b725e1",
+          "started_at": "2026-10-05T05:54:57.513673+00:00",
+          "status": "success",
+          "text_content_characters": 0,
+          "usage": {
+            "completion_tokens": 2048,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 2050,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 0
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2889,
+            "prompt_tokens": 2889,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4937
+          }
+        }
+      ],
+      "cache_artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1/cache/af342b4c60de1783b0eb84676d6694e0d454ca1fed5fea39d71ec63549887f22.json",
+      "cache_artifact_sha256": "429a3a74b4530995b938f35a22981482dd9750ca9aa962b43e518d83bc223516",
+      "cache_key": "af342b4c60de1783b0eb84676d6694e0d454ca1fed5fea39d71ec63549887f22",
+      "domain": "referral_abuse_detection_v1",
+      "errors": [
+        "ValueError: compilation or validation failed"
+      ],
+      "review": null,
+      "status": "invalid"
+    }
+  ],
+  "frozen_preparation_file_hashes_match": true,
+  "inference_performed": false,
+  "manifest_sha256": "965fe5483c7b69f0a6e5ac7711256409d294da9898a34a270e1b59df31b6b657",
+  "next_step_status": "Task-case inference deferred pending a separately designed, source-only per-step preparation revision with the same 2048-token budget. No retry or model-budget change was performed by this analysis.",
+  "preparation_directory": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v1",
+  "preparation_wall_seconds": 5.7437821670027915,
+  "raw_preparation_changed": false,
+  "recorded_at": "2026-10-05T05:57:06.246767+00:00",
+  "reviewer_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "reviewer_requests": 0,
+  "schema_version": 1,
+  "scope": "Source-preparation failure analysis only; no task-case inference or benchmark success measurement",
+  "source_commit": "130edb37657d056278aa0188f9a5457e87dc538a",
+  "task_case_requests": 0,
+  "token_accounting_note": "Use provider-reported prompt_tokens and completion_tokens for cost. Reasoning tokens are included, not added. Two detail fields report reasoning_tokens slightly greater than completion_tokens; retain this provider metadata inconsistency without silently repairing the totals."
+}

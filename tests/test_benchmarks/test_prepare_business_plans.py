@@ -98,7 +98,7 @@ def setup(tmp_path, monkeypatch):
                             "source_quote": source_text,
                         },
                     }
-                value = {"ir_version": "1", "steps": [step]}
+                value = step
             else:
                 approved = state["mode"] != "rejected"
                 value = {"approved": approved, "issues": [] if approved else ["coverage uncertain"]}
@@ -158,15 +158,19 @@ async def test_shared_source_only_preparation_accepts_terminal_fallbacks_without
     kwargs, state = setup
     state["mode"] = mode
     result = await prep.prepare(**kwargs)
-    assert len(state["messages"]) == 6
+    expected_calls = 3 if mode == "unsupported" else 6
+    expected_status = "accepted" if mode == "accepted" else "unsupported"
+    assert len(state["messages"]) == expected_calls
     assert state["max_active"] == 3
-    assert all(item["status"] == mode for item in result["domains"].values())
-    assert result["accounting"]["llm_requests"] == 6
-    assert result["accounting"]["cost_usd"] == pytest.approx(6 * (100 * 0.45 + 20 * 3) / 1e6)
+    assert all(item["status"] == expected_status for item in result["domains"].values())
+    assert result["accounting"]["llm_requests"] == expected_calls
+    assert result["accounting"]["cost_usd"] == pytest.approx(
+        expected_calls * (100 * 0.45 + 20 * 3) / 1e6
+    )
     frozen = load(kwargs)
     assert len(frozen["artifacts"]) == 3
     assert frozen["accounting"] == result["accounting"]
-    assert len(state["messages"]) == 6  # Loader must never call either model.
+    assert len(state["messages"]) == expected_calls  # Loader must never call either model.
     assert frozen["preparation_performed_in_this_schedule"] is False
 
 
