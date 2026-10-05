@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-05T05:32:59.039972+00:00",
+  "source": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-jev-080/analysis/full-final-audit-completion.json",
+  "interpretation": "Counts on the same recorded Jev probability pairs, not alternate executions, accuracy calibration, or causal performance predictions. Subsequent states could differ under other policies.",
+  "coverage_by_domain": {
+    "email_intent": {
+      "0.8": 0,
+      "0.9": 0,
+      "0.95": 0,
+      "0.97": 0
+    },
+    "patient_intake": {
+      "0.8": 125,
+      "0.9": 93,
+      "0.95": 0,
+      "0.97": 0
+    },
+    "referral_abuse_detection_v1": {
+      "0.8": 480,
+      "0.9": 480,
+      "0.95": 3,
+      "0.97": 0
+    }
+  }
+}

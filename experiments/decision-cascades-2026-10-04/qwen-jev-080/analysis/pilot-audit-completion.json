@@ -1,0 +1,2096 @@
+{
+  "analysis_status": "complete",
+  "analyzer_sha256": "742c18317cd42e28fe5fb08cfbcdbbb064d59ae08c925336432924bbd72a7ff3",
+  "cases": [
+    {
+      "authority_contexts": [],
+      "auto_completions": [],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1022",
+      "domain": "email_intent",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1022/events.jsonl",
+      "gates": [
+        {
+          "current_receipts": [],
+          "event_line": 17,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.12,
+            "obligations_satisfied": 0.63
+          },
+          "reason": "obligation_rejected",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1022/providers/decisions/decision-61ea3b8f4a824b78bfcabbaa55362a13.json"
+          ],
+          "step_index": 2,
+          "value": false
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 1,
+        "2": 2,
+        "3": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "include_history": false,
+            "marketplace_id": "US",
+            "product_id": "P91S2T"
+          },
+          "batch": 2,
+          "line": 13,
+          "result": {
+            "current_status": "Ingredient list documentation required",
+            "marketplace_id": "US",
+            "product_id": "P91S2T"
+          },
+          "step_index": 2,
+          "tool_call_id": "call_7f4742f76af44534aec4486d",
+          "tool_name": "sop-bench__get_product_listing_status"
+        },
+        {
+          "arguments": {
+            "include_forecasts": false,
+            "marketplace_id": "US",
+            "product_id": "P91S2T"
+          },
+          "batch": 2,
+          "line": 15,
+          "result": {
+            "current_stock": 0,
+            "marketplace_id": "US",
+            "product_id": "P91S2T"
+          },
+          "step_index": 2,
+          "tool_call_id": "call_3aac4974bd55411b9700936c",
+          "tool_name": "sop-bench__get_inventory_status"
+        }
+      ],
+      "predicted": {
+        "action": "share listing status",
+        "seller_intent": "concern about their product not being listed"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/email_intent/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1022/providers/decisions/decision-61ea3b8f4a824b78bfcabbaa55362a13.json",
+          "input_chars": 5918,
+          "input_tokens": 1666,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "rejected",
+          "reason": "obligation_rejected",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 8,
+          "step_index": 1,
+          "summary": "Extracted and validated product_id P91S2T from email body using regex pattern P[A-Z0-9]{5}. Marketplace_id is US. Seller intent identified as: concern about their product not being listed (email states \"Product P91S2T not appearing in marketplace\")."
+        },
+        {
+          "event_line": 20,
+          "step_index": 2,
+          "summary": "Retrieved listing status and inventory for P91S2T in US marketplace. Listing status: \"Ingredient list documentation required\" (explains why product is not appearing). Inventory: 0 units. Action assigned: \"share listing status\" \u2014 prepare status communication to seller explaining the listing is blocked due to missing ingredient list documentation."
+        },
+        {
+          "event_line": 25,
+          "step_index": 3,
+          "summary": "Final report: Seller intent is \"concern about their product not being listed\" and the action is \"share listing status\". The product P91S2T in US marketplace has listing status \"Ingredient list documentation required\" and 0 inventory, explaining why it is not appearing. Status communication should be prepared for the seller.\n<seller_intent>concern about their product not being listed</seller_intent>\n<action>share listing status</action>"
+        }
+      ],
+      "task_id": "E1022",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1022/terminal.json"
+    },
+    {
+      "authority_contexts": [],
+      "auto_completions": [],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1028",
+      "domain": "email_intent",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1028/events.jsonl",
+      "gates": [
+        {
+          "current_receipts": [],
+          "event_line": 15,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.1,
+            "obligations_satisfied": 0.39
+          },
+          "reason": "obligation_rejected",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1028/providers/decisions/decision-098d6e4809494d36b264f782bb24f7ac.json"
+          ],
+          "step_index": 2,
+          "value": false
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 1,
+        "2": 2,
+        "3": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "marketplace_id": "US",
+            "product_id": "P34E5F"
+          },
+          "batch": 2,
+          "line": 13,
+          "result": {
+            "listing_price": 0.0,
+            "product_id": "P34E5F"
+          },
+          "step_index": 2,
+          "tool_call_id": "call_edaa7f35b5be4c96b445dd81",
+          "tool_name": "sop-bench__get_product_price"
+        }
+      ],
+      "predicted": {
+        "action": "update price",
+        "seller_intent": "concern about incorrect pricing"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/email_intent/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1028/providers/decisions/decision-098d6e4809494d36b264f782bb24f7ac.json",
+          "input_chars": 5370,
+          "input_tokens": 1445,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "rejected",
+          "reason": "obligation_rejected",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 8,
+          "step_index": 1,
+          "summary": "Extracted and validated product_id P34E5F from email body. Marketplace_id is US. Seller intent identified as: concern about incorrect pricing (seller states \"Price error on P34E5F - should be $89.99\")."
+        },
+        {
+          "event_line": 18,
+          "step_index": 2,
+          "summary": "Retrieved current price for P34E5F in US marketplace: $0.00. Seller-specified price: $89.99. Price delta: $89.99. A delta exists, so action is \"update price\". Seller intent: concern about incorrect pricing."
+        },
+        {
+          "event_line": 23,
+          "step_index": 3,
+          "summary": "Final report: Seller intent is \"concern about incorrect pricing\" \u2014 the seller reported a price error on P34E5F, stating it should be $89.99. The current catalog price is $0.00, yielding a delta of $89.99, which warrants an update. Action: \"update price\".\n<seller_intent>concern about incorrect pricing</seller_intent>\n<action>update price</action>"
+        }
+      ],
+      "task_id": "E1028",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/email_intent/E1028/terminal.json"
+    },
+    {
+      "authority_contexts": [],
+      "auto_completions": [
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 32,
+          "receipt_ids": [
+            "receipt_62f51b1ad40847e3946b868fe6bdbd9b"
+          ],
+          "step_index": 3
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 41,
+          "receipt_ids": [
+            "receipt_9334b4b5fcc64d8ea1b3631835544f12"
+          ],
+          "step_index": 4
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 60,
+          "receipt_ids": [
+            "receipt_93c5bfe4625f40088a8e64ad11600a85"
+          ],
+          "step_index": 6
+        }
+      ],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002",
+      "domain": "patient_intake",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/events.jsonl",
+      "gates": [
+        {
+          "current_receipts": [],
+          "event_line": 10,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.3,
+            "obligations_satisfied": 0.21
+          },
+          "reason": "no_backend_settled_gate",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-59d1ee5d017d495b83ff5ee7bfec6b1a.json"
+          ],
+          "step_index": 1,
+          "value": null
+        },
+        {
+          "current_receipts": [],
+          "event_line": 20,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.28,
+            "obligations_satisfied": 0.2
+          },
+          "reason": "no_backend_settled_gate",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-8a6da98413654b2c9c2ffc33f1882acd.json"
+          ],
+          "step_index": 2,
+          "value": null
+        },
+        {
+          "auto_event_line": 32,
+          "current_receipts": [
+            {
+              "arguments": {
+                "alcohol_consumption": "Moderate",
+                "exercise_frequency": "1-2 times",
+                "patient_id": "P100002",
+                "smoking_status": "Current"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__calculateLifestyleRisk",
+              "receipt_id": "receipt_62f51b1ad40847e3946b868fe6bdbd9b",
+              "result": {
+                "life_style_risk_level": "high"
+              },
+              "sop_tool_name": "calculateLifestyleRisk",
+              "tool_call_id": "call_f2c99ecb4dfe4953a186b959"
+            }
+          ],
+          "event_line": 30,
+          "fresh_receipt_ids": [
+            "receipt_62f51b1ad40847e3946b868fe6bdbd9b"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.93,
+            "obligations_satisfied": 0.95
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_3b7b05bc26e5498cbcf2c77a67579aed",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d5fe5b0fa12c41f19010df85d57876d8",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_62f51b1ad40847e3946b868fe6bdbd9b",
+              "tool_event_lines": [
+                28
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-bf8fdfdc9068408b9f44d97d06bf4c2e.json"
+          ],
+          "step_index": 3,
+          "value": true
+        },
+        {
+          "auto_event_line": 41,
+          "current_receipts": [
+            {
+              "arguments": {
+                "chronic_conditions": [
+                  "Asthma"
+                ],
+                "life_style_risk_level": "high",
+                "patient_id": "P100002",
+                "previous_surgeries": [
+                  "None"
+                ]
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__calculateOverallRisk",
+              "receipt_id": "receipt_9334b4b5fcc64d8ea1b3631835544f12",
+              "result": {
+                "overall_risk_level": "medium"
+              },
+              "sop_tool_name": "calculateOverallRisk",
+              "tool_call_id": "call_c350559507124201b7eb3e26"
+            }
+          ],
+          "event_line": 39,
+          "fresh_receipt_ids": [
+            "receipt_9334b4b5fcc64d8ea1b3631835544f12"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.88,
+            "obligations_satisfied": 0.9
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_3b7b05bc26e5498cbcf2c77a67579aed",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d5fe5b0fa12c41f19010df85d57876d8",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_62f51b1ad40847e3946b868fe6bdbd9b",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9334b4b5fcc64d8ea1b3631835544f12",
+              "tool_event_lines": [
+                37
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-8916793a12e04bb4acd90d49c8c7c7eb.json"
+          ],
+          "step_index": 4,
+          "value": true
+        },
+        {
+          "current_receipts": [],
+          "event_line": 48,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.57,
+            "obligations_satisfied": 0.51
+          },
+          "reason": "no_backend_settled_gate",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-00d08fa3807345e3b6f439b94aed0baa.json"
+          ],
+          "step_index": 5,
+          "value": null
+        },
+        {
+          "auto_event_line": 60,
+          "current_receipts": [
+            {
+              "arguments": {
+                "insurance_validation": "valid",
+                "life_style_risk_level": "high",
+                "overall_risk_level": "medium",
+                "patient_id": "P100002",
+                "pharmacy_check": "yes",
+                "prescription_insurance_validation": "valid"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__registerPatient",
+              "receipt_id": "receipt_93c5bfe4625f40088a8e64ad11600a85",
+              "result": {
+                "user_registration": "success"
+              },
+              "sop_tool_name": "registerPatient",
+              "tool_call_id": "call_6f931107380d4e288d5f4f66"
+            }
+          ],
+          "event_line": 58,
+          "fresh_receipt_ids": [
+            "receipt_93c5bfe4625f40088a8e64ad11600a85"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.91,
+            "obligations_satisfied": 0.92
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_3b7b05bc26e5498cbcf2c77a67579aed",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_d5fe5b0fa12c41f19010df85d57876d8",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_62f51b1ad40847e3946b868fe6bdbd9b",
+              "tool_event_lines": [
+                28
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_9334b4b5fcc64d8ea1b3631835544f12",
+              "tool_event_lines": [
+                37
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_c2ee4ee958ee4f6f9375087edc4d2d45",
+              "tool_event_lines": [
+                46
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_93c5bfe4625f40088a8e64ad11600a85",
+              "tool_event_lines": [
+                56
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-a64984b580b243449ca6a4923dc65f4f.json"
+          ],
+          "step_index": 6,
+          "value": true
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 1,
+        "5": 2,
+        "6": 1,
+        "7": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "coverage_start_date": "2/15/23",
+            "group_number": "GRP345678",
+            "insurance_provider": "Aetna",
+            "insurance_type": "Private",
+            "patient_id": "P100002",
+            "policy_number": "INS789012"
+          },
+          "batch": 1,
+          "line": 8,
+          "result": {
+            "insurance_validation": "valid"
+          },
+          "step_index": 1,
+          "tool_call_id": "call_b85860e29eb445f78059d84b",
+          "tool_name": "sop-bench__validateInsurance"
+        },
+        {
+          "arguments": {
+            "insurance_provider": "Aetna",
+            "patient_id": "P100002",
+            "policy_number": "INS789012"
+          },
+          "batch": 3,
+          "line": 18,
+          "result": {
+            "prescription_insurance_validation": "valid"
+          },
+          "step_index": 2,
+          "tool_call_id": "call_00eace03a74a494e82098280",
+          "tool_name": "sop-bench__validatePrescriptionBenefits"
+        },
+        {
+          "arguments": {
+            "alcohol_consumption": "Moderate",
+            "exercise_frequency": "1-2 times",
+            "patient_id": "P100002",
+            "smoking_status": "Current"
+          },
+          "batch": 5,
+          "line": 28,
+          "result": {
+            "life_style_risk_level": "high"
+          },
+          "step_index": 3,
+          "tool_call_id": "call_f2c99ecb4dfe4953a186b959",
+          "tool_name": "sop-bench__calculateLifestyleRisk"
+        },
+        {
+          "arguments": {
+            "chronic_conditions": [
+              "Asthma"
+            ],
+            "life_style_risk_level": "high",
+            "patient_id": "P100002",
+            "previous_surgeries": [
+              "None"
+            ]
+          },
+          "batch": 6,
+          "line": 37,
+          "result": {
+            "overall_risk_level": "medium"
+          },
+          "step_index": 4,
+          "tool_call_id": "call_c350559507124201b7eb3e26",
+          "tool_name": "sop-bench__calculateOverallRisk"
+        },
+        {
+          "arguments": {
+            "patient_id": "P100002",
+            "pharmacy_phone": "555-333-4444",
+            "preferred_pharmacy_address": "38406 Fake Street, Nowhere, NY",
+            "preferred_pharmacy_name": "Walgreens"
+          },
+          "batch": 7,
+          "line": 46,
+          "result": {
+            "pharmacy_check": "yes"
+          },
+          "step_index": 5,
+          "tool_call_id": "call_d233571db6ba4781b5fae208",
+          "tool_name": "sop-bench__verifyPharmacy"
+        },
+        {
+          "arguments": {
+            "insurance_validation": "valid",
+            "life_style_risk_level": "high",
+            "overall_risk_level": "medium",
+            "patient_id": "P100002",
+            "pharmacy_check": "yes",
+            "prescription_insurance_validation": "valid"
+          },
+          "batch": 9,
+          "line": 56,
+          "result": {
+            "user_registration": "success"
+          },
+          "step_index": 6,
+          "tool_call_id": "call_6f931107380d4e288d5f4f66",
+          "tool_name": "sop-bench__registerPatient"
+        }
+      ],
+      "predicted": {
+        "insurance_validation": "valid",
+        "life_style_risk_level": "high",
+        "overall_risk_level": "medium",
+        "pharmacy_check": "yes",
+        "prescription_insurance_validation": "valid",
+        "user_registration": "success"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/patient_intake/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-59d1ee5d017d495b83ff5ee7bfec6b1a.json",
+          "input_chars": 4285,
+          "input_tokens": 1334,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "uncertain",
+          "reason": "uncertain_probabilities",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 1,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-8a6da98413654b2c9c2ffc33f1882acd.json",
+          "input_chars": 4616,
+          "input_tokens": 1511,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "uncertain",
+          "reason": "uncertain_probabilities",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-bf8fdfdc9068408b9f44d97d06bf4c2e.json",
+          "input_chars": 5025,
+          "input_tokens": 1726,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 3,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-8916793a12e04bb4acd90d49c8c7c7eb.json",
+          "input_chars": 5638,
+          "input_tokens": 1967,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 4,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-00d08fa3807345e3b6f439b94aed0baa.json",
+          "input_chars": 5987,
+          "input_tokens": 2161,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "uncertain",
+          "reason": "uncertain_probabilities",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 5,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/providers/decisions/decision-a64984b580b243449ca6a4923dc65f4f.json",
+          "input_chars": 6791,
+          "input_tokens": 2450,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 6,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 13,
+          "step_index": 1,
+          "summary": "Step 1 completed: Validated primary insurance coverage for patient P100002 with Aetna (policy INS789012, group GRP345678, coverage start 2/15/23, Private insurance type). Result: insurance_validation = valid."
+        },
+        {
+          "event_line": 23,
+          "step_index": 2,
+          "summary": "Step 2 completed: Validated prescription benefits for patient P100002 with Aetna (policy INS789012). Result: prescription_insurance_validation = valid."
+        },
+        {
+          "event_line": 31,
+          "step_index": 3,
+          "summary": "Step 3: Evaluate Lifestyle Risk Factors completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 40,
+          "step_index": 4,
+          "summary": "Step 4: Assess Clinical and Overall Risk completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 51,
+          "step_index": 5,
+          "summary": "Step 5: Verified preferred pharmacy network for patient P100002. The preferred pharmacy Walgreens at 38406 Fake Street, Nowhere, NY (phone: 555-333-4444) was confirmed as a network participant. Result: pharmacy_check = yes."
+        },
+        {
+          "event_line": 59,
+          "step_index": 6,
+          "summary": "Step 6: Register Patient completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 65,
+          "step_index": 7,
+          "summary": "Step 7: All verification results reported for patient P100002.\n\nSummary of all six observed tool results:\n- Primary Insurance Validation: Aetna (INS789012, GRP345678) \u2014 valid\n- Prescription Benefits Validation: Aetna (INS789012) \u2014 valid\n- Lifestyle Risk Level: high (Current smoker, Moderate alcohol, 1-2 times exercise)\n- Overall Risk Level: medium (No previous surgeries, Asthma, high lifestyle risk)\n- Pharmacy Network Check: Walgreens, 38406 Fake Street, Nowhere, NY \u2014 yes\n- Patient Registration: success\n\n<insurance_validation>valid</insurance_validation>\n<prescription_insurance_validation>valid</prescription_insurance_validation>\n<life_style_risk_level>high</life_style_risk_level>\n<overall_risk_level>medium</overall_risk_level>\n<pharmacy_check>yes</pharmacy_check>\n<user_registration>success</user_registration>"
+        }
+      ],
+      "task_id": "P100002",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100002/terminal.json"
+    },
+    {
+      "authority_contexts": [],
+      "auto_completions": [
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 48,
+          "receipt_ids": [
+            "receipt_5fece501c51043a18a3f72c323669b84"
+          ],
+          "step_index": 4
+        }
+      ],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003",
+      "domain": "patient_intake",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/events.jsonl",
+      "gates": [
+        {
+          "current_receipts": [],
+          "event_line": 10,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.28,
+            "obligations_satisfied": 0.19
+          },
+          "reason": "obligation_rejected",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-4e7b5504dab140cdab69a80d5f26e788.json"
+          ],
+          "step_index": 1,
+          "value": false
+        },
+        {
+          "current_receipts": [],
+          "event_line": 20,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.2,
+            "obligations_satisfied": 0.12
+          },
+          "reason": "obligation_rejected",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-a8eb868fc1bc4e268b2d95afca4a9ee7.json"
+          ],
+          "step_index": 2,
+          "value": false
+        },
+        {
+          "current_receipts": [],
+          "event_line": 36,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.84,
+            "obligations_satisfied": 0.78
+          },
+          "reason": "no_backend_settled_gate",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-559c1aa1a5b14840aa9a5950cd968f69.json"
+          ],
+          "step_index": 3,
+          "value": null
+        },
+        {
+          "auto_event_line": 48,
+          "current_receipts": [
+            {
+              "arguments": {
+                "chronic_conditions": [
+                  "Diabetes Type 2",
+                  "Obesity"
+                ],
+                "life_style_risk_level": "high",
+                "patient_id": "P100003",
+                "previous_surgeries": [
+                  "Knee Surgery 2020"
+                ]
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__calculateOverallRisk",
+              "receipt_id": "receipt_5fece501c51043a18a3f72c323669b84",
+              "result": {
+                "overall_risk_level": "high"
+              },
+              "sop_tool_name": "calculateOverallRisk",
+              "tool_call_id": "call_1598ff77878f45ba8dabfdb6"
+            }
+          ],
+          "event_line": 46,
+          "fresh_receipt_ids": [
+            "receipt_5fece501c51043a18a3f72c323669b84"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.91,
+            "obligations_satisfied": 0.89
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_6b4f53f3ecdd47e2b89a58185e3bfc59",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_b5d05c20ae0644a7b323801e066b4c0c",
+              "tool_event_lines": [
+                18
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f20dd267ce7842058384b6f9c0bcbe58",
+              "tool_event_lines": [
+                34
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_5fece501c51043a18a3f72c323669b84",
+              "tool_event_lines": [
+                44
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-8b67476f6277480db1596c1b0bd2e454.json"
+          ],
+          "step_index": 4,
+          "value": true
+        },
+        {
+          "current_receipts": [],
+          "event_line": 55,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.58,
+            "obligations_satisfied": 0.57
+          },
+          "reason": "no_backend_settled_gate",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-f3d225c149f34f5090ba9587549ab32c.json"
+          ],
+          "step_index": 5,
+          "value": null
+        },
+        {
+          "current_receipts": [],
+          "event_line": 65,
+          "fresh_receipt_ids": [],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.16,
+            "obligations_satisfied": 0.09
+          },
+          "reason": "obligation_rejected",
+          "receipt_checks": [],
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-6279b2e11e83453aa171f4dd0118895f.json"
+          ],
+          "step_index": 6,
+          "value": false
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 2,
+        "2": 2,
+        "3": 3,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "coverage_start_date": "2022-12-01",
+            "group_number": "GRP901234",
+            "insurance_provider": "United",
+            "insurance_type": "Private",
+            "patient_id": "P100003",
+            "policy_number": "INS345678"
+          },
+          "batch": 1,
+          "line": 8,
+          "result": {
+            "insurance_validation": "valid"
+          },
+          "step_index": 1,
+          "tool_call_id": "call_ddff876c213c4a95851783da",
+          "tool_name": "sop-bench__validateInsurance"
+        },
+        {
+          "arguments": {
+            "insurance_provider": "United",
+            "patient_id": "P100003",
+            "policy_number": "INS345678"
+          },
+          "batch": 3,
+          "line": 18,
+          "result": {
+            "prescription_insurance_validation": "invalid"
+          },
+          "step_index": 2,
+          "tool_call_id": "call_b8349e8f29174e2baf80bc7f",
+          "tool_name": "sop-bench__validatePrescriptionBenefits"
+        },
+        {
+          "arguments": {
+            "alcohol_consumption": "Heavy",
+            "exercise_frequency": "None",
+            "patient_id": "P100003",
+            "smoking_status": "Former"
+          },
+          "batch": 6,
+          "line": 34,
+          "result": {
+            "life_style_risk_level": "high"
+          },
+          "step_index": 3,
+          "tool_call_id": "call_4bbdd04cc1b04602b7fcd503",
+          "tool_name": "sop-bench__calculateLifestyleRisk"
+        },
+        {
+          "arguments": {
+            "chronic_conditions": [
+              "Diabetes Type 2",
+              "Obesity"
+            ],
+            "life_style_risk_level": "high",
+            "patient_id": "P100003",
+            "previous_surgeries": [
+              "Knee Surgery 2020"
+            ]
+          },
+          "batch": 8,
+          "line": 44,
+          "result": {
+            "overall_risk_level": "high"
+          },
+          "step_index": 4,
+          "tool_call_id": "call_1598ff77878f45ba8dabfdb6",
+          "tool_name": "sop-bench__calculateOverallRisk"
+        },
+        {
+          "arguments": {
+            "patient_id": "P100003",
+            "pharmacy_phone": "555-555-6666",
+            "preferred_pharmacy_address": "19015 Fake Street, Nowhere, NY",
+            "preferred_pharmacy_name": "RiteAid"
+          },
+          "batch": 9,
+          "line": 53,
+          "result": {
+            "pharmacy_check": "yes"
+          },
+          "step_index": 5,
+          "tool_call_id": "call_4bfaead487134e1db5989054",
+          "tool_name": "sop-bench__verifyPharmacy"
+        },
+        {
+          "arguments": {
+            "insurance_validation": "valid",
+            "life_style_risk_level": "high",
+            "overall_risk_level": "high",
+            "patient_id": "P100003",
+            "pharmacy_check": "yes",
+            "prescription_insurance_validation": "invalid"
+          },
+          "batch": 11,
+          "line": 63,
+          "result": {
+            "user_registration": "failure"
+          },
+          "step_index": 6,
+          "tool_call_id": "call_cd1920c0a204427ca2473071",
+          "tool_name": "sop-bench__registerPatient"
+        }
+      ],
+      "predicted": {
+        "insurance_validation": "valid",
+        "life_style_risk_level": "high",
+        "overall_risk_level": "high",
+        "pharmacy_check": "yes",
+        "prescription_insurance_validation": "invalid",
+        "user_registration": "failure"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/patient_intake/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-4e7b5504dab140cdab69a80d5f26e788.json",
+          "input_chars": 4308,
+          "input_tokens": 1345,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "rejected",
+          "reason": "obligation_rejected",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 1,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-a8eb868fc1bc4e268b2d95afca4a9ee7.json",
+          "input_chars": 4642,
+          "input_tokens": 1521,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "rejected",
+          "reason": "obligation_rejected",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-559c1aa1a5b14840aa9a5950cd968f69.json",
+          "input_chars": 5418,
+          "input_tokens": 1893,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "uncertain",
+          "reason": "uncertain_probabilities",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 3,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-8b67476f6277480db1596c1b0bd2e454.json",
+          "input_chars": 6063,
+          "input_tokens": 2149,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 4,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-f3d225c149f34f5090ba9587549ab32c.json",
+          "input_chars": 6410,
+          "input_tokens": 2342,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "uncertain",
+          "reason": "uncertain_probabilities",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 5,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/providers/decisions/decision-6279b2e11e83453aa171f4dd0118895f.json",
+          "input_chars": 7214,
+          "input_tokens": 2625,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "rejected",
+          "reason": "obligation_rejected",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 6,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 13,
+          "step_index": 1,
+          "summary": "Step 1 completed: Verified primary insurance coverage for patient P100003 with United (Private insurance, policy INS345678, group GRP901234, coverage start 2022-12-01). The insurance validation result is: valid."
+        },
+        {
+          "event_line": 23,
+          "step_index": 2,
+          "summary": "Step 2 completed: Validated prescription benefits for patient P100003 with United (policy INS345678). The prescription insurance validation result is: invalid."
+        },
+        {
+          "event_line": 39,
+          "step_index": 3,
+          "summary": "Step 3 completed: Calculated lifestyle risk for patient P100003 with smoking status \"Former\", alcohol consumption \"Heavy\", and exercise frequency \"None\". The lifestyle risk level is: high."
+        },
+        {
+          "event_line": 47,
+          "step_index": 4,
+          "summary": "Step 4: Assess Clinical and Overall Risk completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 58,
+          "step_index": 5,
+          "summary": "Step 5 completed: Verified preferred pharmacy network for patient P100003. The pharmacy RiteAid at 19015 Fake Street, Nowhere, NY (phone: 555-555-6666) was checked and the pharmacy_check result is: yes (confirmed in network)."
+        },
+        {
+          "event_line": 68,
+          "step_index": 6,
+          "summary": "Step 6 completed: Attempted patient registration for P100003 with the following parameters: insurance_validation=valid, prescription_insurance_validation=invalid, life_style_risk_level=high, overall_risk_level=high, pharmacy_check=yes. The registration result is: failure. The registration did not complete successfully, likely due to the invalid prescription insurance validation."
+        },
+        {
+          "event_line": 73,
+          "step_index": 7,
+          "summary": "Step 7: All verification results for patient P100003 are reported below:\n\n- Primary Insurance Validation: United (Private, policy INS345678, group GRP901234) \u2014 VALID\n- Prescription Benefits Validation: United (policy INS345678) \u2014 INVALID\n- Lifestyle Risk Level: HIGH (smoking: Former, alcohol: Heavy, exercise: None)\n- Overall Risk Level: HIGH (surgeries: Knee Surgery 2020; chronic conditions: Diabetes Type 2, Obesity; lifestyle risk: high)\n- Pharmacy Network Check: RiteAid, 19015 Fake Street, Nowhere, NY \u2014 YES (in network)\n- Patient Registration: FAILURE (due to invalid prescription insurance validation)\n\n<insurance_validation>valid</insurance_validation>\n<prescription_insurance_validation>invalid</prescription_insurance_validation>\n<life_style_risk_level>high</life_style_risk_level>\n<overall_risk_level>high</overall_risk_level>\n<pharmacy_check>yes</pharmacy_check>\n<user_registration>failure</user_registration>"
+        }
+      ],
+      "task_id": "P100003",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/patient_intake/P100003/terminal.json"
+    },
+    {
+      "authority_contexts": [],
+      "auto_completions": [
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 12,
+          "receipt_ids": [
+            "receipt_60bfc5c17ed24054b963dc4b440f4342"
+          ],
+          "step_index": 1
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 21,
+          "receipt_ids": [
+            "receipt_335636caa6db4221853a794d0c142620"
+          ],
+          "step_index": 2
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 30,
+          "receipt_ids": [
+            "receipt_0789f61c16cc471394f664e7669ffae4"
+          ],
+          "step_index": 3
+        }
+      ],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000",
+      "domain": "referral_abuse_detection_v1",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/events.jsonl",
+      "gates": [
+        {
+          "auto_event_line": 12,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100000"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__investigate_account",
+              "receipt_id": "receipt_60bfc5c17ed24054b963dc4b440f4342",
+              "result": {
+                "account_id": "ACC100000",
+                "account_status": "Suspended",
+                "address_validity": false,
+                "business_description": "Project management tool",
+                "connected_accounts": 20,
+                "email_pattern_suspicious": true,
+                "login_geographic_consistency": false,
+                "website_verified": false
+              },
+              "sop_tool_name": "investigate_account",
+              "tool_call_id": "call_546012ff4e454f53a42aca94"
+            }
+          ],
+          "event_line": 10,
+          "fresh_receipt_ids": [
+            "receipt_60bfc5c17ed24054b963dc4b440f4342"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.93,
+            "obligations_satisfied": 0.95
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_60bfc5c17ed24054b963dc4b440f4342",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-dc23d9737111444a95f481a55ad03186.json"
+          ],
+          "step_index": 1,
+          "value": true
+        },
+        {
+          "auto_event_line": 21,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100000"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+              "receipt_id": "receipt_335636caa6db4221853a794d0c142620",
+              "result": {
+                "account_id": "ACC100000",
+                "click_through_rate": 0.52,
+                "device_distribution": "Mixed",
+                "order_patterns_suspicious": true,
+                "page_views": 838,
+                "payment_method_shared": true,
+                "referral_source_quality": "High",
+                "revenue_amount": 37.04
+              },
+              "sop_tool_name": "analyze_traffic_patterns",
+              "tool_call_id": "call_9058b4a63961437499d2ceff"
+            }
+          ],
+          "event_line": 19,
+          "fresh_receipt_ids": [
+            "receipt_335636caa6db4221853a794d0c142620"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.93,
+            "obligations_satisfied": 0.95
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_60bfc5c17ed24054b963dc4b440f4342",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_335636caa6db4221853a794d0c142620",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-26cc9305a777407d9490c5ecc4a1e268.json"
+          ],
+          "step_index": 2,
+          "value": true
+        },
+        {
+          "auto_event_line": 30,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100000"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__determine_enforcement_action",
+              "receipt_id": "receipt_0789f61c16cc471394f664e7669ffae4",
+              "result": {
+                "account_id": "ACC100000",
+                "enforcement_guidelines": {
+                  "Abusive Account Creation": "Account Closure",
+                  "Misleading Ad Copy": "Account Closure",
+                  "No Violation": "No Action",
+                  "Personal Orders (Related)": "No Action"
+                },
+                "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+              },
+              "sop_tool_name": "determine_enforcement_action",
+              "tool_call_id": "call_e17473e98b434d7aa217a854"
+            }
+          ],
+          "event_line": 28,
+          "fresh_receipt_ids": [
+            "receipt_0789f61c16cc471394f664e7669ffae4"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.92,
+            "obligations_satisfied": 0.96
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_60bfc5c17ed24054b963dc4b440f4342",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_335636caa6db4221853a794d0c142620",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_0789f61c16cc471394f664e7669ffae4",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-5f96c2e4dd474978a4fecb30503170f5.json"
+          ],
+          "step_index": 3,
+          "value": true
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "batch": 1,
+          "line": 8,
+          "result": {
+            "account_id": "ACC100000",
+            "account_status": "Suspended",
+            "address_validity": false,
+            "business_description": "Project management tool",
+            "connected_accounts": 20,
+            "email_pattern_suspicious": true,
+            "login_geographic_consistency": false,
+            "website_verified": false
+          },
+          "step_index": 1,
+          "tool_call_id": "call_546012ff4e454f53a42aca94",
+          "tool_name": "sop-bench__investigate_account"
+        },
+        {
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "batch": 2,
+          "line": 17,
+          "result": {
+            "account_id": "ACC100000",
+            "click_through_rate": 0.52,
+            "device_distribution": "Mixed",
+            "order_patterns_suspicious": true,
+            "page_views": 838,
+            "payment_method_shared": true,
+            "referral_source_quality": "High",
+            "revenue_amount": 37.04
+          },
+          "step_index": 2,
+          "tool_call_id": "call_9058b4a63961437499d2ceff",
+          "tool_name": "sop-bench__analyze_traffic_patterns"
+        },
+        {
+          "arguments": {
+            "account_id": "ACC100000"
+          },
+          "batch": 3,
+          "line": 26,
+          "result": {
+            "account_id": "ACC100000",
+            "enforcement_guidelines": {
+              "Abusive Account Creation": "Account Closure",
+              "Misleading Ad Copy": "Account Closure",
+              "No Violation": "No Action",
+              "Personal Orders (Related)": "No Action"
+            },
+            "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+          },
+          "step_index": 3,
+          "tool_call_id": "call_e17473e98b434d7aa217a854",
+          "tool_name": "sop-bench__determine_enforcement_action"
+        }
+      ],
+      "predicted": {
+        "enforcement_action": "Account Closure"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/referral_abuse_detection_v1/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-dc23d9737111444a95f481a55ad03186.json",
+          "input_chars": 3636,
+          "input_tokens": 1105,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 1,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-26cc9305a777407d9490c5ecc4a1e268.json",
+          "input_chars": 4198,
+          "input_tokens": 1357,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/providers/decisions/decision-5f96c2e4dd474978a4fecb30503170f5.json",
+          "input_chars": 4716,
+          "input_tokens": 1578,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 3,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 11,
+          "step_index": 1,
+          "summary": "Step 1: Investigate Account completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 20,
+          "step_index": 2,
+          "summary": "Step 2: Analyze Traffic Patterns completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 29,
+          "step_index": 3,
+          "summary": "Step 3: Get Enforcement Guidelines completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 35,
+          "step_index": 4,
+          "summary": "Step 4: Calculated violation scores. Abusive Account Creation scored 5/5 (all indicators true), Misleading Ad Copy scored 3/4, Personal Orders scored 3/4, No Violation scored 0/6. Severity-first priority selects Abusive Account Creation (highest closure-category score). Enforcement action: Account Closure."
+        },
+        {
+          "event_line": 40,
+          "step_index": 5,
+          "summary": "Step 5: Reported enforcement action. The violation type determined was Abusive Account Creation (score 5/5, all indicators true). The enforcement action is: <enforcement_action>Account Closure</enforcement_action>"
+        }
+      ],
+      "task_id": "ACC100000",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100000/terminal.json"
+    },
+    {
+      "authority_contexts": [],
+      "auto_completions": [
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 12,
+          "receipt_ids": [
+            "receipt_f7da5523d5294536adb3d3baba30f065"
+          ],
+          "step_index": 1
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 21,
+          "receipt_ids": [
+            "receipt_597be869147b40da8918c7441906ca5f"
+          ],
+          "step_index": 2
+        },
+        {
+          "direct_continuation_bypass_verified": true,
+          "event_line": 30,
+          "receipt_ids": [
+            "receipt_317dfc9e0c8a4e5992117367c4b29c7f"
+          ],
+          "step_index": 3
+        }
+      ],
+      "case": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001",
+      "domain": "referral_abuse_detection_v1",
+      "events": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/events.jsonl",
+      "gates": [
+        {
+          "auto_event_line": 12,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100001"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__investigate_account",
+              "receipt_id": "receipt_f7da5523d5294536adb3d3baba30f065",
+              "result": {
+                "account_id": "ACC100001",
+                "account_status": "Active",
+                "address_validity": true,
+                "business_description": "Digital magazine subscription",
+                "connected_accounts": 2,
+                "email_pattern_suspicious": false,
+                "login_geographic_consistency": true,
+                "website_verified": true
+              },
+              "sop_tool_name": "investigate_account",
+              "tool_call_id": "call_564e989aa7664c2e8422b7f4"
+            }
+          ],
+          "event_line": 10,
+          "fresh_receipt_ids": [
+            "receipt_f7da5523d5294536adb3d3baba30f065"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.94,
+            "obligations_satisfied": 0.96
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f7da5523d5294536adb3d3baba30f065",
+              "tool_event_lines": [
+                8
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-5b3580a189ec4e7da7f60668a9f71fb1.json"
+          ],
+          "step_index": 1,
+          "value": true
+        },
+        {
+          "auto_event_line": 21,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100001"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__analyze_traffic_patterns",
+              "receipt_id": "receipt_597be869147b40da8918c7441906ca5f",
+              "result": {
+                "account_id": "ACC100001",
+                "click_through_rate": 3.02,
+                "device_distribution": "Tablet",
+                "order_patterns_suspicious": false,
+                "page_views": 3280,
+                "payment_method_shared": false,
+                "referral_source_quality": "High",
+                "revenue_amount": 1185.17
+              },
+              "sop_tool_name": "analyze_traffic_patterns",
+              "tool_call_id": "call_3a7d564060034f1c8c735eb2"
+            }
+          ],
+          "event_line": 19,
+          "fresh_receipt_ids": [
+            "receipt_597be869147b40da8918c7441906ca5f"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.93,
+            "obligations_satisfied": 0.95
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f7da5523d5294536adb3d3baba30f065",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_597be869147b40da8918c7441906ca5f",
+              "tool_event_lines": [
+                17
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-c8969311598d4d57ac6baef4b5b7a4cb.json"
+          ],
+          "step_index": 2,
+          "value": true
+        },
+        {
+          "auto_event_line": 30,
+          "current_receipts": [
+            {
+              "arguments": {
+                "account_id": "ACC100001"
+              },
+              "current_step": true,
+              "is_error": false,
+              "persisted": true,
+              "qualified_tool_name": "sop-bench__determine_enforcement_action",
+              "receipt_id": "receipt_317dfc9e0c8a4e5992117367c4b29c7f",
+              "result": {
+                "account_id": "ACC100001",
+                "enforcement_guidelines": {
+                  "Abusive Account Creation": "Account Closure",
+                  "Misleading Ad Copy": "Account Closure",
+                  "No Violation": "No Action",
+                  "Personal Orders (Related)": "No Action"
+                },
+                "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+              },
+              "sop_tool_name": "determine_enforcement_action",
+              "tool_call_id": "call_94c219497abe433fbfb5a81a"
+            }
+          ],
+          "event_line": 28,
+          "fresh_receipt_ids": [
+            "receipt_317dfc9e0c8a4e5992117367c4b29c7f"
+          ],
+          "issues": [],
+          "probabilities": {
+            "normal_advance_permitted": 0.92,
+            "obligations_satisfied": 0.96
+          },
+          "reason": "all_obligations_accepted",
+          "receipt_checks": [
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_f7da5523d5294536adb3d3baba30f065",
+              "tool_event_lines": [
+                8
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_597be869147b40da8918c7441906ca5f",
+              "tool_event_lines": [
+                17
+              ]
+            },
+            {
+              "backed_by_prior_tool_event": true,
+              "receipt_id": "receipt_317dfc9e0c8a4e5992117367c4b29c7f",
+              "tool_event_lines": [
+                26
+              ]
+            }
+          ],
+          "semantic_review_scope": "Receipt checks establish executed tools, arguments and returned data. They do not certify every prose obligation; delegated risk calculation need not expose its internal weights unless the SOP requires that artifact.",
+          "stage_audits": [
+            "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-71399e989fb34f62a0d46c85b8c83a79.json"
+          ],
+          "step_index": 3,
+          "value": true
+        }
+      ],
+      "issues": [],
+      "llm_success_usage_events_by_step": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1
+      },
+      "observed_tools": [
+        {
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "batch": 1,
+          "line": 8,
+          "result": {
+            "account_id": "ACC100001",
+            "account_status": "Active",
+            "address_validity": true,
+            "business_description": "Digital magazine subscription",
+            "connected_accounts": 2,
+            "email_pattern_suspicious": false,
+            "login_geographic_consistency": true,
+            "website_verified": true
+          },
+          "step_index": 1,
+          "tool_call_id": "call_564e989aa7664c2e8422b7f4",
+          "tool_name": "sop-bench__investigate_account"
+        },
+        {
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "batch": 2,
+          "line": 17,
+          "result": {
+            "account_id": "ACC100001",
+            "click_through_rate": 3.02,
+            "device_distribution": "Tablet",
+            "order_patterns_suspicious": false,
+            "page_views": 3280,
+            "payment_method_shared": false,
+            "referral_source_quality": "High",
+            "revenue_amount": 1185.17
+          },
+          "step_index": 2,
+          "tool_call_id": "call_3a7d564060034f1c8c735eb2",
+          "tool_name": "sop-bench__analyze_traffic_patterns"
+        },
+        {
+          "arguments": {
+            "account_id": "ACC100001"
+          },
+          "batch": 3,
+          "line": 26,
+          "result": {
+            "account_id": "ACC100001",
+            "enforcement_guidelines": {
+              "Abusive Account Creation": "Account Closure",
+              "Misleading Ad Copy": "Account Closure",
+              "No Violation": "No Action",
+              "Personal Orders (Related)": "No Action"
+            },
+            "note": "Apply the enforcement action corresponding to the violation type determined from scoring analysis"
+          },
+          "step_index": 3,
+          "tool_call_id": "call_94c219497abe433fbfb5a81a",
+          "tool_name": "sop-bench__determine_enforcement_action"
+        }
+      ],
+      "predicted": {
+        "enforcement_action": "No Action"
+      },
+      "recorded_correct": true,
+      "skill": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/skills/referral_abuse_detection_v1/SKILL.md",
+      "stages": [
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-5b3580a189ec4e7da7f60668a9f71fb1.json",
+          "input_chars": 3636,
+          "input_tokens": 1102,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 1,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-c8969311598d4d57ac6baef4b5b7a4cb.json",
+          "input_chars": 4204,
+          "input_tokens": 1359,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 2,
+          "threshold": 0.8
+        },
+        {
+          "audit": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/providers/decisions/decision-71399e989fb34f62a0d46c85b8c83a79.json",
+          "input_chars": 4722,
+          "input_tokens": 1580,
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "outcome": "accepted",
+          "reason": "all_obligations_accepted",
+          "request_sent": true,
+          "state_truncated": null,
+          "step_index": 3,
+          "threshold": 0.8
+        }
+      ],
+      "step_summaries": [
+        {
+          "event_line": 11,
+          "step_index": 1,
+          "summary": "Step 1: Investigate Account completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 20,
+          "step_index": 2,
+          "summary": "Step 2: Analyze Traffic Patterns completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 29,
+          "step_index": 3,
+          "summary": "Step 3: Get Enforcement Guidelines completed. Tool results are retained for subsequent steps."
+        },
+        {
+          "event_line": 35,
+          "step_index": 4,
+          "summary": "Step 4: Calculated all violation scores. Abusive Account Creation: 0/5, Misleading Ad Copy: 1/4, Personal Orders: 2/4, No Violation: 6/6. No Violation meets its threshold (6 >= 4). No closure-category meets threshold. Violation type determined: No Violation. Enforcement action: No Action."
+        },
+        {
+          "event_line": 40,
+          "step_index": 5,
+          "summary": "Step 5: Enforcement action reported. Based on the scoring analysis, the account ACC100001 was determined to have No Violation (score 6/6, threshold 4). The enforcement action is: <enforcement_action>No Action</enforcement_action>"
+        }
+      ],
+      "task_id": "ACC100001",
+      "terminal": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/hybrid/referral_abuse_detection_v1/ACC100001/terminal.json"
+    }
+  ],
+  "created_at": "2026-10-05T05:26:00.175664+00:00",
+  "domains": {
+    "email_intent": {
+      "accepted_gates": 0,
+      "by_step": {
+        "2": {
+          "outcomes": {
+            "rejected": 2
+          },
+          "stage_reasons": {
+            "obligation_rejected": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        }
+      },
+      "cases_with_structural_flags": 0,
+      "paired_call_comparison": {
+        "baseline_llm_attempts": 8,
+        "candidate_llm_attempts": 8,
+        "direct_continuation_bypasses": 0,
+        "interpretation": "Each verified auto completion bypasses the ordinary next LLM continuation at that point. Net arm request differences also include different generation trajectories, failures and retries; the two quantities need not agree.",
+        "net_fewer_attempts_minus_direct_bypasses": 0,
+        "net_fewer_llm_attempts": 0,
+        "terminal_pairs": 2
+      },
+      "reviewed_terminal_candidate_cases": 2,
+      "stage_outcomes": {
+        "rejected": 2
+      },
+      "stage_reasons": {
+        "obligation_rejected": 2
+      },
+      "truncated_stage_evidence": []
+    },
+    "patient_intake": {
+      "accepted_gates": 4,
+      "by_step": {
+        "1": {
+          "outcomes": {
+            "rejected": 1,
+            "unsettled": 1
+          },
+          "stage_reasons": {
+            "obligation_rejected": 1,
+            "uncertain_probabilities": 1
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "2": {
+          "outcomes": {
+            "rejected": 1,
+            "unsettled": 1
+          },
+          "stage_reasons": {
+            "obligation_rejected": 1,
+            "uncertain_probabilities": 1
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "3": {
+          "outcomes": {
+            "accepted": 1,
+            "unsettled": 1
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 1,
+            "uncertain_probabilities": 1
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "4": {
+          "outcomes": {
+            "accepted": 2
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "5": {
+          "outcomes": {
+            "unsettled": 2
+          },
+          "stage_reasons": {
+            "uncertain_probabilities": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "6": {
+          "outcomes": {
+            "accepted": 1,
+            "rejected": 1
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 1,
+            "obligation_rejected": 1
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        }
+      },
+      "cases_with_structural_flags": 0,
+      "paired_call_comparison": {
+        "baseline_llm_attempts": 27,
+        "candidate_llm_attempts": 23,
+        "direct_continuation_bypasses": 4,
+        "interpretation": "Each verified auto completion bypasses the ordinary next LLM continuation at that point. Net arm request differences also include different generation trajectories, failures and retries; the two quantities need not agree.",
+        "net_fewer_attempts_minus_direct_bypasses": 0,
+        "net_fewer_llm_attempts": 4,
+        "terminal_pairs": 2
+      },
+      "reviewed_terminal_candidate_cases": 2,
+      "stage_outcomes": {
+        "accepted": 4,
+        "rejected": 3,
+        "uncertain": 5
+      },
+      "stage_reasons": {
+        "all_obligations_accepted": 4,
+        "obligation_rejected": 3,
+        "uncertain_probabilities": 5
+      },
+      "truncated_stage_evidence": []
+    },
+    "referral_abuse_detection_v1": {
+      "accepted_gates": 6,
+      "by_step": {
+        "1": {
+          "outcomes": {
+            "accepted": 2
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "2": {
+          "outcomes": {
+            "accepted": 2
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        },
+        "3": {
+          "outcomes": {
+            "accepted": 2
+          },
+          "stage_reasons": {
+            "all_obligations_accepted": 2
+          },
+          "state_truncated_absent_or_null": 2,
+          "state_truncated_true": 0
+        }
+      },
+      "cases_with_structural_flags": 0,
+      "paired_call_comparison": {
+        "baseline_llm_attempts": 16,
+        "candidate_llm_attempts": 10,
+        "direct_continuation_bypasses": 6,
+        "interpretation": "Each verified auto completion bypasses the ordinary next LLM continuation at that point. Net arm request differences also include different generation trajectories, failures and retries; the two quantities need not agree.",
+        "net_fewer_attempts_minus_direct_bypasses": 0,
+        "net_fewer_llm_attempts": 6,
+        "terminal_pairs": 2
+      },
+      "reviewed_terminal_candidate_cases": 2,
+      "stage_outcomes": {
+        "accepted": 6
+      },
+      "stage_reasons": {
+        "all_obligations_accepted": 6
+      },
+      "truncated_stage_evidence": []
+    }
+  },
+  "notes": [
+    "Strict output scoring and all-attempt accounting are reused unchanged from analyze_paired.py.",
+    "Only immutable terminal candidate cases are inspected; live snapshots can have pending or unpaired cases.",
+    "Provider contract: state_truncated=true disallows acceptance. Ollaya requires explicit false; Jev permits an absent flag.",
+    "Absent Jev truncation metadata is not evidence of zero server-side truncation.",
+    "Tool receipts establish observable execution, not fulfillment of every prose documentation obligation.",
+    "Planning is disabled in these runs; the phase2 directory name identifies the reused schedule driver.",
+    "The original holdout was reused and is not an untouched confirmation set."
+  ],
+  "paired_metrics": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-jev-080/analysis/pilot-audit-paired.json",
+  "run_markers": {
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot": {
+      "aborted.json": false,
+      "completed.json": true,
+      "failed.json": false
+    }
+  },
+  "schedule_evidence": [
+    {
+      "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-pilot/schedule.json",
+      "sha256": "db9ca23484fa793f1b630c4375b4efbb54150566d195fb969849b0dc0d0cc57f"
+    }
+  ],
+  "schema_version": 1,
+  "strict_metrics_analyzer_sha256": "23e972cacaf8f38a4a87445e0047f91437bc00683b3f7077fcdfab9fb6678afc",
+  "structural_flags": []
+}

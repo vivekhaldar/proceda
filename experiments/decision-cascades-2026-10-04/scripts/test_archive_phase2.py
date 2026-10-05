@@ -124,6 +124,12 @@ class ArchiveTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.package()
 
+    def test_negative_decision_is_a_finalized_audit(self):
+        path = self.root / "phase2/runs/probe/providers/decisions/negative.json"
+        self.write(path, {"outcome": "rejected", "reason": "obligation_rejected"})
+        audits = archive.complete_audits(self.root, [path])
+        self.assertEqual(audits[0]["outcome"], "rejected")
+
     def test_cache_hash_change_rejected(self):
         self.cache.write_text("{}")
         with self.assertRaises(ValueError):

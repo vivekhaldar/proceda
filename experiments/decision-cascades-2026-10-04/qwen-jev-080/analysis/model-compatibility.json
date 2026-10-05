@@ -1,0 +1,135 @@
+{
+  "created_at_utc": "2026-10-05T05:25:25.675959+00:00",
+  "status": "official_documentation_and_local_config_verified",
+  "inference_performed_for_this_artifact": false,
+  "configuration_modified": false,
+  "checked_configuration": {
+    "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-jev-080/configs/hybrid.yaml",
+    "sha256": "1d8c689c3d32674d70f50525b188ab227b4c32ac64881fb8fdf851ff0ef04052",
+    "llm": {
+      "model": "openai/Qwen/Qwen3.8-27B",
+      "api_base": "https://api.tokenfactory.nebius.com/v1",
+      "api_key_env": "NEBIUS_API_KEY",
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "max_retries": 2,
+      "timeout": 90,
+      "reasoning_effort": "low"
+    },
+    "decisions": {
+      "enabled": true,
+      "threshold": 0.8,
+      "fast_completion": true,
+      "verify_proposals": false,
+      "max_repairs": 1,
+      "backends": [
+        {
+          "name": "jev-hosted",
+          "kind": "typesafe",
+          "model": "jev-1.13.0",
+          "base_url": "https://api.typesafe.ai",
+          "api_key_env": "TYPESAFE_API_KEY",
+          "timeout": 45,
+          "max_input_chars": 18000,
+          "input_cost_per_million": 0.042
+        }
+      ]
+    },
+    "planning": {
+      "enabled": false
+    }
+  },
+  "jev": {
+    "configured_model": "jev-1.13.0",
+    "official_current_model": "jev-1.13.0",
+    "model_is_pinned": true,
+    "documented_aliases": {
+      "jev-latest": "jev-1.13.0",
+      "jev-preview": "jev-1.13.0"
+    },
+    "endpoint": "https://api.typesafe.ai/v1/systemone",
+    "authentication": "Bearer token supplied from TYPESAFE_API_KEY; no credential value accessed or recorded in this artifact",
+    "documented_context": {
+      "total_request_budget_display": "64k tokens",
+      "total_request_includes": "state plus all questions combined",
+      "per_question_budget_display": "32k tokens",
+      "per_question_includes": "state plus longest single question"
+    },
+    "supported_input": "Text represented as a string, JSON object, or array; no image/audio/video input",
+    "supported_questions": [
+      "noul",
+      "choice",
+      "score"
+    ],
+    "noul_contract": "Returns the probability of yes; optional true/false criteria descriptions supported.",
+    "documented_rates_usd_per_million_tokens": {
+      "input": 0.042,
+      "output": 0.0
+    },
+    "price_basis": "Published provider list rates, not account invoice. Current models documentation and September15 launch announcement both confirm input rate and free output.",
+    "documented_rate_limits": {
+      "tokens_per_second": 100000,
+      "requests_per_second": 80,
+      "qualification": "Provider explicitly says limits can change without notice."
+    }
+  },
+  "compatibility_conclusions": [
+    "Pinned jev-1.13.0 is the currently documented Jev release and uses the configured /v1/systemone endpoint.",
+    "Frozen completion checks use supported noul questions, text instructions and true/false criteria. Threshold0.8 is applied by existing Proceda runtime.",
+    "No Laya-specific512-token or192-token-head budget applies to this hosted backend according to its documented context limits.",
+    "Hosted documentation alone does not prove internal absence of truncation for every request. This preflight performs no inference and does not claim to measure actual request fit.",
+    "Configured18000-character guard is preserved. It is a character guard and is not treated as an exact provider-token measurement.",
+    "API response schema reports model/answers/usage; state_truncated is not part of the documented hosted response contract. Proceda requires explicit false only for its ollaya backend."
+  ],
+  "reason_for_user_directed_switch": {
+    "summary": "Installed Laya silently cropped both frozen completion question heads before inference; this loss is not represented by state_truncated. Input to the checker was compromised even if the state fit. User subsequently requested hosted Jev while preserving Qwen and threshold0.8.",
+    "laya_artifact": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-laya-080/analysis/model-compatibility.json",
+    "laya_artifact_sha256": "90b786e3e4c26d1132a1a9654f37b8283c7dc040a28a8345f0c7fecf4a26b492"
+  },
+  "qwen": {
+    "model": "Qwen/Qwen3.8-27B",
+    "nebius_list_rates_usd_per_million": {
+      "input": 0.45,
+      "output": 3.0
+    },
+    "rate_evidence": "Verified official Nebius public endpoint modal through browser UI; prices explicitly approximate, actual cost depends on usage.",
+    "endpoint_properties": {
+      "flavor": "Base",
+      "region": "Global",
+      "context_display": "262K",
+      "quantization_description": "NVFP4",
+      "quantization_property": "FP4",
+      "tool_calling": "Available",
+      "reasoning": "Available",
+      "responses_api": "Available"
+    },
+    "reasoning_effort": {
+      "experiment_value": "low",
+      "nebius_generic_schema_options": [
+        "none",
+        "minimal",
+        "low",
+        "medium",
+        "high",
+        "xhigh"
+      ],
+      "qwen_template_options": [
+        "low",
+        "medium",
+        "xhigh"
+      ],
+      "qwen_template_default": "xhigh",
+      "thinking_default": true,
+      "compatibility_statement": "low is accepted by generic Nebius API schema and model-author template; these documents alone do not independently prove provider-specific mapping or a successful request."
+    }
+  },
+  "verified_sources": {
+    "jev_models": "https://docs.typesafe.ai/models",
+    "jev_api": "https://docs.typesafe.ai/api",
+    "jev_pricing_announcement": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+    "jev_current_homepage_price": "https://typesafe.ai/",
+    "nebius_endpoint": "https://tokenfactory.nebius.com/endpoints?search=Qwen3.8-27B&modals=endpoint-details&model-id=Qwen/Qwen3.8-27B",
+    "nebius_api": "https://docs.tokenfactory.nebius.com/api-reference/inference/create-chat-completion",
+    "qwen_template": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/chat_template.jinja"
+  }
+}

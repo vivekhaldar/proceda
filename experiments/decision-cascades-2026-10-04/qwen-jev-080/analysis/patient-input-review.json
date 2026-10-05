@@ -1,0 +1,5643 @@
+{
+  "arms": {
+    "baseline": {
+      "blank_replacement_in_auto_completed_step_count": 0,
+      "blank_replacements": {
+        "alcohol_consumption -> None": 15,
+        "exercise_frequency -> None": 8
+      },
+      "cases": [
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100004",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2010']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Tonsillectomy 2010"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100004",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100006",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2018']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Cesarean 2018"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100006",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100008",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Anxiety']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Anxiety"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100008",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100009",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2010']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2010"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100009",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100010",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Gallbladder 2019"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100010",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100014",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2020']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2020"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100014",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100016",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Anxiety']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Anxiety"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100016",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100017",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100017",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100018",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2015']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Tonsillectomy 2015"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100018",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100020",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Cesarean 2019"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Thyroid']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Thyroid"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100020",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100021",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2018']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2018"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['GERD', 'Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "GERD",
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100021",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100022",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100022",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100024",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2021']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Gallbladder 2021"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100024",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100025",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Surgery 2019"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100025",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100026",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100026",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100028",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2020']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Cesarean 2020"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100028",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100030",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2012']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Tonsillectomy 2012"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100030",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100033",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2019"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100033",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100035",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2018']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2018"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100035",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100037",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100037",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100038",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Cesarean 2019"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100038",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100039",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2017"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100039",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100041",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Surgery 2016"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100041",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100042",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100042",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100044",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2020']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Gallbladder 2020"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100044",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100046",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100046",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100047",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Replacement 2017']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Replacement 2017"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100047",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100049",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Bypass Surgery 2021']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Bypass Surgery 2021"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Arthritis']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Heart Disease",
+                "Arthritis"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100049",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100052",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100052",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100053",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Surgery 2017"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100053",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100055",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2018', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Bypass Surgery 2018",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100055",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100056",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2019"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100056",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100059",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Replacement 2016']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Replacement 2016"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100059",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100060",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2018']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Tonsillectomy 2018"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100060",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100061",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2019', 'Cataract 2021']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hip Replacement 2019",
+                "Cataract 2021"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100061",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100064",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100064",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100067",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Bypass Surgery 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100067",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100068",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Gallbladder 2019"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100068",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100069",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100069",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100070",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100070",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100072",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2017']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Tonsillectomy 2017"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100072",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100073",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2021', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hip Replacement 2021",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100073",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100074",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2021']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Cesarean 2021"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100074",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100075",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2018']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2018"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100075",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100076",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100076",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100077",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2019']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Surgery 2019"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100077",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100079",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2019', 'Cataract 2021']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Bypass Surgery 2019",
+                "Cataract 2021"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100079",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100080",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2020']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Appendectomy 2020"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100080",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100085",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100085",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100087",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 32
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 41
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 41
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100087",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100088",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100088",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/baseline/patient_intake/P100089",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Knee Surgery 2017"
+              ],
+              "tool_event_line": 35
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": false,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 35
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100089",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        }
+      ],
+      "final_result_propagation_flag_cases": 0,
+      "other_argument_difference_count": 0,
+      "prior_result_propagation_flag_cases": 0,
+      "terminal_cases": 52,
+      "tool_order_mismatch_cases": 0,
+      "transformation_counts": {
+        "blank_source_replaced": 23,
+        "matching_iso_date": 42,
+        "matching_list_parse": 104
+      }
+    },
+    "hybrid": {
+      "blank_replacement_in_auto_completed_step_count": 8,
+      "blank_replacements": {
+        "alcohol_consumption -> None": 15,
+        "exercise_frequency -> None": 8
+      },
+      "cases": [
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100004",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2010']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Tonsillectomy 2010"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100004",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100006",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2018']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Cesarean 2018"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100006",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100008",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Anxiety']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Anxiety"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100008",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100009",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2010']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2010"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100009",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100010",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Gallbladder 2019"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100010",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100014",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2020']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2020"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100014",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100016",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Anxiety']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Anxiety"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100016",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100017",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100017",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100018",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2015']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Tonsillectomy 2015"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100018",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100020",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Cesarean 2019"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Thyroid']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Thyroid"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100020",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100021",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2018']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2018"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['GERD', 'Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "GERD",
+                "Asthma"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100021",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100022",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100022",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100024",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2021']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Gallbladder 2021"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100024",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100025",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Surgery 2019"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100025",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100026",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100026",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100028",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2020']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Cesarean 2020"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100028",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100030",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2012']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Tonsillectomy 2012"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100030",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100033",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2019"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Asthma"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100033",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100035",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2018']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2018"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100035",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100037",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100037",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100038",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Cesarean 2019"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100038",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100039",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2017"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100039",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100041",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Surgery 2016"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100041",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100042",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Migraine']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Migraine"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100042",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100044",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2020']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Gallbladder 2020"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100044",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100046",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100046",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100047",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Replacement 2017']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Replacement 2017"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100047",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100049",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Bypass Surgery 2021']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Bypass Surgery 2021"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Arthritis']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Heart Disease",
+                "Arthritis"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100049",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100052",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100052",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100053",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Surgery 2017"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100053",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100055",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2018', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Bypass Surgery 2018",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100055",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100056",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2019"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100056",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100059",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Replacement 2016']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Replacement 2016"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100059",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100060",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2018']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Tonsillectomy 2018"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100060",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100061",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2019', 'Cataract 2021']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hip Replacement 2019",
+                "Cataract 2021"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100061",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100064",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100064",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100067",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Bypass Surgery 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100067",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100068",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Gallbladder 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Gallbladder 2019"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100068",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100069",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100069",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100070",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100070",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100072",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "6/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-06-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Tonsillectomy 2017']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Tonsillectomy 2017"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100072",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100073",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": true,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2021', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hip Replacement 2021",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 43
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 43
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100073",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100074",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "4/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-04-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Cesarean 2021']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Cesarean 2021"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100074",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100075",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2018']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2018"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100075",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100076",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100076",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100077",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2019']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Surgery 2019"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100077",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100079",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Bypass Surgery 2019', 'Cataract 2021']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Bypass Surgery 2019",
+                "Cataract 2021"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Heart Disease', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Heart Disease",
+                "Glaucoma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100079",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100080",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Appendectomy 2020']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Appendectomy 2020"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypothyroidism']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypothyroidism"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100080",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100085",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "1/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-01-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "alcohol_consumption",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Hip Replacement 2020', 'Cataract 2022']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hip Replacement 2020",
+                "Cataract 2022"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Arthritis', 'Glaucoma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Arthritis",
+                "Glaucoma"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100085",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            4
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100087",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "3/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-03-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "exercise_frequency",
+              "classification": "blank_source_replaced",
+              "source": "",
+              "step": 3,
+              "step_auto_completed": false,
+              "supplied": "None",
+              "tool_event_line": 34
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Back Surgery 2016']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Back Surgery 2016"
+              ],
+              "tool_event_line": 44
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Hypertension', 'Obesity']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Hypertension",
+                "Obesity"
+              ],
+              "tool_event_line": 44
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100087",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100088",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "5/1/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-05-01",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['None']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "None"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Asthma']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Asthma"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100088",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        },
+        {
+          "accepted_steps": [
+            3,
+            4,
+            6
+          ],
+          "case": "experiments/decision-cascades-2026-10-04/phase2/runs/qwen-jev-080-holdout--patient_intake/hybrid/patient_intake/P100089",
+          "final_result_propagation_flags": {},
+          "input_transformations": [
+            {
+              "argument": "coverage_start_date",
+              "classification": "matching_iso_date",
+              "source": "2/15/23",
+              "step": 1,
+              "step_auto_completed": false,
+              "supplied": "2023-02-15",
+              "tool_event_line": 8
+            },
+            {
+              "argument": "previous_surgeries",
+              "classification": "matching_list_parse",
+              "source": "['Knee Surgery 2017']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Knee Surgery 2017"
+              ],
+              "tool_event_line": 37
+            },
+            {
+              "argument": "chronic_conditions",
+              "classification": "matching_list_parse",
+              "source": "['Diabetes Type 2', 'GERD']",
+              "step": 4,
+              "step_auto_completed": true,
+              "supplied": [
+                "Diabetes Type 2",
+                "GERD"
+              ],
+              "tool_event_line": 37
+            }
+          ],
+          "prior_result_propagation_flags": [],
+          "task_id": "P100089",
+          "tool_order": [
+            "validateInsurance",
+            "validatePrescriptionBenefits",
+            "calculateLifestyleRisk",
+            "calculateOverallRisk",
+            "verifyPharmacy",
+            "registerPatient"
+          ],
+          "tool_order_matches": true
+        }
+      ],
+      "final_result_propagation_flag_cases": 0,
+      "other_argument_difference_count": 0,
+      "prior_result_propagation_flag_cases": 0,
+      "terminal_cases": 52,
+      "tool_order_mismatch_cases": 0,
+      "transformation_counts": {
+        "blank_source_replaced": 23,
+        "matching_iso_date": 45,
+        "matching_list_parse": 104
+      }
+    }
+  },
+  "notes": [
+    "Matching list/date conversions preserve supplied values.",
+    "Blank-to-N/A is the shared bridge convention; other blank replacements remain explicit observations rather than silently assumed equivalent.",
+    "Simulator tools use patient_id lookups. Correct returned/final values cannot validate the generated supporting arguments for a real service.",
+    "Risk calculation is delegated to the required tool; hidden intermediate weights alone do not prove failure of a prose obligation."
+  ],
+  "scope": "Patient tool execution and source-input transformations; no rescoring."
+}

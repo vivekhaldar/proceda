@@ -1,0 +1,5 @@
+{
+  "superseded_artifact": "patient-input-review.json",
+  "use_instead": "patient-input-review-v2.json",
+  "reason": "The initial input-only review omitted clarification evidence. All 23 blank-to-None replacements per arm are grounded in recorded clarification responses, including all eight replacements in accepted hybrid Step 3 gates. The benchmark automatically chooses the first offered option; this is not real user verification. Original snapshot retained unchanged."
+}

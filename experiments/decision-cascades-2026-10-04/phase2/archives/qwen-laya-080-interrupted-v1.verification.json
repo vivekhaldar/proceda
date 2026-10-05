@@ -1,0 +1,12 @@
+{
+  "archive_sha256": "bcf52b7642b3699c51515564399a1b96fa5c24ab8134bd1592837f8dbe618512",
+  "archive_sha256_verified": true,
+  "fresh_extraction_hashes_verified": true,
+  "inference_performed": false,
+  "manifest_sha256": "d3b57907ca5e1f36d7ee3a2d6f0bd438f41fb2d1e7c48a27ca980604e75752d8",
+  "members_verified": 3738,
+  "raw_files_retained": true,
+  "raw_size_bytes": 38472018,
+  "temporary_extraction_removed": true,
+  "verified_at": "2026-10-05T05:18:07.352448+00:00"
+}

@@ -101,7 +101,7 @@ def complete_audits(root: Path, files: list[Path]) -> list[dict]:
             continue
         item = read_json(root, path)
         if "outcome" in item:
-            if item["outcome"] not in {"accepted", "uncertain", "error", "skipped"}:
+            if item["outcome"] not in {"accepted", "rejected", "uncertain", "error", "skipped"}:
                 raise ValueError("Incomplete decision audit")
         elif item.get("status") not in {"success", "error"} or not item.get("finished_at"):
             raise ValueError("Incomplete LLM audit")
