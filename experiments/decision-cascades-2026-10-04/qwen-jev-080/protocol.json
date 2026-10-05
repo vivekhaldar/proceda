@@ -1,0 +1,66 @@
+{
+  "purpose": "Repeat phase-1 completion-only benchmark with Qwen 3.8 27B and hosted Jev threshold0.8",
+  "domains": [
+    "email_intent",
+    "patient_intake",
+    "referral_abuse_detection_v1"
+  ],
+  "primary_split": "original holdout reused validation; not unseen confirmation",
+  "task_counts": {
+    "email_intent": 148,
+    "patient_intake": 52,
+    "referral_abuse_detection_v1": 160
+  },
+  "jobs": 4,
+  "order": "Three concurrent domain processes, each with four case groups; each case has sequential paired arms with alternating first arm.",
+  "changes": [
+    "main LLM both arms Qwen/Qwen3.8-27B",
+    "hybrid decision model hosted jev-1.13.0",
+    "hybrid yes threshold0.8"
+  ],
+  "unchanged": [
+    "source SOPs",
+    "benchmark inputs and oracle tools",
+    "strict final-field scoring",
+    "completion questions and evidence",
+    "input truncation rejection",
+    "temperature0",
+    "max_tokens2048",
+    "reasoning_effort low",
+    "proposal verification disabled"
+  ],
+  "planning_enabled": false,
+  "pilot": "Two development cases per domain; compatibility check only, not tuning",
+  "coverage_policy": "Context rejection/abstention retains original fallback; no prompt compression or relaxed truncation detection",
+  "scope": "Final output accuracy plus acceptance audit; not whole-SOP compliance guarantee",
+  "manifest_canonical_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
+  "cost_policy": "Usage-based list-price estimate; full input price for cached tokens, unverified actual billing. Every Jev and LLM attempt counted.",
+  "parallel_domain_processes": 3,
+  "maximum_active_case_executions": 12,
+  "driver_note": "Reuses phase2-named schedule driver and trace directory, but planning/compilation is explicitly disabled in both arms.",
+  "qwen_list_prices_usd_per_million": {
+    "input": 0.45,
+    "output": 3.0,
+    "source": "https://tokenfactory.nebius.com/endpoints?search=Qwen3.8-27B",
+    "verified_date": "2026-10-04",
+    "cache_billing_verified": false
+  },
+  "replaces": "qwen-laya-080, interrupted at user request because Laya context is insufficient",
+  "jev_list_prices_usd_per_million": {
+    "input": 0.042,
+    "output": 0.0
+  },
+  "fresh_baseline": "Rerun Qwen-only paired with Jev hybrid; do not pool aborted Laya baseline cases.",
+  "checker_transport_changes": [
+    "kind typesafe",
+    "model jev-1.13.0",
+    "endpoint https://api.typesafe.ai/v1/systemone",
+    "credential TYPESAFE_API_KEY",
+    "hosted input price0.042/M"
+  ],
+  "checker_parameters_preserved": {
+    "threshold": 0.8,
+    "timeout": 45,
+    "max_input_chars": 18000
+  }
+}
