@@ -12,7 +12,7 @@
     "referral_abuse_detection_v1": 160
   },
   "jobs": 4,
-  "order": "case-paired sequential arms, cyclic alternating first arm, concurrent cases",
+  "order": "Three concurrent domain processes, each with four case groups; each case has sequential paired arms with alternating first arm.",
   "changes": [
     "main LLM both arms Qwen/Qwen3.8-27B",
     "hybrid decision model laya:en",
@@ -34,5 +34,17 @@
   "coverage_policy": "Context rejection/abstention retains original fallback; no prompt compression or relaxed truncation detection",
   "scope": "Final output accuracy plus acceptance audit; not whole-SOP compliance guarantee",
   "manifest_canonical_sha256": "622c670bcf83dbd2e57a4842c7cccfa226cd6c64e094adcdb418bba2d9d2fdef",
-  "cost_policy": "Report token/call counts. API dollar estimates only with verified Qwen rates; local compute is not free hardware."
+  "cost_policy": "Report token/call counts. API dollar estimates only with verified Qwen rates; local compute is not free hardware.",
+  "parallel_domain_processes": 3,
+  "maximum_active_case_executions": 12,
+  "driver_note": "Reuses phase2-named schedule driver and trace directory, but planning/compilation is explicitly disabled in both arms.",
+  "pilot_observation": {
+    "executions": 12,
+    "correct": 12,
+    "decision_checks": 20,
+    "accepted": 0,
+    "state_truncated": 18,
+    "uncertain": 2,
+    "configuration_changed_after_pilot": false
+  }
 }
