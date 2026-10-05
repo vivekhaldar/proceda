@@ -14,13 +14,22 @@ ordinary LLM fallbacks. Every attempt remains in the preparation directory.
 ```sh
 .venv/bin/python -m benchmarks.sop_bench.prepare_business_plans \
   --config experiments/decision-cascades-2026-10-04/business-decisions-080/configs/business-qwen.yaml \
-  --output-dir experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2
+  --output-dir experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v3
 ```
 
-The earlier source-v1 preparation remains preserved: three truncated compiler requests, zero
-reviewer calls, zero admitted business decisions, and $0.02278755 estimated cost. Include this
-failed preparation in cumulative experiment spend, separately from v2 deployment and warm-case
-costs; see `analysis/source-v1-failure.json`. Do not overwrite or retry that directory.
+Earlier preparations remain preserved. Source-v1 used three truncated compiler requests,
+zero reviewer calls, and cost $0.02278755. Source-v2 used 15 compiler and seven reviewer calls
+(22 total), all finishing without truncation, and cost $0.08124525. It admitted seven
+observation tool contracts and zero business decisions. Email emitted an array where a
+name-to-ValueRef mapping was required; referral scoring remained LLM fallback; patient had
+malformed step-2 JSON and a dependent step-6 receipt that could not be admitted. See
+`analysis/source-v1-failure.json` and `analysis/source-v2-integrity.json`.
+
+The cumulative preparation spend before source-v3 is $0.1040328. Include it in total
+experiment spend, separately from the active deployment's preparation and warm-case costs.
+Do not overwrite or retry either prior directory. Source-v3 clarifies generic mapping wire
+shape and model-applied arithmetic in the prompts. The source scope, schema, per-step
+algorithm, and all model settings remain unchanged.
 
 Inspect the source plans and review results before starting task cases. Do not adjust plans
 against validation labels. The same frozen preparation is used by both business arms. Missing,
@@ -37,7 +46,7 @@ business_arms=(
   --arm "business-qwen=$business_exp/configs/business-qwen.yaml"
   --arm "business-jev=$business_exp/configs/business-jev.yaml"
 )
-business_prepared="$business_exp/preparation/source-v2/manifest.json"
+business_prepared="$business_exp/preparation/source-v3/manifest.json"
 
 # Four frozen development cases per domain, 48 total executions, balanced arm positions.
 .venv/bin/python -m benchmarks.sop_bench.run_compiled_schedule \

@@ -1,0 +1,65 @@
+{
+  "input_fields": [
+    "account_id"
+  ],
+  "skill": "---\nname: referral-abuse-detection-v1\ndescription: Detects referral abuse violations by investigating accounts, analyzing traffic patterns, and scoring violation indicators to determine enforcement action.\nrequired_tools:\n  - investigate_account\n  - analyze_traffic_patterns\n  - determine_enforcement_action\noutput_fields:\n  - enforcement_action\n---\n\n### Step 1: Investigate Account\nCall `investigate_account` with `account_id`. Record all returned fields: `address_validity`, `email_pattern_suspicious`, `website_verified`, `business_description`, `account_status`, `connected_accounts`, and `login_geographic_consistency`.\n\n### Step 2: Analyze Traffic Patterns\nCall `analyze_traffic_patterns` with `account_id`. Record all returned fields: `revenue_amount`, `click_through_rate`, `page_views`, `device_distribution`, `referral_source_quality`, `payment_method_shared`, and `order_patterns_suspicious`.\n\n### Step 3: Get Enforcement Guidelines\nCall `determine_enforcement_action` with `account_id` to retrieve enforcement action guidelines.\n\n### Step 4: Calculate Violation Scores and Determine Enforcement Action\n5.5 Determine Enforcement Action\n5.5.1 Analyze tool outputs to calculate a violation score and determine the violation type:\n\n   STEP 1: Calculate Violation Indicators (count how many are TRUE)\n   \n   IMPORTANT: Boolean fields (address_validity, email_pattern_suspicious, etc.) are actual boolean values (true/false), NOT strings.\n   Compare them directly as booleans: if address_validity is false, if email_pattern_suspicious is true, etc.\n   \n   Abusive Account Creation Score (count TRUE indicators):\n   - address_validity is false (+1)\n   - email_pattern_suspicious is true (+1)\n   - website_verified is false (+1)\n   - connected_accounts >= 15 (+1)\n   - login_geographic_consistency is false (+1)\n   Score >= 3 \u2192 Abusive Account Creation\n   \n   Misleading Ad Copy Score (count TRUE indicators):\n   - website_verified is false (+1)\n   - referral_source_quality is \"Low\" or \"Medium\" (+1)\n   - order_patterns_suspicious is true (+1)\n   - click_through_rate > 0.4 (+1)\n   Score >= 3 \u2192 Misleading Ad Copy\n   \n   Personal Orders Score (count TRUE indicators):\n   - payment_method_shared is true (+1)\n   - connected_accounts > 0 AND connected_accounts < 15 (+1)\n   - order_patterns_suspicious is true (+1)\n   - referral_source_quality is \"High\" (+1)\n   Score >= 3 \u2192 Personal Orders (Related)\n   \n   No Violation Score (count TRUE indicators):\n   - address_validity is true (+1)\n   - email_pattern_suspicious is false (+1)\n   - website_verified is true (+1)\n   - login_geographic_consistency is true (+1)\n   - payment_method_shared is false (+1)\n   - order_patterns_suspicious is false (+1)\n   Score >= 4 \u2192 No Violation\n\n   STEP 2: Determine violation type based on severity-first priority\n   - If any closure-category (Abusive Account Creation, Misleading Ad Copy) meets its threshold, select it (highest score among closure-categories)\n   - Otherwise, select the highest-scoring non-closure category\n   - If no score meets threshold \u2192 INCONCLUSIVE\n   - If tied scores \u2192 Use priority order: Abusive Account Creation > Misleading Ad Copy > Personal Orders\n\n5.5.2 Apply enforcement action based on determined violation type:\n   - Abusive Account Creation \u2192 \"Account Closure\"\n   - Misleading Ad Copy \u2192 \"Account Closure\"\n   - Personal Orders (Related) \u2192 \"No Action\"\n   - No Violation \u2192 \"No Action\"\n   - INCONCLUSIVE \u2192 \"Inconclusive\" (insufficient evidence)\n\n\n### Step 5: Report the Enforcement Action\nOutput the exact enforcement action determined in Step 4 in <enforcement_action>...</enforcement_action> tags in the final complete_step summary. The allowed actions are Account Closure, No Action, and Inconclusive. Do not execute account closure; this procedure reports the decision.\n",
+  "tool_schemas": [
+    {
+      "function": {
+        "description": "Retrieves account investigation data including address validity, email patterns, website verification status, business description, account status, connected accounts count, and login geographic consistency",
+        "name": "sop-bench__investigate_account",
+        "parameters": {
+          "properties": {
+            "account_id": {
+              "description": "Unique identifier for the account to investigate",
+              "type": "string"
+            }
+          },
+          "required": [
+            "account_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Retrieves traffic and transaction data including revenue amount, click-through rate, page views, device distribution, referral source quality, payment method sharing status, and order pattern indicators",
+        "name": "sop-bench__analyze_traffic_patterns",
+        "parameters": {
+          "properties": {
+            "account_id": {
+              "description": "Unique identifier for the account to analyze",
+              "type": "string"
+            }
+          },
+          "required": [
+            "account_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Retrieves enforcement action guidelines that map violation types to their corresponding actions. Use this after determining the violation type from the scoring analysis",
+        "name": "sop-bench__determine_enforcement_action",
+        "parameters": {
+          "properties": {
+            "account_id": {
+              "description": "Unique identifier for the account",
+              "type": "string"
+            }
+          },
+          "required": [
+            "account_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ]
+}

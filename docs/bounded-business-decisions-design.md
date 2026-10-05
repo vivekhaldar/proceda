@@ -128,6 +128,16 @@ review for every surviving optimized step. Zero admitted decisions is unsupporte
 Cost includes every step compiler call and every non-LLM step review. The original
 full planning mode retains its existing whole-plan preparation path.
 
+Source-v2 at abc6f4d fit the requested budget but admitted zero decisions: email
+produced a list where the evidence schema requires a named mapping, and referral
+interpreted the ban on executable expressions as also excluding model-evaluated
+scoring. Patient retained no business decision. Preserve all 22 requests and
+$0.08124525 preparation cost. Before any task inference, prompt version 3 makes
+the evidence-object shape explicit and distinguishes source-prescribed numerical
+classification from emitting executable code. It also reiterates both identifier
+boundaries for regex extraction. No schema, acceptance rule, source SOP, model,
+threshold or token budget changes, and no benchmark labels inform this correction.
+
 ## Domain expectations to test rather than assume
 
 Email Step 1 is a five-way intent decision plus explicitly prescribed product-ID

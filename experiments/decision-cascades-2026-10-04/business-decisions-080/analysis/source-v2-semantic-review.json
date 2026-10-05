@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-05T06:06:23.141055+00:00",
+  "review_type": "read-only source-plan semantic review",
+  "preparation": "source-v2",
+  "inference_performed_by_reviewer": false,
+  "case_values_or_reference_answers_used": false,
+  "manifest": "experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/manifest.json",
+  "manifest_sha256": "3cbcbe9199d30c3e683065fd22555198f36f05ee0da69971dc572cd4d9cd5be9",
+  "conclusion": "All three domains are unsupported: no finite choice or predicate was admitted. Conservative fallbacks preserve full original obligations. These artifacts cannot measure native business-decision substitution.",
+  "domains": {
+    "email_intent": {
+      "status": "unsupported",
+      "runtime_plan_returned": false,
+      "artifact": "experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/cache/ac9d4d6955d907ffe3457b67c3157124fc2b004025ef962fbe9773761d9e8ea5.json",
+      "artifact_sha256": "a93030a9e526d07b99701a265a26827edd254edd75e0446cd0e9fd7f8cfcf804",
+      "cache_key": "ac9d4d6955d907ffe3457b67c3157124fc2b004025ef962fbe9773761d9e8ea5",
+      "source_sha256": "11734c69d76ded193e218e6d78fb306ef2ff3f8390a3b6a2a1a64f001331252b",
+      "step_kinds": [
+        "llm",
+        "llm",
+        "llm"
+      ],
+      "admitted_business_decisions": 0,
+      "full_source_preserved": true,
+      "all_nondecision_steps_retain_entire_source": true,
+      "steps": [
+        {
+          "index": 1,
+          "status": "invalid",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 1163,
+          "structural_rejection": "choice inputs must be a string-keyed object"
+        },
+        {
+          "index": 2,
+          "status": "llm",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 320
+        },
+        {
+          "index": 3,
+          "status": "llm",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 91
+        }
+      ],
+      "findings": [
+        "Step 1 contains the correct five source-named intent outcomes but its inputs is an array instead of the required evidence-name mapping; structural validation rejects the entire candidate before review.",
+        "The rejected extractor P[A-Z0-9]{5} lacks surrounding alphanumeric boundaries and can match a six-character prefix inside a longer identifier. This is a second semantic concern in a non-admitted candidate, not an observed execution error.",
+        "Steps 2 and 3 remain generative with their original comparison, price-delta, communication and reporting obligations. No selected label is substituted for this mixed work."
+      ],
+      "rejected_extractor": {
+        "pattern": "P[A-Z0-9]{5}",
+        "synthetic_long_identifier": "XP1234567Y",
+        "matched_substring": "P12345",
+        "admitted": false
+      }
+    },
+    "referral_abuse_detection_v1": {
+      "status": "unsupported",
+      "runtime_plan_returned": false,
+      "artifact": "experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/cache/b8f97f9d2818ef80dda0e545d4ad1c85ddc3c4417981747161f8d53de09401c5.json",
+      "artifact_sha256": "d91a3dfccb15f20db9a285e3cdf2ea652ee6d0a6ac0dac8e6a50b16a2f8dbe00",
+      "cache_key": "b8f97f9d2818ef80dda0e545d4ad1c85ddc3c4417981747161f8d53de09401c5",
+      "source_sha256": "44a3c0797f1a73ead8b446bc9de92f974a60a98e0ad0f1d50ef5ad05b013ccaa",
+      "step_kinds": [
+        "tool",
+        "tool",
+        "tool",
+        "llm",
+        "llm"
+      ],
+      "admitted_business_decisions": 0,
+      "full_source_preserved": true,
+      "all_nondecision_steps_retain_entire_source": true,
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 311
+        },
+        {
+          "index": 2,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 158
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 148
+        },
+        {
+          "index": 4,
+          "status": "llm",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 261
+        },
+        {
+          "index": 5,
+          "status": "llm",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 262
+        }
+      ],
+      "observation_contracts": [
+        {
+          "step": 1,
+          "tool": "sop-bench__investigate_account",
+          "arguments": {
+            "account_id": {
+              "kind": "input",
+              "key": "account_id"
+            }
+          }
+        },
+        {
+          "step": 2,
+          "tool": "sop-bench__analyze_traffic_patterns",
+          "arguments": {
+            "account_id": {
+              "kind": "input",
+              "key": "account_id"
+            }
+          }
+        },
+        {
+          "step": 3,
+          "tool": "sop-bench__determine_enforcement_action",
+          "arguments": {
+            "account_id": {
+              "kind": "input",
+              "key": "account_id"
+            }
+          }
+        }
+      ],
+      "findings": [
+        "Steps 1, 2 and 3 retain investigate_account, analyze_traffic_patterns and determine_enforcement_action observation contracts, all bound directly to the source account_id. Their full original obligations remain with ordinary execution.",
+        "The compiler explicitly emitted llm for Step 4; no decision criteria or receipt bindings were admitted for enforcement. All four indicator counts, source thresholds, severity-first ordering, tie priority and enforcement mappings remain in the full source instructions.",
+        "The guidelines retrieval remains a required original Step 3 call. No native enforcement path was admitted that could omit or substitute it. Step 5 retains exact reporting and the prohibition on executing account closure."
+      ]
+    },
+    "patient_intake": {
+      "status": "unsupported",
+      "runtime_plan_returned": false,
+      "artifact": "experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/cache/b74491407480c46563ef591f3eff1b463d67682c703deecf58887ea04402ba0b.json",
+      "artifact_sha256": "de9a718a7fa76ff5d10d3939c79a8d3901edc3a787d6476688333657719fd4fa",
+      "cache_key": "b74491407480c46563ef591f3eff1b463d67682c703deecf58887ea04402ba0b",
+      "source_sha256": "1f57f9e13350941c6af7591c11c0a4690eecf12fc8a398074ec82b3fd6559480",
+      "step_kinds": [
+        "tool",
+        "llm",
+        "tool",
+        "tool",
+        "tool",
+        "llm",
+        "llm"
+      ],
+      "admitted_business_decisions": 0,
+      "full_source_preserved": true,
+      "all_nondecision_steps_retain_entire_source": true,
+      "steps": [
+        {
+          "index": 1,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 315
+        },
+        {
+          "index": 2,
+          "status": "invalid",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 302
+        },
+        {
+          "index": 3,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 209
+        },
+        {
+          "index": 4,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 614
+        },
+        {
+          "index": 5,
+          "status": "accepted",
+          "admitted_kind": "tool",
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 388
+        },
+        {
+          "index": 6,
+          "status": "invalid",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 1691,
+          "structural_rejection": "Receipt ref requires a prior admitted tool plan"
+        },
+        {
+          "index": 7,
+          "status": "llm",
+          "admitted_kind": "llm",
+          "review": null,
+          "compiler_finish_reasons": [
+            "stop"
+          ],
+          "compiler_completion_tokens": 202
+        }
+      ],
+      "findings": [
+        "No Boolean eligibility or finite risk decision was proposed/admitted. The source continues to require all six application tools, including prescription benefits even after failed primary insurance.",
+        "Observation-only contracts survived for Steps 1, 3, 4 and 5. Step 4 takes the whole successful Step 3 lifestyle result; these contracts never execute or complete their steps in business mode.",
+        "Step 2 failed preparation; the dependent Step 6 candidate could not bind its prescription-benefit receipt and was rejected. Step 6 remains full original eligibility-and-registration prose, and Step 7 retains exact reporting of all six observed results.",
+        "The SOP does not define acceptable lifestyle-risk cutoffs, compatible overall-risk cutoffs or clinical weighting formulas that would authorize an independent eligibility verdict. No such policy was manufactured."
+      ]
+    }
+  },
+  "interpretation_limits": [
+    "This review assesses source preservation and non-admission, not prediction accuracy; no task cases were executed for this review.",
+    "Provider source review is probabilistic. Because no business decision was admitted, there is no native-policy behavior to certify from v2.",
+    "The rejected email regex and missing patient dependency are retained diagnostic evidence; no compiler output was repaired in place."
+  ]
+}

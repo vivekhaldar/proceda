@@ -1,0 +1,339 @@
+{
+  "input_fields": [
+    "patient_id",
+    "insurance_provider",
+    "policy_number",
+    "group_number",
+    "coverage_start_date",
+    "insurance_type",
+    "preferred_pharmacy_name",
+    "preferred_pharmacy_address",
+    "pharmacy_phone",
+    "smoking_status",
+    "alcohol_consumption",
+    "exercise_frequency",
+    "previous_surgeries",
+    "chronic_conditions"
+  ],
+  "skill": "---\nname: patient-intake\ndescription: Establishes a comprehensive framework for the intake and registration of new patients, encompassing data collection, insurance verification, risk stratification, and pharmacy network validation.\nrequired_tools:\n  - validateInsurance\n  - validatePrescriptionBenefits\n  - calculateLifestyleRisk\n  - calculateOverallRisk\n  - verifyPharmacy\n  - registerPatient\noutput_fields:\n  - insurance_validation\n  - prescription_insurance_validation\n  - life_style_risk_level\n  - overall_risk_level\n  - pharmacy_check\n  - user_registration\n---\n\n### Step 1: Verify Primary Insurance Coverage\nAccess the payer portal to verify the patient's primary insurance coverage status and effective dates. Document benefit levels, copayment requirements, and confirm network participation. Record any authorization requirements.\nCall `validateInsurance` with the following parameters:\n- `patient_id`: [patient_id]\n- `insurance_provider`: [insurance_provider]\n- `policy_number`: [policy_number]\n- `group_number`: [group_number]\n- `coverage_start_date`: [coverage_start_date]\n- `insurance_type`: [insurance_type]\n\n### Step 2: Validate Prescription Benefits\nQuery the PBM database to verify current prescription coverage. Confirm formulary compliance parameters, document prior authorization requirements, and confirm specialty pharmacy protocols. Record the copayment structure.\nCall `validatePrescriptionBenefits` with the following parameters:\n- `patient_id`: [patient_id]\n- `insurance_provider`: [insurance_provider]\n- `policy_number`: [policy_number]\n\n### Step 3: Evaluate Lifestyle Risk Factors\nCalculate the patient's lifestyle risk index based on their smoking status, alcohol consumption frequency, and exercise patterns.\nCall `calculateLifestyleRisk` with the following parameters:\n- `patient_id`: [patient_id]\n- `smoking_status`: [smoking_status]\n- `alcohol_consumption`: [alcohol_consumption]\n- `exercise_frequency`: [exercise_frequency]\n\n### Step 4: Assess Clinical and Overall Risk\nReview the patient's surgical history chronology and evaluate chronic condition severity. Calculate the comorbidity interaction score and generate a weighted risk factor index to determine the overall risk level, incorporating the previously calculated lifestyle risk.\nCall `calculateOverallRisk` with the following parameters:\n- `patient_id`: [patient_id]\n- `previous_surgeries`: [previous_surgeries]\n- `chronic_conditions`: [chronic_conditions]\n- `life_style_risk_level`: [life_style_risk_level from Step 3]\n\n### Step 5: Verify Preferred Pharmacy Network\nQuery the preferred pharmacy database to verify network participation for the patient's chosen pharmacy and document any special handling requirements.\nCall `verifyPharmacy` with the following parameters:\n- `patient_id`: [patient_id]\n- `preferred_pharmacy_name`: [preferred_pharmacy_name]\n- `preferred_pharmacy_address`: [preferred_pharmacy_address]\n- `pharmacy_phone`: [pharmacy_phone]\n\n### Step 6: Register Patient\nConfirm that all eligibility criteria are met, including valid primary insurance, prescription benefits, acceptable lifestyle risk, compatible overall risk, and verified pharmacy network participation. Complete the patient registration process in the EHR.\nCall `registerPatient` with the following parameters:\n- `patient_id`: [patient_id]\n- `insurance_validation`: [insurance_validation status from Step 1]\n- `prescription_insurance_validation`: [prescription_insurance_validation status from Step 2]\n- `life_style_risk_level`: [life_style_risk_level from Step 3]\n- `overall_risk_level`: [overall_risk_level from Step 4]\n- `pharmacy_check`: [pharmacy_check status from Step 5]\n\n### Step 7: Report All Verification Results\nReport all six observed tool results, including failed checks. Do not omit prescription benefits validation because primary insurance is invalid. Include the exact observed values in the final complete_step summary with these XML tags: <insurance_validation>, <prescription_insurance_validation>, <life_style_risk_level>, <overall_risk_level>, <pharmacy_check>, and <user_registration>.\n",
+  "tool_schemas": [
+    {
+      "function": {
+        "description": "Calculates a patient's lifestyle risk level based on smoking status, alcohol consumption, and exercise frequency, following the standardized risk assessment protocol defined in the SOP.",
+        "name": "sop-bench__calculateLifestyleRisk",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "alcohol_consumption": {
+              "description": "Patient's level of alcohol consumption frequency",
+              "enum": [
+                "None",
+                "Occasional",
+                "Moderate",
+                "Heavy"
+              ],
+              "type": "string"
+            },
+            "exercise_frequency": {
+              "description": "Weekly frequency of patient's exercise activities",
+              "enum": [
+                "None",
+                "1-2 times",
+                "3-4 times",
+                "5+ times"
+              ],
+              "type": "string"
+            },
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "example": "P123456789",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "smoking_status": {
+              "description": "Patient's current smoking status, used to calculate smoking risk index",
+              "enum": [
+                "Never",
+                "Former",
+                "Current"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "patient_id",
+            "smoking_status",
+            "alcohol_consumption",
+            "exercise_frequency"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Validates pharmacy network participation and verifies pharmacy details as part of the patient registration process",
+        "name": "sop-bench__verifyPharmacy",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "example": "P123456789",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "pharmacy_phone": {
+              "description": "Contact phone number for the pharmacy in XXX-XXX-XXXX format",
+              "example": "555-123-4567",
+              "pattern": "^[0-9]{3}-[0-9]{3}-[0-9]{4}$",
+              "type": "string"
+            },
+            "preferred_pharmacy_address": {
+              "description": "Complete street address of the pharmacy including city, state, and zip code",
+              "example": "123 Main St, Boston, MA 02108",
+              "maxLength": 200,
+              "minLength": 5,
+              "type": "string"
+            },
+            "preferred_pharmacy_name": {
+              "description": "Full legal name of the preferred pharmacy",
+              "example": "CVS Pharmacy",
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "preferred_pharmacy_name",
+            "preferred_pharmacy_address",
+            "pharmacy_phone"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Validates patient prescription insurance coverage and PBM status as part of the patient intake process, verifying formulary compliance and coverage levels in accordance with HIPAA regulations",
+        "name": "sop-bench__validatePrescriptionBenefits",
+        "parameters": {
+          "additionalProperties": false,
+          "properties": {
+            "insurance_provider": {
+              "description": "Name of the patient's insurance provider",
+              "example": "Blue Cross Blue Shield",
+              "maxLength": 100,
+              "minLength": 1,
+              "type": "string"
+            },
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "example": "P123456789",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "policy_number": {
+              "description": "Insurance policy identifier for prescription coverage verification",
+              "example": "INS123456",
+              "pattern": "^INS[0-9]{6}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "patient_id",
+            "insurance_provider",
+            "policy_number"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Completes the patient registration process by validating insurance status, prescription benefits, risk levels, and pharmacy network participation. Registration proceeds only if all required validations pass successfully.",
+        "name": "sop-bench__registerPatient",
+        "parameters": {
+          "properties": {
+            "insurance_validation": {
+              "description": "Status of primary insurance validation check",
+              "enum": [
+                "valid",
+                "invalid"
+              ],
+              "type": "string"
+            },
+            "life_style_risk_level": {
+              "description": "Assessed lifestyle risk level based on smoking, alcohol, and exercise factors",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "type": "string"
+            },
+            "overall_risk_level": {
+              "description": "Composite risk assessment including clinical and lifestyle factors",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "type": "string"
+            },
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "pharmacy_check": {
+              "description": "Status of preferred pharmacy network verification",
+              "enum": [
+                "yes",
+                "no"
+              ],
+              "type": "string"
+            },
+            "prescription_insurance_validation": {
+              "description": "Status of prescription benefit validation check",
+              "enum": [
+                "valid",
+                "invalid"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "patient_id",
+            "insurance_validation",
+            "prescription_insurance_validation",
+            "life_style_risk_level",
+            "overall_risk_level",
+            "pharmacy_check"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Validates primary insurance information and coverage status for new patient intake, ensuring active coverage and network participation in compliance with HIPAA regulations",
+        "name": "sop-bench__validateInsurance",
+        "parameters": {
+          "properties": {
+            "coverage_start_date": {
+              "description": "Start date of the insurance coverage",
+              "example": "2023-01-01",
+              "format": "date",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+              "type": "string"
+            },
+            "group_number": {
+              "description": "Insurance group number for the policy",
+              "example": "GRP987654321",
+              "pattern": "^GRP[0-9]{6,}$",
+              "type": "string"
+            },
+            "insurance_provider": {
+              "description": "Name of the insurance company providing coverage",
+              "example": "Blue Cross Blue Shield",
+              "minLength": 1,
+              "type": "string"
+            },
+            "insurance_type": {
+              "description": "Type of insurance coverage",
+              "enum": [
+                "Private",
+                "Medicare",
+                "Medicaid",
+                "None"
+              ],
+              "type": "string"
+            },
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "example": "P123456789",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "policy_number": {
+              "description": "Insurance policy identifier number",
+              "example": "INS123456789",
+              "pattern": "^INS[0-9]{6,}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "patient_id",
+            "insurance_provider",
+            "policy_number",
+            "group_number",
+            "coverage_start_date",
+            "insurance_type"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Calculates comprehensive patient risk level by analyzing surgical history, chronic conditions, and lifestyle risk factors in accordance with the Risk Stratification Algorithm (RSA)",
+        "name": "sop-bench__calculateOverallRisk",
+        "parameters": {
+          "properties": {
+            "chronic_conditions": {
+              "description": "List of patient's ongoing medical conditions",
+              "example": [
+                "Type 2 Diabetes",
+                "Hypertension"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "life_style_risk_level": {
+              "description": "Previously calculated lifestyle risk level based on smoking, alcohol, and exercise factors",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "type": "string"
+            },
+            "patient_id": {
+              "description": "Unique identifier for the patient",
+              "example": "P123456789",
+              "pattern": "^P[0-9]{9}$",
+              "type": "string"
+            },
+            "previous_surgeries": {
+              "description": "List of patient's previous surgical procedures with dates",
+              "example": [
+                "Appendectomy 2015",
+                "Tonsillectomy 2010"
+              ],
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "patient_id",
+            "previous_surgeries",
+            "chronic_conditions",
+            "life_style_risk_level"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ]
+}

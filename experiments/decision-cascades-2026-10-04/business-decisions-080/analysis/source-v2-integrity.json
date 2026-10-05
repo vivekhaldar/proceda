@@ -1,0 +1,1405 @@
+{
+  "accepted_plan_count": 0,
+  "accounting": {
+    "audit_errors": [],
+    "audit_records": 22,
+    "cache_usage_errors": [],
+    "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+    "cost_complete": true,
+    "cost_usd": 0.08124525,
+    "cost_usd_lower_bound": 0.08124525,
+    "decision_preflight_records": 0,
+    "decision_requests": 0,
+    "hypothetical_cache_price_costs": {
+      "0.0": {
+        "cached_input_rate_fraction": 0.0,
+        "cost_usd": 0.07384365000000001,
+        "hypothetical_not_actual_invoice": true
+      },
+      "0.2": {
+        "cached_input_rate_fraction": 0.2,
+        "cost_usd": 0.07532397,
+        "hypothetical_not_actual_invoice": true
+      },
+      "1.0": {
+        "cached_input_rate_fraction": 1.0,
+        "cost_usd": 0.08124525,
+        "hypothetical_not_actual_invoice": true
+      }
+    },
+    "input_tokens_known": 102265,
+    "known_input_usage_requests": 22,
+    "known_output_usage_requests": 22,
+    "known_usage_requests": 22,
+    "llm_cached_input_cost_at_full_rate_usd_known": 0.007401600000000001,
+    "llm_cached_input_tokens": 16448,
+    "llm_cached_input_tokens_known": 16448,
+    "llm_cached_usage_complete": true,
+    "llm_known_cached_usage_requests": 22,
+    "llm_requests": 22,
+    "llm_uncached_input_tokens": 85817,
+    "llm_uncached_input_tokens_known": 85817,
+    "llm_unknown_cached_usage_requests": 0,
+    "local_decision_requests": 0,
+    "local_native_eval_known_calls": 0,
+    "local_native_eval_seconds": null,
+    "local_native_load_known_calls": 0,
+    "local_native_load_seconds": null,
+    "local_native_total_known_calls": 0,
+    "local_native_total_seconds": null,
+    "output_tokens_known": 11742,
+    "providers": {
+      "llm:Qwen/Qwen3.8-27B": {
+        "cached_input_cost_at_full_rate_usd_known": 0.007401600000000001,
+        "cached_input_tokens_known": 16448,
+        "cost_usd_lower_bound": 0.08124525,
+        "input_tokens_known": 102265,
+        "known_cached_usage_requests": 22,
+        "known_usage_requests": 22,
+        "output_tokens_known": 11742,
+        "requests": 22,
+        "uncached_input_tokens_known": 85817,
+        "unknown_cached_usage_requests": 0,
+        "unknown_cost_requests": 0,
+        "unknown_usage_requests": 0
+      }
+    },
+    "unknown_cost_requests": 0,
+    "unknown_request_status": 0,
+    "unknown_usage_requests": 0
+  },
+  "aggregate_accounting_matches": true,
+  "all_request_and_admission_checks_pass": true,
+  "compiler_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "completion_manifest_hash_matches": true,
+  "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+  "counts": {
+    "admitted_business_decisions": 0,
+    "admitted_observation_contracts": 7,
+    "compiler_requests": 15,
+    "finish_stop": 22,
+    "provider_requests": 22,
+    "reviewer_requests": 7,
+    "source_steps": 15
+  },
+  "cumulative_preparation_spend": {
+    "prior_v1_analysis": "source-v1-failure.json",
+    "source_v1_usd": 0.02278755,
+    "source_v2_usd": 0.08124525,
+    "total_known_usd": 0.10403280000000001
+  },
+  "domains": [
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 3,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.009132,
+        "cost_usd_lower_bound": 0.009132,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.008757599999999999,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.00883248,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.009132,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 9800,
+        "known_input_usage_requests": 3,
+        "known_output_usage_requests": 3,
+        "known_usage_requests": 3,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.00037440000000000005,
+        "llm_cached_input_tokens": 832,
+        "llm_cached_input_tokens_known": 832,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 3,
+        "llm_requests": 3,
+        "llm_uncached_input_tokens": 8968,
+        "llm_uncached_input_tokens_known": 8968,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 1574,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.00037440000000000005,
+            "cached_input_tokens_known": 832,
+            "cost_usd_lower_bound": 0.009132,
+            "input_tokens_known": 9800,
+            "known_cached_usage_requests": 3,
+            "known_usage_requests": 3,
+            "output_tokens_known": 1574,
+            "requests": 3,
+            "uncached_input_tokens_known": 8968,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "audits": [
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.0491891249985201,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/email_intent/providers/255040334dd94937986b96f6c2e69a85-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "9ccd7daba155db1de57c8f3874a33b04ac4477742ad353d858fe9cf6afa82b99",
+          "status": "success",
+          "step_index": 3,
+          "usage": {
+            "completion_tokens": 91,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 79,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 12
+            },
+            "prompt_cache_hit_tokens": 832,
+            "prompt_cache_miss_tokens": 3096,
+            "prompt_tokens": 3928,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 832
+            },
+            "total_tokens": 4019
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.6090162500040606,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/email_intent/providers/8cb51fd5bd7b4d13bedbc1919de80e72-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "0bb11a069b72a47bfad9f69e3dcc2b3b47bb3381e902261125f9e1d6cb6e9a9a",
+          "status": "success",
+          "step_index": 2,
+          "usage": {
+            "completion_tokens": 320,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 308,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 12
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 3042,
+            "prompt_tokens": 3042,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 3362
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 3.9406862080068095,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/email_intent/providers/eef29971429b4dad827580d858e96072-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "3127ec49a791a805835c3ce51ccf7d05b997e8f2a2af8d87c89269d1e9302e16",
+          "status": "success",
+          "step_index": 1,
+          "usage": {
+            "completion_tokens": 1163,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 937,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 226
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2830,
+            "prompt_tokens": 2830,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 3993
+          }
+        }
+      ],
+      "cache_artifact_sha256": "a93030a9e526d07b99701a265a26827edd254edd75e0446cd0e9fd7f8cfcf804",
+      "cache_key": "ac9d4d6955d907ffe3457b67c3157124fc2b004025ef962fbe9773761d9e8ea5",
+      "cache_payload_hash_matches": true,
+      "domain": "email_intent",
+      "status": "unsupported",
+      "steps": [
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "independent_structural_diagnosis": "PlanValidationError: choice inputs must be a string-keyed object",
+          "review": null,
+          "status": "invalid",
+          "step_index": 1
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": null,
+          "status": "llm",
+          "step_index": 2
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": null,
+          "status": "llm",
+          "step_index": 3
+        }
+      ]
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 11,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.048410400000000006,
+        "cost_usd_lower_bound": 0.048410400000000006,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.043312800000000005,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.04433232000000001,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.048410400000000006,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 60952,
+        "known_input_usage_requests": 11,
+        "known_output_usage_requests": 11,
+        "known_usage_requests": 11,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.005097600000000001,
+        "llm_cached_input_tokens": 11328,
+        "llm_cached_input_tokens_known": 11328,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 11,
+        "llm_requests": 11,
+        "llm_uncached_input_tokens": 49624,
+        "llm_uncached_input_tokens_known": 49624,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 6994,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.005097600000000001,
+            "cached_input_tokens_known": 11328,
+            "cost_usd_lower_bound": 0.048410400000000006,
+            "input_tokens_known": 60952,
+            "known_cached_usage_requests": 11,
+            "known_usage_requests": 11,
+            "output_tokens_known": 6994,
+            "requests": 11,
+            "uncached_input_tokens_known": 49624,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "audits": [
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.0669096670026192,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/1014c8ebe64f4ada8705616bc77ef797-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "2e0333eebdf4dc41b6725c321f1ad011acdf923d39a127150812767d6d02b6c3",
+          "status": "success",
+          "step_index": 1,
+          "usage": {
+            "completion_tokens": 315,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 127,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 188
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 4142,
+            "prompt_tokens": 4142,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4457
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.1850551659881603,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/1b1d0cb6b0e2496dbcba357ebeb68482-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "89395068a9cef4bf150c2f91f970c22bebdcd310ae7b772d8ad5b6dda67bd0f8",
+          "status": "success",
+          "step_index": 7,
+          "usage": {
+            "completion_tokens": 202,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 190,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 12
+            },
+            "prompt_cache_hit_tokens": 2432,
+            "prompt_cache_miss_tokens": 4053,
+            "prompt_tokens": 6485,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 2432
+            },
+            "total_tokens": 6687
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.981539458007319,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/2883ea5f90b347c583883df8a610260d-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "d82c64e560c3646c9c26bfccc41234659021b96b8d8d2c2e9ddc03d337e8c094",
+          "status": "success",
+          "step_index": 4,
+          "usage": {
+            "completion_tokens": 614,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 438,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 176
+            },
+            "prompt_cache_hit_tokens": 1344,
+            "prompt_cache_miss_tokens": 3912,
+            "prompt_tokens": 5256,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1344
+            },
+            "total_tokens": 5870
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.890019124999526,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/51c8ec116ff54a1eae2367496bb772d6-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "39901e55a15079209d9787db5fabc99fd09129246e05bc98891ccfc04c22062c",
+          "status": "success",
+          "step_index": 5,
+          "usage": {
+            "completion_tokens": 655,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 645,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 1280,
+            "prompt_cache_miss_tokens": 4990,
+            "prompt_tokens": 6270,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1280
+            },
+            "total_tokens": 6925
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 3.15986441700079,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/5eab3f11c2c34de081edd2bcba75ea2d-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "1bec49bbf0de19a081c6775b1de36d23045740d665f3e772cd9fe56df5c584ff",
+          "status": "success",
+          "step_index": 3,
+          "usage": {
+            "completion_tokens": 1030,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1020,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 576,
+            "prompt_cache_miss_tokens": 5232,
+            "prompt_tokens": 5808,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 576
+            },
+            "total_tokens": 6838
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.0964091250061756,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/74bc8928d08343c9be5b5a98d547bd7b-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "e6005738993d4da952384e39533937dace214735a8bf79bcfdc018d9d1e78b44",
+          "status": "success",
+          "step_index": 2,
+          "usage": {
+            "completion_tokens": 302,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 186,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 116
+            },
+            "prompt_cache_hit_tokens": 832,
+            "prompt_cache_miss_tokens": 3834,
+            "prompt_tokens": 4666,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 832
+            },
+            "total_tokens": 4968
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.2484535420080647,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/abdf5ccd7dd8496b94d42b80dfbb49f8-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "594bcca3975c0b913a7bd49f5862e2c6c6a4b9958664a45ad8096fdc6603d9fa",
+          "status": "success",
+          "step_index": 5,
+          "usage": {
+            "completion_tokens": 388,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 230,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 158
+            },
+            "prompt_cache_hit_tokens": 1536,
+            "prompt_cache_miss_tokens": 4196,
+            "prompt_tokens": 5732,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1536
+            },
+            "total_tokens": 6120
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.5922359579999465,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/bc0a3bbffa8b47e699712ccd826c197a-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "0096603f02d054e3d5fe1a4b711d603a2702ea656d5ec8eeed3981afe3fd57fe",
+          "status": "success",
+          "step_index": 4,
+          "usage": {
+            "completion_tokens": 1060,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1050,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 576,
+            "prompt_cache_miss_tokens": 5476,
+            "prompt_tokens": 6052,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 576
+            },
+            "total_tokens": 7112
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.1531460830010474,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/d04f6fa275e64856a919566aae82a347-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "8142c3f8bd8fceda2c76fecbef2a0857dcb7a69ae3827b40546a0035e91b8db7",
+          "status": "success",
+          "step_index": 3,
+          "usage": {
+            "completion_tokens": 209,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 57,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 152
+            },
+            "prompt_cache_hit_tokens": 832,
+            "prompt_cache_miss_tokens": 4023,
+            "prompt_tokens": 4855,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 832
+            },
+            "total_tokens": 5064
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.3719052500091493,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/dce9fed9cc114c898899901a033646a7-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "b4f571ca1cac46547323fbf6702f011cf0f11fbeaab8b1631344f593cb970fd5",
+          "status": "success",
+          "step_index": 1,
+          "usage": {
+            "completion_tokens": 528,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 518,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 5540,
+            "prompt_tokens": 5540,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 6068
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.8272743330016965,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/patient_intake/providers/e8eb08200717456da398510186798c8b-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "7127117c2730034b168a4b32c23f227376ccabdaaf4ffb804dbe81be5d2d747d",
+          "status": "success",
+          "step_index": 6,
+          "usage": {
+            "completion_tokens": 1691,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 1372,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 319
+            },
+            "prompt_cache_hit_tokens": 1920,
+            "prompt_cache_miss_tokens": 4226,
+            "prompt_tokens": 6146,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1920
+            },
+            "total_tokens": 7837
+          }
+        }
+      ],
+      "cache_artifact_sha256": "de9a718a7fa76ff5d10d3939c79a8d3901edc3a787d6476688333657719fd4fa",
+      "cache_key": "b74491407480c46563ef591f3eff1b463d67682c703deecf58887ea04402ba0b",
+      "cache_payload_hash_matches": true,
+      "domain": "patient_intake",
+      "status": "unsupported",
+      "steps": [
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 1
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "independent_structural_diagnosis": "JSONDecodeError: Expecting ',' delimiter: line 3 column 422 (char 423)",
+          "review": null,
+          "status": "invalid",
+          "step_index": 2
+        },
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 3
+        },
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 4
+        },
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 5
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "independent_structural_diagnosis": "PlanValidationError: Receipt ref requires a prior admitted tool plan",
+          "review": null,
+          "status": "invalid",
+          "step_index": 6
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": null,
+          "status": "llm",
+          "step_index": 7
+        }
+      ]
+    },
+    {
+      "accounting": {
+        "audit_errors": [],
+        "audit_records": 8,
+        "cache_usage_errors": [],
+        "cost_basis": "Usage-based estimate at documented input/output list rates, pricing cached input at the full input rate. Cached-input billing is unverified. cost_usd_lower_bound is a known-usage subtotal/lower bound under this price assumption, not a lower bound on an actual invoice. Local hardware, electricity, idle capacity and hosting overhead are excluded.",
+        "cost_complete": true,
+        "cost_usd": 0.023702849999999998,
+        "cost_usd_lower_bound": 0.023702849999999998,
+        "decision_preflight_records": 0,
+        "decision_requests": 0,
+        "hypothetical_cache_price_costs": {
+          "0.0": {
+            "cached_input_rate_fraction": 0.0,
+            "cost_usd": 0.021773249999999997,
+            "hypothetical_not_actual_invoice": true
+          },
+          "0.2": {
+            "cached_input_rate_fraction": 0.2,
+            "cost_usd": 0.02215917,
+            "hypothetical_not_actual_invoice": true
+          },
+          "1.0": {
+            "cached_input_rate_fraction": 1.0,
+            "cost_usd": 0.023702849999999998,
+            "hypothetical_not_actual_invoice": true
+          }
+        },
+        "input_tokens_known": 31513,
+        "known_input_usage_requests": 8,
+        "known_output_usage_requests": 8,
+        "known_usage_requests": 8,
+        "llm_cached_input_cost_at_full_rate_usd_known": 0.0019296000000000003,
+        "llm_cached_input_tokens": 4288,
+        "llm_cached_input_tokens_known": 4288,
+        "llm_cached_usage_complete": true,
+        "llm_known_cached_usage_requests": 8,
+        "llm_requests": 8,
+        "llm_uncached_input_tokens": 27225,
+        "llm_uncached_input_tokens_known": 27225,
+        "llm_unknown_cached_usage_requests": 0,
+        "local_decision_requests": 0,
+        "local_native_eval_known_calls": 0,
+        "local_native_eval_seconds": null,
+        "local_native_load_known_calls": 0,
+        "local_native_load_seconds": null,
+        "local_native_total_known_calls": 0,
+        "local_native_total_seconds": null,
+        "output_tokens_known": 3174,
+        "providers": {
+          "llm:Qwen/Qwen3.8-27B": {
+            "cached_input_cost_at_full_rate_usd_known": 0.0019296000000000003,
+            "cached_input_tokens_known": 4288,
+            "cost_usd_lower_bound": 0.023702849999999998,
+            "input_tokens_known": 31513,
+            "known_cached_usage_requests": 8,
+            "known_usage_requests": 8,
+            "output_tokens_known": 3174,
+            "requests": 8,
+            "uncached_input_tokens_known": 27225,
+            "unknown_cached_usage_requests": 0,
+            "unknown_cost_requests": 0,
+            "unknown_usage_requests": 0
+          }
+        },
+        "unknown_cost_requests": 0,
+        "unknown_request_status": 0,
+        "unknown_usage_requests": 0
+      },
+      "accounting_matches_recorded": true,
+      "audits": [
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 0.8956550419970881,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/045bb3331bdd4a7496584c52dd50c299-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "34c1ba1c24eb583ba161f716be3c0c2d219dfea63933b346359f092f8db49e6e",
+          "status": "success",
+          "step_index": 2,
+          "usage": {
+            "completion_tokens": 158,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 97,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 61
+            },
+            "prompt_cache_hit_tokens": 832,
+            "prompt_cache_miss_tokens": 2354,
+            "prompt_tokens": 3186,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 832
+            },
+            "total_tokens": 3344
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.42815975000849,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/337a2b455860466ba9be534ddac06689-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "5036d1ed5723da28ebd8ebdfcd1468ebdf54b3df928f3cc3690e60af9491947c",
+          "status": "success",
+          "step_index": 5,
+          "usage": {
+            "completion_tokens": 262,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 250,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 12
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 3795,
+            "prompt_tokens": 4819,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1024
+            },
+            "total_tokens": 5081
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.0475514169957023,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/37e348031de04542b189ee5fd406084c-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "9e5ad614b2116c9051681291821117518e9788136e4a375be7f94e0fa0b0be60",
+          "status": "success",
+          "step_index": 1,
+          "usage": {
+            "completion_tokens": 311,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 250,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 61
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 2980,
+            "prompt_tokens": 2980,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 3291
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.515518499989412,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/3b69a4bbfd2a406eab0cf894528f2918-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "b4d68285685aa71dc3c05a707cdb6f338f5531fd9d1210286c640c7af76aff6f",
+          "status": "success",
+          "step_index": 2,
+          "usage": {
+            "completion_tokens": 742,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 732,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 4528,
+            "prompt_tokens": 4528,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 5270
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 2.224577125001815,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/adca5de43b204b96bdf0005060611e1c-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "7d464a28de75afa52e00af669fdf676b82b9c2712bf70a83ab0ff68e3c7f62c1",
+          "status": "success",
+          "step_index": 1,
+          "usage": {
+            "completion_tokens": 517,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 507,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 0,
+            "prompt_cache_miss_tokens": 4448,
+            "prompt_tokens": 4448,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "total_tokens": 4965
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.0075395419989945,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/b2966123b76c46dd84ac35a653bb083d-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "cf35b81cdb8dcfcf09f361e620db7b59cdc22895072d6e343e561a26570b1df7",
+          "status": "success",
+          "step_index": 3,
+          "usage": {
+            "completion_tokens": 148,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 77,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 71
+            },
+            "prompt_cache_hit_tokens": 832,
+            "prompt_cache_miss_tokens": 2562,
+            "prompt_tokens": 3394,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 832
+            },
+            "total_tokens": 3542
+          }
+        },
+        {
+          "checks": {
+            "prefix_contains_only_prior_admitted_source_steps": true,
+            "request_matches_recorded_step": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.3684841659996891,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/ecb20d0478944aa788d11a32e2155277-001.json",
+          "purpose": "compiler",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "b7c058949c93be6cd1e748d8b87a929c15d716d1733e630a3e8f23c62ea30497",
+          "status": "success",
+          "step_index": 4,
+          "usage": {
+            "completion_tokens": 261,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 249,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 12
+            },
+            "prompt_cache_hit_tokens": 1024,
+            "prompt_cache_miss_tokens": 2517,
+            "prompt_tokens": 3541,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 1024
+            },
+            "total_tokens": 3802
+          }
+        },
+        {
+          "checks": {
+            "request_matches_recorded_step": true,
+            "review_candidate_matches_recorded_expansion": true,
+            "settings_match": true,
+            "source_matches_immutable_identity": true,
+            "wrapper_fields_source_only": true
+          },
+          "elapsed_seconds": 1.7595560000045225,
+          "finish_reason": "stop",
+          "path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2/referral_abuse_detection_v1/providers/fbce2488f9b94881ba7402d15514823c-001.json",
+          "purpose": "reviewer",
+          "request_settings": {
+            "max_tokens": 2048,
+            "model": "openai/Qwen/Qwen3.8-27B",
+            "reasoning_effort": "low",
+            "temperature": 0.0
+          },
+          "sha256": "e3e491100ed162c662d90b185d7e61b9ee620600a80de608fe8a33a8705a0904",
+          "status": "success",
+          "step_index": 3,
+          "usage": {
+            "completion_tokens": 775,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": null,
+              "reasoning_tokens": 765,
+              "rejected_prediction_tokens": null,
+              "text_tokens": 10
+            },
+            "prompt_cache_hit_tokens": 576,
+            "prompt_cache_miss_tokens": 4041,
+            "prompt_tokens": 4617,
+            "prompt_tokens_details": {
+              "audio_tokens": null,
+              "cached_tokens": 576
+            },
+            "total_tokens": 5392
+          }
+        }
+      ],
+      "cache_artifact_sha256": "d91a3dfccb15f20db9a285e3cdf2ea652ee6d0a6ac0dac8e6a50b16a2f8dbe00",
+      "cache_key": "b8f97f9d2818ef80dda0e545d4ad1c85ddc3c4417981747161f8d53de09401c5",
+      "cache_payload_hash_matches": true,
+      "domain": "referral_abuse_detection_v1",
+      "status": "unsupported",
+      "steps": [
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 1
+        },
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 2
+        },
+        {
+          "admitted_kind": "tool",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": {
+            "approved": true,
+            "issues": []
+          },
+          "status": "accepted",
+          "step_index": 3
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": null,
+          "status": "llm",
+          "step_index": 4
+        },
+        {
+          "admitted_kind": "llm",
+          "decision_field": null,
+          "errors": [],
+          "full_source_preserved": true,
+          "review": null,
+          "status": "llm",
+          "step_index": 5
+        }
+      ]
+    }
+  ],
+  "frozen_file_hashes_match": true,
+  "inference_performed": false,
+  "integrity_passed": true,
+  "interpretation": "All source-step calls finished without truncation, but zero business decisions survived admission. Seven reviewed tool contracts are observation contracts only and are not executed by business mode. Aggregate unsupported status correctly causes ordinary executor fallback. This preparation cannot demonstrate native business-decision routing.",
+  "manifest_sha256": "3cbcbe9199d30c3e683065fd22555198f36f05ee0da69971dc572cd4d9cd5be9",
+  "preparation_commit": "abc6f4dfe860a1b50abe99b382ec41b389f88ad7",
+  "preparation_directory": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/preparation/source-v2",
+  "raw_preparation_changed": false,
+  "recorded_at": "2026-10-05T06:07:11.835864+00:00",
+  "reviewer_config": {
+    "api_base": "https://api.tokenfactory.nebius.com/v1",
+    "api_key_env": "NEBIUS_API_KEY",
+    "max_retries": 2,
+    "max_tokens": 2048,
+    "model": "openai/Qwen/Qwen3.8-27B",
+    "reasoning_effort": "low",
+    "temperature": 0.0,
+    "thinking": null,
+    "timeout": 90
+  },
+  "schema_version": 1,
+  "scope": "Offline source-only per-step preparation integrity and admission audit; no case inference",
+  "specific_findings": [
+    "Email Step1 decision.inputs used an array instead of the required evidence-name mapping. Its regex also lacks explicit alphanumeric boundaries; structural rejection prevented admission before independent review.",
+    "Referral Step4 compiler chose ordinary LLM fallback for the policy-scoring step. No referral business decision was reviewed or admitted.",
+    "Patient Step2 is invalid JSON; Step6 cannot bind prescription-benefit evidence through the unadmitted Step2 tool contract. Patient tools remain ordinary execution obligations."
+  ],
+  "task_case_requests": 0,
+  "unsupported_plan_count": 3,
+  "wall_seconds": 22.345489541999996
+}

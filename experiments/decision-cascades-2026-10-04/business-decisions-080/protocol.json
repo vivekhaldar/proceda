@@ -66,24 +66,44 @@
     "failures": "Retain rejected/unsupported/error plans and every provider attempt; ordinary execution fallback without task-time recompilation",
     "cost": "Preparation paid once physically, same full relevant cost for either compiled deployment. Deduplicate by manifest identity and domain when combining pilot/full schedules. Never split P between C/D.",
     "latency": "Separate source preparation wall time from warm case execution; runtime cache loading remains in case latency",
-    "source_version": "source-v2",
+    "source_version": "source-v3",
     "compiler_strategy": "Sequential single-step compact compilation in original source order within each domain. Domains compile concurrently.",
     "compiler_calls_per_domain": "N, one call per original SOP step",
     "review_calls_per_domain": "At most N, one independent review per structurally admitted non-LLM step",
     "failure_policy": "Malformed or rejected current step becomes original-source LLM fallback. Keep earlier admitted steps; final loader replays all admissions. Unsupported means zero admitted business decisions.",
     "call_budget": "Every compiler and reviewer request explicitly uses low reasoning, temperature0,max_tokens2048; no automatic increase.",
-    "frozen_manifest": "preparation/source-v2/manifest.json",
-    "previous_preparation_spend": {
-      "source_version": "source-v1",
-      "status": "All3 whole-source responses truncated; zero admitted business decisions",
-      "compiler_requests": 3,
-      "reviewer_requests": 0,
-      "cost_usd": 0.02278755,
-      "analysis": "analysis/source-v1-failure.json",
-      "raw_evidence": "preparation/source-v1",
-      "included_in_total_experiment_spend": true,
-      "included_in_v2_warm_case_cost": false
-    }
+    "frozen_manifest": "preparation/source-v3/manifest.json",
+    "previous_preparation_spend": [
+      {
+        "source_version": "source-v1",
+        "status": "All3 whole-source responses truncated; zero admitted business decisions",
+        "compiler_requests": 3,
+        "reviewer_requests": 0,
+        "cost_usd": 0.02278755,
+        "analysis": "analysis/source-v1-failure.json",
+        "raw_evidence": "preparation/source-v1",
+        "included_in_total_experiment_spend": true,
+        "included_in_active_warm_case_cost": false
+      },
+      {
+        "source_version": "source-v2",
+        "status": "All22 requests completed without truncation; zero admitted business decisions; seven admitted observation tool contracts",
+        "compiler_requests": 15,
+        "reviewer_requests": 7,
+        "cost_usd": 0.08124525,
+        "analysis": "analysis/source-v2-integrity.json",
+        "raw_evidence": "preparation/source-v2",
+        "failure_causes": [
+          "Email decision.inputs was an array instead of a name-to-ValueRef mapping; source-preserving regex boundary concern also remains.",
+          "Referral scoring steps selected LLM fallback; zero business decisions were proposed there.",
+          "Patient step2 malformed JSON; step6 receipt depended on the unadmitted step2 tool; other steps admitted observation contracts or selected LLM fallback."
+        ],
+        "included_in_total_experiment_spend": true,
+        "included_in_active_warm_case_cost": false
+      }
+    ],
+    "previous_preparation_cost_usd": 0.1040328,
+    "source_v3_change": "Generic prompt clarification of mapping wire shape and model-applied arithmetic; unchanged schema, per-step strategy, source scope, and model parameters."
   },
   "routing": {
     "business_qwen_native_decisions": false,
