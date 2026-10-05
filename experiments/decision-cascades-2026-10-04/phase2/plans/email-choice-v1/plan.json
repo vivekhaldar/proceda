@@ -1,0 +1,25 @@
+{
+  "compilation_result": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/plans/email-choice-v1/compilation-result.json",
+  "compiler_artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f.json",
+  "compiler_artifact_sha256": "4724492e06059173a0315bf1821362627a3d7619b176bd1b0218889509d27d13",
+  "compiler_cache_key": "ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f",
+  "plan": null,
+  "plan_sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+  "schema_version": 1,
+  "source": {
+    "domain": "email_intent",
+    "input_fields_sha256": "10a7510420e2bb902dd4fcfb8c04921acd3b75a90f5edbe44a483c3f4580fc9b",
+    "manifest_sha256": "3923032dae254ef11ebe43cf618208f14b4d0a040acecc903160c05ece19ed69",
+    "skill_sha256": "11734c69d76ded193e218e6d78fb306ef2ff3f8390a3b6a2a1a64f001331252b",
+    "source_commit": "f6d43858b94cf439854038101bce0eecd3e16eae",
+    "source_files": {
+      "metadata.json": "020d01c981f10f683c7a6ddb30a8575a59ff01c6862895dc6d06fdd5df0b7a9e",
+      "sop.txt": "1b7366a86c31c1254d2a08b8cbff7f6e4d033f30fb972fbbb531cc9c4ff32867",
+      "test_set_with_outputs.csv": "982b2d241a7e1ed6b32bf344fb4d584538f2e1868aeb9765cfc4de15da065eaf",
+      "test_set_without_outputs.csv": "13d79606cc7c36c884ac04457dcfd7d7a6064bd083b2ed1cd8c6b0abe55585cd",
+      "tools.py": "a328c9f25e2fc2e5bbdf3a23e46a714b7607d7f54126d48e08190de4288a80fb",
+      "toolspecs.json": "3803116e6b9d7f9802f06f89db69d1f72e128cb4da2169fd3f061cd09f56bf08"
+    },
+    "tool_schemas_sha256": "0c7c6d6051e860b4ea1109691c4c8d5ee60ab12046182a3179e9886f05c19634"
+  }
+}

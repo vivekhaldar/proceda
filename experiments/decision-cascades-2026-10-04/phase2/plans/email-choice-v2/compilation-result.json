@@ -1,0 +1,14 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07.json",
+  "artifact_sha256": "9a9e670c25d3ab1310b9996bbfae8482ad49ef4233b7eb446085d10be6ec7437",
+  "attempt_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/attempts/31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07/a71dbce7f5954fcc9ec4035091b7177e.json",
+  "cache_hit": false,
+  "cache_key": "31e74d2b28110971073622195cf7619b300e7109849344890577586819a56d07",
+  "completion_tokens": 2855,
+  "errors": [
+    "Literal must appear exactly in its source quote"
+  ],
+  "plan": null,
+  "prompt_tokens": 3070,
+  "status": "invalid"
+}

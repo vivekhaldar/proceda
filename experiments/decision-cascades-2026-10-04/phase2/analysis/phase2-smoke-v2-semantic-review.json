@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "run_id": "phase2-smoke-v2",
+  "source_commit": "94d30ec31dc13e79dc858a1ba22160b66a5e3b73",
+  "run_status": "partial_live",
+  "planned_entries": 36,
+  "reviewed_terminal_entries": 3,
+  "scope": "Completed executions only; no complete arm comparison while the schedule is live. Strict final-field correctness is distinct from full SOP compliance.",
+  "updated_at": "2026-10-04T23:28:04.830469+00:00",
+  "reviewed_cases": [
+    {
+      "arm": "baseline",
+      "domain": "referral_abuse_detection_v1",
+      "task_id": "ACC100030",
+      "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/phase2-smoke-v2/baseline/referral_abuse_detection_v1/ACC100030",
+      "strict_correct": true,
+      "required_tool_order_correct": true,
+      "required_arguments_match_input": true,
+      "repeated_tool_calls": false,
+      "steps_completed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "findings": [
+        {
+          "kind": "intermediate_arithmetic_error",
+          "step_index": 4,
+          "reported_no_violation_score": 2,
+          "observed_no_violation_score": 3,
+          "indicators_true": [
+            "email_pattern_suspicious is false",
+            "login_geographic_consistency is true",
+            "payment_method_shared is false"
+          ],
+          "final_action_affected": false,
+          "explanation": "Misleading Ad Copy score4 still mandates Account Closure. This defect is not detected by final-field strict scoring.",
+          "evidence_files": [
+            "tools.jsonl",
+            "events.jsonl"
+          ]
+        }
+      ],
+      "completion_checks": [],
+      "review_evidence": "Current v2 tools and all five summaries read and checked independently."
+    },
+    {
+      "arm": "compiled-llm",
+      "domain": "referral_abuse_detection_v1",
+      "task_id": "ACC100033",
+      "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/phase2-smoke-v2/compiled-llm/referral_abuse_detection_v1/ACC100033",
+      "strict_correct": true,
+      "required_tool_order_correct": true,
+      "required_arguments_match_input": true,
+      "repeated_tool_calls": false,
+      "required_recording_obligations_preserved": true,
+      "steps_completed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "arithmetic_scores_verified": {
+        "Abusive Account Creation": 4,
+        "Misleading Ad Copy": 4,
+        "Personal Orders": 3,
+        "No Violation": 0
+      },
+      "priority_tie_break_correct": true,
+      "completion_checks": [],
+      "findings": [],
+      "review_evidence": "Current v2 tools and all five summaries read and checked independently."
+    },
+    {
+      "arm": "compiled-local",
+      "domain": "referral_abuse_detection_v1",
+      "task_id": "ACC100051",
+      "case_dir": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/phase2-smoke-v2/compiled-local/referral_abuse_detection_v1/ACC100051",
+      "strict_correct": true,
+      "required_tool_order_correct": true,
+      "required_arguments_match_input": true,
+      "repeated_tool_calls": false,
+      "required_recording_obligations_preserved": true,
+      "steps_completed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "arithmetic_scores_verified": {
+        "Abusive Account Creation": 1,
+        "Misleading Ad Copy": 3,
+        "Personal Orders": 4,
+        "No Violation": 3
+      },
+      "priority_selection_correct": true,
+      "completion_checks": [
+        {
+          "step_index": 3,
+          "purpose": "completion",
+          "value": null,
+          "reason": "no_backend_settled_gate",
+          "probabilities": {
+            "obligations_satisfied": 0.9349,
+            "normal_advance_permitted": 0.8493
+          }
+        }
+      ],
+      "findings": [],
+      "review_evidence": "Current v2 tools and all five summaries read and checked independently."
+    }
+  ],
+  "reviewed_plans": [
+    {
+      "artifact": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/runs/phase2-smoke-v2/plan-cache/71f7db077d9ddb9cd005b442d9eae5834cc6b2bacab9a96b52548de0b5af1b35.json",
+      "cache_key": "71f7db077d9ddb9cd005b442d9eae5834cc6b2bacab9a96b52548de0b5af1b35",
+      "status": "accepted",
+      "domain": "referral_abuse_detection_v1",
+      "step_kinds": [
+        "tool",
+        "tool",
+        "tool",
+        "llm",
+        "llm"
+      ],
+      "semantic_review": "Exact account_id bindings for all three prescribed calls. Steps1 and2 retain all field-recording obligations as residuals. Step3 is only guideline retrieval, so no residual. Arithmetic stays ordinary LLM; final reporting stays ordinary LLM because no authoritative compiled arithmetic fact exists. No omitted obligation found in this plan.",
+      "review_evidence": "Current v2 plan read; validated operations exactly equal previously reviewed v1 plan, while fresh compilation artifact is retained."
+    }
+  ],
+  "limitations": [
+    {
+      "kind": "cleanup_metadata_failure_path",
+      "detail": "Frozen driver writes runtime_cleanup_confirmed=true for every returned run_case_async record. A failed startup can return a record without reaching the runtime event-stream cleanup path; do not trust this flag alone for failed cases. Audit any failed case separately for actual provider/MCP closure. Successful event-stream completion does evidence stream closure; this potential failure-path label does not invalidate successful cases."
+    }
+  ]
+}

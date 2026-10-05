@@ -1,0 +1,14 @@
+{
+  "artifact_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f.json",
+  "artifact_sha256": "4724492e06059173a0315bf1821362627a3d7619b176bd1b0218889509d27d13",
+  "attempt_path": "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/phase2/cache/attempts/ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f/48f1b15fc94a4fb3aee4d777095f65d7.json",
+  "cache_hit": false,
+  "cache_key": "ed2ba83d8d948ef894eb979079f7bb68eb026dab5a63de194c44ea2b16b5211f",
+  "completion_tokens": 3464,
+  "errors": [
+    "Invalid object keys; expected ['index', 'kind', 'residual_obligations', 'source_quote']"
+  ],
+  "plan": null,
+  "prompt_tokens": 2806,
+  "status": "invalid"
+}

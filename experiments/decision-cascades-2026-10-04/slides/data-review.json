@@ -1,0 +1,744 @@
+{
+  "recorded_at": "2026-10-05T08:29:53.827490+00:00",
+  "sources": {
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-jev-080/analysis/full-final-audit-paired.json": "d78129342d1d4ae981128d7a938a7b0deb127a09caecb2975709e1b4c1006a33",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/analysis/full.json": "957684bde943f196658483f6518866fd839003fe4bb347085ad6c49193bc1fc4",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/qwen-jev-080/REPORT.md": "39f00154974998bfba8be94cd3a6e806c60620949c9f0359ff362fe5710ea574",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/REPORT.md": "f3aeae0e25be1f38400770585efb7f39e88cad2470e8eb06dae7a63cac725b8b",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/analysis/full-integrity.json": "e2db07d693c8518753fea8d626c5e1fefed9e564fb82c209e5ca1e9b8f06239b",
+    "/Users/Vivek.Haldar/repos/proceda/experiments/decision-cascades-2026-10-04/business-decisions-080/analysis/source-v4-integrity.json": "fc5c0111dca5871df9f0a96d9dcf21040c59ecf287175714d60066f373081ce2"
+  },
+  "shared_settings": {
+    "llm": "Qwen/Qwen3.8-27B (Nebius)",
+    "temperature": 0,
+    "reasoning": "low",
+    "max_output_tokens": 2048,
+    "decision_model": "jev-1.13.0 (Typesafe hosted)",
+    "threshold": 0.8,
+    "cases_per_arm": 360,
+    "domain_cases": {
+      "referral": 160,
+      "email": 148,
+      "patient": 52
+    }
+  },
+  "experiments": [
+    {
+      "id": "qwen-jev-080",
+      "mechanism": "After required tools execute, Jev checks whether receipts fulfill the current non-final step; acceptance skips Qwen continuation. Qwen keeps business reasoning and final output.",
+      "source_compilation": false,
+      "baseline": {
+        "cases": 360,
+        "completed": 360,
+        "correct": 357,
+        "accuracy_percent": 99.16666666666667,
+        "qwen_calls": 2537,
+        "jev_calls": 0,
+        "hosted_requests": 2537,
+        "execution_cost_usd": 6.432866550000001,
+        "mean_case_seconds": 8.151826288645236,
+        "median_case_seconds": 7.782566645997576,
+        "p95_case_seconds": 15.147079670839593,
+        "cache_sensitivity_cost_usd": {
+          "0.0": 2.1975961500000007,
+          "0.2": 3.0446502300000007,
+          "1.0": 6.432866550000001
+        }
+      },
+      "completion": {
+        "cases": 360,
+        "completed": 360,
+        "correct": 356,
+        "accuracy_percent": 98.88888888888889,
+        "qwen_calls": 1932,
+        "jev_calls": 906,
+        "hosted_requests": 2838,
+        "execution_cost_usd": 5.149479648000002,
+        "mean_case_seconds": 7.12747607868898,
+        "median_case_seconds": 6.106461521005258,
+        "p95_case_seconds": 14.395520298252816,
+        "cache_sensitivity_cost_usd": {
+          "0.0": 1.9614924480000022,
+          "0.2": 2.5990898880000017,
+          "1.0": 5.149479648000002
+        }
+      },
+      "by_domain": {
+        "email_intent": {
+          "baseline": {
+            "cases": 148,
+            "completed": 148,
+            "correct": 145,
+            "accuracy_percent": 97.97297297297297,
+            "qwen_calls": 558,
+            "jev_calls": 0,
+            "hosted_requests": 558,
+            "execution_cost_usd": 1.3451882999999993,
+            "mean_case_seconds": 5.244901780122844,
+            "median_case_seconds": 5.152351979500963,
+            "p95_case_seconds": 6.595225206248142,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 0.5732330999999992,
+              "0.2": 0.7276241399999992,
+              "1.0": 1.3451882999999993
+            }
+          },
+          "completion": {
+            "cases": 148,
+            "completed": 148,
+            "correct": 144,
+            "accuracy_percent": 97.2972972972973,
+            "qwen_calls": 558,
+            "jev_calls": 114,
+            "hosted_requests": 672,
+            "execution_cost_usd": 1.3470137940000004,
+            "mean_case_seconds": 5.346719093709465,
+            "median_case_seconds": 5.284630041991477,
+            "p95_case_seconds": 7.055155466546422,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 0.5769305940000004,
+              "0.2": 0.7309472340000003,
+              "1.0": 1.3470137940000004
+            }
+          }
+        },
+        "patient_intake": {
+          "baseline": {
+            "cases": 52,
+            "completed": 52,
+            "correct": 52,
+            "accuracy_percent": 100.0,
+            "qwen_calls": 699,
+            "jev_calls": 0,
+            "hosted_requests": 699,
+            "execution_cost_usd": 2.118397500000001,
+            "mean_case_seconds": 14.738298567289279,
+            "median_case_seconds": 14.40761937500065,
+            "p95_case_seconds": 17.193203621206337,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 0.4272903000000001,
+              "0.2": 0.7655117400000002,
+              "1.0": 2.118397500000001
+            }
+          },
+          "completion": {
+            "cases": 52,
+            "completed": 52,
+            "correct": 52,
+            "accuracy_percent": 100.0,
+            "qwen_calls": 574,
+            "jev_calls": 312,
+            "hosted_requests": 886,
+            "execution_cost_usd": 1.7550867539999997,
+            "mean_case_seconds": 13.6332396819615,
+            "median_case_seconds": 13.761373687499145,
+            "p95_case_seconds": 15.94828337104991,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 0.40733315399999936,
+              "0.2": 0.6768838739999994,
+              "1.0": 1.7550867539999997
+            }
+          }
+        },
+        "referral_abuse_detection_v1": {
+          "baseline": {
+            "cases": 160,
+            "completed": 160,
+            "correct": 160,
+            "accuracy_percent": 100.0,
+            "qwen_calls": 1280,
+            "jev_calls": 0,
+            "hosted_requests": 1280,
+            "execution_cost_usd": 2.9692807499999994,
+            "mean_case_seconds": 8.700127968469133,
+            "median_case_seconds": 8.812380458992266,
+            "p95_case_seconds": 10.035223166005016,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 1.1970727499999998,
+              "0.2": 1.5515143499999997,
+              "1.0": 2.9692807499999994
+            }
+          },
+          "completion": {
+            "cases": 160,
+            "completed": 160,
+            "correct": 160,
+            "accuracy_percent": 100.0,
+            "qwen_calls": 800,
+            "jev_calls": 480,
+            "hosted_requests": 1280,
+            "execution_cost_usd": 2.047379100000001,
+            "mean_case_seconds": 6.660303118731463,
+            "median_case_seconds": 6.725720208509301,
+            "p95_case_seconds": 7.641450916346366,
+            "cache_sensitivity_cost_usd": {
+              "0.0": 0.977228700000002,
+              "0.2": 1.1912587800000018,
+              "1.0": 2.047379100000001
+            }
+          }
+        }
+      },
+      "accepted_completion_by_domain": {
+        "referral_abuse_detection_v1": 480,
+        "patient_intake": 125,
+        "email_intent": 0
+      },
+      "full_executions": 720,
+      "separate_pilot_executions": 12,
+      "strict_regression": "E1076: Qwen interpretation after a rejected email completion check; retained as a regression, not an accepted-gate bypass.",
+      "reductions": {
+        "qwen_calls": {
+          "absolute_reduction": 605,
+          "percent_reduction": 23.84706346078045
+        },
+        "execution_cost_usd": {
+          "absolute_reduction": 1.2833869019999993,
+          "percent_reduction": 19.950466747984986
+        },
+        "mean_case_seconds": {
+          "absolute_reduction": 1.0243502099562551,
+          "percent_reduction": 12.565898409575817
+        }
+      }
+    },
+    {
+      "id": "business-decisions-080",
+      "arms": {
+        "baseline": {
+          "letter": "A",
+          "cases": 360,
+          "completed": 360,
+          "correct": 357,
+          "accuracy_percent": 99.16666666666667,
+          "qwen_calls": 2537,
+          "jev_calls": 0,
+          "hosted_requests": 2537,
+          "execution_cost_usd": 6.409988399999999,
+          "mean_case_seconds": 8.642482561319735,
+          "median_case_seconds": 7.783551874497789,
+          "p95_case_seconds": 16.06360799969989,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 2.164062000000005,
+            "0.2": 3.0132472800000034,
+            "1.0": 6.409988399999999
+          },
+          "completion_bypasses": 0,
+          "native_business_accepts": 0,
+          "by_domain": {
+            "email_intent": {
+              "cases": 148,
+              "completed": 148,
+              "correct": 145,
+              "accuracy_percent": 97.97297297297297,
+              "qwen_calls": 558,
+              "jev_calls": 0,
+              "hosted_requests": 558,
+              "execution_cost_usd": 1.3431041999999995,
+              "mean_case_seconds": 5.707997385149045,
+              "median_case_seconds": 5.51006829149992,
+              "p95_case_seconds": 7.30534420210388,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.5879105999999987,
+                "0.2": 0.7389493199999988,
+                "1.0": 1.3431041999999995
+              }
+            },
+            "patient_intake": {
+              "cases": 52,
+              "completed": 52,
+              "correct": 52,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 699,
+              "jev_calls": 0,
+              "hosted_requests": 699,
+              "execution_cost_usd": 2.1046253999999993,
+              "mean_case_seconds": 15.350970973595954,
+              "median_case_seconds": 15.17529372900026,
+              "p95_case_seconds": 17.870047254498058,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.409284599999999,
+                "0.2": 0.7483527599999991,
+                "1.0": 2.1046253999999993
+              }
+            },
+            "referral_abuse_detection_v1": {
+              "cases": 160,
+              "completed": 160,
+              "correct": 160,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 1280,
+              "jev_calls": 0,
+              "hosted_requests": 1280,
+              "execution_cost_usd": 2.9622588,
+              "mean_case_seconds": 9.176622615287851,
+              "median_case_seconds": 8.842687104501238,
+              "p95_case_seconds": 11.527825757995743,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 1.1668668000000002,
+                "0.2": 1.5259452,
+                "1.0": 2.9622588
+              }
+            }
+          }
+        },
+        "completion": {
+          "letter": "B",
+          "cases": 360,
+          "completed": 360,
+          "correct": 357,
+          "accuracy_percent": 99.16666666666667,
+          "qwen_calls": 1929,
+          "jev_calls": 905,
+          "hosted_requests": 2834,
+          "execution_cost_usd": 5.142587748000003,
+          "mean_case_seconds": 7.758328553336388,
+          "median_case_seconds": 6.5272991664969595,
+          "p95_case_seconds": 15.0809252041945,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 1.8582069479999852,
+            "0.2": 2.5150831079999887,
+            "1.0": 5.142587748000003
+          },
+          "completion_bypasses": 607,
+          "native_business_accepts": 0,
+          "by_domain": {
+            "email_intent": {
+              "cases": 148,
+              "completed": 148,
+              "correct": 146,
+              "accuracy_percent": 98.64864864864865,
+              "qwen_calls": 557,
+              "jev_calls": 113,
+              "hosted_requests": 670,
+              "execution_cost_usd": 1.3552055400000003,
+              "mean_case_seconds": 5.974333350770148,
+              "median_case_seconds": 5.56036297949322,
+              "p95_case_seconds": 8.698972256698475,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.5664311400000005,
+                "0.2": 0.7241860200000004,
+                "1.0": 1.3552055400000003
+              }
+            },
+            "patient_intake": {
+              "cases": 52,
+              "completed": 52,
+              "correct": 52,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 572,
+              "jev_calls": 312,
+              "hosted_requests": 884,
+              "execution_cost_usd": 1.7361006540000006,
+              "mean_case_seconds": 14.688056819750132,
+              "median_case_seconds": 13.92209383349109,
+              "p95_case_seconds": 22.988822312503906,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.3822126540000006,
+                "0.2": 0.6529902540000005,
+                "1.0": 1.7361006540000006
+              }
+            },
+            "referral_abuse_detection_v1": {
+              "cases": 160,
+              "completed": 160,
+              "correct": 159,
+              "accuracy_percent": 99.375,
+              "qwen_calls": 800,
+              "jev_calls": 480,
+              "hosted_requests": 1280,
+              "execution_cost_usd": 2.0512815540000005,
+              "mean_case_seconds": 7.156362429125693,
+              "median_case_seconds": 6.795407833000354,
+              "p95_case_seconds": 9.020896679455465,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.9095631540000018,
+                "0.2": 1.1379068340000016,
+                "1.0": 2.0512815540000005
+              }
+            }
+          }
+        },
+        "business-qwen": {
+          "letter": "C",
+          "cases": 360,
+          "completed": 360,
+          "correct": 360,
+          "accuracy_percent": 100.0,
+          "qwen_calls": 1930,
+          "jev_calls": 904,
+          "hosted_requests": 2834,
+          "execution_cost_usd": 4.827737028000001,
+          "mean_case_seconds": 7.264506042600179,
+          "median_case_seconds": 6.166928958002245,
+          "p95_case_seconds": 15.006400635443425,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 1.6704794279999784,
+            "0.2": 2.301930947999983,
+            "1.0": 4.827737028000001
+          },
+          "completion_bypasses": 605,
+          "native_business_accepts": 0,
+          "by_domain": {
+            "email_intent": {
+              "cases": 148,
+              "completed": 148,
+              "correct": 148,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 556,
+              "jev_calls": 112,
+              "hosted_requests": 668,
+              "execution_cost_usd": 1.0366256160000002,
+              "mean_case_seconds": 4.991252951588379,
+              "median_case_seconds": 4.764950291995774,
+              "p95_case_seconds": 6.452345947798313,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.3989936160000003,
+                "0.2": 0.5265200160000002,
+                "1.0": 1.0366256160000002
+              }
+            },
+            "patient_intake": {
+              "cases": 52,
+              "completed": 52,
+              "correct": 52,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 574,
+              "jev_calls": 312,
+              "hosted_requests": 886,
+              "execution_cost_usd": 1.7400554400000001,
+              "mean_case_seconds": 14.122583198710625,
+              "median_case_seconds": 13.47114427100314,
+              "p95_case_seconds": 17.877015237651356,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.3846986400000001,
+                "0.2": 0.65577,
+                "1.0": 1.7400554400000001
+              }
+            },
+            "referral_abuse_detection_v1": {
+              "cases": 160,
+              "completed": 160,
+              "correct": 160,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 800,
+              "jev_calls": 480,
+              "hosted_requests": 1280,
+              "execution_cost_usd": 2.051055972,
+              "mean_case_seconds": 7.1383900760502,
+              "median_case_seconds": 6.774976416498248,
+              "p95_case_seconds": 9.0874603118551,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.8867871720000013,
+                "0.2": 1.1196409320000011,
+                "1.0": 2.051055972
+              }
+            }
+          },
+          "cost_with_final_preparation_usd": 4.955434578000001
+        },
+        "business-jev": {
+          "letter": "D",
+          "cases": 360,
+          "completed": 360,
+          "correct": 360,
+          "accuracy_percent": 100.0,
+          "qwen_calls": 1785,
+          "jev_calls": 1052,
+          "hosted_requests": 2837,
+          "execution_cost_usd": 4.703253131999998,
+          "mean_case_seconds": 6.93817686379698,
+          "median_case_seconds": 6.114321895991452,
+          "p95_case_seconds": 15.273995136854504,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 1.5838099319999746,
+            "0.2": 2.207698571999979,
+            "1.0": 4.703253131999998
+          },
+          "completion_bypasses": 609,
+          "native_business_accepts": 141,
+          "by_domain": {
+            "email_intent": {
+              "cases": 148,
+              "completed": 148,
+              "correct": 148,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 415,
+              "jev_calls": 260,
+              "hosted_requests": 675,
+              "execution_cost_usd": 0.9193938420000002,
+              "mean_case_seconds": 4.083451208344667,
+              "median_case_seconds": 3.9517404369980795,
+              "p95_case_seconds": 6.073741466546199,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.31105144200000057,
+                "0.2": 0.4327199220000005,
+                "1.0": 0.9193938420000002
+              }
+            },
+            "patient_intake": {
+              "cases": 52,
+              "completed": 52,
+              "correct": 52,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 570,
+              "jev_calls": 312,
+              "hosted_requests": 882,
+              "execution_cost_usd": 1.7335402800000004,
+              "mean_case_seconds": 14.694345707576408,
+              "median_case_seconds": 14.203853354498278,
+              "p95_case_seconds": 19.77914277729942,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.38716908000000005,
+                "0.2": 0.6564433200000002,
+                "1.0": 1.7335402800000004
+              }
+            },
+            "referral_abuse_detection_v1": {
+              "cases": 160,
+              "completed": 160,
+              "correct": 160,
+              "accuracy_percent": 100.0,
+              "qwen_calls": 800,
+              "jev_calls": 480,
+              "hosted_requests": 1280,
+              "execution_cost_usd": 2.0503190100000004,
+              "mean_case_seconds": 7.058043220862055,
+              "median_case_seconds": 6.853095562495582,
+              "p95_case_seconds": 8.738904691997595,
+              "cache_sensitivity_cost_usd": {
+                "0.0": 0.8855894100000019,
+                "0.2": 1.1185353300000016,
+                "1.0": 2.0503190100000004
+              }
+            }
+          },
+          "cost_with_final_preparation_usd": 4.830950681999997
+        }
+      },
+      "arm_meanings": {
+        "A": "Qwen only",
+        "B": "Qwen + Jev completion checks",
+        "C": "Same source-derived business interface, Qwen decisions, Jev completion checks",
+        "D": "Identical business interface, Jev decisions with Qwen fallback, Jev completion checks"
+      },
+      "full_executions": 1440,
+      "separate_pilot_executions": 48,
+      "new_capability_exercised": "Email Step1 five-way intent only. Referral malformed source contract rejected; patient has no admitted pure business decision.",
+      "primary_contrast": "D versus C isolates the native backend; email has141 fewer Qwen calls, while4 additional aggregate reductions are patient completion variation.",
+      "reductions_A_to_D": {
+        "qwen_calls": {
+          "absolute_reduction": 752,
+          "percent_reduction": 29.641308632242808
+        },
+        "execution_cost_usd": {
+          "absolute_reduction": 1.706735268000001,
+          "percent_reduction": 26.626183410877957
+        },
+        "mean_case_seconds": {
+          "absolute_reduction": 1.7043056975227548,
+          "percent_reduction": 19.720094144598445
+        }
+      },
+      "preparation": {
+        "source_v4_cost_usd": 0.12769755000000002,
+        "source_v4_wall_seconds": 27.285619874994154,
+        "calls": 25,
+        "email_cost_usd": 0.0262911,
+        "historical_failed_cost_usd": 0.20791485,
+        "all_development_preparation_cost_usd": 0.3356124,
+        "policy": "Paid once physically. Each independently deployed C/D alternative bears same full relevant preparation cost, never half."
+      },
+      "email_D_vs_C": {
+        "C": {
+          "cases": 148,
+          "completed": 148,
+          "correct": 148,
+          "accuracy_percent": 100.0,
+          "qwen_calls": 556,
+          "jev_calls": 112,
+          "hosted_requests": 668,
+          "execution_cost_usd": 1.0366256160000002,
+          "mean_case_seconds": 4.991252951588379,
+          "median_case_seconds": 4.764950291995774,
+          "p95_case_seconds": 6.452345947798313,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 0.3989936160000003,
+            "0.2": 0.5265200160000002,
+            "1.0": 1.0366256160000002
+          }
+        },
+        "D": {
+          "cases": 148,
+          "completed": 148,
+          "correct": 148,
+          "accuracy_percent": 100.0,
+          "qwen_calls": 415,
+          "jev_calls": 260,
+          "hosted_requests": 675,
+          "execution_cost_usd": 0.9193938420000002,
+          "mean_case_seconds": 4.083451208344667,
+          "median_case_seconds": 3.9517404369980795,
+          "p95_case_seconds": 6.073741466546199,
+          "cache_sensitivity_cost_usd": {
+            "0.0": 0.31105144200000057,
+            "0.2": 0.4327199220000005,
+            "1.0": 0.9193938420000002
+          }
+        },
+        "reductions": {
+          "qwen_calls": {
+            "absolute_reduction": 141,
+            "percent_reduction": 25.359712230215827
+          },
+          "execution_cost_usd": {
+            "absolute_reduction": 0.11723177400000007,
+            "percent_reduction": 11.308979075045357
+          },
+          "mean_case_seconds": {
+            "absolute_reduction": 0.907801743243712,
+            "percent_reduction": 18.187852870787083
+          }
+        },
+        "business_qwen_calls_C_D": [
+          148,
+          7
+        ],
+        "other_qwen_calls_C_D": [
+          408,
+          408
+        ],
+        "jev_business_attempts_C_D": [
+          0,
+          148
+        ],
+        "jev_completion_checks_C_D": [
+          112,
+          112
+        ],
+        "native_accepted": 141,
+        "native_abstained": 7,
+        "accepted_completion_checks_both": 0,
+        "correct_both": "148/148",
+        "application_tools": "Every paired catalog call and result matches.",
+        "business_stage_cost_usd_C_D": [
+          0.13158375,
+          0.010281696
+        ]
+      }
+    }
+  ],
+  "suggested_chart_data": {
+    "four_arm_ladder": {
+      "experiment": "business-decisions-080 only",
+      "x": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "qwen_calls": [
+        2537,
+        1929,
+        1930,
+        1785
+      ],
+      "jev_calls": [
+        0,
+        905,
+        904,
+        1052
+      ],
+      "hosted_requests": [
+        2537,
+        2834,
+        2834,
+        2837
+      ],
+      "execution_cost_usd": [
+        6.409988399999999,
+        5.142587748000003,
+        4.827737028000001,
+        4.703253131999998
+      ],
+      "mean_case_seconds": [
+        8.642482561319735,
+        7.758328553336388,
+        7.264506042600179,
+        6.93817686379698
+      ],
+      "correct": [
+        357,
+        357,
+        360,
+        360
+      ]
+    },
+    "within_D_call_waterfall": {
+      "start_A": 2537,
+      "completion_referral": 480,
+      "completion_patient": 129,
+      "native_email_decisions": 141,
+      "other_email_differences": 2,
+      "end_D": 1785,
+      "total_reduction": 752,
+      "grouped_completion": 609,
+      "warning": "Observed attribution within one four-arm rerun; do not add the earlier run\u2019s605 bypasses to141 choices."
+    },
+    "email_qwen_stack": {
+      "x": [
+        "C",
+        "D"
+      ],
+      "ordinary_qwen": [
+        408,
+        408
+      ],
+      "constrained_business_qwen": [
+        148,
+        7
+      ],
+      "total_qwen": [
+        556,
+        415
+      ],
+      "total_hosted": [
+        668,
+        675
+      ],
+      "note": "Show hosted totals separately; LLM-call reductions are not API-request reductions."
+    }
+  },
+  "flowchart_facts": {
+    "completion_only": [
+      "Qwen interprets SOP and selects application tool",
+      "Tool executes; receipt recorded",
+      "Jev checks current-step obligation against receipt evidence",
+      "Both yes probabilities\u22650.8: normal complete_step; skip next Qwen call",
+      "Negative/uncertain/invalid: ordinary Qwen continuation",
+      "Qwen retains business decisions and final output"
+    ],
+    "business_plus_completion": [
+      "Source-only preparation: SOP+tool schemas+input names \u2192 per-step contract \u2192 independent review \u2192 frozen cache",
+      "Bind original current-step policy to inputs/accepted facts/matching receipts",
+      "Admitted choice/predicate: try native Jev business decision",
+      "Selected label/bool probability\u22650.8: record typed fact and advance",
+      "Abstention \u2192 constrained Qwen record_decision with same policy/evidence",
+      "Invalid constrained result/unsupported plan \u2192 ordinary Qwen step",
+      "Eligible tool batches still use completion checks"
+    ],
+    "authoring": "Natural-language SOP remains the authoring surface; deployment configuration controls models, threshold, and cascades."
+  },
+  "essential_caveats": [
+    "Use four-arm rerun for cumulative charts; separate runs have different costs/latencies/generation outcomes.",
+    "Show original completion-only accuracy357\u2192356. New C/D both360 does not establish Jev improved accuracy; C already matches D.",
+    "Direct business routing validated only for email intent; no native referral scoring or patient eligibility inference in this run.",
+    "Fewer Qwen calls is not fewer hosted requests: final D2837 versus A2537; email D675 versus C668.",
+    "Prices are estimated usage list rates including Jev; cached input at full ordinary price, invoices unverified. Warm tables exclude preparation.",
+    "Reused validation, not unseen confirmation; strict field scores do not prove all prose SOP obligations.",
+    "Simulated tools and automatic clarification replies limit production and clinical conclusions.",
+    "Latency includes shared-provider contention/tool lifecycle; acceptance thresholds are not calibrated accuracy guarantees."
+  ],
+  "inference_performed": false,
+  "source_files_changed": false
+}

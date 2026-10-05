@@ -1,0 +1,119 @@
+{
+  "input_fields": [
+    "email_id",
+    "email_body",
+    "product_id",
+    "marketplace_id"
+  ],
+  "skill": "---\nname: email-intent\ndescription: Classify seller appeal email intent and determine the appropriate catalog response.\nrequired_tools:\n  - get_product_price\n  - get_product_description\n  - get_product_listing_status\n  - get_inventory_status\noutput_fields:\n  - seller_intent\n  - action\n---\n\n### Step 1: Extract and Validate Product ID and Identify Seller Intent\nRead email_body. Extract the product_id using regular-expression pattern matching. The product ID is six alphanumeric characters beginning with P; the tools require P followed by five uppercase alphanumeric characters. Use the marketplace_id provided in the task when a tool requires it.\nIdentify the seller intent from the email: concern about their product not being listed; concern about incorrect pricing; concern about incorrect description; generic question about a listing; or unable to decide.\n\n### Step 2: Retrieve Relevant Catalog Evidence and Determine the Action\nUse the matching conditional branch below. The available tool parameters are:\n- get_product_price(product_id, marketplace_id)\n- get_product_description(product_id)\n- get_product_listing_status(product_id, marketplace_id, include_history=false)\n- get_inventory_status(product_id, marketplace_id, include_forecasts=false)\nOnly use validated product IDs. For listing-status concerns, retrieve both listing status and inventory. For pricing concerns, retrieve the price and compare it with the seller-specified price. For description concerns, retrieve the current description and compare it with the requested description. Generic questions need no catalog tool call.\n\n5.2 Intent-Based Processing\n  Identify the intent of the seller's email body. It could be one of the following:\n  a. concern about their product not being listed\n  b. concern about incorrect pricing\n  c. concern about incorrect description\n  d. generic question about a listing\n  e. unable to decide\n\n  For pricing concerns: Get the current price from the pricing database using validated product_id only and compare returned price value against seller-specified \n  price. Calculate price delta and determine if update is warranted. Assign action \"update price\" if delta exists, otherwise \"no action\"\n\n  For description concerns: Get the description in the database, using the validated product_id. If it is significantly different from the requested description in \n  the email, then assign action \"update description\", otherwise \"no action\".\n\n  For listing status concerns: Get the current listing status and inventory count from the product database and summarize and assign action \"share listing status\" \n  and prepare status communication.\n\n  For generic inquiries: Document inquiry category in system, assign action \"no action\" and prepare standardized response template\n\n  The action could be one of the following:\n  (a) \"no action\"\n  (b) \"update price\"\n  (c) \"update description\"\n  (d) \"share listing status\"\n  (e) \"further clarification required\"\n\n\n### Step 3: Report Intent and Action\nReturn both seller_intent and action in the required JSON object within <final_output> tags. Also include the same values in <seller_intent> and <action> XML tags in the final complete_step summary, so structured fields are unambiguous. Do not invent an update action when the observed comparison does not warrant it. The available benchmark tools retrieve records; they do not apply catalog updates or send messages.\n",
+  "tool_schemas": [
+    {
+      "function": {
+        "description": "Retrieve the current listing price for a product in a given marketplace.",
+        "name": "sop-bench__get_product_price",
+        "parameters": {
+          "properties": {
+            "marketplace_id": {
+              "description": "Marketplace identifier (e.g., US or US001)",
+              "pattern": "^[A-Z]{2}([0-9]{3})?$",
+              "type": "string"
+            },
+            "product_id": {
+              "description": "Product identifier starting with 'P' followed by 5 alphanumeric characters (e.g., P12H3I)",
+              "pattern": "^P[A-Z0-9]{5}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id",
+            "marketplace_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Retrieve the current product description from the catalog.",
+        "name": "sop-bench__get_product_description",
+        "parameters": {
+          "properties": {
+            "product_id": {
+              "description": "Product identifier starting with 'P' followed by 5 alphanumeric characters (e.g., P12H3I)",
+              "pattern": "^P[A-Z0-9]{5}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Retrieve current inventory status for a product, optionally including forecasts.",
+        "name": "sop-bench__get_inventory_status",
+        "parameters": {
+          "properties": {
+            "include_forecasts": {
+              "default": false,
+              "description": "Whether to include 30-day inventory forecasts",
+              "type": "boolean"
+            },
+            "marketplace_id": {
+              "description": "Marketplace identifier (e.g., US or US001)",
+              "pattern": "^[A-Z]{2}([0-9]{3})?$",
+              "type": "string"
+            },
+            "product_id": {
+              "description": "Product identifier starting with 'P' followed by 5 alphanumeric characters (e.g., P12H3I)",
+              "pattern": "^P[A-Z0-9]{5}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id",
+            "marketplace_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Retrieve the current listing status for a product, optionally including recent status history.",
+        "name": "sop-bench__get_product_listing_status",
+        "parameters": {
+          "properties": {
+            "include_history": {
+              "default": false,
+              "description": "Whether to include listing status history",
+              "type": "boolean"
+            },
+            "marketplace_id": {
+              "description": "Marketplace identifier (e.g., US or US001)",
+              "pattern": "^[A-Z]{2}([0-9]{3})?$",
+              "type": "string"
+            },
+            "product_id": {
+              "description": "Product identifier starting with 'P' followed by 5 alphanumeric characters (e.g., P12H3I)",
+              "pattern": "^P[A-Z0-9]{5}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "product_id",
+            "marketplace_id"
+          ],
+          "type": "object"
+        }
+      },
+      "type": "function"
+    }
+  ]
+}
