@@ -26,6 +26,12 @@ business_decisions; and native_decisions, a Boolean defaulting to true. The latt
 selects native decision-model inference versus constrained main-LLM inference for
 the same business plan. It does not disable the completion checker.
 
+Implementation guard added before inference: require_cached defaults to false and
+can prohibit compiler calls at task execution. The prepared benchmark sets it true,
+so a source/schema/config mismatch safely falls back instead of silently compiling
+a different plan or creating an unrecorded preparation charge. This operational
+guard does not change compiler cache identity.
+
 In business_decisions mode, only admitted decision steps execute through the plan.
 Tool and render operations are not executed by the interpreter. Source-derived
 tool contracts may still be retained as non-executing observation contracts so a

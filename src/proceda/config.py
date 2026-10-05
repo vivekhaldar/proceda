@@ -7,7 +7,7 @@ import os
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import yaml
 
@@ -109,6 +109,9 @@ class PlanningConfig:
     cache_dir: str = ".proceda/plans"
     cache_epoch: str = "v1"
     compiler_llm: LLMConfig | None = None
+    mode: Literal["full", "business_decisions"] = "full"
+    native_decisions: bool = True
+    require_cached: bool = False
 
 
 @dataclass
@@ -231,6 +234,13 @@ class ProcedaConfig:
                 raise ConfigError("planning must be a mapping")
             if type(planning.get("enabled", False)) is not bool:
                 raise ConfigError("planning.enabled must be a boolean")
+            mode = planning.get("mode", "full")
+            if not isinstance(mode, str) or mode not in {"full", "business_decisions"}:
+                raise ConfigError("planning.mode must be full or business_decisions")
+            if type(planning.get("native_decisions", True)) is not bool:
+                raise ConfigError("planning.native_decisions must be a boolean")
+            if type(planning.get("require_cached", False)) is not bool:
+                raise ConfigError("planning.require_cached must be a boolean")
             for name in ("cache_dir", "cache_epoch"):
                 if name in planning and (
                     not isinstance(planning[name], str) or not planning[name].strip()
@@ -246,6 +256,9 @@ class ProcedaConfig:
                 compiler_llm=(
                     ProcedaConfig.from_dict({"llm": compiler}).llm if compiler is not None else None
                 ),
+                mode=mode,
+                native_decisions=planning.get("native_decisions", True),
+                require_cached=planning.get("require_cached", False),
             )
 
         if "apps" in data:

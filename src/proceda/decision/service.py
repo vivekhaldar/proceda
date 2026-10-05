@@ -271,18 +271,24 @@ class DecisionService:
             logger.warning("Decision audit failed; abstaining from this backend's answer")
             return False
 
-    async def evaluate(self, state: dict, questions: dict) -> GateResult:
+    async def evaluate(
+        self, state: dict, questions: dict, *, selected_outcome_threshold: bool = False
+    ) -> GateResult:
         """All questions pass => True; any confident no => False; uncertainty cascades.
 
         These gates use the probability of yes, not the provider's confidence statistic.
         Each backend is attempted once; errors and oversized inputs proceed to the next.
+        Business predicates may explicitly compare p(false) to the threshold. The default
+        retains the completion gate's original negative-probability boundary.
         """
         if not questions or any(
             not isinstance(question, dict) or question.get("type") != "noul"
             for question in questions.values()
         ):
             return GateResult(None, reason="only_nonempty_noul_questions_supported")
-        result = await self._cascade(state, questions)
+        result = await self._cascade(
+            state, questions, selected_outcome_threshold=selected_outcome_threshold
+        )
         assert isinstance(result, GateResult)
         return result
 
@@ -330,7 +336,12 @@ class DecisionService:
         return result
 
     async def _cascade(
-        self, state: Any, questions: dict, *, choice_id: str | None = None
+        self,
+        state: Any,
+        questions: dict,
+        *,
+        choice_id: str | None = None,
+        selected_outcome_threshold: bool = False,
     ) -> GateResult | ChoiceResult:
         """Shared audited transport; Boolean and Choice interpretation stay distinct."""
         details: list[dict[str, Any]] = []
@@ -356,6 +367,8 @@ class DecisionService:
                 "usage_reported": False,
                 "cost_known": True,  # No provider attempt has started yet.
             }
+            if selected_outcome_threshold:
+                record["acceptance_statistic"] = "selected_outcome_probability"
             value: bool | str | None = None
             pending_audit = None
             try:
@@ -430,7 +443,10 @@ class DecisionService:
                             value = True
                             record.update(outcome="accepted", reason="all_obligations_accepted")
                         elif any(
-                            probability <= 1 - threshold for probability in probabilities.values()
+                            (1 - probability >= threshold)
+                            if selected_outcome_threshold
+                            else (probability <= 1 - threshold)
+                            for probability in probabilities.values()
                         ):
                             value = False
                             record.update(outcome="rejected", reason="obligation_rejected")

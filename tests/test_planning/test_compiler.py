@@ -382,3 +382,280 @@ async def test_recovery_semantics_version_invalidates_cache(tmp_path, monkeypatc
     old = load_cached_plan(first.artifact_path, first.cache_key, parse_skill(SOURCE), [], ["text"])
     assert old.status == "corrupt" and old.plan is None
     assert compiler.complete.call_count == reviewer.complete.call_count == 2
+
+
+def compact_candidate(skill=None):
+    raw = candidate(skill)
+    for step in raw["steps"]:
+        del step["source_quote"]
+        del step["residual_obligations"]
+        del step["decision"]["instructions"]
+    return raw
+
+
+async def test_business_compact_policy_attaches_full_source_and_preserves_raw_evidence(tmp_path):
+    from proceda.planning.compiler import BUSINESS_COMPILER_PROMPT, BUSINESS_REVIEW_PROMPT
+
+    skill = parse_skill(SOURCE + "Apply high before low if both apply.\n")
+    raw = compact_candidate(skill)
+    original = deepcopy(raw)
+    compiler, reviewer, kwargs = setup(tmp_path, raw)
+    kwargs["mode"] = "business_decisions"
+    kwargs["compiler_config"]["max_tokens"] = 2048
+    kwargs["reviewer_config"]["max_tokens"] = 2048
+    result = await compile_plan(kwargs, skill)
+    assert result.status == "accepted"
+    assert result.plan.steps[0].decision.instructions == skill.steps[0].content
+    assert raw == original
+    assert compiler.complete.call_args.args[0][0]["content"] == BUSINESS_COMPILER_PROMPT
+    assert reviewer.complete.call_args.args[0][0]["content"] == BUSINESS_REVIEW_PROMPT
+    request = json.loads(reviewer.complete.call_args.args[0][1]["content"])
+    assert request["source"]["raw_skill"] == skill.raw_content
+    assert request["candidate"]["steps"][0]["decision"]["instructions"] == skill.steps[0].content
+    payload = json.loads(result.artifact_path.read_text())["payload"]
+    assert payload["identity"]["compiler_config"]["max_tokens"] == 2048
+    assert payload["identity"]["reviewer_config"]["max_tokens"] == 2048
+    assert payload["compiler_compact_candidate"] == original
+    assert payload["compiler_response"]["content"] == json.dumps(original)
+    assert payload["compiler_candidate"]["steps"][0]["source_quote"] == skill.steps[0].content
+    loaded = load_cached_plan(
+        result.artifact_path, result.cache_key, skill, [], ["text"], mode="business_decisions"
+    )
+    assert loaded.plan == result.plan and loaded.cache_hit
+    wrong_mode = load_cached_plan(result.artifact_path, result.cache_key, skill, [], ["text"])
+    assert wrong_mode.status == "corrupt" and wrong_mode.plan is None
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        lambda raw: raw["steps"][0].update(index=2),
+        lambda raw: raw["steps"][0].update(index=True),
+        lambda raw: raw["steps"][0].update(source_quote="Replacement source"),
+        lambda raw: raw["steps"][0].update(residual_obligations=[]),
+        lambda raw: raw["steps"][0]["decision"].update(instructions="Override original policy"),
+        lambda raw: raw["steps"].append(deepcopy(raw["steps"][0])),
+        lambda raw: raw["steps"][0].update(kind="render"),
+    ],
+)
+async def test_compact_source_identity_and_policy_cannot_be_overridden(tmp_path, mutation):
+    raw = compact_candidate()
+    mutation(raw)
+    compiler, reviewer, kwargs = setup(tmp_path, raw)
+    result = await compile_plan(kwargs | {"mode": "business_decisions"})
+    assert result.status == "invalid" and result.plan is None
+    reviewer.complete.assert_not_called()
+    assert (
+        json.loads(result.artifact_path.read_text())["payload"]["compiler_compact_candidate"] == raw
+    )
+
+
+async def test_business_observation_contracts_support_whole_receipts_without_executing_tools(
+    tmp_path,
+):
+    skill = parse_skill("""---
+name: warehouse-policy
+description: Renamed receipt-based policy
+---
+### Step 1: Observe
+Call inspect_bin with bin_id, then explain the result.
+### Step 2: Decide
+Use tool outputs to select open or closed.
+Select closed if either indicator is true; otherwise open.
+### Step 3: Report
+Report the selected outcome.
+""")
+    tools = [
+        {
+            "type": "function",
+            "function": {
+                "name": "inventory__inspect_bin",
+                "parameters": {
+                    "type": "object",
+                    "properties": {"bin_id": {"type": "string"}},
+                    "required": ["bin_id"],
+                },
+            },
+        }
+    ]
+    raw = {
+        "ir_version": "1",
+        "steps": [
+            {
+                "index": 1,
+                "kind": "tool",
+                "tools": [
+                    {
+                        "tool": "inventory__inspect_bin",
+                        "arguments": {
+                            "bin_id": {
+                                "kind": "input",
+                                "key": "bin_id",
+                                "source_quote": "with bin_id",
+                            }
+                        },
+                        "source_quote": "Call inspect_bin with bin_id",
+                    }
+                ],
+            },
+            {
+                "index": 2,
+                "kind": "decision",
+                "decision": {
+                    "field": "access",
+                    "criteria": {
+                        "open": "Neither indicator is true",
+                        "closed": "Either indicator is true",
+                    },
+                    "inputs": {
+                        "observed": {
+                            "kind": "receipt",
+                            "step": 1,
+                            "tool": "inventory__inspect_bin",
+                            "path": "",
+                            "source_quote": "tool outputs",
+                        }
+                    },
+                    "source_quote": "select open or closed",
+                },
+            },
+            {"index": 3, "kind": "llm"},
+        ],
+    }
+    compiler, reviewer, kwargs = setup(tmp_path, raw)
+    result = await compile_plan(kwargs | {"mode": "business_decisions"}, skill, tools, ["bin_id"])
+    assert result.status == "accepted"
+    first, second, third = result.plan.steps
+    assert first.residual_obligations == (skill.steps[0].content,)
+    assert second.decision.inputs["observed"].path == ""
+    assert second.decision.instructions == skill.steps[1].content
+    assert third.residual_obligations == (skill.steps[2].content,)
+    raw["steps"][1] = {"index": 2, "kind": "llm"}
+    compiler.complete.return_value = answer(raw)
+    unsupported = await compile_plan(
+        kwargs | {"mode": "business_decisions", "cache_epoch": "observation-only"},
+        skill,
+        tools,
+        ["bin_id"],
+    )
+    assert unsupported.status == "unsupported" and unsupported.plan is None
+
+
+async def test_business_review_rejects_mixed_obligations_despite_source_attachment(tmp_path):
+    skill = parse_skill(SOURCE + "Call deliver with the decision, then document the delivery.\n")
+    compiler, reviewer, kwargs = setup(
+        tmp_path,
+        compact_candidate(skill),
+        {"approved": False, "issues": ["Decision omits required delivery and documentation"]},
+    )
+    result = await compile_plan(kwargs | {"mode": "business_decisions"}, skill)
+    assert result.status == "rejected" and result.plan is None
+    assert "omits required" in result.errors[0]
+
+
+async def test_compact_predicate_preserves_source_condition_and_full_policy(tmp_path):
+    skill = parse_skill("""---
+name: queue-capacity
+description: Renamed predicate with explicit thresholds
+---
+### Step 1: Check
+Determine whether pending_count is below 20 and paused is false.
+""")
+    raw = {
+        "ir_version": "1",
+        "steps": [
+            {
+                "index": 1,
+                "kind": "decision",
+                "decision": {
+                    "kind": "predicate",
+                    "field": "accepting",
+                    "criteria": {"true": "pending_count is below 20 and paused is false"},
+                    "inputs": {
+                        key: {"kind": "input", "key": key, "source_quote": key}
+                        for key in ("pending_count", "paused")
+                    },
+                    "source_quote": "Determine whether",
+                },
+            }
+        ],
+    }
+    compiler, reviewer, kwargs = setup(tmp_path, raw)
+    result = await compile_plan(
+        kwargs | {"mode": "business_decisions"}, skill, fields=["pending_count", "paused"]
+    )
+    assert result.status == "accepted"
+    decision = result.plan.steps[0].decision
+    assert decision.kind == "predicate" and set(decision.criteria) == {"true"}
+    assert decision.instructions == skill.steps[0].content
+
+
+async def test_public_identity_matches_compiler_and_separates_modes(tmp_path):
+    from proceda.planning.compiler import _hash, compiler_identity
+
+    compiler, reviewer, kwargs = setup(tmp_path)
+    full = await compile_plan(kwargs)
+    identity_args = {k: kwargs[k] for k in ("compiler_config", "reviewer_config")}
+    skill = parse_skill(SOURCE)
+    assert _hash(compiler_identity(skill, [], ["text"], **identity_args)) == full.cache_key
+    compiler.complete.return_value = answer(compact_candidate())
+    business = await compile_plan(kwargs | {"mode": "business_decisions"})
+    assert business.cache_key != full.cache_key and not business.cache_hit
+    assert (
+        _hash(compiler_identity(skill, [], ["text"], **identity_args, mode="business_decisions"))
+        == business.cache_key
+    )
+
+
+async def test_required_missing_cache_never_calls_or_publishes(tmp_path):
+    compiler, reviewer, kwargs = setup(tmp_path, compact_candidate())
+    result = await compile_plan(kwargs | {"mode": "business_decisions", "require_cached": True})
+    assert result.status == "missing" and result.plan is None
+    assert result.prompt_tokens == result.completion_tokens == 0
+    compiler.complete.assert_not_called()
+    reviewer.complete.assert_not_called()
+    assert not list(tmp_path.iterdir())
+    prepared = await compile_plan(kwargs | {"mode": "business_decisions"})
+    cached = await compile_plan(kwargs | {"mode": "business_decisions", "require_cached": True})
+    assert cached.cache_key == prepared.cache_key and cached.cache_hit
+    assert compiler.complete.call_count == reviewer.complete.call_count == 1
+
+
+async def test_cached_business_expansion_and_version_are_revalidated(tmp_path, monkeypatch):
+    import proceda.planning.compiler as module
+
+    compiler, reviewer, kwargs = setup(tmp_path, compact_candidate())
+    result = await compile_plan(kwargs | {"mode": "business_decisions"})
+    document = json.loads(result.artifact_path.read_text())
+    document["payload"]["compiler_compact_candidate"]["steps"][0]["decision"]["field"] = (
+        "replacement"
+    )
+    document["sha256"] = module._hash(document["payload"])
+    result.artifact_path.write_text(json.dumps(document))
+    corrupt = load_cached_plan(
+        result.artifact_path,
+        result.cache_key,
+        parse_skill(SOURCE),
+        [],
+        ["text"],
+        mode="business_decisions",
+    )
+    assert corrupt.status == "corrupt" and corrupt.plan is None
+    monkeypatch.setattr(module, "BUSINESS_EXPANSION_VERSION", "changed")
+    changed = await compile_plan(kwargs | {"mode": "business_decisions"})
+    assert changed.cache_key != result.cache_key and not changed.cache_hit
+
+
+@pytest.mark.parametrize("stage", ["compiler", "reviewer"])
+@pytest.mark.parametrize("finish_reason", ["length", "max_tokens", "content_filter"])
+async def test_truncated_response_is_rejected_even_if_content_is_valid_json(
+    tmp_path, stage, finish_reason
+):
+    compiler, reviewer, kwargs = setup(tmp_path, compact_candidate())
+    target = compiler if stage == "compiler" else reviewer
+    target.complete.return_value.raw_response = {"choices": [{"finish_reason": finish_reason}]}
+    result = await compile_plan(kwargs | {"mode": "business_decisions"})
+    assert result.status == "invalid" and result.plan is None
+    if stage == "compiler":
+        reviewer.complete.assert_not_called()
+    assert compiler.complete.call_count == 1

@@ -15,10 +15,10 @@ from proceda.decision import GateResult
 from proceda.events import CollectorEventSink, EventType
 from proceda.exceptions import ConfigError
 from proceda.llm.runtime import LLMResponse
-from proceda.planning.models import ProcedurePlan, StepPlan, ToolPlan, ValueRef
+from proceda.planning.models import ChoiceSpec, ProcedurePlan, StepPlan, ToolPlan, ValueRef
 from proceda.planning.runner import PlanRunner
 from proceda.runtime import Runtime
-from proceda.session import RunSession, RunStatus, ToolCall
+from proceda.session import ApprovalDecision, RunSession, RunStatus, ToolCall
 from proceda.skills.parser import parse_skill
 from tests.test_runtime.test_decision_executor import SKILL, TOOLS, response, setup
 
@@ -99,10 +99,22 @@ async def test_repaired_planned_completion_cannot_publish_stale_facts():
 
 
 @pytest.mark.parametrize("cache_hit,tokens", [(False, 17), (True, 0)])
-async def test_compiler_gets_field_names_only_and_usage_charged_once(tmp_path, cache_hit, tokens):
+@pytest.mark.parametrize("mode,budget", [("full", 8192), ("business_decisions", 2048)])
+async def test_compiler_gets_field_names_only_and_usage_charged_once(
+    tmp_path, cache_hit, tokens, mode, budget
+):
     skill = parse_skill(SKILL)
     session = RunSession.create(skill.id, skill.name, {"record_id": "SECRET_CASE_VALUE"})
-    config = ProcedaConfig.from_dict({"planning": {"enabled": True, "cache_dir": str(tmp_path)}})
+    config = ProcedaConfig.from_dict(
+        {
+            "planning": {
+                "enabled": True,
+                "cache_dir": str(tmp_path),
+                "mode": mode,
+                "require_cached": True,
+            }
+        }
+    )
     config.llm = LLMConfig(model="test-model", max_tokens=2048)
     sink = CollectorEventSink()
     result = SimpleNamespace(
@@ -124,7 +136,9 @@ async def test_compiler_gets_field_names_only_and_usage_charged_once(tmp_path, c
     assert runner is None
     assert compile_.call_args.args[2] == ["record_id"]
     assert "SECRET_CASE_VALUE" not in repr(compile_.call_args)
-    assert compile_.call_args.kwargs["compiler_config"]["max_tokens"] == 8192
+    assert compile_.call_args.kwargs["compiler_config"]["max_tokens"] == budget
+    assert compile_.call_args.kwargs["mode"] == mode
+    assert compile_.call_args.kwargs["require_cached"] is True
     assert "audit_dir" not in compile_.call_args.kwargs["compiler_config"]
     assert session.total_prompt_tokens == tokens
     assert session.total_llm_tokens == 2 * tokens
@@ -175,6 +189,9 @@ async def test_invalid_tool_contract_falls_back_after_charging_compilation(tmp_p
 
 def test_planning_config_defaults_and_compiler_override():
     assert ProcedaConfig().planning.enabled is False
+    assert ProcedaConfig().planning.mode == "full"
+    assert ProcedaConfig().planning.native_decisions is True
+    assert ProcedaConfig().planning.require_cached is False
     config = ProcedaConfig.from_dict(
         {"planning": {"enabled": True, "compiler_llm": {"model": "compiler", "max_tokens": 9000}}}
     )
@@ -184,11 +201,85 @@ def test_planning_config_defaults_and_compiler_override():
 
 @pytest.mark.parametrize(
     "planning",
-    [False, [], {"enabled": "yes"}, {"cache_dir": ""}, {"cache_epoch": 1}, {"compiler_llm": []}],
+    [
+        False,
+        [],
+        {"enabled": "yes"},
+        {"cache_dir": ""},
+        {"cache_epoch": 1},
+        {"compiler_llm": []},
+        {"mode": "unknown"},
+        {"mode": []},
+        {"native_decisions": "false"},
+        {"native_decisions": 0},
+        {"require_cached": 1},
+    ],
 )
 def test_planning_config_rejects_invalid_values(planning):
     with pytest.raises(ConfigError):
         ProcedaConfig.from_dict({"planning": planning})
+
+
+@pytest.mark.parametrize("native", [False, True])
+@pytest.mark.parametrize("gate", [True, False, None])
+async def test_business_mode_preserves_original_completion_checks_and_tool_generations(
+    native, gate
+):
+    counters = []
+    for planned in (False, True):
+        responses = [response("lookup", {"id": "R1"}), response()]
+        if gate is not True:
+            responses.append(response())
+        ex, session, llm, tools, decisions, sink = setup(responses, gate=gate)
+        if planned:
+            source_plan = plan_for(ex, residual=("Explain the result",)).plan
+            ex._plan_runner = PlanRunner(
+                source_plan, "test-plan", TOOLS, mode="business_decisions", native_decisions=native
+            )
+        await ex.execute()
+        assert session.status is RunStatus.COMPLETED
+        assert decisions.check_completion.await_count == 1
+        decisions.choose.assert_not_awaited()
+        decisions.evaluate.assert_not_awaited()
+        evidence = decisions.check_completion.call_args.kwargs
+        assert evidence["step"] == ex._skill.get_step(1).content
+        assert evidence["evidence"]["receipts"][0]["arguments"] == {"id": "R1"}
+        assert not any(e.type is EventType.PLAN_ACTION for e in sink.events)
+        counters.append((llm.complete.await_count, tools.execute.await_count))
+    assert counters[0] == counters[1]
+
+
+async def test_business_predicate_provisional_fact_is_discarded_after_rejected_approval():
+    text = SKILL.replace(
+        "Read the record with lookup.",
+        "[APPROVAL REQUIRED]\nDetermine whether the count is at least 2.",
+    )
+    ex, session, llm, tools, decisions, sink = setup([], skill_text=text)
+    session.variables = {"count": 0}
+    source = ex._skill.get_step(1).content
+    spec = ChoiceSpec(
+        "eligible",
+        source,
+        {"true": "count is at least 2"},
+        {"count": ValueRef("input", key="count", source_quote="count")},
+        source,
+        kind="predicate",
+    )
+    ex._plan_runner = PlanRunner(
+        ProcedurePlan("1", (StepPlan(1, "decision", source, decision=spec),)),
+        "test-plan",
+        TOOLS,
+        mode="business_decisions",
+    )
+    decisions.evaluate.return_value = GateResult(False, probabilities={"eligible": 0.1})
+    ex._human = AsyncMock()
+    ex._human.request_approval.return_value = ApprovalDecision.REJECT
+    await ex.execute()
+    assert session.status is RunStatus.CANCELLED
+    assert session.decision_facts == [] and session.completed_steps == []
+    llm.complete.assert_not_awaited()
+    tools.execute.assert_not_awaited()
+    assert any(e.type is EventType.PLAN_FACT_DISCARDED for e in sink.events)
 
 
 async def test_runtime_cold_then_warm_compiled_choice_and_render(tmp_path):

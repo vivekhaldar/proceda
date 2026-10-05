@@ -32,10 +32,16 @@ from benchmarks.sop_bench.analyze_paired import (
     sum_accounting,
 )
 from benchmarks.sop_bench.experiment_credentials import load_pass_credentials
+from benchmarks.sop_bench.prepare_business_plans import load_preparation
 from benchmarks.sop_bench.run_paired_schedule import PASS_ENTRIES, Tee
 from proceda.config import ProcedaConfig
 from proceda.events import EventType
-from proceda.planning.compiler import COMPILER_PROMPT, REVIEW_PROMPT
+from proceda.planning.compiler import (
+    BUSINESS_COMPILER_PROMPT,
+    BUSINESS_REVIEW_PROMPT,
+    COMPILER_PROMPT,
+    REVIEW_PROMPT,
+)
 
 
 def code_identity() -> dict[str, Any]:
@@ -47,6 +53,8 @@ def code_identity() -> dict[str, Any]:
         "run_paired_schedule.py",
         "experiment_credentials.py",
         "analyze_paired.py",
+        "prepare_business_plans.py",
+        "choice_probe.py",
     ):
         path = Path(__file__).parent / filename
         hashes[str(path.relative_to(paired.REPO))] = paired.sha256_file(path)
@@ -136,7 +144,12 @@ def _credential_names(config: ProcedaConfig) -> set[str]:
 def _compiler_attempts(case_dir: Path) -> tuple[list[dict[str, Any]], list[str]]:
     """Classify every compiler/reviewer retry using the frozen exact system prompts."""
     attempts, errors = [], []
-    purposes = {COMPILER_PROMPT: "compiler", REVIEW_PROMPT: "reviewer"}
+    purposes = {
+        COMPILER_PROMPT: "compiler",
+        REVIEW_PROMPT: "reviewer",
+        BUSINESS_COMPILER_PROMPT: "compiler",
+        BUSINESS_REVIEW_PROMPT: "reviewer",
+    }
     for path in sorted((case_dir / "providers").rglob("*.json")):
         try:
             audit = json.loads(path.read_text())
@@ -320,6 +333,7 @@ async def run_schedule_async(
     data_dir: Path = paired.DEFAULT_DATA,
     experiment_dir: Path = paired.DEFAULT_EXPERIMENT,
     secrets: Sequence[str] = (),
+    prepared_plans: Path | None = None,
 ) -> dict[str, Any]:
     """Run immutable case groups; never resume or overlap arms within the same case."""
     if type(jobs) is not int or not 1 <= jobs <= 4:
@@ -334,6 +348,19 @@ async def run_schedule_async(
     manifest = paired.verify_sources(data_dir, experiment_dir)
     task_ids = select_cases(manifest, domains, split, case_ids, limit)
     configs = {arm: ProcedaConfig.load(Path(path)) for arm, path in arms.items()}
+    frozen_code = code_identity()
+    prepared = (
+        load_preparation(
+            prepared_plans,
+            domains=domains,
+            configs=configs,
+            data_dir=data_dir,
+            experiment_dir=experiment_dir,
+            source_identity=frozen_code,
+        )
+        if prepared_plans is not None
+        else None
+    )
     known_secrets = tuple(
         dict.fromkeys(
             [
@@ -352,6 +379,8 @@ async def run_schedule_async(
     for config in effective.values():
         if config.planning.enabled:
             config.planning.cache_dir = str(cache_dir)
+            if prepared is not None:
+                config.planning.require_cached = True
     config_snapshots = {}
     for arm, path in arms.items():
         original = paired.scrub(dataclasses.asdict(configs[arm]), known_secrets)
@@ -388,7 +417,7 @@ async def run_schedule_async(
         "arm_order": "cyclic Latin rotation by global case ordinal",
         "entries": build_order(task_ids, list(arms)),
         "configurations": config_snapshots,
-        "source": code_identity(),
+        "source": frozen_code,
         "runtime": runtime_identity(),
         "manifest_sha256": paired.canonical_hash(manifest),
         "manifest_file_sha256": paired.sha256_file(experiment_dir / "source-manifest.json"),
@@ -397,9 +426,12 @@ async def run_schedule_async(
             d: str((experiment_dir / "skills" / d / "SKILL.md").resolve()) for d in domains
         },
         "compilation": {
-            "cache_policy": "new_empty_schedule_local_shared_cache",
+            "cache_policy": "frozen_prepared_artifacts_cache_only"
+            if prepared
+            else "new_empty_schedule_local_shared_cache",
             "cache_dir": str(cache_dir),
-            "prepared_cache": False,
+            "prepared_cache": prepared is not None,
+            "external_preparation": prepared,
             "cache_hit_preparation_includes_singleflight_wait": True,
             "cost_accounting": (
                 "Compiler/reviewer attempts are charged to their actual first caller. "
@@ -407,7 +439,12 @@ async def run_schedule_async(
             ),
             "prompt_hashes": {
                 name: paired.canonical_hash(prompt)
-                for name, prompt in (("compiler", COMPILER_PROMPT), ("reviewer", REVIEW_PROMPT))
+                for name, prompt in (
+                    ("compiler", COMPILER_PROMPT),
+                    ("reviewer", REVIEW_PROMPT),
+                    ("business_compiler", BUSINESS_COMPILER_PROMPT),
+                    ("business_reviewer", BUSINESS_REVIEW_PROMPT),
+                )
             },
         },
         "created_at": datetime.now(UTC).isoformat(),
@@ -418,6 +455,15 @@ async def run_schedule_async(
         by_id = {row[paired.ID_COLUMNS[domain]]: row for row in values}
         rows[domain] = (by_id, metadata)
     driver_dir.mkdir(parents=True, exist_ok=False)
+    if prepared is not None:
+        cache_dir.mkdir()
+        for name, artifact in prepared["artifacts"].items():
+            data = Path(artifact["path"]).read_bytes()
+            with (cache_dir / name).open("xb") as handle:
+                handle.write(data)
+            if paired.sha256_file(cache_dir / name) != artifact["sha256"]:
+                raise ValueError("Prepared artifact changed during copy")
+        paired.write_json_exclusive(driver_dir / "external-preparation.json", prepared)
     paired.write_json_exclusive(driver_dir / "schedule.json", schedule)
     for arm in arms:
         arm_dir = driver_dir / arm
@@ -451,6 +497,14 @@ async def run_schedule_async(
     def verify_frozen_identity() -> None:
         if code_identity() != schedule["source"]:
             raise ValueError("Runtime source changed after schedule freeze")
+        if prepared is not None:
+            if paired.sha256_file(Path(prepared["manifest_path"])) != prepared["manifest_sha256"]:
+                raise ValueError("Frozen preparation manifest changed")
+            if any(
+                paired.sha256_file(cache_dir / name) != artifact["sha256"]
+                for name, artifact in prepared["artifacts"].items()
+            ):
+                raise ValueError("Frozen prepared cache changed")
         if any(
             paired.sha256_file(Path(spec["path"])) != spec["file_sha256"]
             for spec in config_snapshots.values()
@@ -527,6 +581,20 @@ async def run_schedule_async(
         accounting = account_audits(case_dir, record)
         attempts, compiler_errors = _compiler_attempts(case_dir)
         links, link_errors = _plan_links(case_dir)
+        prepared_mismatch = False
+        if prepared is not None and effective[arm].planning.enabled:
+            expected_plan = prepared["domains"][domain]
+            if attempts:
+                compiler_errors.append("Unexpected paid compilation during cache-only execution")
+                prepared_mismatch = True
+            if len(links) != 1 or any(
+                not link.get("cache_hit")
+                or link.get("cache_key") != expected_plan["cache_key"]
+                or link.get("status") != expected_plan["status"]
+                for link in links
+            ):
+                link_errors.append("Runtime did not use its exact frozen prepared outcome")
+                prepared_mismatch = True
         observation: dict[str, Any] = {
             **record,
             "arm": arm,
@@ -552,6 +620,8 @@ async def run_schedule_async(
         records.append(observation)
         _append(driver_dir / arm / "predictions.jsonl", observation, known_secrets)
         _append(driver_dir / "predictions.jsonl", observation, known_secrets)
+        if prepared_mismatch:
+            raise ValueError("Prepared plan mismatch; case evidence preserved, schedule stopped")
         audit_error_count = len(accounting["audit_errors"]) + len(observation["trace_errors"])
         print(
             f"{arm} {domain}/{task_id}: {record['status']} "
@@ -639,6 +709,7 @@ async def run_schedule_async(
             "preparation": _preparation_summary(
                 [link for r in records for link in r["plan_links"]]
             ),
+            "external_preparation": prepared,
         }
         for arm in arms:
             arm_records = [r for r in records if r["arm"] == arm]
@@ -666,6 +737,31 @@ async def run_schedule_async(
                 ),
                 "plan_links": [link for r in arm_records for link in r["plan_links"]],
                 "trace_errors": [error for r in arm_records for error in r["trace_errors"]],
+            }
+            if prepared is not None:
+                ordinary_cost = summary["arms"][arm]["accounting"]["cost_usd"]
+                preparation_cost = (
+                    prepared["accounting"]["cost_usd"] if effective[arm].planning.enabled else 0.0
+                )
+                summary["arms"][arm]["independent_deployment_cost"] = {
+                    "execution_cost_usd": ordinary_cost,
+                    "full_preparation_cost_usd": preparation_cost,
+                    "combined_cost_usd": ordinary_cost + preparation_cost
+                    if ordinary_cost is not None and preparation_cost is not None
+                    else None,
+                    "preparation_split_between_arms": False,
+                }
+        if prepared is not None:
+            operational = summary["accounting"]["cost_usd"]
+            preparation_cost = prepared["accounting"]["cost_usd"]
+            summary["physical_experiment_cost"] = {
+                "execution_cost_usd": operational,
+                "preparation_cost_usd_once": preparation_cost,
+                "combined_cost_usd": operational + preparation_cost
+                if operational is not None and preparation_cost is not None
+                else None,
+                "deduplicate_preparation_by_manifest_and_domain_across_schedules": True,
+                "preparation_performed_in_this_schedule": False,
             }
         paired.write_json_exclusive(driver_dir / "summary.json", summary)
         paired.write_json_exclusive(
@@ -701,6 +797,9 @@ async def main_async(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--data-dir", type=Path, default=paired.DEFAULT_DATA)
     parser.add_argument("--experiment-dir", type=Path, default=paired.DEFAULT_EXPERIMENT)
     parser.add_argument(
+        "--prepared-plans", type=Path, help="Frozen source-only preparation manifest"
+    )
+    parser.add_argument(
         "--environment-credentials",
         action="store_true",
         help="Use existing environment only, without loading missing keys from pass",
@@ -735,6 +834,7 @@ async def main_async(argv: Sequence[str] | None = None) -> int:
                 data_dir=args.data_dir,
                 experiment_dir=args.experiment_dir,
                 secrets=all_secrets,
+                prepared_plans=args.prepared_plans,
             )
         except Exception as exc:
             print(

@@ -326,3 +326,90 @@ def test_partial_plan_recovers_malformed_step_value_and_render_format():
     plan, downgrades = validate_partial_plan(raw, skill, TOOLS, ["message"])
     assert all(step.kind == "llm" for step in plan.steps)
     assert [entry["step_index"] for entry in downgrades] == [1, 2, 3]
+
+
+@pytest.mark.parametrize("substring", ["rout", "oute", "kip"])
+def test_choice_outcome_must_not_be_a_substring_of_another_source_word(substring):
+    skill, raw = fixture()
+    raw["steps"][0]["decision"]["criteria"] = {substring: "Unsupported fragment", "skip": "Skip"}
+    with pytest.raises(PlanValidationError, match="whole outcomes"):
+        validate_plan(raw, skill, TOOLS, ["message"])
+
+
+def predicate_fixture():
+    skill = parse_skill("""---
+name: capacity-check
+description: Renamed fully defined predicate
+---
+### Step 1: Determine Capacity
+Determine whether observed_count is at least 10 and maintenance is false.
+""")
+    source = skill.steps[0].content
+    raw = {
+        "ir_version": "1",
+        "steps": [
+            {
+                "index": 1,
+                "kind": "decision",
+                "source_quote": source,
+                "residual_obligations": [],
+                "decision": {
+                    "kind": "predicate",
+                    "field": "has_capacity",
+                    "instructions": source,
+                    "criteria": {"true": "observed_count is at least 10 and maintenance is false"},
+                    "inputs": {
+                        key: {"kind": "input", "key": key, "source_quote": source}
+                        for key in ("observed_count", "maintenance")
+                    },
+                    "source_quote": source,
+                },
+            }
+        ],
+    }
+    return skill, raw
+
+
+def test_predicate_is_typed_and_roundtrips_without_invented_business_labels():
+    skill, raw = predicate_fixture()
+    plan = validate_plan(
+        raw, skill, [], ["observed_count", "maintenance"], mode="business_decisions"
+    )
+    decision = plan.steps[0].decision
+    assert decision.kind == "predicate"
+    assert set(decision.criteria) == {"true"}
+    assert validate_plan(plan.to_dict(), skill, [], ["observed_count", "maintenance"]) == plan
+
+
+@pytest.mark.parametrize(
+    "mutation",
+    [
+        lambda d: d.update(kind="booleanish"),
+        lambda d: d.update(criteria={"false": "maintenance is false"}),
+        lambda d: d.update(criteria={"true": "Invent an acceptable risk threshold"}),
+        lambda d: d.update(criteria={"true": "maintenance is false", "false": "not false"}),
+        lambda d: d.update(instructions="A shorter policy that drops the count requirement"),
+    ],
+)
+def test_invalid_predicate_or_business_policy_cannot_be_admitted(mutation):
+    skill, raw = predicate_fixture()
+    mutation(raw["steps"][0]["decision"])
+    with pytest.raises(PlanValidationError):
+        validate_plan(raw, skill, [], ["observed_count", "maintenance"], mode="business_decisions")
+
+
+def test_business_mode_rejects_tools_inside_decisions_and_all_rendering():
+    skill, raw = fixture()
+    raw["steps"][0]["decision"]["instructions"] = skill.steps[0].content
+    raw["steps"][0]["tools"] = raw["steps"][1]["tools"]
+    with pytest.raises(PlanValidationError, match="Only tool steps"):
+        validate_plan(raw, skill, TOOLS, ["message"], mode="business_decisions")
+    del raw["steps"][0]["tools"]
+    raw["steps"][1]["residual_obligations"] = [skill.steps[1].content]
+    recovered, downgrades = validate_partial_plan(
+        raw, skill, TOOLS, ["message"], mode="business_decisions"
+    )
+    assert [s.kind for s in recovered.steps] == ["decision", "tool", "llm"]
+    assert downgrades == [
+        {"step_index": 3, "reason": "Business mode does not admit rendering operations"}
+    ]

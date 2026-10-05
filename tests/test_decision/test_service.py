@@ -86,6 +86,19 @@ async def test_confident_no_is_false_not_uncertainty_or_a_second_call():
     assert len(calls) == 1
 
 
+async def test_predicate_complement_threshold_keeps_existing_completion_boundary():
+    service = DecisionService(
+        [backend()],
+        threshold=0.8,
+        transport=httpx.MockTransport(lambda _: httpx.Response(200, json=body(complete=0.2))),
+    )
+    legacy = await service.evaluate({}, QUESTIONS)
+    predicate = await service.evaluate({}, QUESTIONS, selected_outcome_threshold=True)
+    assert legacy.value is None
+    assert predicate.value is False
+    assert predicate.details[0]["acceptance_statistic"] == "selected_outcome_probability"
+
+
 async def test_confidence_statistic_does_not_override_yes_probability():
     response = body(complete=0.7)
     response["answers"]["complete"]["confidence"] = 0.999

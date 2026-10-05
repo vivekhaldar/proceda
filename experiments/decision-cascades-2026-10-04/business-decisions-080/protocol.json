@@ -1,0 +1,114 @@
+{
+  "recorded_before_inference": true,
+  "design": "docs/bounded-business-decisions-design.md",
+  "arms": {
+    "baseline": "A: Qwen only",
+    "completion": "B: Qwen with Jev completion checks",
+    "business-qwen": "C: business-mode source plan with Qwen choices and Jev completion checks",
+    "business-jev": "D: identical plan with Jev choices/predicates, constrained Qwen fallback, Jev completion checks"
+  },
+  "primary_contrast": "business-jev minus business-qwen",
+  "other_contrasts": [
+    [
+      "completion",
+      "baseline"
+    ],
+    [
+      "business-qwen",
+      "completion"
+    ],
+    [
+      "business-jev",
+      "baseline"
+    ]
+  ],
+  "source_manifest": "../source-manifest.json",
+  "pilot": {
+    "split": "dev",
+    "case_ids": "pilot-case-ids.json",
+    "cases_per_domain": 4,
+    "total_executions": 48,
+    "jobs": 4,
+    "purpose": "Compatibility only; no validation-label tuning"
+  },
+  "full": {
+    "split": "holdout",
+    "validation_status": "reused_validation",
+    "untouched_confirmation": false,
+    "cases_per_arm": 360,
+    "arms": 4,
+    "total_executions": 1440,
+    "domains": {
+      "email_intent": 148,
+      "patient_intake": 52,
+      "referral_abuse_detection_v1": 160
+    },
+    "parallel_domain_processes": 3,
+    "case_groups_per_process": 4,
+    "maximum_concurrent_case_executions": 12,
+    "within_case_arm_concurrency": 1,
+    "arm_order": "cyclic Latin rotation; equal positions within each domain"
+  },
+  "preparation": {
+    "input": "Only SOP text, tool schemas and input field names; no task values or labels",
+    "domain_concurrency": 3,
+    "compiler_and_reviewer": {
+      "model": "openai/Qwen/Qwen3.8-27B",
+      "api_base": "https://api.tokenfactory.nebius.com/v1",
+      "api_key_env": "NEBIUS_API_KEY",
+      "temperature": 0.0,
+      "max_tokens": 2048,
+      "max_retries": 2,
+      "timeout": 90,
+      "reasoning_effort": "low"
+    },
+    "cache": "Source-only frozen manifest; same source artifacts C/D; runtime require_cached enabled by driver",
+    "failures": "Retain rejected/unsupported/error plans and every provider attempt; ordinary execution fallback without task-time recompilation",
+    "cost": "Preparation paid once physically, same full relevant cost for either compiled deployment. Deduplicate by manifest identity and domain when combining pilot/full schedules. Never split P between C/D.",
+    "latency": "Separate source preparation wall time from warm case execution; runtime cache loading remains in case latency"
+  },
+  "routing": {
+    "business_qwen_native_decisions": false,
+    "business_jev_native_decisions": true,
+    "completion_backend": {
+      "name": "jev-hosted",
+      "kind": "typesafe",
+      "model": "jev-1.13.0",
+      "base_url": "https://api.typesafe.ai",
+      "api_key_env": "TYPESAFE_API_KEY",
+      "timeout": 45,
+      "max_input_chars": 18000,
+      "input_cost_per_million": 0.042
+    },
+    "threshold": 0.8,
+    "tool_and_render_optimizations": false,
+    "completion_eligibility": "Same existing eligibility for B/C/D; planning business mode cannot suppress it"
+  },
+  "accounting": {
+    "cost_policy": "Documented usage list rates; cached input at full input price. Actual cached-input billing unverified. Count every LLM and Jev attempt including fallback and errors.",
+    "qwen_usd_per_million": {
+      "input": 0.45,
+      "output": 3.0
+    },
+    "jev_usd_per_million": {
+      "input": 0.042,
+      "output": 0.0
+    },
+    "purposes": [
+      "compiler",
+      "reviewer",
+      "business_choice",
+      "business_predicate",
+      "constrained_business_generation",
+      "completion",
+      "ordinary_generation"
+    ]
+  },
+  "limits": [
+    "Reused holdout is not new confirmation",
+    "Strict output scoring is not full prose SOP compliance",
+    "Zero supported business decisions is a valid domain result",
+    "Latency includes cross-case and cross-domain provider contention",
+    "Confidence threshold is not a measured accuracy guarantee"
+  ]
+}

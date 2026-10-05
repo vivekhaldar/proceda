@@ -269,7 +269,11 @@ class Runtime:
         """Compile reusable instructions without exposing any case values or labels."""
         started = time.monotonic()
         configured = self._config.planning.compiler_llm
-        compiler_config = configured or replace(self._config.llm, max_tokens=8192)
+        compiler_config = configured or (
+            self._config.llm
+            if self._config.planning.mode == "business_decisions"
+            else replace(self._config.llm, max_tokens=8192)
+        )
         compiler = LLMRuntime(replace(compiler_config, audit_dir=audit_dir))
         identity = asdict(compiler_config)
         identity.pop("audit_dir", None)
@@ -284,6 +288,8 @@ class Runtime:
                 compiler_config=identity,
                 reviewer_config=identity,
                 cache_epoch=self._config.planning.cache_epoch,
+                mode=self._config.planning.mode,
+                require_cached=self._config.planning.require_cached,
             )
         except Exception as exc:
             # A compiler or cache failure cannot make the original executor unavailable.
@@ -341,7 +347,13 @@ class Runtime:
         if result.plan is None:
             return None
         try:
-            return PlanRunner(result.plan, result.cache_key, tool_schemas)
+            return PlanRunner(
+                result.plan,
+                result.cache_key,
+                tool_schemas,
+                mode=self._config.planning.mode,
+                native_decisions=self._config.planning.native_decisions,
+            )
         except Exception as exc:
             await emit(
                 RunEvent.create(

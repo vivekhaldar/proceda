@@ -110,7 +110,7 @@ def cases(monkeypatch):
                     "fixture-session",
                     EventType.PLAN_PREPARED,
                     {
-                        "status": "accepted",
+                        "status": json.loads(artifact.read_text()).get("status", "accepted"),
                         "cache_hit": hit,
                         "artifact_path": str(artifact),
                         "artifact_sha256": driver.paired.sha256_file(artifact),
@@ -200,6 +200,84 @@ async def test_compilation_is_counted_once_and_charged_to_actual_caller(environm
     assert summary["arms"]["compiled-llm"]["case_seconds_excluding_preparation"] == pytest.approx(
         2.78
     )
+
+
+def prepared_fixture(environment, monkeypatch, status="accepted"):
+    folder = environment["experiment_dir"] / "prepared"
+    folder.mkdir()
+    manifest = folder / "manifest.json"
+    manifest.write_text('{"frozen":"preparation"}')
+    artifact = folder / "source-derived-plan.json"
+    artifact.write_text(json.dumps({"status": status}))
+    prepared = {
+        "manifest_path": str(manifest),
+        "manifest_sha256": driver.paired.sha256_file(manifest),
+        "artifacts": {
+            artifact.name: {"path": str(artifact), "sha256": driver.paired.sha256_file(artifact)}
+        },
+        "domains": {DOMAIN: {"cache_key": "source-only-fixture", "status": status}},
+        "accounting": {"cost_usd": 1.5},
+    }
+    monkeypatch.setattr(driver, "load_preparation", lambda *_, **__: prepared)
+    environment["prepared_plans"] = manifest
+    return prepared
+
+
+@pytest.mark.parametrize("status", ["accepted", "rejected", "unsupported"])
+async def test_prepared_outcome_shared_without_compilation_and_full_cost_each_arm(
+    environment, cases, monkeypatch, status
+):
+    prepared_fixture(environment, monkeypatch, status)
+    original = driver.paired.run_case_async
+
+    async def check_config(**kwargs):
+        if kwargs["config"].planning.enabled:
+            assert kwargs["config"].planning.require_cached
+        return await original(**kwargs)
+
+    monkeypatch.setattr(driver.paired, "run_case_async", check_config)
+    result = await driver.run_schedule_async(**environment)
+    assert result["accounting"]["llm_requests"] == 9
+    assert result["shared_compilation_once"]["requests"] == 0
+    assert result["physical_experiment_cost"]["preparation_cost_usd_once"] == 1.5
+    for arm in ("compiled-llm", "compiled-dm"):
+        record = result["arms"][arm]
+        assert record["independent_deployment_cost"]["full_preparation_cost_usd"] == 1.5
+        assert not record["independent_deployment_cost"]["preparation_split_between_arms"]
+        assert all(link["status"] == status and link["cache_hit"] for link in record["plan_links"])
+    assert (
+        result["arms"]["baseline"]["independent_deployment_cost"]["full_preparation_cost_usd"] == 0
+    )
+
+
+async def test_changed_prepared_cache_aborts_before_further_cases(environment, cases, monkeypatch):
+    prepared_fixture(environment, monkeypatch)
+    original = driver.paired.run_case_async
+
+    async def mutate(**kwargs):
+        result = await original(**kwargs)
+        root = kwargs["case_dir"].parents[2]
+        (root / "plan-cache/source-derived-plan.json").write_text("changed")
+        return result
+
+    monkeypatch.setattr(driver.paired, "run_case_async", mutate)
+    with pytest.raises(ValueError, match="prepared cache changed"):
+        await driver.run_schedule_async(**environment)
+    assert len(cases) == 1
+
+
+async def test_prepared_outcome_mismatch_saves_evidence_then_stops(environment, cases, monkeypatch):
+    prepared = prepared_fixture(environment, monkeypatch)
+    prepared["domains"][DOMAIN]["cache_key"] = "unexpected-other-identity"
+    with pytest.raises(ValueError, match="Prepared plan mismatch"):
+        await driver.run_schedule_async(**environment)
+    assert len(cases) == 2  # Baseline, then first compiled arm; no remaining paid cases.
+    root = environment["experiment_dir"] / "phase2/runs/test"
+    assert (root / "compiled-llm/email_intent/E1/terminal.json").exists()
+    saved = json.loads((root / "compiled-llm/email_intent/E1/phase2-observation.json").read_text())
+    assert not saved["trace_integrity_valid"]
+    assert len((root / "predictions.jsonl").read_text().splitlines()) == 2
+    assert (root / "failed.json").exists()
 
 
 def test_plan_links_preserve_recorded_hash_and_flag_mismatch(tmp_path):

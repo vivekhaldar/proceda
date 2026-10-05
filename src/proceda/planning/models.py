@@ -7,12 +7,12 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import asdict, dataclass, field
-from typing import Any
+from typing import Any, Literal
 
 from proceda.skill import Skill
 
 IR_VERSION = "1"
-VALIDATION_VERSION = "2"
+VALIDATION_VERSION = "3"
 
 
 class PlanValidationError(ValueError):
@@ -46,6 +46,7 @@ class ChoiceSpec:
     criteria: dict[str, str]
     inputs: dict[str, ValueRef]
     source_quote: str
+    kind: Literal["choice", "predicate"] = "choice"
 
 
 @dataclass(frozen=True)
@@ -133,6 +134,7 @@ class _Context:
     inputs: set[str]
     facts: dict[tuple[int, str], bool] = field(default_factory=dict)
     receipt_contracts: set[tuple[int, str]] = field(default_factory=set)
+    mode: str = "full"
 
     def ref(self, raw: Any, index: int, source: str) -> ValueRef:
         item = _object(
@@ -201,9 +203,15 @@ class _Context:
 
 
 def _validation_context(
-    raw: Any, skill: Skill, tool_schemas: list[dict[str, Any]], input_fields: list[str]
+    raw: Any,
+    skill: Skill,
+    tool_schemas: list[dict[str, Any]],
+    input_fields: list[str],
+    mode: str,
 ) -> tuple[_Context, list[Any]]:
     """Root/schema defects cannot be recovered by replacing an individual step."""
+    if mode not in {"full", "business_decisions"}:
+        raise PlanValidationError("Unsupported planning mode")
     item = _object(raw, {"ir_version", "steps"}, {"ir_version", "steps"})
     if item["ir_version"] != IR_VERSION:
         raise PlanValidationError("Unsupported IR version")
@@ -214,7 +222,7 @@ def _validation_context(
         if not isinstance(name, str) or name in tools:
             raise PlanValidationError("Tool schemas need unique canonical names")
         tools[name] = function.get("parameters", {})
-    context = _Context(skill, tools, set(input_fields))
+    context = _Context(skill, tools, set(input_fields), mode=mode)
     raw_steps = _list(item["steps"], "steps")
     if len(raw_steps) != skill.step_count:
         raise PlanValidationError("Every SOP step must be covered exactly once")
@@ -222,10 +230,15 @@ def _validation_context(
 
 
 def validate_plan(
-    raw: Any, skill: Skill, tool_schemas: list[dict[str, Any]], input_fields: list[str]
+    raw: Any,
+    skill: Skill,
+    tool_schemas: list[dict[str, Any]],
+    input_fields: list[str],
+    *,
+    mode: str = "full",
 ) -> ProcedurePlan:
     """Validate structural/source boundaries, not prove semantic equivalence to prose."""
-    context, raw_steps = _validation_context(raw, skill, tool_schemas, input_fields)
+    context, raw_steps = _validation_context(raw, skill, tool_schemas, input_fields, mode)
     steps = tuple(
         _step(raw_step, source.index, context)
         for raw_step, source in zip(raw_steps, skill.steps, strict=True)
@@ -234,7 +247,12 @@ def validate_plan(
 
 
 def validate_partial_plan(
-    raw: Any, skill: Skill, tool_schemas: list[dict[str, Any]], input_fields: list[str]
+    raw: Any,
+    skill: Skill,
+    tool_schemas: list[dict[str, Any]],
+    input_fields: list[str],
+    *,
+    mode: str = "full",
 ) -> tuple[ProcedurePlan, list[dict[str, Any]]]:
     """Lose optimization conservatively; never repair or admit an invalid operation.
 
@@ -243,7 +261,7 @@ def validate_partial_plan(
     Dependent steps must validate against only the surviving evidence contracts.
     The caller must independently review the resulting plan before executing it.
     """
-    context, raw_steps = _validation_context(raw, skill, tool_schemas, input_fields)
+    context, raw_steps = _validation_context(raw, skill, tool_schemas, input_fields, mode)
     steps, downgrades = [], []
     for raw_step, source in zip(raw_steps, skill.steps, strict=True):
         tentative = _Context(
@@ -252,6 +270,7 @@ def validate_partial_plan(
             context.inputs,
             dict(context.facts),
             set(context.receipt_contracts),
+            mode,
         )
         try:
             step = _step(raw_step, source.index, tentative)
@@ -272,7 +291,9 @@ def validate_partial_plan(
         steps.append(step)
     recovered = ProcedurePlan(IR_VERSION, tuple(steps))
     # The ordinary strict validator remains the final execution boundary.
-    return validate_plan(recovered.to_dict(), skill, tool_schemas, input_fields), downgrades
+    return validate_plan(
+        recovered.to_dict(), skill, tool_schemas, input_fields, mode=mode
+    ), downgrades
 
 
 def _step(raw: Any, index: int, ctx: _Context) -> StepPlan:
@@ -303,6 +324,8 @@ def _step(raw: Any, index: int, ctx: _Context) -> StepPlan:
     extractors: list[RegexExtractor] = []
     if not isinstance(kind, str) or kind not in {"decision", "tool", "render", "llm"}:
         raise PlanValidationError(f"Unsupported step kind: {kind}")
+    if ctx.mode == "business_decisions" and kind == "render":
+        raise PlanValidationError("Business mode does not admit rendering operations")
     for collection in ("tools", "extractors"):
         if collection in item:
             _list(item[collection], collection)
@@ -319,6 +342,8 @@ def _step(raw: Any, index: int, ctx: _Context) -> StepPlan:
         raise PlanValidationError("Whole-step completion cannot leave residual obligations")
     if kind == "llm" and residual != (source,):
         raise PlanValidationError("LLM steps must retain their entire original instructions")
+    if ctx.mode == "business_decisions" and kind == "tool" and residual != (source,):
+        raise PlanValidationError("Observation contracts must retain the entire original step")
     if kind == "decision":
         for extraction in _list(item.get("extractors", []), "extractors"):
             ex = _object(
@@ -348,19 +373,34 @@ def _step(raw: Any, index: int, ctx: _Context) -> StepPlan:
             ctx.facts[index, field_name] = True
         choice = _object(
             item.get("decision"),
-            {"field", "instructions", "criteria", "inputs", "source_quote"},
+            {"field", "instructions", "criteria", "inputs", "source_quote", "kind"},
             {"field", "instructions", "criteria", "inputs", "source_quote"},
         )
         field_name = _text(choice["field"], "choice field")
         if (index, field_name) in ctx.facts:
             raise PlanValidationError("Choice field collides with extractor")
         criteria = _mapping(choice["criteria"], "criteria")
-        if not 2 <= len(criteria) <= 64:
-            raise PlanValidationError("Choice requires 2–64 labels")
-        for label, criterion in criteria.items():
-            if label not in source:
-                raise PlanValidationError("Choice labels must appear in the original step")
-            _text(criterion, "choice criterion")
+        decision_kind = choice.get("kind", "choice")
+        if decision_kind == "predicate":
+            if set(criteria) != {"true"}:
+                raise PlanValidationError("Predicate requires exactly one true criterion")
+            _quote(criteria["true"], source)
+        elif decision_kind == "choice":
+            if not 2 <= len(criteria) <= 64:
+                raise PlanValidationError("Choice requires 2–64 labels")
+            for label, criterion in criteria.items():
+                if not re.search(r"(?<!\w)" + re.escape(label) + r"(?!\w)", source):
+                    raise PlanValidationError(
+                        "Choice labels must appear as whole outcomes in the original step"
+                    )
+                _text(criterion, "choice criterion")
+        else:
+            raise PlanValidationError("Unsupported decision kind")
+        instructions = _text(choice["instructions"], "choice instructions")
+        if ctx.mode == "business_decisions" and instructions != source:
+            raise PlanValidationError(
+                "Business decisions require the entire original step as policy"
+            )
         inputs = {
             k: ctx.ref(v, index, source)
             for k, v in _mapping(choice["inputs"], "choice inputs").items()
@@ -369,10 +409,11 @@ def _step(raw: Any, index: int, ctx: _Context) -> StepPlan:
             raise PlanValidationError("Choice must bind evidence")
         decision = ChoiceSpec(
             field_name,
-            _text(choice["instructions"], "choice instructions"),
+            instructions,
             dict(criteria),
             inputs,
             _quote(choice["source_quote"], source),
+            decision_kind,
         )
         ctx.facts[index, field_name] = True
     elif kind == "tool":
