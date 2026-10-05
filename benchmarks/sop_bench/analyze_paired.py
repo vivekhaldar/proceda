@@ -21,6 +21,8 @@ LLM_PRICES = {
     "zai-org/GLM-5.3": (1.40, 4.40),
     "Qwen/Qwen3-30B-A3B-Instruct-2507": (0.10, 0.30),
     "Qwen/Qwen3-235B-A22B-Instruct-2507": (0.20, 0.60),
+    # Nebius model catalog verified 2026-10-04 for the Qwen/Laya follow-up.
+    "Qwen/Qwen3.8-27B": (0.45, 3.00),
 }
 JEV_INPUT_PRICE = 0.042
 BOOTSTRAP_SEED = 20261004

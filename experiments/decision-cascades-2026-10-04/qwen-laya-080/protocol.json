@@ -46,5 +46,12 @@
     "state_truncated": 18,
     "uncertain": 2,
     "configuration_changed_after_pilot": false
+  },
+  "qwen_list_prices_usd_per_million": {
+    "input": 0.45,
+    "output": 3.0,
+    "source": "https://tokenfactory.nebius.com/endpoints?search=Qwen3.8-27B",
+    "verified_date": "2026-10-04",
+    "cache_billing_verified": false
   }
 }
